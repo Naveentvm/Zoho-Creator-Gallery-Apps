@@ -1,0 +1,6865 @@
+/*
+ * Author       : wapope7431_asuflex
+ * Generated on : 10-May-2023 16:03:05
+ * Version      : 1.0
+ */
+ application "Admission Management"
+ {
+ 	date format = "dd-MMM-yyyy"
+ 	time zone = "Asia/Kolkata"
+ 	time format = "24-hr"
+ 	section Dashboard
+	{
+		icon = "ui-1-dashboard-half"
+				 page Dashboard 
+	 	 { 
+ 	 	 displayname = "Dashboard"
+
+ 	 	 icon = "ui-1-dashboard-half" 
+	 	 Content="<zml    \t\t\n\t\t\n\t\t\n\t\t\n\t\t\n>\n\t<layout>\n\t<row>\n\t<column\n   \t\t width=\"25%\"\n   \t>\n\t<panel elementName=\"Panel\"\n \n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpadding = '20px'\n\tbgColor = '#FFCDBC'\n\n    action = 'OpenReport'\n\t\tcomponentLinkName = 'Open_Enrollment'\n\t\ttarget = 'new-window'\n\t\twidth = '100%'\n\t\thAlign = 'center'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\tpadding = '5px'\n\n>\n\t<pr \n\t>\n\t<pc \n\t\n>\n\t<image  \n\t\n\tcolor = '#FFFFFF'\n\tbgColor = '#FF8318'\n\twidth = '52px'\n\theight = '52px'\n\ttype = 'icon'\n\tvalue = 'furniture-door'\n\tsize = '32px'\n\tcornerRadius = '26px'\n\ticonType = 'solid'\n\/>\n<\/pc>\n<\/pr><pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginTop = '3px'\n\tcolor = '#FF8318'\n\tsize = '36px'\n\tbold = 'true' \n\ttype = 'Form Data'\n\n\tdisplayType = 'actual'\n\tdecimalSeperator = '.'\n\tnumberScale = 'none'\n\n\n\t  \n\t\tcriteria = 'Status == &quot;On Registration&quot;'\n\t  value = 'thisapp.Start_New_Admission.ID.count'\n>\n<\/text>\n\n<\/pc>\n<\/pr><pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginTop = '3px'\n\tcolor = '#333333'\n\tsize = '16px'\n\ttype = 'Text'\n\n\n\n\t  \n\t  value = 'Open Enrollment'\n>\n<\/text>\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column><column\n   \t\t width=\"25%\"\n   \t>\n\t<panel elementName=\"Panel 1\"\n \n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpadding = '20px'\n\tbgColor = '#FFBCC1'\n\n    action = 'OpenReport'\n\t\tcomponentLinkName = 'Closed_Enrollment'\n\t\ttarget = 'new-window'\n\t\twidth = '100%'\n\t\thAlign = 'center'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\tpadding = '5px'\n\n>\n\t<pr \n\t>\n\t<pc \n\t\n>\n\t<image  \n\t\n\tcolor = '#FFFFFF'\n\tbgColor = '#FF0048'\n\twidth = '52px'\n\theight = '52px'\n\ttype = 'icon'\n\tvalue = 'design-pen-23'\n\tsize = '32px'\n\tcornerRadius = '26px'\n\ticonType = 'solid'\n\/>\n<\/pc>\n<\/pr><pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginTop = '3px'\n\tcolor = '#FF0048'\n\tsize = '36px'\n\tbold = 'true' \n\ttype = 'Form Data'\n\n\tdisplayType = 'actual'\n\tdecimalSeperator = '.'\n\tnumberScale = 'none'\n\n\n\t  \n\t\tcriteria = 'Select_Course.Admission_Flow == &quot;Shortlist &amp; Assessment&quot; &amp;&amp; Application_Status == &quot;Pending&quot;'\n\t  value = 'thisapp.Fill_New_Application.ID.count'\n>\n<\/text>\n\n<\/pc>\n<\/pr><pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginTop = '3px'\n\tcolor = '#333333'\n\tsize = '16px'\n\ttype = 'Text'\n\n\n\n\t  \n\t  value = 'Assessments'\n>\n<\/text>\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column><column\n   \t\t width=\"25%\"\n   \t>\n\t<panel elementName=\"Panel 2\"\n \n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpadding = '20px'\n\tbgColor = '#BDC9F3'\n\n    action = 'OpenReport'\n\t\tcomponentLinkName = 'Direct_Admissions'\n\t\ttarget = 'new-window'\n\t\twidth = '100%'\n\t\thAlign = 'center'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\tpadding = '5px'\n\n>\n\t<pr \n\t>\n\t<pc \n\t\n>\n\t<image  \n\t\n\tcolor = '#FFFFFF'\n\tbgColor = '#2A70E7'\n\twidth = '52px'\n\theight = '52px'\n\ttype = 'icon'\n\tvalue = 'files-single-content-02'\n\tsize = '32px'\n\tcornerRadius = '26px'\n\ticonType = 'solid'\n\/>\n<\/pc>\n<\/pr><pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginTop = '3px'\n\tcolor = '#2A70E7'\n\tsize = '36px'\n\tbold = 'true' \n\ttype = 'Form Data'\n\n\tdisplayType = 'actual'\n\tdecimalSeperator = '.'\n\tnumberScale = 'none'\n\n\n\t  \n\t\tcriteria = 'Application_Status == &quot;Pending&quot; &amp;&amp; Select_Course.Admission_Flow == &quot;Direct Admission&quot;'\n\t  value = 'thisapp.Fill_New_Application.ID.count'\n>\n<\/text>\n\n<\/pc>\n<\/pr><pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginTop = '3px'\n\tcolor = '#333333'\n\tsize = '16px'\n\ttype = 'Text'\n\n\n\n\t  \n\t  value = 'Direct Admissions'\n>\n<\/text>\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column><column\n   \t\t width=\"25%\"\n   \t>\n\t<panel elementName=\"Panel 3\"\n \n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpadding = '20px'\n\tbgColor = '#BCE0C2'\n\n    action = 'OpenReport'\n\t\tcomponentLinkName = 'Selected_Candidates'\n\t\ttarget = 'new-window'\n\t\twidth = '100%'\n\t\thAlign = 'center'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\tpadding = '5px'\n\n>\n\t<pr \n\t>\n\t<pc \n\t\n>\n\t<image  \n\t\n\tcolor = '#FFFFFF'\n\tbgColor = '#0ABB51'\n\twidth = '52px'\n\theight = '52px'\n\ttype = 'icon'\n\tvalue = 'ui-1-check-bold'\n\tsize = '32px'\n\tcornerRadius = '26px'\n\ticonType = 'solid'\n\/>\n<\/pc>\n<\/pr><pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginTop = '3px'\n\tcolor = '#0ABB51'\n\tsize = '36px'\n\tbold = 'true' \n\ttype = 'Form Data'\n\n\tdisplayType = 'actual'\n\tdecimalSeperator = '.'\n\tnumberScale = 'none'\n\n\n\t  \n\t\tcriteria = 'Application_Status == &quot;Selected&quot;'\n\t  value = 'thisapp.Fill_New_Application.ID.count'\n>\n<\/text>\n\n<\/pc>\n<\/pr><pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginTop = '3px'\n\tcolor = '#333333'\n\tsize = '16px'\n\ttype = 'Text'\n\n\n\n\t  \n\t  value = 'Selected Candidates'\n>\n<\/text>\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"50%\"\n   \t>\n\t<chart \n\telementName=\"Chart\"\n\n\t\n\ttitle = 'Admission Status'\n\t\n\t\ttitleSize = '20px'\n\ttype = 'Stacked Column'\n\txtitle = 'Status'\n\tytitle = 'Number of Admissions'\n\tbgColor = 'rgb(255, 255, 255)'\n\ttheme = 'theme3'\n\tlegendPos = 'center.top'\n\tappLinkName = 'thisapp'\n\tformLinkName = 'Start_New_Admission'\n\txfield = 'Status'\n\tyfields = 'count:Course_Admission_Id'\n\tgroupBy = 'Status'\n\t\tDelugeCriteria = 'Added_Time in this year'\n\/>\n\n<\/column><column\n   \t\t width=\"25%\"\n   \t>\n\t<chart \n\telementName=\"Chart 1\"\n\n\t\n\ttitle = 'Applied In Courses'\n\t\n\t\ttitleSize = '20px'\n\ttype = 'Pie'\n\txtitle = 'Courses'\n\tytitle = 'Count'\n\tbgColor = 'rgb(255, 255, 255)'\n\ttheme = 'theme4'\n\tlegendPos = 'center.top'\n\tappLinkName = 'thisapp'\n\tformLinkName = 'Fill_New_Application'\n\txfield = 'Add_Course.Course_Name'\n\tyfields = 'count:Application_No'\n\t\tDelugeCriteria = 'Added_Time in this year'\n\/>\n\n<\/column><column\n   \t\t width=\"25%\"\n   \t>\n\t<chart \n\telementName=\"Chart 2\"\n\n\t\n\ttitle = 'Selected In Courses'\n\t\n\t\ttitleSize = '20px'\n\ttype = 'Donut'\n\txtitle = 'Courses'\n\tytitle = 'Count'\n\tbgColor = 'rgb(255, 255, 255)'\n\ttheme = 'theme2'\n\tlegendPos = 'right.center'\n\tappLinkName = 'thisapp'\n\tformLinkName = 'Fill_New_Application'\n\txfield = 'Add_Course.Course_Name'\n\tyfields = 'count:Application_No'\n\t\tDelugeCriteria = 'Added_Time in this year &amp;&amp; Application_Status == &quot;Selected&quot;'\n\/>\n\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<chart \n\telementName=\"Chart 3\"\n\n\t\n\ttitle = 'This Year Applications'\n\t\n\t\ttitleSize = '20px'\n\ttype = 'Stacked Column'\n\txtitle = 'Courses'\n\tytitle = 'No .Of. Applications'\n\tbgColor = 'rgb(255, 255, 255)'\n\ttheme = 'theme1'\n\tlegendPos = 'center.top'\n\tappLinkName = 'thisapp'\n\tformLinkName = 'Fill_New_Application'\n\txfield = 'Add_Course.Course_Name'\n\tyfields = 'count:Application_No'\n\tgroupBy = 'Select_Course.Course_Admission_Id'\n\t\tDelugeCriteria = 'Added_Time in this year'\n\/>\n\n<\/column>\n<\/row>\n<\/layout>\n<\/zml>" 
+ 	 	}
+	}
+	section Admissions
+	{
+		icon = "education-hat"
+		form Start_New_Admission
+		{
+			displayname = "Start New Admission"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			Course_Details
+			(
+				type = section
+				displayname = "Course Details"
+				visibility = true
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Course
+			(
+				type = picklist	
+				values  = Add_Course.ID
+    			displayformat = [Course_Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Division
+			(
+				type = picklist	
+				values  = Add_Division.ID
+    			displayformat = [Division_Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Course_Period
+			(
+    			type = text
+				displayname = "Course Period"
+    			description
+    			[
+    				type = help_text
+    			 	message = "Eg: Jun 2019 - Apr 2022"
+    			]
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+			must have Department
+			(
+				type = picklist	
+				values  = Add_Department.ID
+    			displayformat = [Department_Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+			Admission_Details
+			(
+				type = section
+				displayname = "Admission Details"
+				visibility = true
+	 			row = 2
+	 			column = 0   
+				width = medium
+			)
+			must have Required_Seats
+			(
+				type = number
+				displayname = "Required Seats"
+    			description
+    			[
+    				type = tooltip
+    			 	message = "No. Of. Seats required in this admission"
+    			]
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+			must have Max_No_Of_Applications
+			(
+				type = number
+				displayname = "Max No Of Applications"
+    			description
+    			[
+    				type = tooltip
+    			 	message = "Allowed for this admission"
+    			]
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+			Course_Admission_Id
+			(
+    			type = text
+				displayname = "Course Admission Id"
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+			must have Status
+			(
+				type = picklist
+				values = {"Upcoming","Cancelled","On Registration","On Selection","Closed"}
+				initial value = "Upcoming"
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+			must have Admission_Deadline
+			(
+    			type = datetime
+				displayname = "Admission Deadline"
+				timedisplayoptions = "hh:mm:ss"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 2
+	 			column = 2   
+				width = medium
+			)
+			must have Admission_Flow
+			(
+				type = picklist
+				displayname = "Admission Flow"
+				values = {"Direct Admission","Shortlist & Assessment"}
+				initial value = "Direct Admission"
+	 			row = 2
+	 			column = 2   
+				width = medium
+			)
+			Registration_Status
+			(
+				type = picklist
+				displayname = "Registration Status"
+				values = {"Enabled","Disabled"}
+	 			row = 2
+	 			column = 2   
+				width = medium
+			)
+			Disabled_Due_To
+			(
+    			type = text
+				displayname = "Disabled Due To"
+	 			row = 2
+	 			column = 2   
+				width = medium
+			)
+			Requirements
+			(
+				type = section
+				visibility = true
+	 			row = 3
+	 			column = 0   
+				width = medium
+			)
+			Required_Proofs
+			(
+				type = list	
+				displayname = "Required Proofs"
+				values  = Add_Document.ID
+    			displayformat = [Document_Name]
+				allow new entries = true
+				[
+					displayname = "Add New Proof"
+				]
+				sortorder = ascending
+				height = 60px
+	 			row = 3
+	 			column = 1   
+				width = medium
+			)
+			Minimum_Age_Limit
+			(
+				type = number
+				displayname = "Minimum Age Limit"
+				maxchar = 2
+	 			row = 3
+	 			column = 2   
+				width = medium
+			)
+			Maximum_Age_Limit
+			(
+				type = number
+				displayname = "Maximum Age Limit"
+				maxchar = 2
+	 			row = 3
+	 			column = 2   
+				width = medium
+			)
+			Eligibility_Preference
+			(
+				type = grid
+				displayname = "Eligibility Preference"
+				values  = Add_Eligibility_Preference.ID
+    			bidirectional = Course_Admission_Id
+	 			row = 4
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "education-hat"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list Upcoming_Admissions
+		{
+			displayName = "Upcoming Admissions"
+			show all rows from Start_New_Admission  [Status == "Upcoming"]  
+			(
+				Course
+				Division
+				Required_Seats as "Required Seats"
+				Max_No_Of_Applications as "Max No Of Applications"
+				Department
+				Course_Admission_Id as "Course Admission Id"
+				Status
+				custom action "Start Enrollment"
+				(
+	  			workflow = Start_Enrollment
+				show action in edit record menu = true
+				column header = "Start Enrollment"
+				condition = (Status == "Upcoming")
+				)
+				Admission_Deadline as "Admission Deadline"
+				Course_Period as "Course Period"
+				custom action "Cancel"
+				(
+	  			workflow = Cancel1
+				show action in edit record menu = true
+				column header = "Cancel"
+				condition = (Status == "Upcoming")
+				confirmation before execution
+				(
+					message for individual record = "Are you sure to cancel the admission?"
+					confirm button text = "Yes"		
+					cancel button text = "No"
+				)
+				)
+			)
+			options
+			(
+				icon = "design-2-selection"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Course
+							Division
+							Required_Seats as "Required Seats"
+							Max_No_Of_Applications as "Max No Of Applications"
+							Course_Period as "Course Period"
+							Admission_Deadline as "Admission Deadline"
+				"Start Enrollment"
+				"Cancel"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Course
+							Division
+							Required_Seats as "Required Seats"
+							Max_No_Of_Applications as "Max No Of Applications"
+							Department
+							Course_Admission_Id as "Course Admission Id"
+							Status
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Open_Enrollment
+		{
+			displayName = "Open Enrollment"
+			show all rows from Start_New_Admission  [Status == "On Registration"]  
+			(
+				Course
+				Division
+				Required_Seats as "Required Seats"
+				Max_No_Of_Applications as "Max No Of Applications"
+				Course_Admission_Id as "Course Admission Id"
+				Status
+				custom action "Close Enrollment"
+				(
+	  			workflow = Close_Enrollment
+				show action in edit record menu = true
+				column header = "Close Enrollment"
+				condition = (Status == "On Registration")
+				confirmation before execution
+				(
+					message for individual record = "Are you sure to close enrollment, this will stop enrollment process for this admission?"
+					confirm button text = "Yes"		
+					cancel button text = "No"
+				)
+				)
+				Department
+				Admission_Deadline as "Admission Deadline"
+				Required_Proofs as "Required Proofs"
+				Minimum_Age_Limit as "Minimum Age Limit"
+				Maximum_Age_Limit as "Maximum Age Limit"
+				Admission_Flow as "Admission Flow"
+				custom action "Enable/Disable"
+				(
+	  			workflow = Enable_Disable1
+				show action in edit record menu = true
+				column header = "Enable/Disable"
+				condition = (Status == "On Registration")
+				)
+				Course_Period as "Course Period"
+				Registration_Status as "Registration Status"
+				Disabled_Due_To as "Disabled Due To"
+			)
+			sort by
+			(
+				Admission_Deadline descending
+				Registration_Status ascending
+			)
+			options
+			(
+				icon = "business-laptop-71"
+	 		)
+			conditional formatting
+			(
+				"Enabled"
+				{
+				condition = (Registration_Status == "Enabled")
+				fields = [Registration_Status]
+				format = "color:#19bc9f;"
+				}
+				"Disabled"
+				{
+				condition = (Registration_Status == "Disabled")
+				fields = [Registration_Status]
+				format = "color:#e64d3b;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Course
+							Division
+							Required_Seats as "Required Seats"
+							Max_No_Of_Applications as "Max No Of Applications"
+							Course_Admission_Id as "Course Admission Id"
+							Registration_Status as "Registration Status"
+							Disabled_Due_To as "Disabled Due To"
+				"Close Enrollment"
+				"Enable/Disable"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Course
+							Division
+							Required_Seats as "Required Seats"
+							Max_No_Of_Applications as "Max No Of Applications"
+							Course_Admission_Id as "Course Admission Id"
+							Status
+							Department
+							Admission_Deadline as "Admission Deadline"
+							Required_Proofs as "Required Proofs"
+							Minimum_Age_Limit as "Minimum Age Limit"
+							Maximum_Age_Limit as "Maximum Age Limit"
+							Admission_Flow as "Admission Flow"
+							Course_Period as "Course Period"
+							Disabled_Due_To as "Disabled Due To"
+							Registration_Status as "Registration Status"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Closed_Enrollment
+		{
+			displayName = "Closed Enrollment"
+			show all rows from Start_New_Admission  [Status == "On Selection"]  
+			(
+				Course
+				Division
+				Course_Period as "Course Period"
+				Required_Seats as "Required Seats"
+				Max_No_Of_Applications as "Max No Of Applications"
+				Admission_Deadline as "Admission Deadline"
+				Admission_Flow as "Admission Flow"
+				Required_Proofs as "Required Proofs"
+				Minimum_Age_Limit as "Minimum Age Limit"
+				Maximum_Age_Limit as "Maximum Age Limit"
+				Course_Admission_Id as "Course Admission Id"
+				Department
+				Status
+				Disabled_Due_To as "Disabled Due To"
+				custom action "Close Admission"
+				(
+	  			workflow = Close_Admission
+				show action in edit record menu = true
+				column header = "Close Admission"
+				condition = (Status == "On Selection")
+				confirmation before execution
+				(
+					message for individual record = "This action will close the admission by rejecting unselected candidates and unshare portal from candidates who has only applied for this course."
+					confirm button text = "Proceed"		
+					cancel button text = "Cancel"
+				)
+				)
+			)
+			options
+			(
+				icon = "location-route-close"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Course
+							Division
+							Course_Period as "Course Period"
+							Required_Seats as "Required Seats"
+							Admission_Flow as "Admission Flow"
+				"Close Admission"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Course
+							Division
+							Course_Period as "Course Period"
+							Required_Seats as "Required Seats"
+							Max_No_Of_Applications as "Max No Of Applications"
+							Admission_Deadline as "Admission Deadline"
+							Admission_Flow as "Admission Flow"
+							Required_Proofs as "Required Proofs"
+							Minimum_Age_Limit as "Minimum Age Limit"
+							Maximum_Age_Limit as "Maximum Age Limit"
+							Course_Admission_Id as "Course Admission Id"
+							Department
+							Status
+							Disabled_Due_To as "Disabled Due To"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Others1
+		{
+			displayName = "Others"
+			show all rows from Start_New_Admission  [Status == "Closed" || Status == "Cancelled"]  
+			(
+				Course
+				Division
+				Required_Seats as "Required Seats"
+				Max_No_Of_Applications as "Max No Of Applications"
+				Course_Admission_Id as "Course Admission Id"
+				Status
+			)
+			options
+			(
+				icon = "location-route-close"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Course
+							Division
+							Course_Admission_Id as "Course Admission Id"
+							Required_Seats as "Required Seats"
+							Max_No_Of_Applications as "Max No Of Applications"
+							Status
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Course
+							Division
+							Required_Seats as "Required Seats"
+							Max_No_Of_Applications as "Max No Of Applications"
+							Course_Admission_Id as "Course Admission Id"
+							Status
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Available_Courses
+		{
+			displayName = "Available Courses"
+			show all rows from Start_New_Admission  [Status == "On Registration"]  
+			(
+				Course
+				Division
+				Department
+				Course_Admission_Id as "Course Admission Id"
+				custom action "Apply"
+				(
+	  			workflow = Apply
+				show action in edit record menu = true
+				column header = "Apply"
+				condition = (Status == "On-going")
+				)
+				Course_Period as "Course Period"
+				Admission_Deadline as "Admission Deadline"
+				Required_Proofs as "Required Proofs"
+				Minimum_Age_Limit as "Minimum Age Limit"
+				Maximum_Age_Limit as "Maximum Age Limit"
+			)
+			options
+			(
+				icon = "tech-ram"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Course
+							Division
+							Course_Period as "Course Period"
+							Admission_Deadline as "Admission Deadline"
+							Required_Proofs as "Required Proofs"
+							Minimum_Age_Limit as "Minimum Age Limit"
+							Maximum_Age_Limit as "Maximum Age Limit"
+				"Apply"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Department
+							Course
+							Division
+							Course_Admission_Id as "Course Admission Id"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Eligibility Criteria"
+		     			related field = Course
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Apply
+	{
+		icon = "design-web-design"
+		form Fill_New_Application
+		{
+			displayname = "Fill New Application"
+			success message = "New Application Filled Successfully"
+			field alignment = left
+			Course_Preference
+			(
+				type = section
+				displayname = "Course Preference"
+				visibility = true
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Department
+			(
+				type = picklist	
+				values  = Add_Department.ID
+    			displayformat = [Department_Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Select_Course
+			(
+				type = picklist	
+				displayname = "Select Course"
+				values  = Start_New_Admission.ID
+    			displayformat = [Course_Admission_Id]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Notes
+			(
+    			type = plaintext
+				value = ""
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+			Personal_Details
+			(
+				type = section
+				displayname = "Personal Details"
+				visibility = true
+	 			row = 2
+	 			column = 0   
+				width = medium
+			)
+			must have Candidate_Name
+			(
+    			type = name
+				displayname = "Candidate Name"
+     			prefix1
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name1
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name1
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix1
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+			Gender
+			(
+				type = radiobuttons
+				values = {"Male","Female"}
+				initial value = "Male"
+				layout = 2
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+			must have Phone_Number1
+			(
+    			type = phonenumber
+				displayname = "Phone"
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+			Email1
+			(
+    			type = email
+				displayname = "Email"
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+			must have Date_Of_Birth
+			(
+    			type = date
+				displayname = "Date Of Birth"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 2
+	 			column = 2   
+				width = medium
+			)
+			Age
+			(
+				type = number
+				maxchar = 2
+	 			row = 2
+	 			column = 2   
+				width = medium
+			)
+			Blood_Group
+			(
+				type = picklist
+				displayname = "Blood Group"
+				values = {"O-positive","O-negative","A-positive","A-negative","B-positive","B-negative","AB-positive","AB-negative"}
+	 			row = 2
+	 			column = 2   
+				width = medium
+			)
+			Nationality
+			(
+				type = picklist
+				values = {"Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua & Barbuda","Argentina","Armenia","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia & Herzegovina","Botswana","Brazil","Brunei Darussalam","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Canada","Cape Verde","Cayman Islands","Central African Republic","Chad","Chile","China","China - Hong Kong / Macau","Colombia","Comoros","Congo","Congo, Democratic Republic of (DRC)","Costa Rica","Croatia","Cuba","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia","Ethiopia","Fiji","Finland","France","French Guiana","Gabon","Gambia","Georgia","Germany","Ghana","Great Britain","Greece","Grenada","Guadeloupe","Guatemala","Guinea","Guinea-Bissau","Guyana","Haiti","Honduras","Hungary","Iceland","India","Indonesia","Iran","Iraq","Israel and the Occupied Territories","Italy","Ivory Coast (Cote d'Ivoire)","Jamaica","Japan","Jordan","Kazakhstan","Kenya","Korea, Democratic Republic of (North Korea)","Korea, Republic of (South Korea)","Kosovo","Kuwait","Kyrgyz Republic (Kyrgyzstan)","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macedonia, Republic of","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Martinique","Mauritania","Mauritius","Mayotte","Mexico","Moldova, Republic of","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Myanmar/Burma","Namibia","Nepal","New Zealand","Nicaragua","Niger","Nigeria","Norway","Oman","Pacific Islands","Pakistan","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Puerto Rico","Qatar","Reunion","Romania","Russian Federation","Rwanda","Saint Kitts and Nevis","Saint Lucia","Saint Vincent and the Grenadines","Samoa","Sao Tome and Principe","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovak Republic (Slovakia)","Slovenia","Solomon Islands","Somalia","South Africa","South Sudan","Spain","Sri Lanka","Sudan","Suriname","Swaziland","Sweden","Switzerland","Syria","Tajikistan","Tanzania","Thailand","Netherlands","Timor Leste","Togo","Trinidad & Tobago","Tunisia","Turkey","Turkmenistan","Turks & Caicos Islands","Uganda","Ukraine","United Arab Emirates","United States of America (USA)","Uruguay","Uzbekistan","Venezuela","Vietnam","Virgin Islands (UK)","Virgin Islands (US)","Yemen","Zambia","Zimbabwe"}
+	 			row = 2
+	 			column = 2   
+				width = medium
+			)
+			Academic_Info
+			(
+				type = grid
+				displayname = "Academic Info"
+				values  = Add_Academic_Info.ID
+    			bidirectional = Application_No
+	 			row = 3
+	 			column = 1   
+				width = medium
+			)
+			Required_Proofs
+			(
+				type = grid
+				displayname = "Required Proofs"
+				values  = Add_Required_Proofs.ID
+    			bidirectional = Application_No
+	 			row = 4
+	 			column = 1   
+				width = medium
+			)
+			Emergency_Contact
+			(
+				type = section
+				displayname = "Emergency Contact"
+				visibility = true
+	 			row = 5
+	 			column = 0   
+				width = medium
+			)
+			must have Relation
+			(
+				type = picklist
+				values = {"Father","Mother","Guardian"}
+	 			row = 5
+	 			column = 1   
+				width = medium
+			)
+			must have Name
+			(
+    			type = name
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 5
+	 			column = 1   
+				width = medium
+			)
+			must have Contact_Number
+			(
+    			type = phonenumber
+				displayname = "Contact Number"
+	 			row = 5
+	 			column = 1   
+				width = medium
+			)
+			must have Contact_Email
+			(
+    			type = email
+				displayname = "Contact Email"
+	 			row = 5
+	 			column = 1   
+				width = medium
+			)
+			must have Address
+			(
+    			type = address
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_11
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_21
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city1
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province1
+     			(
+	     			  type = state_province
+	     			  displayname = "State / Province"
+     			) 
+     			postal_Code1
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country1
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude1
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude1
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 5
+	 			column = 2   
+				width = medium
+			)
+			Logical_Fields
+			(
+				type = section
+				displayname = "Logical Fields"
+	 			row = 6
+	 			column = 0   
+				width = medium
+			)
+			Application_No
+			(
+    			type = autonumber
+				displayname = "Application No"
+				start index = 1
+	 			row = 6
+	 			column = 1   
+				width = medium
+			)
+			must have Application_Status
+			(
+				type = picklist
+				displayname = "Application Status"
+				values = {"Pending","Shortlisted","Cancelled","Selected","Application Rejected","Rejected In Assessment"}
+				initial value = "Pending"
+				others option = true
+	 			row = 6
+	 			column = 1   
+				width = medium
+			)
+			Assessment_Status
+			(
+				type = picklist
+				displayname = "Assessment Status"
+				values = {"Scheduled","Present","Absent","Rescheduled"}
+				sortorder = ascending
+	 			row = 6
+	 			column = 1   
+				width = medium
+			)
+			must have Candidate_Score
+			(
+				type = decimal
+				displayname = "Candidate Score"
+				initial value = 0
+	 			row = 6
+	 			column = 1   
+				width = medium
+			)
+			Schedule_Assessment_Batch_Number
+			(
+				type = picklist	
+				displayname = "Schedule Assessment - Batch Number"
+				values  = Schedule_Assessment.ID
+    			bidirectional = Select_Applications
+    			displayformat = [Batch_Number]
+	 			row = 6
+	 			column = 1   
+				width = medium
+			)
+			Add_Course
+			(
+				type = picklist	
+				displayname = "Add Course"
+				values  = Add_Course.ID
+    			displayformat = [Course_Name]
+				searchable = true
+				sortorder = ascending
+	 			row = 6
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "design-paint-bucket-40"
+			)
+			actions
+			{
+				on add
+				{
+					Apply
+					(
+   						type = submit
+   						displayname = "Apply"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list Applied_Courses
+		{
+			displayName = "Applied Courses"
+			show all rows from Fill_New_Application  [Added_User == zoho.loginuser || Email1 == zoho.loginuserid]  
+			(
+				Department
+				Select_Course as "Select Course"
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Gender
+				Date_Of_Birth as "Date Of Birth"
+				custom action "Cancel"
+				(
+	  			workflow = Cancel
+				show action in edit record menu = true
+				column header = "Cancel"
+				condition = (Application_Status == "Pending" || Application_Status == "Approved")
+				confirmation before execution
+				(
+					message for individual record = "Are you sure to cancel the application?"
+					confirm button text = "Yes"		
+					cancel button text = "No"
+				)
+				)
+				Age
+				Blood_Group as "Blood Group"
+				Nationality
+				Contact_Number as "Contact Number"
+				Contact_Email as "Contact Email"
+				Relation
+				Candidate_Name  as "Candidate Name"
+	 			(
+	      			displayformat = [first_name1+""+prefix1+""+last_name1+""+suffix1]
+	 			)
+				Phone_Number1 as "Phone"
+				Address 
+	 			(
+	      			displayformat = [address_line_11+""+address_line_21+""+district_city1+""+state_province1+""+postal_Code1+""+country1]
+	      			enable = Link_to_Map,Show_As_Text
+	 			)
+				Email1 as "Email"
+				Application_No as "Application No"
+				Application_Status as "Application Status"
+			)
+			options
+			(
+				icon = "tech-2-l-check"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Department
+							Select_Course as "Select Course"
+							Candidate_Name as "Candidate Name"
+							Gender
+							Date_Of_Birth as "Date Of Birth"
+							Age
+							Blood_Group as "Blood Group"
+				"Cancel"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Department
+							Select_Course as "Select Course"
+							Name
+							Gender
+							Date_Of_Birth as "Date Of Birth"
+							Age
+							Blood_Group as "Blood Group"
+							Nationality
+							Contact_Number as "Contact Number"
+							Contact_Email as "Contact Email"
+							Relation
+							Candidate_Name as "Candidate Name"
+							Phone_Number1 as "Phone"
+							Email1 as "Email"
+							Address
+							Application_No as "Application No"
+							Application_Status as "Application Status"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Others
+		{
+			displayName = "Others"
+			show all rows from Fill_New_Application  [Application_Status == "Cancelled" || Application_Status == "Application Rejected" || Application_Status == "Rejected In Assessment"]  
+			(
+				Department
+				Select_Course as "Select Course"
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Gender
+				Date_Of_Birth as "Date Of Birth"
+				Age
+				Blood_Group as "Blood Group"
+				Nationality
+				Contact_Number as "Contact Number"
+				Contact_Email as "Contact Email"
+				Relation
+				Phone_Number1 as "Phone"
+				Candidate_Name  as "Candidate Name"
+	 			(
+	      			displayformat = [first_name1+""+prefix1+""+last_name1+""+suffix1]
+	 			)
+				Address 
+	 			(
+	      			displayformat = [address_line_11+""+address_line_21+""+district_city1+""+state_province1+""+postal_Code1+""+country1]
+	      			enable = Link_to_Map,Show_As_Text
+	 			)
+				Email1 as "Email"
+				Application_No as "Application No"
+				Application_Status as "Application Status"
+			)
+			group by
+			(
+				Application_Status ascending
+			)
+			options
+			(
+				icon = "tech-ram"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Department
+							Select_Course as "Select Course"
+							Candidate_Name as "Candidate Name"
+							Gender
+							Date_Of_Birth as "Date Of Birth"
+							Age
+							Application_Status as "Application Status"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Department
+							Select_Course as "Select Course"
+							Name
+							Gender
+							Date_Of_Birth as "Date Of Birth"
+							Age
+							Blood_Group as "Blood Group"
+							Nationality
+							Contact_Number as "Contact Number"
+							Contact_Email as "Contact Email"
+							Relation
+							Candidate_Name as "Candidate Name"
+							Phone_Number1 as "Phone"
+							Email1 as "Email"
+							Address
+							Application_No as "Application No"
+							Application_Status as "Application Status"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Applications
+	{
+		icon = "shopping-newsletter"
+		list Direct_Admissions
+		{
+			displayName = "Direct Admissions"
+			show all rows from Fill_New_Application  [Application_Status == "Pending" && Select_Course.Admission_Flow == "Direct Admission"]  
+			(
+				Contact_Email as "Contact Email"
+				Date_Of_Birth as "Date Of Birth"
+				Application_No as "Application No"
+				Blood_Group as "Blood Group"
+				Nationality
+				Relation
+				custom action "Select"
+				(
+	  			workflow = Select_Application
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Select"
+				condition = (Application_Status == "Pending")
+				)
+				Address 
+	 			(
+	      			displayformat = [address_line_11+""+address_line_21+""+district_city1+""+state_province1+""+postal_Code1+""+country1]
+	      			enable = Link_to_Map,Show_As_Text
+	 			)
+				Application_Status as "Application Status"
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Department
+				Select_Course as "Course"
+				Candidate_Name  as "Candidate Name"
+	 			(
+	      			displayformat = [first_name1+""+prefix1+""+last_name1+""+suffix1]
+	 			)
+				Gender
+				Contact_Number as "Contact Number"
+				Email1 as "Email"
+				Age
+				Assessment_Status as "Assessment Status"
+				Candidate_Score as "Candidate Score"
+				Phone_Number1 as "Phone"
+				Select_Course.Course_Admission_Id as "Course Admission Id"
+			)
+			group by
+			(
+				Select_Course ascending
+			)
+			sort by
+			(
+				Candidate_Score descending
+				Age descending
+			)
+			options
+			(
+				icon = "food-recipe-book-47"
+	 		)
+			custom actions
+			(
+				"Reject"
+				(
+	  			workflow = Reject_Application
+				show action in view header = true
+				show action in edit record menu = true
+				condition = (Application_Status == "Pending")
+				)
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Application_No as "Application No"
+							Select_Course as "Course"
+							Select_Course.Course_Admission_Id as "Course Admission Id"
+							Candidate_Name as "Candidate Name"
+							Gender
+							Age
+							Phone_Number1 as "Phone"
+							Candidate_Score as "Candidate Score"
+				"Select"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+			 			"Select"
+			 			"Reject"
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Contact_Email as "Contact Email"
+							Contact_Number as "Contact Number"
+							Date_Of_Birth as "Date Of Birth"
+							Application_No as "Application No"
+							Blood_Group as "Blood Group"
+							Nationality
+							Relation
+							Candidate_Name as "Candidate Name"
+							Phone_Number1 as "Phone"
+							Address
+							Email1 as "Email"
+							Application_Status as "Application Status"
+							Department
+							Select_Course as "Course"
+							Age
+							Gender
+							Candidate_Score as "Candidate Score"
+							Assessment_Status as "Assessment Status"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Assessments
+		{
+			displayName = "Assessments"
+			show all rows from Fill_New_Application  [Application_Status == "Pending" && Select_Course.Admission_Flow == "Shortlist & Assessment"]  
+			(
+				Department
+				Select_Course as "Course"
+				Candidate_Name  as "Candidate Name"
+	 			(
+	      			displayformat = [first_name1+""+prefix1+""+last_name1+""+suffix1]
+	 			)
+				Gender
+				Phone_Number1 as "Phone"
+				Email1 as "Email"
+				custom action "Reject"
+				(
+	  			workflow = Reject_Application1
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Reject"
+				condition = (Application_Status == "Pending")
+				)
+				Date_Of_Birth as "Date Of Birth"
+				Blood_Group as "Blood Group"
+				Nationality
+				Relation
+				Contact_Number as "Contact Number"
+				Contact_Email as "Contact Email"
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Address 
+	 			(
+	      			displayformat = [address_line_11+""+address_line_21+""+district_city1+""+state_province1+""+postal_Code1+""+country1]
+	      			enable = Link_to_Map,Show_As_Text
+	 			)
+				Application_Status as "Application Status"
+				Age
+				Application_No as "Application No"
+				Candidate_Score as "Candidate Score"
+				Select_Course.Course_Admission_Id as "Course Admission Id"
+			)
+			group by
+			(
+				Select_Course ascending
+			)
+			sort by
+			(
+				Candidate_Score descending
+				Age descending
+			)
+			options
+			(
+				icon = "tech-2-l-settings"
+	 		)
+			custom actions
+			(
+				"Select"
+				(
+	  			workflow = Select_for_Assessment
+				show action in view header = true
+				show action in edit record menu = true
+				condition = (Application_Status == "Pending")
+				)
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Application_No as "Application No"
+							Select_Course as "Course"
+							Select_Course.Course_Admission_Id as "Course Admission Id"
+							Candidate_Name as "Candidate Name"
+							Gender
+							Age
+							Phone_Number1 as "Phone"
+							Candidate_Score as "Candidate Score"
+				"Reject"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+			 			"Select"
+			 			"Reject"
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Department
+							Select_Course as "Course"
+							Candidate_Name as "Candidate Name"
+							Gender
+							Phone_Number1 as "Phone"
+							Email1 as "Email"
+							Date_Of_Birth as "Date Of Birth"
+							Age
+							Blood_Group as "Blood Group"
+							Nationality
+							Relation
+							Name
+							Contact_Number as "Contact Number"
+							Contact_Email as "Contact Email"
+							Address
+							Application_No as "Application No"
+							Application_Status as "Application Status"
+							Candidate_Score as "Candidate Score"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Assessments
+	{
+		icon = "social-1-logo-flickr"
+		form Schedule_Assessment
+		{
+			displayname = "Schedule Assessment"
+			success message = "Interview Added Successfully"
+			field alignment = left
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Batch_Number
+			(
+    			type = autonumber
+				displayname = "Batch Number"
+				start index = 1
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Select_Applications
+			(
+				type = list	
+				displayname = "Select Applications"
+				values  = Fill_New_Application.ID
+    			bidirectional = Schedule_Assessment_Batch_Number
+    			displayformat = [Application_No]
+				sortorder = ascending
+				height = 60px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Scheduled_Time
+			(
+    			type = datetime
+				displayname = "Scheduled Time"
+				timedisplayoptions = "hh:mm:ss"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Venue
+			(
+    			type = address
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_1
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_2
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province
+     			(
+	     			  type = state_province
+	     			  displayname = "State / Province"
+     			) 
+     			postal_Code
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Nearest_Landmark
+			(
+    			type = text
+				displayname = "Nearest Landmark"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Choose_Assessors
+			(
+				type = list	
+				displayname = "Choose Assessors"
+				values  = Add_Assessor.ID
+    			displayformat = [" " + Name.first_name + " " + Name.last_name]
+				allow new entries = true
+				[
+					displayname = "Add New"
+				]
+				sortorder = ascending
+				height = 60px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list All_Assessments
+		{
+			displayName = "All Assessments"
+			show all rows from Schedule_Assessment    
+			(
+				Select_Applications as "Select Applications"
+				Scheduled_Time as "Scheduled Time"
+				Choose_Assessors as "Choose Assessors"
+				Batch_Number as "Batch Number"
+				Venue 
+	 			(
+	      			displayformat = [address_line_1+""+address_line_2+""+district_city+""+state_province+""+postal_Code+""+country]
+	      			enable = Link_to_Map,Show_As_Text
+	 			)
+				Nearest_Landmark as "Nearest Landmark"
+			)
+			options
+			(
+				icon = "travel-world"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Select_Applications as "Select Applications"
+							Scheduled_Time as "Scheduled Time"
+							Choose_Assessors as "Choose Assessors"
+							Batch_Number as "Batch Number"
+							Venue
+							Nearest_Landmark as "Nearest Landmark"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Select_Applications as "Select Applications"
+							Scheduled_Time as "Scheduled Time"
+							Choose_Assessors as "Choose Assessors"
+							Batch_Number as "Batch Number"
+							Venue
+							Nearest_Landmark as "Nearest Landmark"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Shortlisted_Candidates
+		{
+			displayName = "Shortlisted Candidates"
+			show all rows from Fill_New_Application  [Application_Status == "Shortlisted" && Assessment_Status == "Scheduled" || Assessment_Status == "Rescheduled"]  
+			(
+				Department
+				Select_Course as "Select Course"
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Gender
+				Date_Of_Birth as "Date Of Birth"
+				Age
+				custom action "Present"
+				(
+	  			workflow = Present
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Present"
+				)
+				Blood_Group as "Blood Group"
+				Nationality
+				custom action "Absent"
+				(
+	  			workflow = Absent
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Absent"
+				)
+				Contact_Number as "Contact Number"
+				Contact_Email as "Contact Email"
+				Relation
+				Candidate_Name  as "Candidate Name"
+	 			(
+	      			displayformat = [first_name1+""+prefix1+""+last_name1+""+suffix1]
+	 			)
+				Phone_Number1 as "Phone"
+				Address 
+	 			(
+	      			displayformat = [address_line_11+""+address_line_21+""+district_city1+""+state_province1+""+postal_Code1+""+country1]
+	      			enable = Link_to_Map,Show_As_Text
+	 			)
+				Email1 as "Email"
+				Application_Status as "Application Status"
+				Application_No as "Application No"
+				Schedule_Assessment_Batch_Number.Scheduled_Time as "Scheduled Time"
+				Assessment_Status as "Assessment Status"
+			)
+			group by
+			(
+				Schedule_Assessment_Batch_Number.Scheduled_Time ascending
+				Assessment_Status ascending
+			)
+			sort by
+			(
+				Assessment_Status ascending
+			)
+			options
+			(
+				icon = "tech-ram"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Application_No as "Application No"
+							Department
+							Select_Course as "Select Course"
+							Candidate_Name as "Candidate Name"
+							Gender
+							Date_Of_Birth as "Date Of Birth"
+							Age
+				"Present"
+				"Absent"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+			 			"Present"
+			 			"Absent"
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Department
+							Select_Course as "Select Course"
+							Name
+							Gender
+							Date_Of_Birth as "Date Of Birth"
+							Age
+							Blood_Group as "Blood Group"
+							Nationality
+							Contact_Number as "Contact Number"
+							Contact_Email as "Contact Email"
+							Relation
+							Candidate_Name as "Candidate Name"
+							Phone_Number1 as "Phone"
+							Email1 as "Email"
+							Address
+							Application_No as "Application No"
+							Application_Status as "Application Status"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Present_Candidates
+		{
+			displayName = "Present Candidates"
+			show all rows from Fill_New_Application  [Application_Status == "Shortlisted" && Assessment_Status == "Present"]  
+			(
+				Department
+				Select_Course as "Select Course"
+				Candidate_Name  as "Candidate Name"
+	 			(
+	      			displayformat = [first_name1+""+prefix1+""+last_name1+""+suffix1]
+	 			)
+				Gender
+				Phone_Number1 as "Phone"
+				Email1 as "Email"
+				Date_Of_Birth as "Date Of Birth"
+				custom action "Select"
+				(
+	  			workflow = Select_by_Assessment
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Select"
+				)
+				Age
+				custom action "Reject"
+				(
+	  			workflow = Reject_by_Assessment
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Reject"
+				)
+				Blood_Group as "Blood Group"
+				Nationality
+				Relation
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Contact_Number as "Contact Number"
+				Contact_Email as "Contact Email"
+				Address 
+	 			(
+	      			displayformat = [address_line_11+""+address_line_21+""+district_city1+""+state_province1+""+postal_Code1+""+country1]
+	      			enable = Link_to_Map,Show_As_Text
+	 			)
+				Application_No as "Application No"
+				Application_Status as "Application Status"
+				Candidate_Score as "Candidate Score"
+				Schedule_Assessment_Batch_Number as "Schedule Assessment - Batch Number"
+			)
+			group by
+			(
+				Schedule_Assessment_Batch_Number ascending
+			)
+			options
+			(
+				icon = "users-2-woman-up"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Department
+							Select_Course as "Select Course"
+							Candidate_Name as "Candidate Name"
+							Gender
+							Phone_Number1 as "Phone"
+							Email1 as "Email"
+							Date_Of_Birth as "Date Of Birth"
+				"Select"
+				"Reject"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+			 			"Select"
+			 			"Reject"
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Department
+							Select_Course as "Select Course"
+							Candidate_Name as "Candidate Name"
+							Gender
+							Phone_Number1 as "Phone"
+							Email1 as "Email"
+							Date_Of_Birth as "Date Of Birth"
+							Age
+							Blood_Group as "Blood Group"
+							Nationality
+							Relation
+							Name
+							Contact_Number as "Contact Number"
+							Contact_Email as "Contact Email"
+							Address
+							Application_No as "Application No"
+							Application_Status as "Application Status"
+							Candidate_Score as "Candidate Score"
+							Schedule_Assessment_Batch_Number as "Schedule Assessment - Batch Number"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Absentees
+		{
+			displayName = "Absentees"
+			show all rows from Fill_New_Application  [Application_Status == "Shortlisted" && Assessment_Status == "Absent"]  
+			(
+				Department
+				Select_Course as "Select Course"
+				Candidate_Name  as "Candidate Name"
+	 			(
+	      			displayformat = [first_name1+""+prefix1+""+last_name1+""+suffix1]
+	 			)
+				Gender
+				Phone_Number1 as "Phone"
+				Email1 as "Email"
+				Date_Of_Birth as "Date Of Birth"
+				Age
+				Blood_Group as "Blood Group"
+				Nationality
+				Relation
+				Contact_Number as "Contact Number"
+				Contact_Email as "Contact Email"
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Address 
+	 			(
+	      			displayformat = [address_line_11+""+address_line_21+""+district_city1+""+state_province1+""+postal_Code1+""+country1]
+	      			enable = Link_to_Map,Show_As_Text
+	 			)
+				Application_No as "Application No"
+				Application_Status as "Application Status"
+				Candidate_Score as "Candidate Score"
+				Schedule_Assessment_Batch_Number as "Schedule Assessment - Batch Number"
+			)
+			options
+			(
+				icon = "design-bullet-list-67"
+	 		)
+			custom actions
+			(
+				"Re-schedule"
+				(
+	  			workflow = Reschedule
+				show action in view header = true
+				)
+				"Reject"
+				(
+	  			workflow = Reject
+				show action in view header = true
+				)
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Department
+							Select_Course as "Select Course"
+							Candidate_Name as "Candidate Name"
+							Gender
+							Phone_Number1 as "Phone"
+							Email1 as "Email"
+							Date_Of_Birth as "Date Of Birth"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+			 			"Re-schedule" as "Reschedule"
+			 			"Reject"
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Department
+							Select_Course as "Select Course"
+							Candidate_Name as "Candidate Name"
+							Gender
+							Phone_Number1 as "Phone"
+							Email1 as "Email"
+							Date_Of_Birth as "Date Of Birth"
+							Age
+							Blood_Group as "Blood Group"
+							Nationality
+							Relation
+							Name
+							Contact_Number as "Contact Number"
+							Contact_Email as "Contact Email"
+							Address
+							Application_No as "Application No"
+							Application_Status as "Application Status"
+							Candidate_Score as "Candidate Score"
+							Schedule_Assessment_Batch_Number as "Schedule Assessment - Batch Number"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Final_List
+	{
+		displayname= "Final List"
+		icon = "shopping-bag-remove-19"
+		list Selected_Candidates
+		{
+			displayName = "Selected Candidates"
+			show all rows from Fill_New_Application  [Application_Status == "Selected"]  
+			(
+				Department
+				Select_Course as "Select Course"
+				Candidate_Name  as "Candidate Name"
+	 			(
+	      			displayformat = [first_name1+""+prefix1+""+last_name1+""+suffix1]
+	 			)
+				Gender
+				Phone_Number1 as "Phone"
+				Email1 as "Email"
+				Date_Of_Birth as "Date Of Birth"
+				Age
+				Blood_Group as "Blood Group"
+				Nationality
+				Relation
+				Contact_Number as "Contact Number"
+				Contact_Email as "Contact Email"
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Application_No as "Application No"
+				Address 
+	 			(
+	      			displayformat = [address_line_11+""+address_line_21+""+district_city1+""+state_province1+""+postal_Code1+""+country1]
+	      			enable = Link_to_Map,Show_As_Text
+	 			)
+				Application_Status as "Application Status"
+				Candidate_Score as "Candidate Score"
+				Schedule_Assessment_Batch_Number as "Schedule Assessment - Batch Number"
+			)
+			group by
+			(
+				Select_Course ascending
+			)
+			options
+			(
+				icon = "users-2-focus"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Application_No as "Application No"
+							Department
+							Select_Course as "Select Course"
+							Candidate_Name as "Candidate Name"
+							Gender
+							Phone_Number1 as "Phone"
+							Email1 as "Email"
+							Date_Of_Birth as "Date Of Birth"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Department
+							Select_Course as "Select Course"
+							Candidate_Name as "Candidate Name"
+							Gender
+							Phone_Number1 as "Phone"
+							Email1 as "Email"
+							Date_Of_Birth as "Date Of Birth"
+							Age
+							Blood_Group as "Blood Group"
+							Nationality
+							Relation
+							Name
+							Contact_Number as "Contact Number"
+							Contact_Email as "Contact Email"
+							Address
+							Application_No as "Application No"
+							Application_Status as "Application Status"
+							Candidate_Score as "Candidate Score"
+							Schedule_Assessment_Batch_Number as "Schedule Assessment - Batch Number"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Candidate
+	{
+		icon = "design-window-paragraph"
+		form Candidate_Registration
+		{
+			displayname = "Candidate Registration"
+			success message = "Registration Added Successfully"
+			field alignment = left
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Name
+			(
+    			type = name
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have unique Email
+			(
+    			type = email
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have unique Phone_Number
+			(
+    			type = phonenumber
+				displayname = "Phone"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Portal_Permission
+			(
+				type = picklist
+				displayname = "Portal Permission"
+				values = {"Enabled","Disabled"}
+				initial value = "Enabled"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Logical_Fields
+			(
+				type = section
+				displayname = "Logical Fields"
+	 			row = 2
+	 			column = 0   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "design-window-paragraph"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list All_Candidates
+		{
+			displayName = "All Candidates"
+			show all rows from Candidate_Registration    
+			(
+				Email
+				Phone_Number as "Phone"
+				Portal_Permission as "Portal Permission"
+				custom action "Enable/Disable"
+				(
+	  			workflow = Enable_Disable
+				show action in edit record menu = true
+				column header = "Enable/Disable"
+				)
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+			)
+			options
+			(
+				icon = "travel-world"
+	 		)
+			conditional formatting
+			(
+				"Enabled"
+				{
+				condition = (Portal_Permission == "Enabled")
+				fields = [Portal_Permission]
+				format = "color:#19bc9f;"
+				}
+				"Disabled"
+				{
+				condition = (Portal_Permission == "Disabled")
+				fields = [Portal_Permission]
+				format = "color:#e64d3b;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Email
+							Phone_Number as "Phone"
+							Portal_Permission as "Portal Permission"
+				"Enable/Disable"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Email
+							Phone_Number as "Phone"
+							Portal_Permission as "Portal Permission"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		summary My_Profile
+		{
+			displayName = "My Profile"
+			show all rows from Candidate_Registration  [Email == zoho.loginuserid]  
+			(
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Email
+				Phone_Number as "Phone"
+				Portal_Permission as "Portal Permission"
+			)
+			options
+			(
+				display rows = 10
+				display records per row = 2
+				icon = "shopping-mobile-touch"
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -2
+	     			recordsperrow = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Email
+							Phone_Number as "Phone"
+							Portal_Permission as "Portal Permission"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Email
+							Phone_Number as "Phone"
+							Portal_Permission as "Portal Permission"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Courses
+	{
+		icon = "education-hat"
+		form Add_Course
+		{
+			displayname = "Add Course"
+			success message = "Course Added Successfully"
+			field alignment = left
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Department
+			(
+				type = picklist	
+				values  = Add_Department.ID
+    			displayformat = [Department_Name]
+				allow new entries = true
+				[
+					displayname = "Add New Department"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have unique Course_Name
+			(
+    			type = text
+				displayname = "Course Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Divisions
+			(
+				type = list	
+				values  = Add_Division.ID
+    			displayformat = [Division_Name]
+				allow new entries = true
+				[
+					displayname = "Add New Division"
+				]
+				sortorder = ascending
+				height = 60px
+    			description
+    			[
+    				type = help_text
+    			 	message = "Either you can separate by timing/sections"
+    			]
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "design-2-3d-29"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Add"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list All_Courses
+		{
+			displayName = "All Courses"
+			show all rows from Add_Course    
+			(
+				Course_Name as "Course Name"
+				Department
+				Divisions
+			)
+			options
+			(
+				icon = "education-hat"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Course_Name as "Course Name"
+							Divisions
+							Department
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Course_Name as "Course Name"
+							Department
+							Divisions
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Categories
+	{
+		icon = "health-humidity-52"
+		form Add_Department
+		{
+			displayname = "Add Department"
+			success message = "Category Added Successfully"
+			field alignment = left
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have unique Department_Name
+			(
+    			type = text
+				displayname = "Department Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "design-shape-circle"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Add"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	section Divisions
+	{
+		icon = "tech-desktop"
+		form Add_Division
+		{
+			displayname = "Add Division"
+			success message = "Timing Added Successfully"
+			field alignment = left
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have unique Division_Name
+			(
+    			type = text
+				displayname = "Division Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "design-shapes"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Add"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	section Eligibility_Details
+	{
+		displayname= "Eligibility Details"
+		icon = "users-2-contacts-44"
+		form Add_Eligibility_Preference
+		{
+			displayname = "Add Eligibility Preference"
+			success message = "Eligibility Detail Added Successfully"
+			field alignment = left
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Course_Admission_Id
+			(
+				type = picklist	
+				displayname = "Course Admission Id"
+				values  = Start_New_Admission.ID
+    			bidirectional = Eligibility_Preference
+    			displayformat = [Course_Admission_Id]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Choose_Course
+			(
+				type = picklist	
+				displayname = "Choose Course"
+				values  = Add_Eligibility_Course.ID
+    			displayformat = [Course_Name]
+				allow new entries = true
+				[
+					displayname = "Add New"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Minimum_Percent
+			(
+    			type = percentage
+				displayname = "Minimum Percent"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "shopping-mobile-card"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Add"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	section Eligibility_Courses
+	{
+		displayname= "Eligibility Courses"
+		icon = "education-hat"
+		form Add_Eligibility_Course
+		{
+			displayname = "Add Eligibility Course"
+			success message = "Eligibility Course Added Successfully"
+			field alignment = left
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have unique Course_Name
+			(
+    			type = text
+				displayname = "Course Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "food-hob"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Add"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	section Necessities
+	{
+		icon = "education-paper"
+		form Add_Document
+		{
+			displayname = "Add Document"
+			success message = "Document Added Successfully"
+			field alignment = left
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have unique Document_Name
+			(
+    			type = text
+				displayname = "Document Name"
+    			description
+    			[
+    				type = help_text
+    			 	message = "Eg : Address proof, Identity proof"
+    			]
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "shopping-cart-simple-in"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Add"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	section Configuration
+	{
+		icon = "education-books-46"
+		form Add_Institute_Details
+		{
+			displayname = "Add Institute Details"
+			success message = "Institute Detail Added Successfully"
+			field alignment = left
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Institute_Name
+			(
+    			type = text
+				displayname = "Institute Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Email
+			(
+    			type = email
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Phone_Number
+			(
+    			type = phonenumber
+				displayname = "Phone"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Address
+			(
+    			type = address
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_1
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_2
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province
+     			(
+	     			  type = state_province
+	     			  displayname = "State / Province"
+     			) 
+     			postal_Code
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			plain
+			(
+    			type = plaintext
+				value = "<b><font color=\"#ff3333\">Info</font>&nbsp;: Enable customer portal before sharing portal invitation to candidates.</b>"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "users-2-contacts-44"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Add"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		properties
+		{
+			total entries
+			{
+				allowed count = 1
+			}
+		}
+		}
+		list Eligibility_Preferences
+		{
+			displayName = "Eligibility Preferences"
+   			hide = true
+			show all rows from Add_Eligibility_Preference    
+			(
+				Course_Admission_Id as "Course Admission Id"
+				Choose_Course as "Choose Course"
+				Minimum_Percent as "Minimum Percent"
+			)
+			options
+			(
+				icon = "travel-world"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Course_Admission_Id as "Course Admission Id"
+							Choose_Course as "Choose Course"
+							Minimum_Percent as "Minimum Percent"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Choose_Course as "Choose Course"
+							Minimum_Percent as "Minimum Percent"
+							Course_Admission_Id as "Course Admission Id"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Institute_Details
+		{
+			displayName = "Institute Details"
+			show all rows from Add_Institute_Details    
+			(
+				Institute_Name as "Institute Name"
+				Email
+				Phone_Number as "Phone"
+				Address 
+	 			(
+	      			displayformat = [address_line_1+""+address_line_2+""+district_city+""+state_province+""+postal_Code+""+country]
+	      			enable = Link_to_Map,Show_As_Text
+	 			)
+			)
+			options
+			(
+				icon = "users-2-contacts-44"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Institute_Name as "Institute Name"
+							Email
+							Phone_Number as "Phone"
+							Address
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Institute_Name as "Institute Name"
+							Email
+							Phone_Number as "Phone"
+							Address
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Departments
+		{
+			displayName = "Departments"
+			show all rows from Add_Department    
+			(
+				Department_Name as "Department Name"
+			)
+			options
+			(
+				icon = "travel-world"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Department_Name as "Department Name"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Department_Name as "Department Name"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Divisions
+		{
+			displayName = "Divisions"
+			show all rows from Add_Division    
+			(
+				Division_Name as "Division Name"
+			)
+			options
+			(
+				icon = "travel-world"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Division_Name as "Division Name"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Division_Name as "Division Name"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Eligibility_Courses
+		{
+			displayName = "Eligibility Courses"
+			show all rows from Add_Eligibility_Course    
+			(
+				Course_Name as "Course Name"
+			)
+			options
+			(
+				icon = "travel-world"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Course_Name as "Course Name"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Course_Name as "Course Name"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Document_List
+		{
+			displayName = "Document List"
+			show all rows from Add_Document    
+			(
+				Document_Name as "Document Name"
+			)
+			options
+			(
+				icon = "travel-world"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Document_Name as "Document Name"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Document_Name as "Document Name"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list All_Assessors
+		{
+			displayName = "All Assessors"
+			show all rows from Add_Assessor    
+			(
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Email
+				Phone_Number as "Phone"
+			)
+			options
+			(
+				icon = "travel-world"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Email
+							Phone_Number as "Phone"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Email
+							Phone_Number as "Phone"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Academic_Infos
+	{
+		displayname= "Academic Infos"
+		icon = "business-businessman-03"
+		form Add_Academic_Info
+		{
+			displayname = "Add Academic Info"
+			success message = "Academic Info Added Successfully"
+			field alignment = left
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Application_No
+			(
+				type = picklist	
+				displayname = "Application No"
+				values  = Fill_New_Application.ID
+    			bidirectional = Academic_Info
+    			displayformat = [Application_No]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Course
+			(
+				type = picklist	
+				values  = Add_Eligibility_Course.ID
+    			displayformat = [Course_Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Obtained_Percent
+			(
+    			type = percentage
+				displayname = "Obtained Percent"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Certificate
+			(
+    			type = upload file
+				browse = local_drive
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "tech-2-l-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Add"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list All_Academic_Infos
+		{
+			displayName = "All Academic Infos"
+   			hide = true
+			show all rows from Add_Academic_Info    
+			(
+				Course
+				Obtained_Percent as "Obtained Percent"
+				Application_No as "Application No"
+				Certificate
+			)
+			options
+			(
+				icon = "travel-world"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Course
+							Obtained_Percent as "Obtained Percent"
+							Application_No as "Application No"
+							Certificate
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Course
+							Obtained_Percent as "Obtained Percent"
+							Application_No as "Application No"
+							Certificate
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Add_Required_Proofs
+	{
+		displayname= "Add Required Proofs"
+		icon = "shopping-mobile-card"
+		form Add_Required_Proofs
+		{
+			displayname = "Add Required Proofs"
+			success message = "Data Added Successfully!"
+			field alignment = left
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Application_No
+			(
+				type = picklist	
+				displayname = "Application No"
+				values  = Fill_New_Application.ID
+    			bidirectional = Required_Proofs
+    			displayformat = [Application_No]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Proof_Name
+			(
+				type = picklist	
+				displayname = "Proof Name"
+				values  = Add_Document.ID
+    			displayformat = [Document_Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Select_Proof
+			(
+    			type = upload file
+				displayname = "Select Proof"
+				browse = local_drive
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "shopping-mobile-card"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list Add_Required_Proofs_Report
+		{
+			displayName = "Add Required Proofs Report"
+   			hide = true
+			show all rows from Add_Required_Proofs    
+			(
+				Proof_Name as "Proof Name"
+				Select_Proof as "Select Proof"
+				Application_No as "Application No"
+			)
+			options
+			(
+				icon = "design-2-cursor-not-allowed"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Proof_Name as "Proof Name"
+							Select_Proof as "Select Proof"
+							Application_No as "Application No"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Proof_Name as "Proof Name"
+							Select_Proof as "Select Proof"
+							Application_No as "Application No"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Assessors
+	{
+		icon = "tech-desktop"
+		form Add_Assessor
+		{
+			displayname = "Add Assessor"
+			success message = "Assessor Added Successfully"
+			field alignment = left
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Name
+			(
+    			type = name
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have unique Email
+			(
+    			type = email
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Phone_Number
+			(
+    			type = phonenumber
+				displayname = "Phone"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "tech-2-p-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Add"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+		 functions
+		 {
+			 Deluge
+			 {
+				 void Admission.Apply(int course_admission_id)
+         {
+         	url = "#Form:Fill_New_Application?Select_Course=" + course_admission_id;
+         	openUrl(url,"same window");
+         }
+				 void Admission.Cancel(Start_New_Admission form)
+         {
+         	for each  rec in form
+         	{
+         		rec.Status="Cancelled";
+         	}
+         	openUrl("#Script:page.refresh","same window");
+         }
+				 void Admission.Close_Admission(Start_New_Admission form)
+         {
+         	form.Status="Closed";
+         	applied_candidates = Fill_New_Application[Select_Course == form.ID].Email1.getAll();
+         	open_admissions = Start_New_Admission[Status != "Closed" && ID != form.ID].ID.getAll();
+         	for each  candidate in applied_candidates
+         	{
+         		applied_count = Fill_New_Application[Select_Course in open_admissions && Email1 == candidate].count(Email1);
+         		if(applied_count == 0)
+         		{
+         			thisapp.portal.deleteuser(candidate);
+         			candidate_rec = Candidate_Registration[Email == candidate];
+         			candidate_rec.Portal_Permission="Disabled";
+         		}
+         	}
+         }
+				 void Admission.Close_enrollment(Start_New_Admission form)
+         {
+         	form.Status="On Selection";
+         	openUrl("#Script:page.refresh","same window");
+         }
+				 void Admission.Enable_Disable(Start_New_Admission form)
+         {
+         	if(form.Registration_Status == "Enabled")
+         	{
+         		url = zoho.appuri + "#Form:Start_New_Admission?Registration_Status=Disabled&recLinkID=" + form.ID + "&viewLinkName=Open_Enrollment&zc_NextUrl=#Report:Open_Enrollment";
+         		openUrl(url,"popup window");
+         	}
+         	else
+         	{
+         		form.Registration_Status="Enabled";
+         		openUrl("#Script:page.refresh","same window");
+         	}
+         }
+				 void Admission.Start_enrollment(Start_New_Admission form)
+         {
+         	form.Status="On Registration";
+         	form.Registration_Status="Enabled";
+         	openUrl("#Script:page.refresh","same window");
+         }
+				 void Application.Absent(Fill_New_Application form)
+         {
+         	for each  rec in form
+         	{
+         		rec.Assessment_Status="Absent";
+         	}
+         }
+				 void Application.Cancel(Fill_New_Application form)
+         {
+         	for each  rec in form
+         	{
+         		rec.Application_Status="Cancelled";
+         	}
+         }
+				 void Application.Present(Fill_New_Application form)
+         {
+         	for each  rec in form
+         	{
+         		rec.Assessment_Status="Present";
+         	}
+         }
+				 void Application.Reject(Fill_New_Application form)
+         {
+         	for each  rec in form
+         	{
+         		if(rec.Application_Status == "pending" || rec.Assessment_Status == "Absent")
+         		{
+         			rec.Application_Status="Application Rejected";
+         		}
+         		else if(rec.Application_Status == "Shortlisted" && rec.Assessment_Status == "Present")
+         		{
+         			rec.Application_Status="Rejected In Assessment";
+         		}
+         	}
+         }
+				 void Application.Select(Fill_New_Application form)
+         {
+         	for each  rec in form
+         	{
+         		rec.Application_Status="Selected";
+         	}
+         }
+				 void Application.Select_for_assessment(Fill_New_Application form)
+         {
+         	url = "#Form:Schedule_Assessment?Select_Applications=" + form.ID.getall();
+         	openUrl(url,"popup window");
+         }
+				 void Candidate.Enable_Disable(Candidate_Registration form)
+         {
+         	if(form.Portal_Permission == "Enabled")
+         	{
+         		thisapp.portal.deleteuser(form.Email);
+         		form.Portal_Permission="Disabled";
+         	}
+         	else
+         	{
+         		thisapp.portal.assignUserInProfile(form.Email,"Candidate Profile");
+         		form.Portal_Permission="Enabled";
+         	}
+         }
+			 }
+		 }
+
+
+
+
+		workflow
+		{
+		form
+		{
+			Direct_to_Form_Properties as "Direct to - Form Properties"
+			{
+				type =  presuccess
+				form = Add_Institute_Details
+				on start
+				{
+					actions 
+					{
+						openURL("#Form:Add_Course","new window");
+					}
+				}
+			}
+			Run_Scripts_While_Adding_4 as "Run Scripts While Adding a Record"
+			{
+				type =  form
+				form = Add_Institute_Details
+				record event = on add
+
+				on load
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											input.Email = zoho.adminuserid;
+						)
+					}
+				}
+
+			}
+			Run_Scripts_While_Deletin3 as "Run Scripts While Deleting a Record"
+			{
+				type =  form
+				form = Add_Institute_Details
+				record event = on delete
+
+				on validate
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											alert "You cannot delete this record please try edit";
+										cancel delete;
+						)
+					}
+				}
+
+			}
+			Run_Scripts_While_Adding_6 as "Run Scripts While Adding a Record"
+			{
+				type =  form
+				form = Candidate_Registration
+				record event = on add
+
+				on success
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											if(Email != null)
+										{
+											if(Email != zoho.adminuserid)
+											{
+												thisapp.portal.assignUserInProfile(input.Email,"Candidate Profile");
+											}
+										}
+						)
+					}
+				}
+
+			}
+			Run_Scripts_On_Always2 as "Run Scripts On Always"
+			{
+				type =  form
+				form = Start_New_Admission
+				record event = on add or edit
+
+				on validate
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											input.Course_Admission_Id = input.Course.Course_Name + " " + input.Division.Division_Name + " (" + input.Course_Period + ")";
+						)
+					}
+				}
+
+			}
+			Run_Scripts_On_Always4 as "Run Scripts On Always"
+			{
+				type =  form
+				form = Start_New_Admission
+				record event = on add or edit
+
+				on user input of Required_Seats
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Required_Seats != null)
+										{
+											if(Required_Seats <= 0)
+											{
+												alert "Enter a valid number of seats";
+												input.Required_Seats = null;
+											}
+											else
+											{
+												if(Max_No_Of_Applications != null)
+												{
+													if(Required_Seats > Max_No_Of_Applications)
+													{
+														alert "Number of seats should be less than or equals maximum limit";
+														input.Required_Seats = null;
+													}
+												}
+											}
+										}
+						)
+					}
+				}
+
+			}
+			Run_Scripts_On_Always5 as "Run Scripts On Always"
+			{
+				type =  form
+				form = Start_New_Admission
+				record event = on add or edit
+
+				on user input of Maximum_Age_Limit
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											if(Maximum_Age_Limit != null)
+										{
+											if(Maximum_Age_Limit <= 0)
+											{
+												alert "Enter a valid age for maximum age limit";
+												input.Maximum_Age_Limit = null;
+											}
+											else
+											{
+												if(Minimum_Age_Limit != null)
+												{
+													if(Maximum_Age_Limit < Minimum_Age_Limit)
+													{
+														alert "Maximum age should be greater than or equals minimumm age limit";
+														input.Maximum_Age_Limit = null;
+													}
+												}
+											}
+										}
+						)
+					}
+				}
+
+			}
+			Run_Scripts_On_Always6 as "Run Scripts On Always"
+			{
+				type =  form
+				form = Start_New_Admission
+				record event = on add or edit
+
+				on user input of Course
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											if(Course != null)
+										{
+											input.Department = input.Course.Department;
+										}
+						)
+					}
+				}
+
+			}
+			Run_Scripts_On_Always7 as "Run Scripts On Always"
+			{
+				type =  form
+				form = Start_New_Admission
+				record event = on add or edit
+
+				on user input of Max_No_Of_Applications
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											if(Max_No_Of_Applications != null)
+										{
+											if(Max_No_Of_Applications <= 0)
+											{
+												alert "Enter a valid number for maximum limit";
+												input.Max_No_Of_Applications = null;
+											}
+											else
+											{
+												if(Max_No_Of_Applications < Required_Seats)
+												{
+													alert "Maximum limit should be greater than or equals to number of seats";
+													input.Max_No_Of_Applications = null;
+												}
+											}
+										}
+						)
+					}
+				}
+
+			}
+			Run_Scripts_On_Always8 as "Run Scripts On Always"
+			{
+				type =  form
+				form = Start_New_Admission
+				record event = on add or edit
+
+				on user input of Eligibility_Preference.Minimum_Percent
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											if(row.Minimum_Percent != null)
+										{
+											if(row.Minimum_Percent <= 0 || row.Minimum_Percent > 100)
+											{
+												alert "Percentage should come between 0 and 100";
+												row.Minimum_Percent=null;
+											}
+										}
+						)
+					}
+				}
+
+			}
+			Run_Scripts_On_Always9 as "Run Scripts On Always"
+			{
+				type =  form
+				form = Start_New_Admission
+				record event = on add or edit
+
+				on user input of Minimum_Age_Limit
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											if(Minimum_Age_Limit != null)
+										{
+											if(Minimum_Age_Limit <= 0)
+											{
+												alert "Enter a valid age for minimum limit";
+												input.Minimum_Age_Limit = null;
+											}
+											else
+											{
+												if(Maximum_Age_Limit != null)
+												{
+													if(Minimum_Age_Limit > Maximum_Age_Limit)
+													{
+														alert "Minimum age should be less than or equals maximum age";
+														input.Minimum_Age_Limit = null;
+													}
+												}
+											}
+										}
+						)
+					}
+				}
+
+			}
+			Run_Scripts_On_Always10 as "Run Scripts On Always"
+			{
+				type =  form
+				form = Start_New_Admission
+				record event = on add or edit
+
+				on add row of Eligibility_Preference
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											all_courses = Add_Eligibility_Course[ID != 0].ID.getAll();
+										selected_courses = input.Eligibility_Preference.Choose_Course.getall();
+										all_courses.removeAll(selected_courses);
+										row.Choose_Course:ui.add(all_courses);
+						)
+					}
+				}
+
+			}
+			Run_Scripts_On_Always11 as "Run Scripts On Always"
+			{
+				type =  form
+				form = Start_New_Admission
+				record event = on add or edit
+
+				on delete row of Eligibility_Preference
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											all_courses = Add_Eligibility_Course[ID != 0].ID.getAll();
+										selected_courses = input.Eligibility_Preference.Choose_Course.getall();
+										all_courses.removeAll(selected_courses);
+										row.Choose_Course:ui.add(all_courses);
+						)
+					}
+				}
+
+			}
+			Run_Scripts_While_Adding_7 as "Run Scripts While Adding a Record"
+			{
+				type =  form
+				form = Start_New_Admission
+				record event = on add
+
+				on load
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											hide Department;
+										hide Course_Admission_Id;
+										hide Status;
+										hide Registration_Status;
+										hide Disabled_Due_To;
+						)
+					}
+				}
+
+			}
+			Run_Scripts_While_Adding_8 as "Run Scripts While Adding a Record"
+			{
+				type =  form
+				form = Start_New_Admission
+				record event = on add
+
+				on validate
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											admission_count = Start_New_Admission[Course == input.Course && Required_Seats == input.Required_Seats && Division == input.Division].count(ID);
+										if(admission_count == 1)
+										{
+											alert "This admission is already open";
+											cancel submit;
+										}
+						)
+					}
+				}
+
+			}
+			Run_Scripts_While_Adding_9 as "Run Scripts While Adding a Record"
+			{
+				type =  form
+				form = Start_New_Admission
+				record event = on add
+
+				on user input of Course
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											if(Course != null)
+										{
+											available_divisions = Add_Course[ID == input.Course].Divisions;
+											input.Division:ui.add(available_divisions);
+										}
+						)
+					}
+				}
+
+			}
+			Run_Scripts_While_Adding_10 as "Run Scripts While Adding a Record"
+			{
+				type =  form
+				form = Start_New_Admission
+				record event = on add
+
+				on user input of Admission_Deadline
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											if(Admission_Deadline != null)
+										{
+											if(Admission_Deadline <= zoho.currenttime)
+											{
+												alert "Deadline must be greater than current time";
+												input.Admission_Deadline = null;
+											}
+										}
+						)
+					}
+				}
+
+			}
+			Run_Scripts_On_Always12 as "Run Scripts On Always"
+			{
+				type =  form
+				form = Fill_New_Application
+				record event = on add or edit
+
+				field rules
+				{
+					actions 
+					{
+						hide Logical_Fields;
+						disable Age;
+					}
+				}
+
+			}
+			Run_Scripts_On_Always13 as "Run Scripts On Always"
+			{
+				type =  form
+				form = Fill_New_Application
+				record event = on add or edit
+
+				on validate
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											proofs = input.Select_Course.Required_Proofs;
+										proof_list = Add_Document[ID in proofs].Document_Name.getAll();
+										if(proofs.size() != 0)
+										{
+											selected_proofs = input.Required_Proofs.Proof_Name.getall();
+											if(proofs.size() != selected_proofs.size())
+											{
+												alert "Please upload all required proofs to submit this application";
+												cancel submit;
+											}
+										}
+										preference_count = Add_Eligibility_Preference[Course_Admission_Id == input.Select_Course].count(Choose_Course);
+										if(preference_count != 0)
+										{
+											selected_preference = input.Academic_Info.Course.getall();
+											if(selected_preference.size() == 0)
+											{
+												alert "Please update academic info to complete this application";
+												cancel submit;
+											}
+										}
+										else
+										{
+											for each  rec in input.Academic_Info
+											{
+												input.Candidate_Score = input.Candidate_Score + 5 / 100 * rec.Obtained_Percent;
+											}
+										}
+						)
+					}
+				}
+
+			}
+			Run_Scripts_On_Always14 as "Run Scripts On Always"
+			{
+				type =  form
+				form = Fill_New_Application
+				record event = on add or edit
+
+				on user input of Academic_Info.Obtained_Percent
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											if(row.Obtained_Percent != null)
+										{
+											minimum_percent = Add_Eligibility_Preference[Course_Admission_Id == input.Select_Course && Choose_Course == row.Course].Minimum_Percent;
+											if(row.Obtained_Percent < minimum_percent)
+											{
+												alert "Minimum percent for this course should be greater than or equals " + minimum_percent;
+												row.Obtained_Percent=null;
+											}
+											else if(row.Obtained_Percent > 100)
+											{
+												alert "Percentage should be less than 100";
+												row.Obtained_Percent=null;
+											}
+										}
+						)
+					}
+				}
+
+			}
+			Run_Scripts_On_Always15 as "Run Scripts On Always"
+			{
+				type =  form
+				form = Fill_New_Application
+				record event = on add or edit
+
+				on user input of Date_Of_Birth
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Date_Of_Birth != null)
+										{
+											input.Age = input.Date_Of_Birth.yearsBetween(zoho.currentdate);
+											min_age_limit = input.Select_Course.Minimum_Age_Limit;
+											max_age_limit = input.Select_Course.Maximum_Age_Limit;
+											if(min_age_limit != null && max_age_limit != null)
+											{
+												if(Age < min_age_limit || Age > max_age_limit)
+												{
+													alert "Age between " + min_age_limit + " and " + max_age_limit + " are allowed for this course";
+													input.Date_Of_Birth = null;
+												}
+											}
+											else if(max_age_limit != null && min_age_limit == null)
+											{
+												if(Age > max_age_limit)
+												{
+													alert "Age below " + max_age_limit + " are allowed for this course";
+													input.Date_Of_Birth = null;
+												}
+											}
+											else if(min_age_limit != null && max_age_limit == null)
+											{
+												if(Age < min_age_limit)
+												{
+													alert "Age above " + min_age_limit + " are allowed for this course";
+													input.Date_Of_Birth = null;
+												}
+											}
+										}
+										else
+										{
+											input.Age = null;
+										}
+						)
+					}
+				}
+
+			}
+			Run_Scripts_On_Always16 as "Run Scripts On Always"
+			{
+				type =  form
+				form = Fill_New_Application
+				record event = on add or edit
+
+				on add row of Academic_Info
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											all_courses = Add_Eligibility_Preference[Course_Admission_Id == input.Select_Course].Choose_Course.getAll();
+										selected_courses = input.Academic_Info.Course.getall();
+										all_courses.removeAll(selected_courses);
+										row.Course:ui.add(all_courses);
+						)
+					}
+				}
+
+			}
+			Run_Scripts_On_Always17 as "Run Scripts On Always"
+			{
+				type =  form
+				form = Fill_New_Application
+				record event = on add or edit
+
+				on add row of Required_Proofs
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											all_proofs = Start_New_Admission[ID == input.Select_Course].Required_Proofs;
+										selected_proofs = input.Required_Proofs.Proof_Name.getall();
+										all_proofs.removeAll(selected_proofs);
+										row.Proof_Name:ui.add(all_proofs);
+						)
+					}
+				}
+
+			}
+			Run_Scripts_On_Always18 as "Run Scripts On Always"
+			{
+				type =  form
+				form = Fill_New_Application
+				record event = on add or edit
+
+				on delete row of Academic_Info
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											all_courses = Add_Eligibility_Preference[Course_Admission_Id == input.Select_Course].Choose_Course.getAll();
+										selected_courses = input.Academic_Info.Course.getall();
+										all_courses.removeAll(selected_courses);
+										row.Course:ui.add(all_courses);
+						)
+					}
+				}
+
+			}
+			Run_Scripts_On_Always19 as "Run Scripts On Always"
+			{
+				type =  form
+				form = Fill_New_Application
+				record event = on add or edit
+
+				on delete row of Required_Proofs
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											all_proofs = Start_New_Admission[ID == input.Select_Course].Required_Proofs;
+										selected_proofs = input.Required_Proofs.Proof_Name.getall();
+										all_proofs.removeAll(selected_proofs);
+										row.Proof_Name:ui.add(all_proofs);
+						)
+					}
+				}
+
+			}
+			Run_Scripts_While_Adding_11 as "Run Scripts While Adding a Record"
+			{
+				type =  form
+				form = Fill_New_Application
+				record event = on add
+
+				field rules
+				{
+					actions 
+					{
+						hide Academic_Info,Required_Proofs;
+					}
+				}
+
+			}
+			Run_Scripts_While_Adding_12 as "Run Scripts While Adding a Record"
+			{
+				type =  form
+				form = Fill_New_Application
+				record event = on add
+
+				on load
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Select_Course == null)
+										{
+											courses = Start_New_Admission[Status == "On Registration" && Registration_Status == "Enabled"].Course.getAll();
+											available_courses = Start_New_Admission[Status == "On Registration" && Registration_Status == "Enabled"].ID.getAll();
+											input.Select_Course:ui.add(available_courses);
+											available_departments = Add_Course[ID in courses].distinct(Department);
+											input.Department:ui.add(available_departments);
+										}
+										else
+										{
+											input.Department = input.Select_Course.Department;
+											disable Department;
+											disable Select_Course;
+										}
+										candidate = Candidate_Registration[Email == zoho.loginuserid];
+										if(candidate.count(Email) == 1)
+										{
+											input.Email1 = candidate.Email;
+											input.Phone_Number1 = candidate.Phone_Number;
+											input.Candidate_Name.prefix1 = candidate.Name.prefix;
+											input.Candidate_Name.first_name1 = candidate.Name.first_name;
+											input.Candidate_Name.last_name1 = candidate.Name.last_name;
+											hide Email1;
+										}
+						)
+					}
+				}
+
+			}
+			Run_Scripts_While_Adding_13 as "Run Scripts While Adding a Record"
+			{
+				type =  form
+				form = Fill_New_Application
+				record event = on add
+
+				on success
+				{
+					actions 
+					{
+						sendmail
+						(
+							from : "zoho.adminuserid"
+							to : Email1
+							subject : "New Application"
+							message : "Hi ${Candidate_Name},&nbsp;<div><br></div><div>&nbsp; &nbsp; &nbsp; Your application for ${Select_Course.Course_Admission_Id} has been submitted successfully, your status will be notified once our selection process started.</div><div><br></div><div>Thank you.</div>"
+							attachments : template : _default1 as inline
+						)
+						custom deluge script
+						(
+											total_application_count = Fill_New_Application[Select_Course == input.Select_Course].count(ID);
+										if(total_application_count != 0)
+										{
+											admission_form = Start_New_Admission[ID == input.Select_Course];
+											if(admission_form.Max_No_Of_Applications == total_application_count)
+											{
+												admission_form.Registration_Status="Disabled";
+												admission_form.Disabled_Due_To="Application limit reached";
+											}
+										}
+										user_count = Candidate_Registration[Phone_Number == input.Phone_Number1 && Email == input.Email1].count(ID);
+										if(user_count == 0)
+										{
+											insert into Candidate_Registration
+											[
+												Email=input.Email1
+												Phone_Number=input.Phone_Number1
+												Portal_Permission="Disabled"
+												Name.first_name=input.Candidate_Name.first_name1
+												Name.last_name=input.Candidate_Name.last_name1
+												Added_User=zoho.loginuser
+											]
+											thisapp.portal.assignUserInProfile(input.Email1,"Candidate Profile");
+										}
+										eligibility_count = Add_Eligibility_Preference[Course_Admission_Id == input.Select_Course].count();
+										if(eligibility_count == 0)
+										{
+											academic_info_count = Add_Academic_Info[Application_No == input.ID].count();
+											if(academic_info_count != 0)
+											{
+												delete from Add_Academic_Info[Application_No == input.ID];
+											}
+										}
+										input.Add_Course = input.Select_Course.Course;
+						)
+					}
+				}
+
+			}
+			Run_Scripts_While_Adding_14 as "Run Scripts While Adding a Record"
+			{
+				type =  form
+				form = Fill_New_Application
+				record event = on add
+
+				on user input of Select_Course
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											input.Notes = "";
+										if(Select_Course != null)
+										{
+											note_content = "<div>";
+											if(Department == null)
+											{
+												input.Department = input.Select_Course.Department;
+											}
+											min_age_limit = input.Select_Course.Minimum_Age_Limit;
+											max_age_limit = input.Select_Course.Maximum_Age_Limit;
+											if(min_age_limit != null && max_age_limit != null)
+											{
+												note_content = note_content + "<p><span style='color:#FF8B3B;'>Age Limit : </span><span>" + min_age_limit + " - " + max_age_limit + "</span></p>";
+											}
+											else if(max_age_limit != null && min_age_limit == null)
+											{
+												note_content = note_content + "<p><span style='color:#FF8B3B;'>Age Limit : </span><span>below or equals " + max_age_limit + "</span></p>";
+											}
+											else if(min_age_limit != null && max_age_limit == null)
+											{
+												note_content = note_content + "<p><span style='color:#FF8B3B;'>Age Limit : </span><span>above " + min_age_limit + "</span></p>";
+											}
+											proofs = input.Select_Course.Required_Proofs;
+											proof_list = Add_Document[ID in proofs].Document_Name.getAll();
+											if(proofs.size() != 0)
+											{
+												show Required_Proofs;
+												Required_Proofs.Proof_Name:ui.add(proofs);
+												note_content = note_content + "<p><span style='color:#FF8B3B;'>Proofs Required : </span><span>" + proof_list + "</span></p>";
+											}
+											else
+											{
+												hide Required_Proofs;
+											}
+											preference = Add_Eligibility_Preference[Course_Admission_Id == input.Select_Course];
+											if(preference.count() != 0)
+											{
+												show Academic_Info;
+												Academic_Info.Course:ui.add(preference.Choose_Course.getall());
+												note_content = note_content + "<p style='color:#FF8B3B;'>Eligibility Preference</p><table style='border:1px solid #a4b6c1;border-collapse:collapse;'><thead><th style='border:1px solid #a4b6c1;padding:5px;'>Course</th><th style='border:1px solid #a4b6c1;padding:5px;'>Percent</th></thead><tbody>";
+												for each  rec in Add_Eligibility_Preference[Course_Admission_Id == input.Select_Course]
+												{
+													note_content = note_content + "<tr><td style='border:1px solid #a4b6c1;padding:5px;'>" + rec.Choose_Course.Course_Name + "</td><td style='border:1px solid #a4b6c1;padding:5px;'>" + rec.Minimum_Percent + "</td></tr>";
+												}
+												input.Notes = note_content + "</div>";
+											}
+											else
+											{
+												hide Academic_Info;
+											}
+										}
+										else
+										{
+											hide Required_Proofs;
+											hide Academic_Info;
+										}
+						)
+					}
+				}
+
+			}
+			Run_Scripts_While_Adding_15 as "Run Scripts While Adding a Record"
+			{
+				type =  form
+				form = Fill_New_Application
+				record event = on add
+
+				on user input of Department
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											if(Department != null)
+										{
+											selected_course = input.Select_Course;
+											available_courses = Start_New_Admission[Status == "On Registration" && Registration_Status == "Enabled" && Department == input.Department].ID.getAll();
+											input.Select_Course:ui.add(available_courses);
+											if(available_courses.contains(selected_course) == true)
+											{
+												input.Select_Course = selected_course;
+											}
+										}
+										else
+										{
+											available_courses = Start_New_Admission[Status == "On Registration" && Registration_Status == "Enabled"].ID.getAll();
+											input.Select_Course:ui.add(available_courses);
+											input.Notes = "";
+											hide Required_Proofs;
+											hide Academic_Info;
+										}
+						)
+					}
+				}
+
+			}
+			Run_Scripts_While_Editing2 as "Run Scripts While Editing a Record"
+			{
+				type =  form
+				form = Candidate_Registration
+				record event = on edit
+
+				on validate
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											if(old.Email != input.Email)
+										{
+											thisapp.portal.deleteuser(old.Email);
+											thisapp.portal.assignUserInProfile(input.Email,"Candidate Profile");
+										}
+						)
+					}
+				}
+
+			}
+			Run_Scripts_While_Deletin4 as "Run Scripts While Deleting a Record"
+			{
+				type =  form
+				form = Candidate_Registration
+				record event = on delete
+
+				on validate
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											if(Email != zoho.adminuserid)
+										{
+											thisapp.portal.deleteuser(input.Email);
+										}
+						)
+					}
+				}
+
+			}
+			Run_Scripts_On_Always20 as "Run Scripts On Always"
+			{
+				type =  form
+				form = Add_Eligibility_Preference
+				record event = on add or edit
+
+				field rules
+				{
+					actions 
+					{
+						hide Course_Admission_Id;
+					}
+				}
+
+			}
+			Run_Scripts_while_Editing3 as "Run Scripts while Editing a Record"
+			{
+				type =  form
+				form = Fill_New_Application
+				record event = on edit
+
+				field rules
+				{
+					actions 
+					{
+						disable Department,Select_Course;
+					}
+				}
+
+			}
+			Run_Scripts_While_Editing4 as "Run Scripts While Editing a Record"
+			{
+				type =  form
+				form = Start_New_Admission
+				record event = on edit
+
+				field rules
+				{
+					actions  (Registration_Status == "Disabled")
+					{
+						show Disabled_Due_To;
+					}
+				}
+
+			}
+			Run_Scripts_While_Editing5 as "Run Scripts While Editing a Record"
+			{
+				type =  form
+				form = Start_New_Admission
+				record event = on edit
+
+				on load
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											if(Status != "Upcoming")
+										{
+											disable Eligibility_Preference.Choose_Course;
+											disable Eligibility_Preference.Minimum_Percent;
+											disable Course;
+											disable Division;
+											disable Admission_Flow;
+											disable Maximum_Age_Limit;
+											disable Minimum_Age_Limit;
+											disable Required_Proofs;
+										}
+										hide Department;
+										hide Course_Admission_Id;
+										hide Status;
+										hide Registration_Status;
+						)
+					}
+				}
+
+			}
+			Run_Scripts_While_Editing6 as "Run Scripts While Editing a Record"
+			{
+				type =  form
+				form = Start_New_Admission
+				record event = on edit
+
+				on validate
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											admission_count = Start_New_Admission[ID != input.ID && Course == input.Course && Required_Seats == input.Required_Seats && Division == input.Division && Course_Period == input.Course_Period].count(ID);
+										if(admission_count == 1)
+										{
+											alert "This admission is already open";
+											cancel submit;
+										}
+						)
+					}
+				}
+
+			}
+			Run_Scripts_While_Adding_16 as "Run Scripts While Adding a Record"
+			{
+				type =  form
+				form = Schedule_Assessment
+				record event = on add
+
+				on success
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											for each  application in input.Select_Applications
+										{
+											application_form = Fill_New_Application[ID == application];
+											application_form.Application_Status="Shortlisted";
+											course = application_form.Select_Course.Course_Admission_Id;
+											assess_status = application_form.Assessment_Status;
+											if(assess_status == "Absent")
+											{
+												application_form.Assessment_Status="Rescheduled";
+												sub = "Assessment Rescheduled";
+											}
+											else
+											{
+												application_form.Assessment_Status="Scheduled";
+												sub = "Assessment Scheduled";
+											}
+											sendmail
+											[
+												from :zoho.adminuserid
+												to :application_form.Email1
+												subject :sub
+												message :("your application has been selected and assessment is scheduled on " + input.Scheduled_Time + ".<br>Other details are given below.<br> Course : " + course + "<br> Venue : " + input.Venue) + "<br>Landmark : " + input.Nearest_Landmark
+											]
+										}
+										openUrl("#Script:page.refresh","same window");
+						)
+					}
+				}
+
+			}
+			Run_Scripts_While_Deletin5 as "Run Scripts While Deleting a Record"
+			{
+				type =  form
+				form = Start_New_Admission
+				record event = on delete
+
+				on validate
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											delete from Add_Eligibility_Preference[Course_Admission_Id == input.ID];
+						)
+					}
+				}
+
+			}
+		}
+
+		schedule
+		{
+			Deadline_Notification as "Deadline Notification"
+			{
+				type =  schedule
+				form = Start_New_Admission
+				start = Admission_Deadline
+				time zone = "Asia/Kolkata"
+				on start
+				{
+					actions 
+					{
+					on load
+					(
+						admission = Start_New_Admission[ID == input.ID];
+										if(admission.Status == "On Registration")
+										{
+											admission.Registration_Status="Disabled";
+											admission.Disabled_Due_To="Reached deadline";
+										}
+										//need to add mail content
+					)
+						sendmail
+						(
+							from : "zoho.adminuserid"
+							to : "zoho.adminuserid"
+							subject : "Admission Deadline Reminder"
+							message : "Hi ${zoho.adminuser},<div><br></div><div>&nbsp; &nbsp; &nbsp; Deadline reached for&nbsp;${Course_Admission_Id}, Now you can close this enrollment and start selection process.</div>"
+						)
+					pushnotification
+					(
+						sender type : "fields"
+						to : "${zoho.adminuserid}"
+						title : "Admission Deadline Reminder"
+						message : "${Course_Admission_Id} has reached its deadline. Now you can start selection."
+						view : "Open_Enrollment"
+					)
+					}
+				}
+			}
+			Mark_Absent as "Mark Absent"
+			{
+				type =  schedule
+				start = "2019-03-22 23:00:00"
+				frequency = daily
+				time zone = "Asia/Kolkata"
+				on start
+				{
+					actions 
+					{
+					on load
+					(
+						for each  rec in Schedule_Assessment[Scheduled_Time == zoho.currentdate]
+										{
+											for each  application in Fill_New_Application[Schedule_Assessment_Batch_Number == rec.ID && Assessment_Status == null]
+											{
+												application.Assessment_Status="Absent";
+											}
+										}
+					)
+					}
+				}
+			}
+		}
+
+
+
+		functions
+		{
+			Close_Enrollment as "Close Enrollment"
+			{
+				type =  functions
+				form = Start_New_Admission
+				execution type = for each record	
+				on start
+				{
+					actions 
+					{
+						thisapp.Admission.Close_enrollment(Start_New_Admission);
+					}
+				}
+			}
+			Cancel as "Cancel"
+			{
+				type =  functions
+				form = Fill_New_Application
+				execution type = for each record	
+				on start
+				{
+					actions 
+					{
+						thisapp.Application.Cancel(Fill_New_Application);
+					}
+				}
+			}
+			Select_Application as "Select Application"
+			{
+				type =  functions
+				form = Fill_New_Application
+				execution type = for each record	
+				on start
+				{
+					actions 
+					{
+						thisapp.Application.Select(Fill_New_Application);
+						sendmail
+						(
+							from : "zoho.adminuserid"
+							to : Email1
+							subject : "Application Selected"
+							message : "Hi ${Candidate_Name},&nbsp;<div><br></div><div>Congrats</div><div>&nbsp; &nbsp; &nbsp;</div><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your application for ${Select_Course.Course_Admission_id} has been selected.</div><div><br></div><div>Thank you.</div>"
+						)
+					}
+				}
+			}
+			Reject_Application as "Reject Application"
+			{
+				type =  functions
+				form = Fill_New_Application
+				execution type = for each record	
+				on start
+				{
+					actions 
+					{
+						thisapp.Application.Reject(Fill_New_Application);
+						sendmail
+						(
+							from : "zoho.adminuserid"
+							to : Email1
+							subject : "Application Rejected"
+							message : "Hi ${Candidate_Name},<div><br></div><div>Sorry</div><div><br></div><div>&nbsp; &nbsp; &nbsp;Your application for ${Select_Course.Course_Admission_Id} has been rejected.</div><div><br></div><div>Thank you.</div>"
+						)
+					}
+				}
+			}
+			Start_Enrollment as "Start Enrollment"
+			{
+				type =  functions
+				form = Start_New_Admission
+				execution type = for each record	
+				on start
+				{
+					actions 
+					{
+						thisapp.Admission.Start_enrollment(Start_New_Admission);
+					}
+				}
+			}
+			Apply as "Apply"
+			{
+				type =  functions
+				form = Start_New_Admission
+				execution type = for each record	
+				on start
+				{
+					actions 
+					{
+						thisapp.Admission.Apply(ID);
+					}
+				}
+			}
+			Enable_Disable as "Enable/Disable"
+			{
+				type =  functions
+				form = Candidate_Registration
+				execution type = for each record	
+				on start
+				{
+					actions 
+					{
+						thisapp.Candidate.Enable_Disable(Candidate_Registration);
+					}
+				}
+			}
+			Enable_Disable1 as "Enable/Disable"
+			{
+				type =  functions
+				form = Start_New_Admission
+				execution type = for each record	
+				on start
+				{
+					actions 
+					{
+						thisapp.Admission.Enable_Disable(Start_New_Admission);
+					}
+				}
+			}
+			Cancel1 as "Cancel"
+			{
+				type =  functions
+				form = Start_New_Admission
+				execution type = for each record	
+				on start
+				{
+					actions 
+					{
+						thisapp.Admission.Cancel(Start_New_Admission);
+					}
+				}
+			}
+			Select_for_Assessment as "Select for Assessment"
+			{
+				type =  functions
+				form = Fill_New_Application
+				execution type = for each record	
+				on start
+				{
+					actions 
+					{
+						thisapp.Application.Select_for_assessment(Fill_New_Application);
+					}
+				}
+			}
+			Reject_Application1 as "Reject Application"
+			{
+				type =  functions
+				form = Fill_New_Application
+				execution type = for each record	
+				on start
+				{
+					actions 
+					{
+						thisapp.Application.Reject(Fill_New_Application);
+						sendmail
+						(
+							from : "zoho.adminuserid"
+							to : Email1
+							subject : "Application Rejected"
+							message : "Hi ${Candidate_Name},<div><br></div><div>Sorry</div><div><br></div><div>&nbsp; &nbsp; &nbsp;Your application for ${Select_Course.Course_Admission_Id} has been rejected.</div><div><br></div><div>Thank you.</div>"
+						)
+					}
+				}
+			}
+			Select_by_Assessment as "Select by Assessment"
+			{
+				type =  functions
+				form = Fill_New_Application
+				execution type = for each record	
+				on start
+				{
+					actions 
+					{
+						thisapp.Application.Select(Fill_New_Application);
+						sendmail
+						(
+							from : "zoho.adminuserid"
+							to : Email1
+							subject : "Selected In Assessment"
+							message : "Hi ${Candidate_Name},&nbsp;<div><br></div><div>Congrats</div><div>&nbsp; &nbsp; &nbsp;</div><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;You were selected in the assessment happened for ${Select_Course.Course_Admission_id}.&nbsp;</div><div><br></div><div>Thank you.</div>"
+						)
+					}
+				}
+			}
+			Reject_by_Assessment as "Reject by Assessment"
+			{
+				type =  functions
+				form = Fill_New_Application
+				execution type = for each record	
+				on start
+				{
+					actions 
+					{
+						thisapp.Application.Reject(Fill_New_Application);
+						sendmail
+						(
+							from : "zoho.adminuserid"
+							to : Email1
+							subject : "Rejected In Assessment"
+							message : "Hi ${Candidate_Name},<div><br></div><div>Sorry</div><div><br></div><div>&nbsp; &nbsp; &nbsp;You were rejected in the assessment happened for ${Select_Course.Course_Admission_Id}.</div><div><br></div><div>Thank you.</div>"
+						)
+					}
+				}
+			}
+			Reschedule as "Reschedule"
+			{
+				type =  functions
+				form = Fill_New_Application
+				execution type = for each record	
+				on start
+				{
+					actions 
+					{
+						thisapp.Application.Select_for_assessment(Fill_New_Application);
+					}
+				}
+			}
+			Reject as "Reject"
+			{
+				type =  functions
+				form = Fill_New_Application
+				execution type = for each record	
+				on start
+				{
+					actions 
+					{
+						thisapp.Application.Reject(Fill_New_Application);
+					}
+				}
+			}
+			Close_Admission as "Close Admission"
+			{
+				type =  functions
+				form = Start_New_Admission
+				execution type = for each record	
+				on start
+				{
+					actions 
+					{
+						thisapp.Admission.Close_Admission(Start_New_Admission);
+					}
+				}
+			}
+			Present as "Present"
+			{
+				type =  functions
+				form = Fill_New_Application
+				execution type = for each record	
+				on start
+				{
+					actions 
+					{
+						thisapp.Application.Present(Fill_New_Application);
+					}
+				}
+			}
+			Absent as "Absent"
+			{
+				type =  functions
+				form = Fill_New_Application
+				execution type = for each record	
+				on start
+				{
+					actions 
+					{
+						thisapp.Application.Absent(Fill_New_Application);
+					}
+				}
+			}
+		}
+	}
+	share_settings
+	{
+			"Read"
+			{
+				name = "Read"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "This profile will have read permission for all components\n"
+			}
+			"Write"
+			{
+				name = "Write"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "This profile will have write permission for all components\n"
+			}
+			"Administrator"
+			{
+				name = "Administrator"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "This profile will have all the permissions.\n"
+			}
+			"Candidate Profile"
+			{
+				name = "Candidate Profile"
+				type = Customer_Portal
+				permissions = {Chat:false, Predefined:false, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "Candidate Profile Profile\n"
+				ModulePermissions
+				{
+					Add_Academic_Info
+					{
+						enabled= Create,Tab 
+						allFieldsVisible= true 
+					}
+					Fill_New_Application
+					{
+						enabled= Create,Viewall,Tab 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							Applied_Courses={"View"}
+						}
+					}
+					Candidate_Registration
+					{
+						enabled= Viewall 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							My_Profile={"View"}
+						}
+					}
+					Add_Required_Proofs
+					{
+						enabled= Create,Tab 
+						allFieldsVisible= true 
+					}
+					Start_New_Admission
+					{
+						enabled= Viewall 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							Available_Courses={"View"}
+						}
+					}
+				}
+			}
+			roles
+			{
+				"CEO"
+				{
+					description = "User belonging to this role can access data of all other users.\n\n\n"
+					"Test"
+					{
+						description = ""
+					}
+				}
+			}
+	}
+
+	customize
+	{
+		
+		layout = "tab"
+		color = "black"
+		base theme = "professional"
+		new theme = 9
+		icons = true
+		icons style = outline
+		font = "lato"
+		color options
+    	{
+        color = "6"
+    	}
+    	icon
+    	{
+        	type = "1"
+        	name = "zc-ab-education-5"
+        	background color = "yellow"
+        	foreground color = "#FFFFFF"
+    	}
+    	logo
+    	{
+        	preference = "none"
+        	placement = "left"
+    	}
+	}
+
+
+	phone
+	{
+		section  Dashboard
+		{
+			icon = "ui-1-dashboard-half"
+			page Dashboard
+			{
+				icon = "ui-1-dashboard-half"
+			}
+		}
+		section  Admissions
+		{
+			icon = "education-hat"
+			form  Start_New_Admission
+			{
+				layout = auto
+				icon = "education-hat"
+			}
+			list Upcoming_Admissions
+			{
+				icon = "design-2-selection"
+			}
+			list Open_Enrollment
+			{
+				icon = "business-laptop-71"
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				display type = auto
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Course
+								Division
+								Required_Seats as "Required Seats"
+								Max_No_Of_Applications as "Max No Of Applications"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Edit   	   
+										Delete   	   
+										Duplicate   	   
+										View Record   	   
+    								)
+									on left swipe
+									(
+										"Close Enrollment"
+										"Enable/Disable"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Course
+								Division
+								Required_Seats as "Required Seats"
+								Max_No_Of_Applications as "Max No Of Applications"
+								Course_Admission_Id as "Course Admission Id"
+								Status
+								Department
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list Closed_Enrollment
+			{
+				icon = "location-route-close"
+			}
+			list Others1
+			{
+				icon = "location-route-close"
+			}
+			list Available_Courses
+			{
+				icon = "tech-ram"
+			}
+		}
+		section  Apply1
+		{
+			displayname= "Apply"
+			form  Fill_New_Application
+			{
+				layout = auto
+				icon = "design-paint-bucket-40"
+			}
+			list Applied_Courses
+			{
+				icon = "tech-2-l-check"
+			}
+			list Others
+			{
+				icon = "tech-ram"
+			}
+		}
+		section  Applications
+		{
+			icon = "shopping-newsletter"
+			list Direct_Admissions
+			{
+				icon = "food-recipe-book-47"
+			}
+			list Assessments
+			{
+				icon = "tech-2-l-settings"
+			}
+		}
+		section  Assessments1
+		{
+			displayname= "Assessments"
+			form  Schedule_Assessment
+			{
+				layout = auto
+				hide = true
+			}
+			list All_Assessments
+			{
+				icon = "travel-world"
+			}
+			list Shortlisted_Candidates
+			{
+				icon = "tech-ram"
+			}
+			list Present_Candidates
+			{
+				icon = "users-2-woman-up"
+			}
+			list Absentees
+			{
+				icon = "design-bullet-list-67"
+			}
+		}
+		section  Final_List1
+		{
+			displayname= "Final List"
+			list Selected_Candidates
+			{
+				icon = "users-2-focus"
+			}
+		}
+		section  Candidate1
+		{
+			displayname= "Candidate"
+			form  Candidate_Registration
+			{
+				layout = auto
+				icon = "design-window-paragraph"
+			}
+			list All_Candidates
+			{
+				icon = "travel-world"
+			}
+			summary My_Profile
+			{
+				icon = "shopping-mobile-touch"
+			}
+		}
+		section  Courses
+		{
+			icon = "education-hat"
+			form  Add_Course
+			{
+				layout = auto
+				icon = "design-2-3d-29"
+			}
+			list All_Courses
+			{
+				icon = "education-hat"
+			}
+		}
+		section  Categories
+		{
+			icon = "health-humidity-52"
+			form  Add_Department
+			{
+				layout = auto
+				icon = "design-shape-circle"
+				hide = true
+			}
+		}
+		section  Divisions
+		{
+			icon = "tech-desktop"
+			form  Add_Division
+			{
+				layout = auto
+				icon = "design-shapes"
+				hide = true
+			}
+		}
+		section  Configuration1
+		{
+			displayname= "Configuration"
+			form  Add_Institute_Details
+			{
+				layout = auto
+				icon = "users-2-contacts-44"
+				hide = true
+			}
+			list Institute_Details
+			{
+				icon = "users-2-contacts-44"
+			}
+			list Departments
+			{
+				icon = "travel-world"
+			}
+			list Divisions
+			{
+				icon = "travel-world"
+			}
+			list Eligibility_Preferences
+			{
+				icon = "travel-world"
+			}
+			list Eligibility_Courses
+			{
+				icon = "travel-world"
+			}
+			list Document_List
+			{
+				icon = "travel-world"
+			}
+			list All_Assessors
+			{
+				icon = "travel-world"
+			}
+		}
+		section  Eligibility_Details
+		{
+			displayname= "Eligibility Details"
+			icon = "users-2-contacts-44"
+			form  Add_Eligibility_Preference
+			{
+				layout = auto
+				icon = "shopping-mobile-card"
+				hide = true
+			}
+		}
+		section  Eligibility_Courses
+		{
+			displayname= "Eligibility Courses"
+			icon = "education-hat"
+			form  Add_Eligibility_Course
+			{
+				layout = auto
+				icon = "food-hob"
+				hide = true
+			}
+		}
+		section  Documents
+		{
+			form  Add_Document
+			{
+				layout = auto
+				icon = "shopping-cart-simple-in"
+				hide = true
+			}
+		}
+		section  Academic_Infos
+		{
+			displayname= "Academic Infos"
+			icon = "business-businessman-03"
+			form  Add_Academic_Info
+			{
+				layout = auto
+				icon = "tech-2-l-add"
+				hide = true
+			}
+			list All_Academic_Infos
+			{
+				icon = "travel-world"
+				hide = true
+			}
+		}
+		section  Add_Required_Proofs
+		{
+			displayname= "Add Required Proofs"
+			icon = "shopping-mobile-card"
+			form  Add_Required_Proofs
+			{
+				layout = auto
+				icon = "shopping-mobile-card"
+				hide = true
+			}
+			list Add_Required_Proofs_Report
+			{
+				icon = "design-2-cursor-not-allowed"
+				hide = true
+			}
+		}
+		section  Assessors
+		{
+			icon = "tech-desktop"
+			form  Add_Assessor
+			{
+				layout = auto
+				icon = "tech-2-p-add"
+				hide = true
+			}
+		}
+		customize
+		{
+        	layout = onecolumn
+		 	icons style = outline
+        	font = "lato"
+            style = "3"
+        	color options
+        	{
+             	color = yellow
+         	}
+         	logo
+         	{
+             	preference = "none"
+         	}
+		}
+	}
+	tablet
+	{
+		customize
+		{
+        	layout = slidingpane
+		 	icons style = outline
+        	font = "default"
+            style = "3"
+        	color options
+        	{
+             	color = rose
+         	}
+         	logo
+         	{
+             	preference = "none"
+         	}
+		}
+	}
+	
+}

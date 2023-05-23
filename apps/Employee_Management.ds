@@ -1,0 +1,7523 @@
+/*
+ * Author       : wapope7431_asuflex
+ * Generated on : 10-May-2023 13:46:26
+ * Version      : 1.0
+ */
+ application "Employee Management"
+ {
+ 	date format = "dd-MMM-yyyy"
+ 	time zone = "Asia/Kolkata"
+ 	time format = "24-hr"
+ 	section New_Section
+	{
+		displayname= "Dashboard"
+		icon = "ui-1-dashboard-half"
+				 page Dashboard 
+	 	 { 
+ 	 	 displayname = "Dashboard"
+
+ 	 	 icon = "" 
+	 	 Content="<zml    \t\t\n\t\t\n\t\t\tbgColor='#f3f3f3'\n\t\t\n\t\t\twebDeviceConfig='{\"layout\":{\"displayType\":\"card\",\"design\":\"fluid\",\"style\":\"padding-right:0px;padding-top:0px;padding-bottom:0px;padding-left:0px;\"}}'\n\t\t\n\t\t\n>\n\t<layout>\n\t<row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<dspZml id='ZMLScript1' elementName=\"ZML Snippet\"\n>\n\t<![CDATA[htmlpage ZMLScript1()\ndisplayname = &quot;ZMLScript&quot;\ncontent\n&lt;%{\n\tif(Add_Organization.count() == 0)\n\t{\n\t\topenUrl(&quot;#Form:Add_Organization&quot;,&quot;same window&quot;);\n\t}\n\tgetUser = Add_Employee[Official_Email == zoho.loginuserid];\n\tif(getUser.count() != 0)\n\t{\n\t\t%&gt;\n&lt;panel &gt;   &lt;pr width=&apos;fill&apos; height=&apos;fill&apos;&gt;     &lt;pc  width=&apos;100%&apos; hAlign=&apos;center&apos; padding=&quot;10px&quot; vAlign=&apos;middle&apos;&gt;       &lt;pr width=&apos;100%&apos; height=&apos;fill&apos;&gt;         &lt;pc hAlign=&quot;left&quot; width=&quot;85%&quot; paddingLeft=&quot;15px&quot;&gt;          &lt;text  value=&apos;Welcome&apos; size=&apos;3&apos; color=&apos;#333333&apos; type=&apos;Text&apos; textAlign=&apos;left&apos;&gt; &lt;suffix value=&quot;&lt;%=getUser.Name%&gt; !&quot; bold=&quot;true&quot;&gt; &lt;\/suffix&gt; &lt;\/text&gt;         &lt;\/pc&gt;         &lt;pc  vAlign=&apos;middle&apos; hAlign=&quot;right&quot; width=&quot;12%&quot; &gt;           &lt;button  text=&apos;Apply Leave&apos; size=&apos;3&apos; color=&apos;#ffffff&apos; bgColor=&apos;#0072F4&apos; btnType=&apos;flat&apos; action=&apos;Form&apos; componentLinkName=&apos;Apply_Leave&apos; target=&apos;popup&apos; \/&gt; &lt;\/pc&gt;                &lt;\/pr&gt;     &lt;\/pc&gt;   &lt;\/pr&gt; &lt;\/panel&gt;\n&lt;%\n\t}\n\telse\n\t{\n\t\t%&gt;\n&lt;panel &gt;\n\t\t&lt;pr width=&apos;fill&apos; height=&apos;fill&apos;&gt;\n\t\t\t&lt;pc  width=&apos;100%&apos; hAlign=&apos;center&apos; padding=&quot;50px&quot; vAlign=&apos;middle&apos;&gt;\n\t\t\t\t&lt;pr width=&apos;100%&apos; height=&apos;fill&apos;&gt;\n\t\t\t\t\t&lt;pc width=&quot;100%&quot; &gt;\n\t\t\t\t\t\t&lt;text  value=&apos;You are not an employee!&apos; size=&apos;3&apos; bold=&quot;true&quot; color=&apos;#333333&apos; type=&apos;Text&apos; textAlign=&apos;center&apos;&gt; &lt;\/text&gt; \n\t\t\t\t\t&lt;\/pc&gt;   \n\t\t\t\t&lt;\/pr&gt;    \n\t\t\t&lt;\/pc&gt;   \n\t\t&lt;\/pr&gt; \n\t&lt;\/panel&gt;\n&lt;%\n\t}\n\n}%&gt;]]>\n<\/dspZml>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"60%\"\n   \t>\n\t<report \n\telementName=\"Report\"\n\n\t\n\ttitle = 'Current Year Leaves'\n\t\n\t\ttitleSize = '20px'\n\t\tappLinkName = 'thisapp'\n\t\tlinkName = 'Current_Year_Leaves'\n\t\n\t\tiszreport = 'true'\n\theightType = 'custom'\n\theightValue = '450'\n\n\/>\n<\/column><column\n   \t\t width=\"40%\"\n   \t>\n\t<dsp id='html_snippet' elementName=\"HTML Snippet\"\n bgColor=\"#FFFFFF\" \n>\n\t<![CDATA[htmlpage html_snippet()\ncontent\n&lt;%{\n\t%&gt;\n&lt;style&gt;\n#zohoreportel\n{\n\theight : 400px !important;\n}\n.holidayTable\n{\n\twidth: 96%;\n    border-collapse: collapse;\n    margin: 1% 2%;\n}\n\n.holidayTable td\n{\n\tpadding: 10px;\n    font-size: 14px;\n    text-align: center;\n    border-bottom: 1px solid #f1f1f1;\n}\ntable.holidayTable &gt; tbody &gt; tr:first-child &gt; td\n{\n\tfont-weight: 600;\n    font-size: 15px;\n    background: #ececec;\n}\n&lt;\/style&gt;\n&lt;div style=&quot;height : 450px;overflow:scroll;&quot;&gt;\n&lt;%\n\tholidays = Add_Holiday[Date_field in this year];\n\tif(holidays.count() != 0)\n\t{\n\t\t%&gt;\n&lt;table class=&quot;holidayTable&quot;&gt;\n\t&lt;tr&gt;\n\t&lt;td&gt;Holiday Name&lt;\/td&gt;\n\t&lt;td&gt;Date&lt;\/td&gt;\n\t&lt;td&gt;Locations&lt;\/td&gt;\n\t&lt;\/tr&gt;\n&lt;%\n\t\tfor each  rec in holidays\n\t\t{\n\t\t\t%&gt;\n&lt;tr&gt;\n\t&lt;td&gt;&lt;%=rec.Holiday_Name%&gt;&lt;\/td&gt;\n\t&lt;td&gt;&lt;%=rec.Date_field%&gt;&lt;\/td&gt;\n\t&lt;td&gt;&lt;%=rec.Locations.Location%&gt;&lt;\/td&gt;\n\t&lt;\/tr&gt;\n&lt;%\n\t\t}\n\t\t%&gt;\n&lt;\/table&gt;\n&lt;%\n\t}\n\telse\n\t{\n\t\t%&gt;\n&lt;div&gt;No holidays Available!&lt;\/div&gt;\n&lt;%\n\t}\n\t%&gt;\n&lt;\/div&gt;\n&lt;%\n\n}%&gt;]]>\n<\/dsp>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<report \n\telementName=\"Report 1\"\n\n\t\n\ttitle = 'Announcements'\n\t\n\t\ttitleSize = '20px'\n\t\tappLinkName = 'thisapp'\n\t\tlinkName = 'Announcements'\n\t\n\t\tiszreport = 'false'\n\t            zc_Footer = 'false'\n\t            zc_AddRec = 'false'\n\t            zc_EditRec = 'false'\n\t            zc_DelRec = 'false'\n\t            zc_DuplRec = 'false'\n\theightType = 'auto'\n\n\/>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<report \n\telementName=\"Report 2\"\n\n\t\n\ttitle = 'New Hires'\n\t\n\t\ttitleSize = '20px'\n\t\tappLinkName = 'thisapp'\n\t\tlinkName = 'New_Hires'\n\t\n\t\tiszreport = 'false'\n\t            zc_AddRec = 'false'\n\t            zc_EditRec = 'false'\n\t            zc_DelRec = 'false'\n\t            zc_DuplRec = 'false'\n\theightType = 'auto'\n\n\/>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<report \n\telementName=\"Report 3\"\n\n\t\n\ttitle = 'Holidays'\n\t\n\t\ttitleSize = '20px'\n\t\tappLinkName = 'thisapp'\n\t\tlinkName = 'Holidays'\n\t\n\t\tiszreport = 'false'\n\t            zc_AddRec = 'false'\n\t            zc_EditRec = 'false'\n\t            zc_DelRec = 'false'\n\t            zc_DuplRec = 'false'\n\theightType = 'auto'\n\n\/>\n<\/column>\n<\/row>\n<\/layout>\n<\/zml>" 
+ 	 	}
+	}
+	section Employee_Profile
+	{
+		displayname= "Profile"
+		icon = "users-single-01"
+				 page Employee_Profile(searchKey,department,profileID,fromRange,toRange,isEdit) 
+	 	 { 
+ 	 	 displayname = "Employee Profile"
+
+ 	 	 icon = "" 
+	 	 Content="<zml    \t\t\n\t\t\n\t\t\n\t\t\twebDeviceConfig='{\"layout\":{\"style\":\"padding-right:0px;padding-top:0px;padding-bottom:0px;padding-left:0px;\",\"design\":\"fluid\",\"displayType\":\"plain\"}}'\n\t\t\n\t\t\tmobileDeviceConfig='{\"layout\":{\"design\":\"onebyone\",\"displayType\":\"plain\",\"forcedOrientation\":false}}'\n\t\t\n\t\t\ttabletDeviceConfig='{\"layout\":{\"design\":\"onebyone\",\"displayType\":\"plain\",\"forcedOrientation\":false}}'\n>\n\t<layout>\n\t<row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<dsp id='ZMLScript1' elementName=\"HTML Snippet\"\n bgColor=\"\" \n>\n\t<![CDATA[htmlpage ZMLScript1(searchKey,department,profileID,fromRange,toRange,isEdit)\ndisplayname = &quot;ZMLScript&quot;\ncontent\n&lt;%{\n\tloginuserid = Add_Employee[Official_Email == zoho.loginuserid].ID;\n\tif(loginuserid != null)\n\t{\n\t\t%&gt;\n&lt;iframe zc_mobileView=&apos;inline&apos; width=&quot;96%&quot; style=&quot;height:78vh !important;padding: 1% 2%;&quot;  src=&quot;https:\/\/app.zohocreator.in&lt;%=zoho.appuri%&gt;record-summary\/Employee_Profile1\/&lt;%=loginuserid%&gt;&quot;&gt;&lt;\/iframe&gt;\n&lt;%\n\t}\n\telse\n\t{\n\t\t%&gt;\n&lt;div style=&quot;text-align:center;font-size:16px;padding:20px;&quot;&gt;You are not added as an Employee!&lt;\/div&gt;\n&lt;%\n\t}\n\n}%&gt;]]>\n<\/dsp>\n<\/column>\n<\/row>\n<\/layout>\n<\/zml>" 
+ 	 	}
+	}
+	section Apply_Leave
+	{
+		displayname= "Leaves"
+		icon = "ui-1-calendar-check-59"
+		form Apply_Leave
+		{
+			displayname = "Apply Leave"
+			success message = "Leave Applied Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Employee
+			(
+				type = picklist	
+				values  = Add_Employee.ID
+    			displayformat = [Employee_ID + " - " + Name.first_name + " " + Name.last_name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Leave_Type
+			(
+				type = picklist	
+				displayname = "Leave Type"
+				values  = Add_Leave_Type.ID
+    			displayformat = [Leave_Type]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have From
+			(
+    			type = date
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have To
+			(
+    			type = date
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			No_of_Days
+			(
+				type = number
+				displayname = "No of Days"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Reason_for_Leave
+			(
+    			type = textarea
+				displayname = "Reason for Leave"
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Status
+			(
+				type = picklist
+				values = {"Requested","Approved","Rejected"}
+				initial value = "Requested"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Apply"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list My_Leaves
+		{
+			displayName = "My Leaves"
+			show all rows from Apply_Leave  [Employee.Official_Email == zoho.loginuserid]  
+			(
+				Employee
+				Leave_Type as "Leave Type"
+				From
+				To
+				Reason_for_Leave as "Reason for Leave"
+				Status
+			)
+			sort by
+			(
+				Status ascending
+			)
+			options
+			(
+				icon = "users-2-a-check"
+	 		)
+			conditional formatting
+			(
+				"Requested Formatting"
+				{
+				condition = (Status == "Requested")
+				fields = [Status]
+				format = "color:#6686de;"
+				}
+				"Approved Formatting"
+				{
+				condition = (Status == "Approved")
+				fields = [Status]
+				format = "color:#4eab50;"
+				}
+				"Rejected Formatting"
+				{
+				condition = (Status == "Rejected")
+				fields = [Status]
+				format = "color:#f75959;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Employee
+							Leave_Type as "Leave Type"
+							From
+							To
+							Status
+							Reason_for_Leave as "Reason for Leave"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Employee
+							Leave_Type as "Leave Type"
+							From
+							To
+							Reason_for_Leave as "Reason for Leave"
+							Status
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Leave_Requests
+		{
+			displayName = "Leave Requests"
+			show all rows from Apply_Leave  [Employee.Reporting_To == zoho.loginuserid && Status == "Requested"]  
+			(
+				Employee
+				Leave_Type as "Leave Type"
+				From
+				To
+				Reason_for_Leave as "Reason for Leave"
+				custom action "Approve"
+				(
+	  			workflow = Approve_Leave
+				show action in view header = true
+				show action in edit record menu = true
+				execute action for collection of records
+				column header = "Approve"
+				)
+				custom action "Reject"
+				(
+	  			workflow = Reject_Leave
+				show action in view header = true
+				execute action for collection of records
+				column header = "Reject"
+				)
+			)
+			options
+			(
+				icon = "arrows-4-logout"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Employee
+							Leave_Type as "Leave Type"
+							From
+							To
+							Reason_for_Leave as "Reason for Leave"
+				"Approve"
+				"Reject"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								"Reject" as "Approve"
+								"Reject"
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Employee
+							Leave_Type as "Leave Type"
+							From
+							To
+							Reason_for_Leave as "Reason for Leave"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+			 			"Reject" as "Approve"
+			 			"Reject"
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		calendar My_Team_Leaves
+		{
+			displayName = "My Team Leaves"
+			show all rows from Apply_Leave    
+			(
+				Reason_for_Leave as "Reason for Leave"
+				Status
+				Employee
+				Leave_Type as "Leave Type"
+				From
+				To
+			)
+			options
+			(
+				display type = month
+				week start day = sunday
+				display field = Employee
+				start date = From
+				end date = To
+				default date 
+				(
+	    			day   = Today
+	    			month = Currentmonth
+	    			year  = Currentyear
+				)
+				icon = "ui-1-calendar-grid-58"
+			)
+			conditional formatting
+			(
+				"Rejected Formatting"
+				{
+				condition = (Status == "Rejected")
+				fields = [Employee]
+				format = "color:#ffffff;background-color:#f57165;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 4
+		     			title = "Overview"
+						fields
+						(
+							Employee
+							Leave_Type as "Leave Type"
+							From
+							To
+							Status
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Employee
+							Leave_Type as "Leave Type"
+							From
+							To
+							Reason_for_Leave as "Reason for Leave"
+							Status
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list All_Leaves
+		{
+			displayName = "All Leaves"
+			show all rows from Apply_Leave    
+			(
+				Employee
+				From
+				To
+				Reason_for_Leave as "Reason for Leave"
+				Leave_Type as "Leave Type"
+				Status
+				No_of_Days as "No of Days"
+			)
+			options
+			(
+				icon = "ui-3-filter-check"
+	 		)
+			conditional formatting
+			(
+				"Rejected Formatting"
+				{
+				condition = (Status == "Rejected")
+				fields = [Status]
+				format = "color:#f75959;"
+				}
+				"Approved Formatting"
+				{
+				condition = (Status == "Approved")
+				fields = [Status]
+				format = "color:#4eab4f;"
+				}
+				"Requested Formatting"
+				{
+				condition = (Status == "Requested")
+				fields = [Status]
+				format = "color:#6686de;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Employee
+							Leave_Type as "Leave Type"
+							From
+							To
+							Status
+							Reason_for_Leave as "Reason for Leave"
+							No_of_Days as "No of Days"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Employee
+							From
+							To
+							Reason_for_Leave as "Reason for Leave"
+							Leave_Type as "Leave Type"
+							Status
+							No_of_Days as "No of Days"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		pivotchart Current_Year_Leaves
+		{ 
+			displayname = "Current Year Leaves"
+			legend = RIGHT
+			report properties
+			(
+				records displayed = all_records
+				allow export = false
+				allow drilldown and view underlying data = false
+		
+			)
+
+			based on Autoview_1535975733338_Apply_Leave
+					hide = true
+							icon = "business-chart-bar-32"				show all rows from Apply_Leave
+				(
+			Reason_for_Leave  as "Reason for Leave"
+			No_of_Days  as "No of Days"
+			Status 
+			Leave_Type  as "Leave Type"
+			Employee 
+			To 
+			From 
+				)
+		}
+	}
+	section Add_Employee
+	{
+		displayname= "Admin"
+		icon = "ui-1-lock-open"
+		custom Employee_Profile1
+		{
+			displayName = "Employee Profile"
+   			hide = true
+			show all rows from Add_Employee    
+			(
+				Permanent_Address  as "Permanent Address"
+	 			(
+	      			displayformat = [address_line_13+""+address_line_23+""+district_city3+""+state_province3+""+postal_Code3+""+country3]
+	      			enable = Show_As_Text
+	 			)
+				Father_s_Name  as "Father's Name"
+	 			(
+	      			displayformat = [first_name1+""+prefix1+""+last_name1+""+suffix1]
+	 			)
+				Permanent_Address_same_as_Present_Address as "Permanent Address same as Present Address"
+				Mother_s_Name  as "Mother's Name"
+	 			(
+	      			displayformat = [first_name2+""+prefix2+""+last_name2+""+suffix2]
+	 			)
+				Emergency_Contact_Person  as "Name"
+	 			(
+	      			displayformat = [first_name3+""+prefix3+""+last_name3+""+suffix3]
+	 			)
+				Date_of_Joining as "Date of Joining"
+				Seat_Location as "Seat Location"
+				Extension
+				Reporting_To as "Reporting To"
+				Department
+				Present_Address  as "Present Address"
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	      			enable = Show_As_Text
+	 			)
+				Official_Date_of_Birth as "Official Date of Birth"
+				Actual_Date_of_Birth as "Actual Date of Birth"
+				Nick_Name as "Nick Name"
+				Marital_Status as "Marital Status"
+				Blood_Group as "Blood Group"
+				Hobbies
+				About
+				Designation
+				Official_Email as "Official Email"
+				Location
+				Gender
+				Relationship
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Contact_Number as "Mobile Number"
+				Mobile_Number as "Mobile Number"
+				Photo
+				Employee_ID as "Employee ID"
+				Personal_Email as "Personal Email"
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = 6
+					datablock1
+					(
+			 			layout type = 19
+		     			title = "Overview"
+						fields
+						(
+							Photo
+							Name
+							Designation
+							Official_Email as "Official Email"
+							Mobile_Number as "Mobile Number"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 19
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Gender
+							Relationship
+							Personal_Email as "Personal Email"
+							Mobile_Number as "Mobile Number"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Work Information"
+						fields
+						(
+							Date_of_Joining as "Date of Joining"
+							Designation
+							Department
+							Reporting_To as "Reporting To"
+							Extension
+							Location
+							Seat_Location as "Seat Location"
+						)
+					)
+					datablock3
+					(
+			 			layout type = -2
+		     			title = "Personal Information"
+						fields
+						(
+							Nick_Name as "Nick Name"
+							Gender
+							Blood_Group as "Blood Group"
+							Official_Date_of_Birth as "Official Date of Birth"
+							Actual_Date_of_Birth as "Actual Date of Birth"
+							Marital_Status as "Marital Status"
+							Father_s_Name as "Father's Name"
+							Mother_s_Name as "Mother's Name"
+							Present_Address as "Present Address"
+							Permanent_Address as "Permanent Address"
+							Hobbies
+						)
+					)
+					datablock4
+					(
+			 			layout type = -1
+		     			title = "Educational Details "
+		     			related field = Education_Details
+						fields
+						(
+							Course
+							Institute_Name as "Institute Name"
+							Marks_Scored as "Marks Scored(in %)"
+							Year_of_Completion as "Year of Completion"
+						)
+					)
+					datablock5
+					(
+			 			layout type = -1
+		     			title = "Experience Details"
+		     			related field = Work_Experience1
+						fields
+						(
+							Previous_Company_Name as "Previous Company Name"
+							Job_Title as "Job Title"
+							From
+							To
+							Job_Description as "Job Description"
+						)
+					)
+					datablock6
+					(
+			 			layout type = 4
+		     			title = "Dependents"
+		     			related field = Dependents
+						fields
+						(
+							Name
+							Gender
+							Relationship
+							Date_of_Birth as "Date of Birth"
+						)
+					)
+					datablock7
+					(
+			 			layout type = -2
+		     			title = "Emergency Contact Details"
+						fields
+						(
+							Emergency_Contact_Person as "Name"
+							Relationship
+							Contact_Number as "Mobile Number"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Holidays
+		{
+			displayName = "Holidays"
+   			hide = true
+			show all rows from Add_Holiday  [Date_field in this year]  
+			(
+				Holiday_Name as "Holiday Name"
+				(
+					width = 192px
+				)
+				Date_field as "Date"
+				(
+					width = 182px
+				)
+				Locations
+				Description
+			)
+			options
+			(
+				icon = "ui-3-bullet-list"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Holiday_Name as "Holiday Name"
+							Date_field as "Date"
+							Locations
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Holiday_Name as "Holiday Name"
+							Date_field as "Date"
+							Locations
+							Description
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		custom Announcements
+		{
+			displayName = "Announcements"
+   			hide = true
+			show all rows from Add_Announcement  [Status == "Active"]  
+			(
+				Status
+				Announcement_Name as "Announcement Name"
+				Description
+			)
+			options
+			(
+				icon = "tech-2-cctv"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = 2
+		     			title = "Overview"
+						fields
+						(
+							Announcement_Name as "Announcement Name"
+							Description
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Announcement_Name as "Announcement Name"
+							Description
+							Status
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		custom New_Hires
+		{
+			displayName = "New Hires"
+   			hide = true
+			show all rows from Add_Employee    
+			(
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Location
+				Department
+				Reporting_To as "Reporting To"
+				Seat_Location as "Seat Location"
+				About
+				Skill_Sets as "Skill Sets"
+				Mobile_Number as "Mobile Number"
+				Designation
+				Extension
+				Gender
+				Photo
+				Official_Email as "Official Email"
+				Employee_ID as "Employee ID"
+			)
+			options
+			(
+				icon = "design-bullet-list-67"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = 10
+					datablock1
+					(
+			 			layout type = 34
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Employee_ID as "Employee ID"
+							Official_Email as "Official Email"
+							Photo
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Employee_ID as "Employee ID"
+							Name
+							Official_Email as "Official Email"
+							Mobile_Number as "Mobile Number"
+							Gender
+							Photo
+							Designation
+							Department
+							Seat_Location as "Seat Location"
+							Extension
+							Location
+							Reporting_To as "Reporting To"
+							About
+							Skill_Sets as "Skill Sets"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		form Add_Employee
+		{
+			displayname = "Add Employee"
+			success message = "Employee Added Successfully!"
+			field alignment = left
+			feature property = 32
+			Section2
+			(
+				type = section
+				displayname = "Section"
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Basic_Information
+			(
+    			type = plaintext
+				value = "<a><font size=\"3\">Basic Information</font></a>"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Name
+			(
+    			type = name
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Section3
+			(
+				type = section
+				displayname = "Section"
+	 			row = 2
+	 			column = 0   
+				width = medium
+			)
+			must have Personal_Email
+			(
+    			type = email
+				displayname = "Personal Email"
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+			Gender
+			(
+				type = radiobuttons
+				values = {"Male","Female"}
+				initial value = "Male"
+				layout = 2
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+			must have Mobile_Number
+			(
+    			type = phonenumber
+				displayname = "Mobile Number"
+	 			row = 2
+	 			column = 2   
+				width = medium
+			)
+			must have Photo
+			(
+    			type = image
+				source  = public_url,file
+				aspect ratio = original
+				camera = primary
+				show gallery = true
+				switch camera = true
+	 			row = 2
+	 			column = 2   
+				width = medium
+			)
+			Section4
+			(
+				type = section
+				displayname = "Section"
+	 			row = 3
+	 			column = 0   
+				width = medium
+			)
+			Work_Information
+			(
+    			type = plaintext
+				value = "<a><font size=\"3\">Work Information</font></a>"
+	 			row = 3
+	 			column = 1   
+				width = medium
+			)
+			Section5
+			(
+				type = section
+				displayname = "Section"
+	 			row = 4
+	 			column = 0   
+				width = medium
+			)
+			must have unique Employee_ID
+			(
+    			type = text
+				displayname = "Employee ID"
+	 			row = 4
+	 			column = 1   
+				width = medium
+			)
+			Location
+			(
+				type = picklist	
+				values  = Add_Location.ID
+    			displayformat = [Location]
+				allow new entries = true
+				[
+					displayname = "Add New Location"
+				]
+				sortorder = ascending
+	 			row = 4
+	 			column = 1   
+				width = medium
+			)
+			must have Department
+			(
+				type = picklist	
+				values  = Add_Department.ID
+    			displayformat = [Department]
+				allow new entries = true
+				[
+					displayname = "Add New Department"
+				]
+				sortorder = ascending
+	 			row = 4
+	 			column = 1   
+				width = medium
+			)
+			Reporting_To
+			(
+				type = picklist
+				displayname = "Reporting To"
+				values = {"-"}
+	 			row = 4
+	 			column = 1   
+				width = medium
+			)
+			CTC
+			(
+				type = picklist	
+				values  = Salary_Structure.ID
+    			displayformat = [CTC]
+				allow new entries = true
+				[
+					displayname = "Add New CTC"
+				]
+				sortorder = ascending
+	 			row = 4
+	 			column = 1   
+				width = medium
+			)
+			Seat_Location
+			(
+    			type = text
+				displayname = "Seat Location"
+	 			row = 4
+	 			column = 1   
+				width = medium
+			)
+			Work_Experience
+			(
+				type = radiobuttons
+				displayname = "Work Experience"
+				values = {"Fresher","Experienced"}
+				initial value = "Fresher"
+				layout = 2
+	 			row = 4
+	 			column = 1   
+				width = medium
+			)
+			Is_a_Reporting_Manager
+			(
+    			type = checkbox
+				displayname = "Is a Reporting Manager"
+				initial value = false
+	 			row = 4
+	 			column = 1   
+				width = medium
+			)
+			must have unique Official_Email
+			(
+    			type = email
+				displayname = "Official Email"
+	 			row = 4
+	 			column = 2   
+				width = medium
+			)
+			Employee_Type
+			(
+				type = picklist	
+				displayname = "Employee Type"
+				values  = Add_Employee_Type.ID
+    			displayformat = [Employee_Type]
+				allow new entries = true
+				[
+					displayname = "Add New Type"
+				]
+				sortorder = ascending
+	 			row = 4
+	 			column = 2   
+				width = medium
+			)
+			must have Designation
+			(
+				type = picklist	
+				values  = Add_Designation.ID
+    			displayformat = [Designation]
+				allow new entries = true
+				[
+					displayname = "Add New Designation"
+				]
+				sortorder = ascending
+	 			row = 4
+	 			column = 2   
+				width = medium
+			)
+			Employee_Level
+			(
+				type = picklist	
+				displayname = "Employee Level"
+				values  = Add_Employee_Level.ID
+    			displayformat = [Employee_Level]
+				allow new entries = true
+				[
+					displayname = "Add New Level"
+				]
+				sortorder = ascending
+	 			row = 4
+	 			column = 2   
+				width = medium
+			)
+			Date_of_Joining
+			(
+    			type = date
+				displayname = "Date of Joining"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 4
+	 			column = 2   
+				width = medium
+			)
+			Extension
+			(
+    			type = text
+	 			row = 4
+	 			column = 2   
+				width = medium
+			)
+			Employee_Status
+			(
+				type = picklist
+				displayname = "Employee Status"
+				values = {"Active","Resigned","Terminated","Deceased","Leave Of Absence"}
+				initial value = "Active"
+	 			row = 4
+	 			column = 2   
+				width = medium
+			)
+			Section6
+			(
+				type = section
+				displayname = "Section"
+	 			row = 5
+	 			column = 0   
+				width = medium
+			)
+			Personal_Information
+			(
+    			type = plaintext
+				value = "<a><font size=\"3\">Personal Information</font></a>"
+	 			row = 5
+	 			column = 1   
+				width = medium
+			)
+			Section
+			(
+				type = section
+	 			row = 6
+	 			column = 0   
+				width = medium
+			)
+			must have Official_Date_of_Birth
+			(
+    			type = date
+				displayname = "Official Date of Birth"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 6
+	 			column = 1   
+				width = medium
+			)
+			Nick_Name
+			(
+    			type = text
+				displayname = "Nick Name"
+	 			row = 6
+	 			column = 1   
+				width = medium
+			)
+			must have Present_Address
+			(
+    			type = address
+				displayname = "Present Address"
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_12
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_22
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city2
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province2
+     			(
+	     			  type = state_province
+	     			  displayname = "State / Province"
+     			) 
+     			postal_Code2
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country2
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude2
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude2
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 6
+	 			column = 1   
+				width = medium
+			)
+			Permanent_Address_same_as_Present_Address
+			(
+    			type = checkbox
+				displayname = "Permanent Address same as Present Address"
+				initial value = false
+	 			row = 6
+	 			column = 1   
+				width = medium
+			)
+			Father_s_Name
+			(
+    			type = name
+				displayname = "Father's Name"
+     			prefix1
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name1
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name1
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix1
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 6
+	 			column = 1   
+				width = medium
+			)
+			must have Emergency_Contact_Person
+			(
+    			type = name
+				displayname = "Emergency Contact Person"
+     			prefix3
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name3
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name3
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix3
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 6
+	 			column = 1   
+				width = medium
+			)
+			must have Contact_Number
+			(
+    			type = phonenumber
+				displayname = "Contact Number"
+	 			row = 6
+	 			column = 1   
+				width = medium
+			)
+			Actual_Date_of_Birth
+			(
+    			type = date
+				displayname = "Actual Date of Birth"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 6
+	 			column = 2   
+				width = medium
+			)
+			Marital_Status
+			(
+				type = picklist
+				displayname = "Marital Status"
+				values = {"Single","Married","Widowed","Separated","Divorced"}
+				initial value = "Single"
+	 			row = 6
+	 			column = 2   
+				width = medium
+			)
+			Permanent_Address
+			(
+    			type = address
+				displayname = "Permanent Address"
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_13
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_23
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city3
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province3
+     			(
+	     			  type = state_province
+	     			  displayname = "State / Province"
+     			) 
+     			postal_Code3
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country3
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude3
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude3
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 6
+	 			column = 2   
+				width = medium
+			)
+			Blood_Group
+			(
+				type = picklist
+				displayname = "Blood Group"
+				values = {"A+","A-","A1+","A1-","A1B+","A1B-","A2+","A2-","A2B+","A2B-","B+","B-","B1+","O+","O-","AB+","AB-"}
+				initial value = "A+"
+	 			row = 6
+	 			column = 2   
+				width = medium
+			)
+			Mother_s_Name
+			(
+    			type = name
+				displayname = "Mother's Name"
+     			prefix2
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name2
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name2
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix2
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 6
+	 			column = 2   
+				width = medium
+			)
+			Relationship
+			(
+				type = picklist
+				values = {"Parent","Sibling","Grandparent","Spouse","Child"}
+				initial value = "Parent"
+	 			row = 6
+	 			column = 2   
+				width = medium
+			)
+			Hobbies
+			(
+    			type = text
+	 			row = 6
+	 			column = 2   
+				width = medium
+			)
+			Section1
+			(
+				type = section
+				displayname = "Section"
+	 			row = 7
+	 			column = 0   
+				width = medium
+			)
+			Summary
+			(
+    			type = plaintext
+				value = "<a><font size=\"3\">Summary</font></a>"
+	 			row = 7
+	 			column = 1   
+				width = medium
+			)
+			About
+			(
+    			type = textarea
+				height = 100px
+	 			row = 7
+	 			column = 1   
+				width = medium
+			)
+			Skill_Sets
+			(
+    			type = textarea
+				displayname = "Skill Sets"
+				height = 100px
+	 			row = 7
+	 			column = 1   
+				width = medium
+			)
+			must have Education_Details
+			(
+				type = grid
+				displayname = "Education Details"
+				values  = Add_Education_Details.ID
+    			bidirectional = Employee
+	 			row = 8
+	 			column = 1   
+				width = medium
+			)
+			Work_Experience1
+			(
+				type = grid
+				displayname = "Work Experience"
+				values  = Add_Experience.ID
+	 			row = 9
+	 			column = 1   
+				width = medium
+			)
+			Dependents
+			(
+				type = grid
+				values  = Add_Dependents.ID
+    			bidirectional = Employee
+	 			row = 10
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "users-add-29"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		custom Employee_Details
+		{
+			displayName = "Employee Details"
+			show all rows from Add_Employee    
+			(
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Permanent_Address  as "Permanent Address"
+	 			(
+	      			displayformat = [address_line_13+""+address_line_23+""+district_city3+""+state_province3+""+postal_Code3+""+country3]
+	      			enable = Show_As_Text
+	 			)
+				Father_s_Name  as "Father's Name"
+	 			(
+	      			displayformat = [first_name1+""+prefix1+""+last_name1+""+suffix1]
+	 			)
+				Permanent_Address_same_as_Present_Address as "Permanent Address same as Present Address"
+				Mother_s_Name  as "Mother's Name"
+	 			(
+	      			displayformat = [first_name2+""+prefix2+""+last_name2+""+suffix2]
+	 			)
+				Emergency_Contact_Person  as "Emergency Contact Person"
+	 			(
+	      			displayformat = [first_name3+""+prefix3+""+last_name3+""+suffix3]
+	 			)
+				Employee_Type as "Employee Type"
+				Employee_Level as "Employee Level"
+				CTC
+				Date_of_Joining as "Date of Joining"
+				Seat_Location as "Seat Location"
+				Extension
+				Work_Experience as "Work Experience"
+				Employee_Status as "Employee Status"
+				Is_a_Reporting_Manager as "Is a Reporting Manager"
+				Reporting_To as "Reporting To"
+				Department
+				Present_Address  as "Present Address"
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	      			enable = Show_As_Text
+	 			)
+				Location
+				Official_Date_of_Birth as "Official Date of Birth"
+				Actual_Date_of_Birth as "Actual Date of Birth"
+				Nick_Name as "Nick Name"
+				Marital_Status as "Marital Status"
+				Blood_Group as "Blood Group"
+				Relationship
+				Hobbies
+				Gender
+				Skill_Sets as "Skill Sets"
+				Employee_ID as "Employee ID"
+				Official_Email as "Official Email"
+				Designation
+				Contact_Number as "Contact Number"
+				About
+				Personal_Email as "Personal Email"
+				Photo
+				Mobile_Number as "Mobile Number"
+			)
+			options
+			(
+				icon = "users-multiple-11"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = 6
+					datablock1
+					(
+			 			layout type = 19
+		     			title = "Overview"
+						fields
+						(
+							Photo
+							Name
+							Designation
+							Official_Email as "Official Email"
+							Mobile_Number as "Mobile Number"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 19
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Gender
+							Relationship
+							Personal_Email as "Personal Email"
+							Mobile_Number as "Mobile Number"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Work Information"
+						fields
+						(
+							Employee_ID as "Employee ID"
+							Official_Email as "Official Email"
+							Location
+							Employee_Type as "Employee Type"
+							Department
+							Designation
+							Reporting_To as "Reporting To"
+							Employee_Level as "Employee Level"
+							CTC
+							Date_of_Joining as "Date of Joining"
+							Seat_Location as "Seat Location"
+							Extension
+							Work_Experience as "Work Experience"
+							Skill_Sets as "Skill Sets"
+							Employee_Status as "Employee Status"
+							Is_a_Reporting_Manager as "Is a Reporting Manager"
+						)
+					)
+					datablock3
+					(
+			 			layout type = -2
+		     			title = "Personal Information"
+						fields
+						(
+							Official_Date_of_Birth as "Official Date of Birth"
+							Actual_Date_of_Birth as "Actual Date of Birth"
+							Nick_Name as "Nick Name"
+							Gender
+							Marital_Status as "Marital Status"
+							Present_Address as "Present Address"
+							Permanent_Address as "Permanent Address"
+							Blood_Group as "Blood Group"
+							Father_s_Name as "Father's Name"
+							Mother_s_Name as "Mother's Name"
+							Emergency_Contact_Person as "Emergency Contact Person"
+							Relationship
+							Contact_Number as "Contact Number"
+							Hobbies
+						)
+					)
+					datablock4
+					(
+			 			layout type = -1
+		     			title = "Education Details"
+		     			related field = Education_Details
+						fields
+						(
+							Course
+							Institute_Name as "Institute Name"
+							Marks_Scored as "Marks Scored(in %)"
+							Year_of_Completion as "Year of Completion"
+						)
+					)
+					datablock5
+					(
+			 			layout type = -1
+		     			title = "Work Experience"
+		     			related field = Work_Experience1
+						fields
+						(
+							Previous_Company_Name as "Previous Company Name"
+							Job_Title as "Job Title"
+							From
+							To
+							Job_Description as "Job Description"
+						)
+					)
+					datablock6
+					(
+			 			layout type = -1
+		     			title = "Dependents"
+		     			related field = Dependents
+						fields
+						(
+							Name
+							Gender
+							Relationship
+							Date_of_Birth as "Date of Birth"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list All_Announcements
+		{
+			displayName = "All Announcements"
+			show all rows from Add_Announcement    
+			(
+				Announcement_Name as "Announcement Name"
+				Description
+				Status
+			)
+			options
+			(
+				icon = "media-1-speaker"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Announcement_Name as "Announcement Name"
+							Description
+							Status
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Announcement_Name as "Announcement Name"
+							Description
+							Status
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list All_Holidays
+		{
+			displayName = "All Holidays"
+			show all rows from Add_Holiday    
+			(
+				Description
+				Holiday_Name as "Holiday Name"
+				(
+					width = 336px
+				)
+				Date_field as "Date"
+				Locations
+			)
+			sort by
+			(
+				Date_field ascending
+			)
+			options
+			(
+				icon = "design-bullet-list-70"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Holiday_Name as "Holiday Name"
+							Description
+							Date_field as "Date"
+							Locations
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Holiday_Name as "Holiday Name"
+							Description
+							Date_field as "Date"
+							Locations
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Add_Location
+	{
+		displayname= "Settings"
+		icon = "ui-1-settings-gear-63"
+		form Add_Location
+		{
+			displayname = "Add Location"
+			success message = "New Location Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have unique Location
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		summary Organization_Details
+		{
+			displayName = "Organization Details"
+			show all rows from Add_Organization    
+			(
+				Organization_Name as "Organization Name"
+				Email
+				Phone_Number as "Phone Number"
+				Website
+				Address 
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	      			enable = Show_As_Text
+	 			)
+			)
+			options
+			(
+				display rows = 10
+				display records per row = 2
+				icon = "business-building"
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -2
+	     			recordsperrow = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Organization_Name as "Organization Name"
+							Email
+							Phone_Number as "Phone Number"
+							Website
+							Address
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Organization_Name as "Organization Name"
+							Email
+							Phone_Number as "Phone Number"
+							Website
+							Address
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list All_Locations
+		{
+			displayName = "All Locations"
+			show all rows from Add_Location    
+			(
+				Location
+			)
+			options
+			(
+				icon = "location-pin-copy"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Location
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Location
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Employee_Types
+		{
+			displayName = "Employee Types"
+			show all rows from Add_Employee_Type    
+			(
+				Employee_Type as "Employee Type"
+			)
+			options
+			(
+				icon = "design-2-filter-organization"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Employee_Type as "Employee Type"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Employee_Type as "Employee Type"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list All_Departments
+		{
+			displayName = "All Departments"
+			show all rows from Add_Department    
+			(
+				Department
+			)
+			options
+			(
+				icon = "design-2-layers"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Department
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Department
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list All_Designations
+		{
+			displayName = "All Designations"
+			show all rows from Add_Designation    
+			(
+				Designation
+			)
+			options
+			(
+				icon = "business-hierarchy-56"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Designation
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Designation
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Employee_Levels
+		{
+			displayName = "Employee Levels"
+			show all rows from Add_Employee_Level    
+			(
+				Employee_Level as "Employee Level"
+			)
+			options
+			(
+				icon = "business-hierarchy-55"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Employee_Level as "Employee Level"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Employee_Level as "Employee Level"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Salary_Structures
+		{
+			displayName = "Salary Structures"
+			show all rows from Salary_Structure    
+			(
+				Salary_Split_Up.Pay_Component as "Salary Split Up"
+				(
+					isLinkEnabled = true
+				)
+				CTC
+			)
+			options
+			(
+				icon = "business-money-12"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							CTC
+							Salary_Split_Up.Pay_Component as "Salary Split Up"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							CTC
+						)
+					)
+					datablock2
+					(
+			 			layout type = -1
+		     			title = "Salary Split Up"
+		     			related field = Salary_Split_Up
+						fields
+						(
+							Pay_Component as "Pay Component"
+							Formula
+							Monthly
+							Annual
+							Is_Deduction as "Is Deduction?"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Pay_Components
+		{
+			displayName = "Pay Components"
+			show all rows from Add_Pay_Component    
+			(
+				Component_Name as "Component Name"
+			)
+			options
+			(
+				icon = "shopping-receipt"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Component_Name as "Component Name"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Component_Name as "Component Name"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Leave_Types
+		{
+			displayName = "Leave Types"
+			show all rows from Add_Leave_Type    
+			(
+				Leave_Type as "Leave Type"
+			)
+			options
+			(
+				icon = "design-bullet-list-68"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Leave_Type as "Leave Type"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Leave_Type as "Leave Type"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Add_Employee_Type
+	{
+		displayname= "Add Employee Type"
+		form Add_Employee_Type
+		{
+			displayname = "Add Employee Type"
+			success message = "Employee Type Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have unique Employee_Type
+			(
+    			type = text
+				displayname = "Employee Type"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	section Add_Department
+	{
+		displayname= "Add Department"
+		form Add_Department
+		{
+			displayname = "Add Department"
+			success message = "New Department Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have unique Department
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	section Add_Designation
+	{
+		displayname= "Add Designation"
+		form Add_Designation
+		{
+			displayname = "Add Designation"
+			success message = "New Designation Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have unique Designation
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	section Add_Employee_Level
+	{
+		displayname= "Add Employee Level"
+		form Add_Employee_Level
+		{
+			displayname = "Add Employee Level"
+			success message = "Employee Level Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have unique Employee_Level
+			(
+    			type = text
+				displayname = "Employee Level"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	section Salary_Structure
+	{
+		displayname= "Salary Structure"
+		form Salary_Structure
+		{
+			displayname = "Salary Structure"
+			success message = "Salary Structure Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			CTC
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Salary_Split_Up
+			(
+				type = grid
+				displayname = "Salary Split Up"
+				must have Pay_Component
+				(
+					type = picklist	
+					displayname = "Pay Component"
+					values  = Add_Pay_Component.ID
+    				displayformat = [Component_Name]
+					allow new entries = true
+					[
+						displayname = "Add New Component"
+					]
+					sortorder = ascending
+					width = medium
+				)
+				Formula
+				(
+    				type = text
+					width = medium
+				)
+				must have Monthly
+				(
+					type = INR
+					width = medium
+				)
+				Annual
+				(
+					type = INR
+					width = medium
+				)
+				Is_Deduction
+				(
+    				type = checkbox
+					displayname = "Is Deduction?"
+					initial value = false
+					width = medium
+				)
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	section Add_Pay_Component
+	{
+		displayname= "Add Pay Component"
+		form Add_Pay_Component
+		{
+			displayname = "Add Pay Component"
+			success message = "Pay Component Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have unique Component_Name
+			(
+    			type = text
+				displayname = "Component Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	section Add_Experience
+	{
+		displayname= "Add Experience"
+		form Add_Experience
+		{
+			displayname = "Add Experience"
+			success message = "Experience Details Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Employee
+			(
+				type = picklist	
+				displayname = "Employee ID"
+				values  = Add_Employee.ID
+    			displayformat = [Employee_ID]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Previous_Company_Name
+			(
+    			type = text
+				displayname = "Previous Company Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Job_Title
+			(
+    			type = text
+				displayname = "Job Title"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have From
+			(
+    			type = date
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have To
+			(
+    			type = date
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Job_Description
+			(
+    			type = textarea
+				displayname = "Job Description"
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list Add_Experience_Report
+		{
+			displayName = "Add Experience Report"
+   			hide = true
+			show all rows from Add_Experience    
+			(
+				Previous_Company_Name as "Previous Company Name"
+				Job_Title as "Job Title"
+				From
+				To
+				Job_Description as "Job Description"
+				Employee as "Employee ID"
+			)
+			options
+			(
+				icon = "design-bullet-list-67"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Previous_Company_Name as "Previous Company Name"
+							Job_Title as "Job Title"
+							From
+							To
+							Job_Description as "Job Description"
+							Employee as "Employee ID"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Previous_Company_Name as "Previous Company Name"
+							Job_Title as "Job Title"
+							From
+							To
+							Job_Description as "Job Description"
+							Employee as "Employee ID"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Add_Education_Details
+	{
+		displayname= "Add Education Details"
+		form Add_Education_Details
+		{
+			displayname = "Add Education Details"
+			success message = "Education Details Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Employee
+			(
+				type = picklist	
+				values  = Add_Employee.ID
+    			bidirectional = Education_Details
+    			displayformat = [Employee_ID]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Course
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Institute_Name
+			(
+    			type = text
+				displayname = "Institute Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Marks_Scored
+			(
+    			type = percentage
+				displayname = "Marks Scored(in %)"
+				initial value = 0.00%
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Year_of_Completion
+			(
+				type = number
+				displayname = "Year of Completion"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list Add_Education_Details_Report
+		{
+			displayName = "Add Education Details Report"
+   			hide = true
+			show all rows from Add_Education_Details    
+			(
+				Course
+				Institute_Name as "Institute Name"
+				Marks_Scored as "Marks Scored(in %)"
+				Year_of_Completion as "Year of Completion"
+				Employee
+			)
+			options
+			(
+				icon = "design-bullet-list-67"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Course
+							Institute_Name as "Institute Name"
+							Marks_Scored as "Marks Scored(in %)"
+							Year_of_Completion as "Year of Completion"
+							Employee
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Course
+							Institute_Name as "Institute Name"
+							Marks_Scored as "Marks Scored(in %)"
+							Year_of_Completion as "Year of Completion"
+							Employee
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Add_Dependents
+	{
+		displayname= "Add Dependents"
+		form Add_Dependents
+		{
+			displayname = "Add Dependents"
+			success message = "Dependents Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Employee
+			(
+				type = picklist	
+				values  = Add_Employee.ID
+    			bidirectional = Dependents
+    			displayformat = [Employee_ID]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Name
+			(
+    			type = name
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Gender
+			(
+				type = radiobuttons
+				values = {"Male","Female"}
+				initial value = "Male"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Relationship
+			(
+				type = picklist
+				values = {"Father","Mother","Father In Law","Mother in Law"}
+				initial value = "Father"
+				others option = true
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Date_of_Birth
+			(
+    			type = date
+				displayname = "Date of Birth"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list Add_Dependents_Report
+		{
+			displayName = "Add Dependents Report"
+   			hide = true
+			show all rows from Add_Dependents    
+			(
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Gender
+				Relationship
+				Date_of_Birth as "Date of Birth"
+				Employee
+			)
+			options
+			(
+				icon = "design-bullet-list-67"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Gender
+							Relationship
+							Date_of_Birth as "Date of Birth"
+							Employee
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Gender
+							Relationship
+							Date_of_Birth as "Date of Birth"
+							Employee
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Add_Leave_Type
+	{
+		displayname= "Add Leave Type"
+		form Add_Leave_Type
+		{
+			displayname = "Add Leave Type"
+			success message = "Leave Type Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have unique Leave_Type
+			(
+    			type = text
+				displayname = "Leave Type"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	section Add_Announcement
+	{
+		displayname= "Add Announcement"
+		form Add_Announcement
+		{
+			displayname = "Add Announcement"
+			success message = "New Announcement Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Announcement_Name
+			(
+    			type = text
+				displayname = "Announcement Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Description
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Status
+			(
+				type = picklist
+				values = {"Active","Inactive"}
+				initial value = "Active"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	section Add_Holiday
+	{
+		displayname= "Add Holiday"
+		form Add_Holiday
+		{
+			displayname = "Add Holiday"
+			success message = "New Holiday Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Holiday_Name
+			(
+    			type = text
+				displayname = "Holiday Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Date_field
+			(
+    			type = date
+				displayname = "Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Locations
+			(
+				type = list	
+				values  = Add_Location.ID
+    			displayformat = [Location]
+				allow new entries = true
+				[
+					displayname = "Add New"
+				]
+				sortorder = ascending
+				height = 60px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Description
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	section Add_Organization
+	{
+		displayname= "Add Organization"
+		form Add_Organization
+		{
+			displayname = "Add Organization"
+			success message = "Organization Details Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Organization_Name
+			(
+    			type = text
+				displayname = "Organization Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Website
+			(
+    			type = url
+				enable  linkname
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Email
+			(
+    			type = email
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Phone_Number
+			(
+    			type = phonenumber
+				displayname = "Phone Number"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Address
+			(
+    			type = address
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_12
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_22
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city2
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province2
+     			(
+	     			  type = state_province
+	     			  displayname = "State / Province"
+     			) 
+     			postal_Code2
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country2
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude2
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude2
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		properties
+		{
+			total entries
+			{
+				allowed count = 1
+			}
+		}
+		}
+	}
+		 functions
+		 {
+			 Deluge
+			 {
+				 void customAction.approveLeave(Apply_Leave leaveRecord)
+         {
+         	leaveRecord.Status="Approved";
+         }
+				 void customAction.rejectLeave(Apply_Leave leaveRecord)
+         {
+         	leaveRecord.Status="Rejected";
+         }
+				 map profile.getProfileInfo(int profileID, string isEdit)
+         {
+         	return Map();
+         }
+				 map profile.getSearchList(Add_Employee recRowList)
+         {
+         	mapContent = Map();
+         	output = "";
+         	rowCount = 0;
+         	if(recRowList.ID != null)
+         	{
+         		output = output + "<div style='margin:0 auto;width:90%;'><table cellspacing='15px' style='padding:24px 78px;width:80%' align='center'>";
+         		for each  recRow in recRowList
+         		{
+         			rowCount = rowCount + 1;
+         			balCount = rowCount % 2;
+         			if(balCount != 0)
+         			{
+         				output = output + "<tr>";
+         			}
+         			output = output + "<td>";
+         			output = output + "<table algin='right'>";
+         			output = output + "<tr>";
+         			output = output + "<td rowspan='6' style='padding-right: 10px;'>" + thisapp.profile.replaceImgTag(recRow.Photo,"All_Employees","") + "</td>";
+         			output = output + "<td>";
+         			output = output + "<div id='searchContent'>";
+         			output = (output + "<p><span class='empId'>" + recRow.Employee_ID + "<a href='#View:Employee_Profile?profileID=" + recRow.ID + "'><span class='name' style='padding-left:3px;'>" + recRow.Name) + "</span></a></p>";
+         			output = output + "<p><a href='#View:Employee_Profile?department=" + recRow.Department + "'><span class='team'>" + recRow.Department + "</span></a></p>";
+         			output = output + "<p class='email'><a href='mailto:" + recRow.Official_Email + "' style='color:357FD4'>" + recRow.Official_Email + "</a></p>";
+         			output = output + "<p><span class='contact'>Work Phone: </span><span class='number'>" + "recRow.Work_Phone" + ", </span><span class='contact'>Extn.No: </span><span class='number'>" + recRow.Extension + "</span></p>";
+         			output = output + "<p><span class='contact'>Mobile.No: </span><span class='number'>" + recRow.Mobile_Number + "</span></p>";
+         			output = output + "<p><span class='contact'>Location: </span><span class='number'>" + recRow.Seat_Location + "</span></p>";
+         			output = output + "</div>";
+         			output = output + "</td>";
+         			output = output + "</tr>";
+         			output = output + "</table>";
+         			output = output + "</td>";
+         			if(balCount == 0)
+         			{
+         				output = output + "</tr>";
+         			}
+         		}
+         		output = output + "</table><div style='clear:both;'></div></div>";
+         	}
+         	else
+         	{
+         		output = output + "<div style='border: 2px solid #F3F3F3;border-radius:5px;width: 28%;text-align:center;margin: 17px 34%;height: 60px;'><p style='color: #A3A3A3;font-size: 15px;font-weight: bold;position: relative;top: 19px;'>Noting match with this key word!</p></div>";
+         	}
+         	mapContent.put("searchContent",output);
+         	return mapContent;
+         }
+				 string profile.replaceImgTag(string imgTag, string viewLinkName, string className)
+         {
+         	imgTag = imgTag.replaceAll("/sharedBy","https://creator.zoho.in/" + zoho.adminuser,false);
+         	imgTag = imgTag.replaceAll("appLinkName",zoho.appname,false);
+         	imgTag = imgTag.replaceAll("viewLinkName",viewLinkName,false);
+         	imgTag = imgTag.replaceAll("fieldName","Photo",false);
+         	if(input.className != null && input.className != "")
+         	{
+         		imgTag = imgTag.replaceAll(">","class='" + className + "'>",false);
+         	}
+         	else
+         	{
+         		imgTag = imgTag.replaceAll(">","style='width:100px;height:100px;'>",false);
+         	}
+         	return imgTag;
+         }
+			 }
+		 }
+
+
+
+
+		workflow
+		{
+		form
+		{
+			Field_Scripts1 as "Field Scripts"
+			{
+				type =  form
+				form = Add_Employee
+				record event = on add or edit
+
+				on user input of Work_Experience1.To
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											//Validating 'To' date value
+										if(row.To > zoho.currentdate)
+										{
+											alert "Please enter valid date!";
+											row.To=null;
+										}
+										else if(row.To < row.From)
+										{
+											alert "'To' date must be greater than 'From' date!";
+											row.To=null;
+										}
+						)
+					}
+				}
+
+			}
+			Field_Scripts4 as "Field Scripts"
+			{
+				type =  form
+				form = Add_Employee
+				record event = on add or edit
+
+				on user input of Work_Experience1.From
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											//Validating 'From' date value
+										if(row.From > zoho.currentdate)
+										{
+											alert "Please enter valid date!";
+											row.From=null;
+										}
+										else if(row.To < row.From)
+										{
+											alert "'From' date must be smaller than 'To' date!";
+											row.To=null;
+										}
+						)
+					}
+				}
+
+			}
+			Field_Scripts5 as "Field Scripts"
+			{
+				type =  form
+				form = Apply_Leave
+				record event = on add or edit
+
+				on user input of To
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											//Validating 'To' date value
+										if(To != null && From != null)
+										{
+											if(input.From.getYear() == input.To.getYear())
+											{
+												if(input.To < input.From)
+												{
+													input.No_of_Days = 0;
+													alert "'To' date must be greater than or equal to 'From' date!";
+												}
+												else
+												{
+													input.No_of_Days = days360(input.From,input.To) + 1;
+												}
+											}
+											else
+											{
+												input.No_of_Days = 0;
+												alert "Kindly avail current year leaves alone and apply separate leave for the upcoming year!";
+											}
+										}
+										else
+										{
+											input.No_of_Days = 0;
+										}
+						)
+					}
+				}
+
+			}
+			Field_Scripts6 as "Field Scripts"
+			{
+				type =  form
+				form = Apply_Leave
+				record event = on add or edit
+
+				on user input of From
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											//Validating 'From' date value
+										if(To != null && From != null)
+										{
+											if(input.From.getYear() == input.To.getYear())
+											{
+												if(input.To < input.From)
+												{
+													input.No_of_Days = 0;
+													alert "'From' date must be smaller than or equal to 'To' date!";
+												}
+												else
+												{
+													input.No_of_Days = days360(input.From,input.To) + 1;
+												}
+											}
+											else
+											{
+												input.No_of_Days = 0;
+												alert "Kindly avail current year leaves alone and apply separate leave for the upcoming year!";
+											}
+										}
+										else
+										{
+											input.No_of_Days = 0;
+										}
+						)
+					}
+				}
+
+			}
+			Create_Record_Scripts as "Create Record Scripts"
+			{
+				type =  form
+				form = Apply_Leave
+				record event = on add
+
+				field rules
+				{
+					actions 
+					{
+						hide Status;
+					}
+				}
+
+			}
+			Create_Record_Scripts4 as "Create Record Scripts"
+			{
+				type =  form
+				form = Apply_Leave
+				record event = on add
+
+				on validate
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											//Validating 'From' and 'To' date value
+										if(input.From.getYear() == input.To.getYear())
+										{
+											if(input.To < input.From)
+											{
+												alert "'To' date must be greater than or equal to 'From' date!";
+												cancel submit;
+											}
+										}
+										else
+										{
+											alert "Kindly avail current year leaves alone and apply separate leave for the upcoming year!";
+											cancel submit;
+										}
+						)
+					}
+				}
+
+			}
+			Create_Record_Scripts5 as "Create Record Scripts"
+			{
+				type =  form
+				form = Add_Employee
+				record event = on add
+
+				on load
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											//Dynamically adding managers list to 'Reporting To' field
+										if(Add_Employee.count() == 0)
+										{
+											input.Official_Email = zoho.loginuserid;
+											disable Official_Email;
+										}
+										managersList = Add_Employee[Is_a_Reporting_Manager == true].Official_Email.getAll();
+										input.Reporting_To:ui.add(managersList);
+						)
+					}
+				}
+
+			}
+			Create_Record_Scripts6 as "Create Record Scripts"
+			{
+				type =  form
+				form = Add_Employee
+				record event = on add
+
+				on success
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Is_a_Reporting_Manager == true)
+										{
+											thisapp.permissions.assignUserInProfile(input.Official_Email,"Manager");
+										}
+										else if(input.Is_a_Reporting_Manager == false)
+										{
+											thisapp.permissions.assignUserInProfile(input.Official_Email,"Employee");
+										}
+										getCompanyDetails = Add_Organization[ID != 0];
+										sendmail
+										[
+											from :zoho.adminuserid
+											to :input.Official_Email
+											subject :"Invitation to access Employee Management"
+											message :("<div>Hi " + input.Name) + ",</div><br><div> You have been added as an employee in " + getCompanyDetails.Organization_Name + ".</div> <br> <div> Click <a href=\"https://app.zohocreator.in" + zoho.appuri + "\"> here </a> to access the employee portal.</div> <br><div> Happy Working! </div> <br> <div> Regards,</div><br><div>" + zoho.adminuser + "</div>"
+										]
+										if(Add_Employee.count() == 0)
+										{
+											openUrl(zoho.appuri + "#Page:Employee_Profile","same window");
+										}
+						)
+					}
+				}
+
+			}
+			Create_Record_Scripts7 as "Create Record Scripts"
+			{
+				type =  form
+				form = Salary_Structure
+				record event = on add
+
+				on load
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											disable Salary_Split_Up.Annual;
+						)
+					}
+				}
+
+			}
+			Field_Scripts7 as "Field Scripts"
+			{
+				type =  form
+				form = Salary_Structure
+				record event = on add or edit
+
+				on user input of Salary_Split_Up.Monthly
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											//Autocalculate annual pay
+										if(row.Monthly != null)
+										{
+											row.Annual=row.Monthly * 12;
+										}
+										else
+										{
+											row.Annual=0;
+										}
+						)
+					}
+				}
+
+			}
+			Run_Scripts_while_editing1 as "Run Scripts - while editing Record"
+			{
+				type =  form
+				form = Add_Employee
+				record event = on edit
+
+				on validate
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											if(old.Official_Email != input.Official_Email)
+										{
+											thisapp.permissions.deleteUser(old.Official_Email);
+											if(input.Is_a_Reporting_Manager == true)
+											{
+												thisapp.permissions.assignUserInProfile(input.Official_Email,"Manager");
+											}
+											else if(input.Is_a_Reporting_Manager == false)
+											{
+												thisapp.permissions.assignUserInProfile(input.Official_Email,"Employee");
+											}
+											getCompanyDetails = Add_Organization[ID != 0];
+											sendmail
+											[
+												from :zoho.adminuserid
+												to :input.Official_Email
+												subject :"Invitation to access Employee Management"
+												message :("<div>Hi " + input.Name) + ",</div><br><div> You have been added as an employee in " + getCompanyDetails.Organization_Name + ".</div> <br> <div> Click <a href=\"https://app.zohocreator.in" + zoho.appuri + "\"> here </a> to access the employee portal.</div> <br><div> Happy Working! </div> <br> <div> Regards,</div><br><div>" + zoho.adminuser + "</div>"
+											]
+										}
+										else if(old.Is_a_Reporting_Manager != input.Is_a_Reporting_Manager)
+										{
+											if(input.Is_a_Reporting_Manager == true)
+											{
+												thisapp.permissions.assignUserInProfile(input.Official_Email,"Manager");
+											}
+											else if(input.Is_a_Reporting_Manager == false)
+											{
+												thisapp.permissions.assignUserInProfile(input.Official_Email,"Employee");
+											}
+										}
+						)
+					}
+				}
+
+			}
+			Run_Scripts_while_deletin1 as "Run Scripts - while deleting Record"
+			{
+				type =  form
+				form = Add_Employee
+				record event = on delete
+
+				on validate
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											thisapp.permissions.deleteUser(input.Official_Email);
+						)
+					}
+				}
+
+			}
+			Run_Scripts_While_adding_ as "Run Scripts - While adding Record"
+			{
+				type =  form
+				form = Add_Organization
+				record event = on add
+
+				on success
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											if(Add_Employee.count() == 0)
+										{
+											openUrl(zoho.appuri + "#Form:Add_Employee","same window");
+										}
+						)
+					}
+				}
+
+			}
+		}
+
+
+
+
+
+		functions
+		{
+			Reject_Leave as "Reject Leave"
+			{
+				type =  functions
+				form = Apply_Leave
+				execution type = collection of records	
+				on start
+				{
+					actions 
+					{
+						thisapp.customAction.rejectLeave(Apply_Leave);
+					}
+				}
+			}
+			Approve_Leave as "Approve Leave"
+			{
+				type =  functions
+				form = Apply_Leave
+				execution type = collection of records	
+				on start
+				{
+					actions 
+					{
+						thisapp.customAction.approveLeave(Apply_Leave);
+					}
+				}
+			}
+		}
+	}
+	share_settings
+	{
+			"Read"
+			{
+				name = "Read"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "This profile will have read permission for all components\n"
+			}
+			"Write"
+			{
+				name = "Write"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "This profile will have write permission for all components\n"
+			}
+			"Administrator"
+			{
+				name = "Administrator"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "This profile will have all the permissions.\n"
+			}
+			"Employee"
+			{
+				name = "Employee"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "Employee Profile\n"
+				ModulePermissions
+				{
+					Add_Holiday
+					{
+						ReportPermissions
+						{
+							Holidays={"View"}
+						}
+						FieldPermissions
+						{
+							Locations{visibility:true,readonly:false}
+							Date_field{visibility:true,readonly:false}
+							Description{visibility:true,readonly:false}
+							Holiday_Name{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+						}
+					}
+					Add_Organization
+					{
+						FieldPermissions
+						{
+							Email{visibility:true,readonly:false}
+							Address{visibility:true,readonly:false}
+							Organization_Name{visibility:true,readonly:false}
+							Website{visibility:true,readonly:false}
+							Phone_Number{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+						}
+					}
+					Add_Announcement
+					{
+						ReportPermissions
+						{
+							Announcements={"View"}
+						}
+						FieldPermissions
+						{
+							Status{visibility:true,readonly:false}
+							Announcement_Name{visibility:true,readonly:false}
+							Description{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+						}
+					}
+					Add_Location
+					{
+						FieldPermissions
+						{
+							Section{visibility:false,readonly:false}
+							Location{visibility:true,readonly:false}
+						}
+					}
+					Add_Employee_Type
+					{
+						FieldPermissions
+						{
+							Employee_Type{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+						}
+					}
+					Apply_Leave
+					{
+						enabled= Create,Tab 
+						ReportPermissions
+						{
+							My_Leaves={"View"}
+						}
+						FieldPermissions
+						{
+							Status{visibility:true,readonly:false}
+							Employee{visibility:true,readonly:false}
+							Reason_for_Leave{visibility:true,readonly:false}
+							Leave_Type{visibility:true,readonly:false}
+							No_of_Days{visibility:true,readonly:false}
+							From{visibility:true,readonly:false}
+							To{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+						}
+					}
+					Add_Education_Details
+					{
+						FieldPermissions
+						{
+							Employee{visibility:true,readonly:false}
+							Institute_Name{visibility:true,readonly:false}
+							Year_of_Completion{visibility:true,readonly:false}
+							Course{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Marks_Scored{visibility:true,readonly:false}
+						}
+					}
+					Add_Employee
+					{
+						ReportPermissions
+						{
+							Employee_Profile1={"View"}
+							New_Hires={"View"}
+						}
+						FieldPermissions
+						{
+							Employee_Type{visibility:true,readonly:false}
+							Photo{visibility:true,readonly:false}
+							Official_Email{visibility:true,readonly:false}
+							Gender{visibility:true,readonly:false}
+							Is_a_Reporting_Manager{visibility:true,readonly:false}
+							Name{visibility:true,readonly:false}
+							Department{visibility:true,readonly:false}
+							Employee_Status{visibility:true,readonly:false}
+							Work_Information{visibility:true,readonly:false}
+							Reporting_To{visibility:true,readonly:false}
+							Seat_Location{visibility:true,readonly:false}
+							Permanent_Address_same_as_Present_Address{visibility:true,readonly:false}
+							Basic_Information{visibility:true,readonly:false}
+							Skill_Sets{visibility:true,readonly:false}
+							Work_Experience1{visibility:true,readonly:false}
+							About{visibility:true,readonly:false}
+							Employee_Level{visibility:true,readonly:false}
+							Work_Experience{visibility:true,readonly:false}
+							Dependents{visibility:true,readonly:false}
+							Personal_Information{visibility:true,readonly:false}
+							Date_of_Joining{visibility:true,readonly:false}
+							Marital_Status{visibility:true,readonly:false}
+							Permanent_Address{visibility:true,readonly:false}
+							Education_Details{visibility:true,readonly:false}
+							Employee_ID{visibility:true,readonly:false}
+							Section5{visibility:true,readonly:false}
+							Section6{visibility:true,readonly:false}
+							Present_Address{visibility:true,readonly:false}
+							Blood_Group{visibility:true,readonly:false}
+							Nick_Name{visibility:true,readonly:false}
+							Section3{visibility:true,readonly:false}
+							Section4{visibility:true,readonly:false}
+							Section1{visibility:true,readonly:false}
+							Section2{visibility:true,readonly:false}
+							Contact_Number{visibility:true,readonly:false}
+							Designation{visibility:true,readonly:false}
+							Mother_s_Name{visibility:true,readonly:false}
+							Hobbies{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Official_Date_of_Birth{visibility:true,readonly:false}
+							Actual_Date_of_Birth{visibility:true,readonly:false}
+							Extension{visibility:true,readonly:false}
+							CTC{visibility:true,readonly:false}
+							Relationship{visibility:true,readonly:false}
+							Father_s_Name{visibility:true,readonly:false}
+							Mobile_Number{visibility:true,readonly:false}
+							Emergency_Contact_Person{visibility:true,readonly:false}
+							Summary{visibility:true,readonly:false}
+							Personal_Email{visibility:true,readonly:false}
+							Location{visibility:true,readonly:false}
+						}
+					}
+					Add_Dependents
+					{
+						FieldPermissions
+						{
+							Date_of_Birth{visibility:true,readonly:false}
+							Employee{visibility:true,readonly:false}
+							Relationship{visibility:true,readonly:false}
+							Gender{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Name{visibility:true,readonly:false}
+						}
+					}
+					Add_Department
+					{
+						FieldPermissions
+						{
+							Section{visibility:false,readonly:false}
+							Department{visibility:true,readonly:false}
+						}
+					}
+					Add_Experience
+					{
+						FieldPermissions
+						{
+							Job_Description{visibility:true,readonly:false}
+							Employee{visibility:true,readonly:false}
+							Previous_Company_Name{visibility:true,readonly:false}
+							To{visibility:true,readonly:false}
+							From{visibility:true,readonly:false}
+							Job_Title{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+						}
+					}
+					Add_Designation
+					{
+						FieldPermissions
+						{
+							Designation{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+						}
+					}
+					Add_Pay_Component
+					{
+						FieldPermissions
+						{
+							Section{visibility:false,readonly:false}
+							Component_Name{visibility:true,readonly:false}
+						}
+					}
+					Salary_Structure
+					{
+						FieldPermissions
+						{
+							CTC{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Salary_Split_Up{visibility:true,readonly:false}
+						}
+					}
+					Add_Employee_Level
+					{
+						FieldPermissions
+						{
+							Section{visibility:false,readonly:false}
+							Employee_Level{visibility:true,readonly:false}
+						}
+					}
+					Add_Leave_Type
+					{
+						FieldPermissions
+						{
+							Leave_Type{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+						}
+					}
+					Dashboard
+					{
+						enabled = tab
+					}
+					Employee_Profile
+					{
+						enabled = tab
+					}
+				}
+			}
+			"Manager"
+			{
+				name = "Manager"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "Manager Profile\n"
+				ModulePermissions
+				{
+					Add_Holiday
+					{
+						ReportPermissions
+						{
+							Holidays={"View"}
+						}
+						FieldPermissions
+						{
+							Locations{visibility:true,readonly:false}
+							Date_field{visibility:true,readonly:false}
+							Description{visibility:true,readonly:false}
+							Holiday_Name{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+						}
+					}
+					Add_Organization
+					{
+						FieldPermissions
+						{
+							Email{visibility:true,readonly:false}
+							Address{visibility:true,readonly:false}
+							Organization_Name{visibility:true,readonly:false}
+							Website{visibility:true,readonly:false}
+							Phone_Number{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+						}
+					}
+					Add_Announcement
+					{
+						ReportPermissions
+						{
+							Announcements={"View"}
+						}
+						FieldPermissions
+						{
+							Status{visibility:true,readonly:false}
+							Announcement_Name{visibility:true,readonly:false}
+							Description{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+						}
+					}
+					Add_Location
+					{
+						FieldPermissions
+						{
+							Section{visibility:false,readonly:false}
+							Location{visibility:true,readonly:false}
+						}
+					}
+					Add_Employee_Type
+					{
+						FieldPermissions
+						{
+							Employee_Type{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+						}
+					}
+					Apply_Leave
+					{
+						enabled= Create,Tab 
+						ReportPermissions
+						{
+							Leave_Requests={"View"}
+							My_Team_Leaves={"View"}
+							My_Leaves={"View"}
+						}
+						FieldPermissions
+						{
+							Status{visibility:true,readonly:false}
+							Employee{visibility:true,readonly:false}
+							Reason_for_Leave{visibility:true,readonly:false}
+							Leave_Type{visibility:true,readonly:false}
+							No_of_Days{visibility:true,readonly:false}
+							From{visibility:true,readonly:false}
+							To{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+						}
+					}
+					Add_Education_Details
+					{
+						FieldPermissions
+						{
+							Employee{visibility:true,readonly:false}
+							Institute_Name{visibility:true,readonly:false}
+							Year_of_Completion{visibility:true,readonly:false}
+							Course{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Marks_Scored{visibility:true,readonly:false}
+						}
+					}
+					Add_Employee
+					{
+						ReportPermissions
+						{
+							Employee_Profile1={"View"}
+							New_Hires={"View"}
+						}
+						FieldPermissions
+						{
+							Employee_Type{visibility:true,readonly:false}
+							Photo{visibility:true,readonly:false}
+							Official_Email{visibility:true,readonly:false}
+							Gender{visibility:true,readonly:false}
+							Is_a_Reporting_Manager{visibility:true,readonly:false}
+							Name{visibility:true,readonly:false}
+							Department{visibility:true,readonly:false}
+							Employee_Status{visibility:true,readonly:false}
+							Work_Information{visibility:true,readonly:false}
+							Reporting_To{visibility:true,readonly:false}
+							Seat_Location{visibility:true,readonly:false}
+							Permanent_Address_same_as_Present_Address{visibility:true,readonly:false}
+							Basic_Information{visibility:true,readonly:false}
+							Skill_Sets{visibility:true,readonly:false}
+							Work_Experience1{visibility:true,readonly:false}
+							About{visibility:true,readonly:false}
+							Employee_Level{visibility:true,readonly:false}
+							Work_Experience{visibility:true,readonly:false}
+							Dependents{visibility:true,readonly:false}
+							Personal_Information{visibility:true,readonly:false}
+							Date_of_Joining{visibility:true,readonly:false}
+							Marital_Status{visibility:true,readonly:false}
+							Permanent_Address{visibility:true,readonly:false}
+							Education_Details{visibility:true,readonly:false}
+							Employee_ID{visibility:true,readonly:false}
+							Section5{visibility:true,readonly:false}
+							Section6{visibility:true,readonly:false}
+							Present_Address{visibility:true,readonly:false}
+							Blood_Group{visibility:true,readonly:false}
+							Nick_Name{visibility:true,readonly:false}
+							Section3{visibility:true,readonly:false}
+							Section4{visibility:true,readonly:false}
+							Section1{visibility:true,readonly:false}
+							Section2{visibility:true,readonly:false}
+							Contact_Number{visibility:true,readonly:false}
+							Designation{visibility:true,readonly:false}
+							Mother_s_Name{visibility:true,readonly:false}
+							Hobbies{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Official_Date_of_Birth{visibility:true,readonly:false}
+							Actual_Date_of_Birth{visibility:true,readonly:false}
+							Extension{visibility:true,readonly:false}
+							CTC{visibility:true,readonly:false}
+							Relationship{visibility:true,readonly:false}
+							Father_s_Name{visibility:true,readonly:false}
+							Mobile_Number{visibility:true,readonly:false}
+							Emergency_Contact_Person{visibility:true,readonly:false}
+							Summary{visibility:true,readonly:false}
+							Personal_Email{visibility:true,readonly:false}
+							Location{visibility:true,readonly:false}
+						}
+					}
+					Add_Dependents
+					{
+						FieldPermissions
+						{
+							Date_of_Birth{visibility:true,readonly:false}
+							Employee{visibility:true,readonly:false}
+							Relationship{visibility:true,readonly:false}
+							Gender{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Name{visibility:true,readonly:false}
+						}
+					}
+					Add_Department
+					{
+						FieldPermissions
+						{
+							Section{visibility:false,readonly:false}
+							Department{visibility:true,readonly:false}
+						}
+					}
+					Add_Experience
+					{
+						FieldPermissions
+						{
+							Job_Description{visibility:true,readonly:false}
+							Employee{visibility:true,readonly:false}
+							Previous_Company_Name{visibility:true,readonly:false}
+							To{visibility:true,readonly:false}
+							From{visibility:true,readonly:false}
+							Job_Title{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+						}
+					}
+					Add_Designation
+					{
+						FieldPermissions
+						{
+							Designation{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+						}
+					}
+					Add_Pay_Component
+					{
+						FieldPermissions
+						{
+							Section{visibility:false,readonly:false}
+							Component_Name{visibility:true,readonly:false}
+						}
+					}
+					Salary_Structure
+					{
+						FieldPermissions
+						{
+							CTC{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Salary_Split_Up{visibility:true,readonly:false}
+						}
+					}
+					Add_Employee_Level
+					{
+						FieldPermissions
+						{
+							Section{visibility:false,readonly:false}
+							Employee_Level{visibility:true,readonly:false}
+						}
+					}
+					Add_Leave_Type
+					{
+						FieldPermissions
+						{
+							Leave_Type{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+						}
+					}
+					Dashboard
+					{
+						enabled = tab
+					}
+					Employee_Profile
+					{
+						enabled = tab
+					}
+				}
+			}
+			roles
+			{
+				"CEO"
+				{
+					description = "User belonging to this role can access data of all other users.\n\n"
+				}
+			}
+			role Hierarchy = {Add_Announcement,Add_Department,Add_Dependents,Add_Designation,Add_Education_Details,Add_Employee,Add_Employee_Level,Add_Employee_Type,Add_Experience,Add_Holiday,Add_Leave_Type,Add_Location,Add_Organization,Add_Pay_Component,Apply_Leave,Salary_Structure}
+	}
+
+	customize
+	{
+		
+		layout = "tab"
+		color = "black"
+		base theme = "professional"
+		new theme = 2
+		icons = true
+		icons style = outline
+		font = "lato"
+		color options
+    	{
+        color = "1"
+    	}
+    	icon
+    	{
+        	type = "1"
+        	name = "zc-ab-project-mgmt5"
+        	background color = "blue"
+        	foreground color = "#FFFFFF"
+    	}
+    	logo
+    	{
+        	preference = "none"
+        	placement = "left"
+    	}
+	}
+
+
+	phone
+	{
+		section  New_Section
+		{
+			displayname= "Dashboard"
+			icon = "ui-1-dashboard-half"
+			page Dashboard
+			{
+			}
+		}
+		section  Employee_Profile
+		{
+			displayname= "Profile"
+			icon = "users-single-01"
+			page Employee_Profile
+			{
+			}
+		}
+		section  Apply_Leave
+		{
+			displayname= "Leaves"
+			icon = "ui-1-calendar-check-59"
+						pivotchart Current_Year_Leaves
+			{
+				icon = "business-chart-bar-32"
+				hide = true
+			}
+			form  Apply_Leave
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+			}
+			list My_Leaves
+			{
+				icon = "users-2-a-check"
+				quickview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				display type = auto
+			 				layout type = 4
+		     				title = "Overview"
+							fields
+							(
+								Employee
+								Reason_for_Leave as "Reason for Leave"
+								Leave_Type as "Leave Type"
+								From
+								To
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Employee
+								Leave_Type as "Leave Type"
+								From
+								To
+								Reason_for_Leave as "Reason for Leave"
+								Status
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list Leave_Requests
+			{
+				icon = "arrows-4-logout"
+				quickview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				display type = auto
+			 				layout type = 4
+		     				title = "Overview"
+							fields
+							(
+								Employee
+								Reason_for_Leave as "Reason for Leave"
+								Leave_Type as "Leave Type"
+								From
+								To
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										"Reject" as "Approve"
+										"Reject"
+										Duplicate   	   
+										View Record   	   
+    								)
+									on left swipe
+									(
+										"Approve"
+										"Reject"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Employee
+								Leave_Type as "Leave Type"
+								From
+								To
+								Reason_for_Leave as "Reason for Leave"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+			 				"Reject" as "Approve"
+			 				"Reject"
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			calendar My_Team_Leaves
+			{
+				icon = "ui-1-calendar-grid-58"
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				display type = auto
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Employee
+								Leave_Type as "Leave Type"
+								From
+								To
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Employee
+								Leave_Type as "Leave Type"
+								From
+								To
+								Reason_for_Leave as "Reason for Leave"
+								Status
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list All_Leaves
+			{
+				icon = "design-bullet-list-67"
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				display type = auto
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Employee
+								Leave_Type as "Leave Type"
+								From
+								To
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Employee
+								From
+								To
+								Reason_for_Leave as "Reason for Leave"
+								Leave_Type as "Leave Type"
+								Status
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Add_Employee
+		{
+			displayname= "Admin"
+			icon = "ui-1-lock-open"
+			custom Employee_Profile1
+			{
+				hide = true
+			}
+			list Holidays
+			{
+				icon = "ui-1-calendar-60"
+				hide = true
+			}
+			custom Announcements
+			{
+				icon = "tech-2-cctv"
+				hide = true
+			}
+			custom New_Hires
+			{
+				icon = "design-bullet-list-67"
+				hide = true
+			}
+			form  Add_Employee
+			{
+				layout = left
+				icon = "users-2-a-add"
+			}
+			custom Employee_Details
+			{
+				icon = "users-multiple-11"
+				quickview
+				(
+					layout
+					(
+		 				type = 6
+						datablock1
+						(
+			 				display type = auto
+			 				layout type = 19
+		     				title = "Overview"
+							fields
+							(
+								Photo
+								Official_Email as "Official Email"
+								Mobile_Number as "Mobile Number"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = 19
+		     				title = "Overview"
+							fields
+							(
+								Photo
+								Name
+								About
+								Personal_Email as "Personal Email"
+								Mobile_Number as "Mobile Number"
+							)
+						)
+						datablock2
+						(
+			 				layout type = -2
+		     				title = "Work Information"
+							fields
+							(
+								Employee_ID as "Employee ID"
+								Official_Email as "Official Email"
+								Location
+								Employee_Type as "Employee Type"
+								Department
+								Designation
+								Reporting_To as "Reporting To"
+								Employee_Level as "Employee Level"
+								CTC
+								Date_of_Joining as "Date of Joining"
+								Seat_Location as "Seat Location"
+								Extension
+								Work_Experience as "Work Experience"
+								Skill_Sets as "Skill Sets"
+								Employee_Status as "Employee Status"
+								Is_a_Reporting_Manager as "Is a Reporting Manager"
+							)
+						)
+						datablock3
+						(
+			 				layout type = -2
+		     				title = "Personal Information"
+							fields
+							(
+								Official_Date_of_Birth as "Official Date of Birth"
+								Actual_Date_of_Birth as "Actual Date of Birth"
+								Nick_Name as "Nick Name"
+								Gender
+								Marital_Status as "Marital Status"
+								Present_Address as "Present Address"
+								Permanent_Address as "Permanent Address"
+								Blood_Group as "Blood Group"
+								Father_s_Name as "Father's Name"
+								Mother_s_Name as "Mother's Name"
+								Emergency_Contact_Person as "Emergency Contact Person"
+								Relationship
+								Contact_Number as "Contact Number"
+								Hobbies
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list All_Announcements
+			{
+				icon = "media-1-speaker"
+				quickview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				display type = auto
+			 				layout type = 4
+		     				title = "Overview"
+							fields
+							(
+								Announcement_Name as "Announcement Name"
+								Description
+								Status
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Announcement_Name as "Announcement Name"
+								Description
+								Status
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list All_Holidays
+			{
+				icon = "design-bullet-list-68"
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				display type = auto
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Holiday_Name as "Holiday Name"
+								Locations
+								Date_field as "Date"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Holiday_Name as "Holiday Name"
+								Description
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Add_Location
+		{
+			displayname= "Settings"
+			icon = "ui-1-settings-gear-63"
+			form  Add_Location
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+			summary Organization_Details
+			{
+				icon = "business-building"
+				quickview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				display type = auto
+			 				layout type = 4
+		     				title = "Overview"
+							fields
+							(
+								Organization_Name as "Organization Name"
+								Address
+								Email
+								Phone_Number as "Phone Number"
+								Website
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Organization_Name as "Organization Name"
+								Email
+								Phone_Number as "Phone Number"
+								Website
+								Address
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list All_Locations
+			{
+				icon = "location-pin-copy"
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				display type = auto
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Location
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Location
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list Employee_Types
+			{
+				icon = "design-2-filter-organization"
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				display type = auto
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Employee_Type as "Employee Type"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Employee_Type as "Employee Type"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list All_Departments
+			{
+				icon = "design-2-layers"
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				display type = auto
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Department
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Department
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list All_Designations
+			{
+				icon = "business-hierarchy-56"
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				display type = auto
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Designation
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Designation
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list Employee_Levels
+			{
+				icon = "business-hierarchy-55"
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				display type = auto
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Employee_Level as "Employee Level"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Employee_Level as "Employee Level"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list Salary_Structures
+			{
+				icon = "business-money-12"
+				quickview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				display type = auto
+			 				layout type = 1
+		     				title = "Overview"
+							fields
+							(
+								CTC
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								CTC
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list Pay_Components
+			{
+				icon = "files-money"
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				display type = auto
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Component_Name as "Component Name"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Component_Name as "Component Name"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list Leave_Types
+			{
+				icon = "design-bullet-list-68"
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				display type = auto
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Leave_Type as "Leave Type"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Leave_Type as "Leave Type"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Add_Employee_Type
+		{
+			displayname= "Add Employee Type"
+			form  Add_Employee_Type
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+		}
+		section  Add_Department
+		{
+			displayname= "Add Department"
+			form  Add_Department
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+		}
+		section  Add_Designation
+		{
+			displayname= "Add Designation"
+			form  Add_Designation
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+		}
+		section  Add_Employee_Level
+		{
+			displayname= "Add Employee Level"
+			form  Add_Employee_Level
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+		}
+		section  Salary_Structure
+		{
+			displayname= "Salary Structure"
+			form  Salary_Structure
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+		}
+		section  Add_Pay_Component
+		{
+			displayname= "Add Pay Component"
+			form  Add_Pay_Component
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+		}
+		section  Add_Experience
+		{
+			displayname= "Add Experience"
+			form  Add_Experience
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+			list Add_Experience_Report
+			{
+				icon = "design-bullet-list-67"
+				hide = true
+			}
+		}
+		section  Add_Education_Details
+		{
+			displayname= "Add Education Details"
+			form  Add_Education_Details
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+			list Add_Education_Details_Report
+			{
+				icon = "design-bullet-list-67"
+				hide = true
+			}
+		}
+		section  Add_Dependents
+		{
+			displayname= "Add Dependents"
+			form  Add_Dependents
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+			list Add_Dependents_Report
+			{
+				icon = "design-bullet-list-67"
+				hide = true
+			}
+		}
+		section  Add_Leave_Type
+		{
+			displayname= "Add Leave Type"
+			form  Add_Leave_Type
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+		}
+		section  Add_Announcement
+		{
+			displayname= "Add Announcement"
+			form  Add_Announcement
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+		}
+		section  Add_Holiday
+		{
+			displayname= "Add Holiday"
+			form  Add_Holiday
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+		}
+		section  Add_Organization
+		{
+			displayname= "Add Organization"
+			form  Add_Organization
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+		}
+		customize
+		{
+        	layout = slidingpane
+		 	icons style = outline
+        	font = "lato"
+            style = "3"
+        	color options
+        	{
+             	color = blue
+         	}
+         	logo
+         	{
+             	preference = "none"
+         	}
+		}
+	}
+	tablet
+	{
+		section  New_Section
+		{
+			displayname= "Dashboard"
+			icon = "ui-1-dashboard-half"
+			page Dashboard
+			{
+			}
+		}
+		section  Employee_Profile
+		{
+			displayname= "Profile"
+			icon = "users-single-01"
+			page Employee_Profile
+			{
+			}
+		}
+		section  Apply_Leave
+		{
+			displayname= "Leaves"
+			icon = "ui-1-calendar-check-59"
+			 
+			pivotchart Current_Year_Leaves
+			{
+				icon = "business-chart-bar-32"
+				hide = true
+			}
+			form  Apply_Leave
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+			}
+			list My_Leaves
+			{
+				icon = "users-2-a-check"
+			}
+			list Leave_Requests
+			{
+				icon = "design-bullet-list-67"
+			}
+			calendar My_Team_Leaves
+			{
+				icon = "ui-1-calendar-grid-58"
+			}
+			list All_Leaves
+			{
+				icon = "design-bullet-list-67"
+			}
+		}
+		section  Add_Employee
+		{
+			displayname= "Admin"
+			icon = "ui-1-lock-open"
+			custom Employee_Profile1
+			{
+				hide = true
+			}
+			list Holidays
+			{
+				icon = "ui-1-calendar-60"
+				hide = true
+			}
+			custom Announcements
+			{
+				icon = "tech-2-cctv"
+				hide = true
+			}
+			custom New_Hires
+			{
+				icon = "design-bullet-list-67"
+				hide = true
+			}
+			form  Add_Employee
+			{
+				layout = left
+				icon = "users-2-a-add"
+			}
+			custom Employee_Details
+			{
+				icon = "users-multiple-11"
+			}
+			list All_Announcements
+			{
+				icon = "media-1-speaker"
+			}
+			list All_Holidays
+			{
+				icon = "design-bullet-list-68"
+			}
+		}
+		section  Add_Location
+		{
+			displayname= "Settings"
+			icon = "ui-1-settings-gear-64"
+			form  Add_Location
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+			summary Organization_Details
+			{
+				icon = "business-building"
+			}
+			list All_Locations
+			{
+				icon = "location-pin-copy"
+			}
+			list Employee_Types
+			{
+				icon = "design-2-filter-organization"
+			}
+			list All_Departments
+			{
+				icon = "design-2-layers"
+			}
+			list All_Designations
+			{
+				icon = "business-hierarchy-56"
+			}
+			list Employee_Levels
+			{
+				icon = "business-hierarchy-55"
+			}
+			list Salary_Structures
+			{
+				icon = "business-money-12"
+			}
+			list Pay_Components
+			{
+				icon = "files-money"
+			}
+			list Leave_Types
+			{
+				icon = "design-bullet-list-68"
+			}
+		}
+		section  Add_Employee_Type
+		{
+			displayname= "Add Employee Type"
+			form  Add_Employee_Type
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+		}
+		section  Add_Department
+		{
+			displayname= "Add Department"
+			form  Add_Department
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+		}
+		section  Add_Designation
+		{
+			displayname= "Add Designation"
+			form  Add_Designation
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+		}
+		section  Add_Employee_Level
+		{
+			displayname= "Add Employee Level"
+			form  Add_Employee_Level
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+		}
+		section  Salary_Structure
+		{
+			displayname= "Salary Structure"
+			form  Salary_Structure
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+		}
+		section  Add_Pay_Component
+		{
+			displayname= "Add Pay Component"
+			form  Add_Pay_Component
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+		}
+		section  Add_Experience
+		{
+			displayname= "Add Experience"
+			form  Add_Experience
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+			list Add_Experience_Report
+			{
+				icon = "design-bullet-list-67"
+				hide = true
+			}
+		}
+		section  Add_Education_Details
+		{
+			displayname= "Add Education Details"
+			form  Add_Education_Details
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+			list Add_Education_Details_Report
+			{
+				icon = "design-bullet-list-67"
+				hide = true
+			}
+		}
+		section  Add_Dependents
+		{
+			displayname= "Add Dependents"
+			form  Add_Dependents
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+			list Add_Dependents_Report
+			{
+				icon = "design-bullet-list-67"
+				hide = true
+			}
+		}
+		section  Add_Leave_Type
+		{
+			displayname= "Add Leave Type"
+			form  Add_Leave_Type
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+		}
+		section  Add_Announcement
+		{
+			displayname= "Add Announcement"
+			form  Add_Announcement
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+		}
+		section  Add_Holiday
+		{
+			displayname= "Add Holiday"
+			form  Add_Holiday
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+		}
+		section  Add_Organization
+		{
+			displayname= "Add Organization"
+			form  Add_Organization
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+		}
+		customize
+		{
+        	layout = slidingpane
+		 	icons style = outline
+        	font = "lato"
+            style = "3"
+        	color options
+        	{
+             	color = blue
+         	}
+         	logo
+         	{
+             	preference = "none"
+         	}
+		}
+	}
+	translation
+{
+{"Language_Settings":{"LANGAGUE_WITH_LOGIN":"user"}}
+}
+	reports configuration
+	{
+	
+		Version = 2000024261717
+		Key     = "1f0TF9AKVBbXvyFnUS4q4pH7YWgdggY3baZEVTvYPagqA77mxtfMbWajbVu0vBzzO8eJynDZ0YjXPeSnpyhgxwM5FM2a5KRvEg9H"
+	}
+}

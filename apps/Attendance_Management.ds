@@ -1,0 +1,4115 @@
+/*
+ * Author       : wapope7431_asuflex
+ * Generated on : 10-May-2023 15:45:24
+ * Version      : 1.0
+ */
+ application "Attendance Management"
+ {
+ 	date format = "dd-MMM-yyyy"
+ 	time zone = "IST"
+ 	time format = "24-hr"
+ 	section Student_Attendance
+	{
+		displayname= "Take Attendance"
+		icon = "users-2-a-check"
+		form Fill_Attendance
+		{
+			displayname = "Fill Attendance"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Attendance_Date
+			(
+    			type = date
+				displayname = "Attendance Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Class
+			(
+				type = picklist	
+				values  = Add_Class[Class_Status == "Active"].ID
+    			displayformat = [Class_Title]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Attendance_Type
+			(
+				type = picklist
+				displayname = "Attendance Type"
+				values = {"Full Day","Early Out","Late Out","Late Start","Canceled","Extra Class","Holiday"}
+				others option = true
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Present_Students
+			(
+				type = checkboxes	
+				displayname = "Present Students"
+				values  = Add_Student.ID
+    			displayformat = [Registration_Number]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Absent_Students
+			(
+				type = list	
+				displayname = "Absent Students"
+				values  = Add_Student.ID
+    			displayformat = [Registration_Number + " - " + Parent_Name1.first_name2]
+				sortorder = ascending
+				height = 60px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Late_Comers
+			(
+				type = list	
+				displayname = "Late Comers"
+				values  = Add_Student.ID
+    			displayformat = [Registration_Number + " - " + Parent_Name1.first_name2]
+				sortorder = ascending
+				height = 60px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Number_Of_Present_Students
+			(
+				type = number
+				displayname = "Number Of Present Students"
+				maxchar = 3
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Number_Of_Absent_Students
+			(
+				type = number
+				displayname = "Number Of Absent Students"
+				maxchar = 3
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					Save_Attendance
+					(
+   						type = submit
+   						displayname = "Save Attendacne"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	section Dashboard
+	{
+		displayname= "Fill Attendance"
+		icon = "ui-1-check-square-11"
+				 page Attendance_Iframe_Page(date) 
+	 	 { 
+ 	 	 displayname = "Attendance Iframe Page"
+
+ 	 	 icon = "" 
+
+ 	 	 hide =  true
+	 	 Content="<zml    \t\t\n\t\t\n\t\t\n\t\t\n\t\t\n>\n\t<layout>\n\t<row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<dsp id='ZMLScript2' elementName=\"HTML Snippet\"\n bgColor=\"\" \n>\n\t<![CDATA[htmlpage ZMLScript2(date)\ndisplayname = &quot;ZMLScript&quot;\ncontent\n&lt;%{\n\t%&gt;\n&lt;style&gt;  .form_title{   width : 47%;   float: left;   color: #555;   font-size: 24px;  }  .close{   float: right;   font-size: 19px;   color: #555555;   padding-top: 5px;   }  .formStyle{   position: relative;   height: 86vh;   overflow-x: hidden;  }  .zc-pb-embed-placeholder  {   padding:0px;  }  &lt;\/style&gt;  &lt;div style=&quot;width:97%;display:inline-block;padding:1% 2%; border-bottom:1px solid #eaeaea;&quot; &gt;  &lt;div class = &quot;form_title&quot;&gt;Fill Attendance&lt;\/div&gt;  &lt;a style=&quot;width : 47%;float:right;&quot; href= &quot;https:\/\/app.zohocreator.in&lt;%=zoho.appuri%&gt;#Page:Take_Attendance_2?calen=&lt;%=date%&gt;&amp;passdate=false&quot; target=&quot;_parent&quot;&gt;&lt;div class =&quot;zc-li-outline ui-1-simple-remove close&quot;&gt;&lt;\/div&gt;&lt;\/a&gt;  &lt;\/div&gt;    &lt;div elName=&apos;zc-component&apos; class=&quot;formStyle&quot; formLinkName=&apos;Fill_Attendance&apos; params=&apos;zc_Header=false&amp;amp&amp;Date1=&lt;%=date%&gt;&apos; &gt;Loading Form...&lt;\/div&gt;\n&lt;%\n\n}%&gt;]]>\n<\/dsp>\n<\/column>\n<\/row>\n<\/layout>\n<\/zml>" 
+ 	 	}
+				 page Take_Attendance(calen) 
+	 	 { 
+ 	 	 displayname = "Take Attendance"
+
+ 	 	 icon = "" 
+	 	 Content="<zml    \t\t\n\t\t\n\t\t\n\t\t\twebDeviceConfig='{\"layout\":{\"style\":\"padding-right:0px;padding-top:0px;padding-bottom:0px;padding-left:0px;\",\"design\":\"fluid\",\"displayType\":\"plain\"}}'\n\t\t\n\t\t\n>\n\t<layout>\n\t<row>\n\t<column\n   \t\t width=\"50%\"\n   \t>\n\t<dsp id='ZMLScript1' elementName=\"HTML Snippet\"\n bgColor=\"\" \n>\n\t<![CDATA[htmlpage ZMLScript1(calen)\ndisplayname = &quot;ZMLScript&quot;\ncontent\n&lt;%{\n\tc = thisapp.calendar_functions.calendar_view(calen);\n\tif(input.calen == null || input.calen == &quot;null&quot; || input.calen == &quot;&quot;)\n\t{\n\t\topenUrl(&quot;https:\/\/app.zohocreator.in&quot; + zoho.appuri + &quot;#Page:Take_Attendance?calen=&quot; + c.get(&quot;date&quot;),&quot;same window&quot;);\n\t}\n\t%&gt;\n&lt;%=c.get(&quot;calendar&quot;)%&gt; &lt;link href=&quot;https:\/\/fonts.googleapis.com\/css?family=Maven+Pro&quot; rel=&quot;stylesheet&quot;&gt; &lt;link href=&quot;https:\/\/fonts.googleapis.com\/css?family=Roboto+Slab&quot; rel=&quot;stylesheet&quot;&gt;   &lt;style&gt;    .mini-cal {     box-sizing: border-box;     font-family: &apos;Maven Pro&apos;, sans-serif;     width: 85%;     margin: auto;     height: 80vh;     background: #fff;  }    .clndr-controls {     position: relative;     padding: 0px 0px 0px 0px;     width: 94%;  margin:auto;  }    .clndr-control-button{  font-size: 40px;     width: 10%;     float: left;     font-weight: 600;   cursor: pointer;  }   .month{        width: 80%;     float: left;     text-align: center;     font-size: 23px;     padding-top: 2%;     color: #258bd3;    }   .rightalign{    text-align: right;  }    .clndr-table {    font-family: &apos;Maven Pro&apos;, sans-serif;    table-layout: fixed;    width: 100%;    margin: 2% auto;    background: #ffffff;    padding-bottom: 10px;  }  center{   background:white;   min-height:410px;   width: 100%;  }   .header-days {     font-size: 0.85em;     font-weight: 600;     font-family: &apos;Maven Pro&apos;, sans-serif;   }   .header-day{     font-family: &apos;Maven Pro&apos;, sans-serif;    vertical-align: middle;     text-align: center;     color: #da8ea3;  font-size: 19px;     font-weight: 600;   }   .bold{    font-weight:bold;   }   .clndr-table tr {     height: 45px;   }   .day{  padding:2%;     height: inherit;     color: #999;   }   .day-contents {     box-sizing: border-box;     font-size: 18px;     \/* width: 76%; *\/     height: 34px;     margin: auto;     text-align: center;     align-items: center;     height: 100%;     display: grid;     cursor: pointer;     padding: 28%;     font-weight: 600;     border-radius: 100%;  }   .active {     background-color: #5b8cb3;     color: white;   }  .day a{    color:black;  }    .day a .day-contents:hover {   background-color: #e7e7f1 ;   color:black ;  }   .zpcontent-wrapper .zpelement-wrapper p {   font-size: 28px;   margin: 0;   padding: 5px 5px 5px 7px;   color: #5b8cb3;   font-weight: normal;  } &lt;\/style&gt;\n&lt;%\n\n}%&gt;]]>\n<\/dsp>\n<\/column><column\n   \t\t width=\"50%\"\n   \t>\n\t<form \n\telementName=\"Form\"\n\n\tappLinkName = 'thisapp'\n\tlinkName = 'Fill_Attendance'\n\theightType = 'auto'\n\theightValue = 'undefined'\n\tsearchString = 'Attendance_Date=${calen}'\n\turlType = 'undefined'\n\t\tzc_OpenUrlIn = 'undefined'\n\tzc_ResetVal = 'undefined'\n\tzc_Header = 'true'\n\tzc_SubmitVal = 'undefined'\n\/> \n<\/column>\n<\/row>\n<\/layout>\n<\/zml>" 
+ 	 	}
+		list Today_Attendance
+		{
+			displayName = "Today Attendance"
+			show all rows from Fill_Attendance  [Attendance_Date is today && Added_User == zoho.loginuser]  
+			(
+				Attendance_Type as "Attendance Type"
+				Attendance_Date as "Attendance Date"
+				Class
+				Number_Of_Present_Students as "Number Of Present Students"
+				Number_Of_Absent_Students as "Number Of Absent Students"
+				Added_User as "Added User"
+				custom action "Mark Latecomers"
+				(
+	  			workflow = Mark_Late_comers
+				show action in edit record menu = true
+				column header = "Mark Latecomers"
+				condition = (Attendance_Date is today)
+				)
+			)
+			group by
+			(
+				Attendance_Type ascending
+			)
+			options
+			(
+				icon = "arrows-4-system-update"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Class
+							Attendance_Date as "Attendance Date"
+							Attendance_Type as "Attendance Type"
+							Number_Of_Present_Students as "Number Of Present Students"
+							Number_Of_Absent_Students as "Number Of Absent Students"
+				"Mark Latecomers"
+							Added_User as "Added User"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+								"Mark Latecomers"
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Class Attendance"
+						fields
+						(
+							Class
+							Attendance_Date as "Attendance Date"
+							Attendance_Type as "Attendance Type"
+							Number_Of_Present_Students as "Number Of Present Students"
+							Number_Of_Absent_Students as "Number Of Absent Students"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Overview"
+		     			related field = Present_Students
+						fields
+						(
+							Photo
+							Student_Name as "Name"
+							Registration_Number as "Registration Number"
+							Age
+							Gender
+						)
+					)
+					datablock3
+					(
+			 			layout type = -2
+		     			title = "Overview"
+		     			related field = Absent_Students
+						fields
+						(
+							Photo
+							Student_Name as "Name"
+							Registration_Number as "Registration Number"
+							Age
+							Gender
+						)
+					)
+					datablock4
+					(
+			 			layout type = -2
+		     			title = "Overview"
+		     			related field = Late_Comers
+						fields
+						(
+							Photo
+							Registration_Number as "Registration Number"
+							Address
+							Age
+							Gender
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Add_Class
+	{
+		displayname= "Classes"
+		icon = "business-badge"
+		list Active_Classes
+		{
+			displayName = "Active Classes"
+   			hide = true
+			show all rows from Add_Class  [Class_Status == "Active"]  
+			(
+				Date_unbounded as "Date unbounded"
+				Class_Title as "Class Title"
+				custom action "Archive Class"
+				(
+	  			workflow = Archive_Class
+				show action in edit record menu = true
+				column header = "Archive Class"
+				)
+				Starting_Date as "Starting Date"
+				Ending_Date as "Ending Date"
+				Class_Status as "Class Status"
+				Class_In_charge as "Class In-charge"
+				(
+					view = Staffs
+				)
+				Days_Meet as "Days Meet"
+			)
+			options
+			(
+				icon = "education-book-open"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Class_Title as "Class Title"
+							Starting_Date as "Starting Date"
+							Ending_Date as "Ending Date"
+							Class_Status as "Class Status"
+							Class_In_charge as "Class In-charge"
+				"Archive Class"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+								"Archive Class"
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Class_Title as "Class Title"
+							Starting_Date as "Starting Date"
+							Ending_Date as "Ending Date"
+							Date_unbounded as "Date unbounded"
+							Class_Status as "Class Status"
+							Days_Meet as "Days Meet"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Overview"
+		     			related field = Class_In_charge
+						fields
+						(
+							Photo
+							Name
+							Address
+							Official__Email_ID as "Official Email ID"
+							Phone_Number as "Phone Number"
+						)
+					)
+					datablock3
+					(
+			 			layout type = -2
+		     			title = "Overview"
+		     			related field = Students
+						fields
+						(
+							Photo
+							Student_Name as "Name"
+							Registration_Number as "Registration Number"
+							Mobile1 as "Mobile"
+							Email
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+			 			"Archive Class"
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Archive_Classes
+		{
+			displayName = "Archive Classes"
+   			hide = true
+			show all rows from Add_Class  [Class_Status == "Archive"]  
+			(
+				Days_Meet as "Days Meet"
+				Starting_Date as "Starting Date"
+				Class_Title as "Class Title"
+				custom action "Active Class"
+				(
+	  			workflow = Active_Class
+				show action in edit record menu = true
+				column header = "Active Class"
+				)
+				Ending_Date as "Ending Date"
+				Date_unbounded as "Date unbounded"
+				Class_Status as "Class Status"
+				Class_In_charge as "Class In-charge"
+				(
+					view = Staffs
+				)
+			)
+			options
+			(
+				icon = "arrows-2-block-down"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Class_Title as "Class Title"
+							Starting_Date as "Starting Date"
+							Ending_Date as "Ending Date"
+							Date_unbounded as "Date unbounded"
+							Class_Status as "Class Status"
+							Class_In_charge as "Class In-charge"
+				"Active Class"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+								"Active Class"
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Class_Title as "Class Title"
+							Starting_Date as "Starting Date"
+							Ending_Date as "Ending Date"
+							Date_unbounded as "Date unbounded"
+							Class_Status as "Class Status"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Overview"
+		     			related field = Class_In_charge
+						fields
+						(
+							Photo
+							Name
+							Department
+							Phone_Number as "Phone Number"
+							Official__Email_ID as "Official Email ID"
+						)
+					)
+					datablock3
+					(
+			 			layout type = -2
+		     			title = "Overview"
+		     			related field = Students
+						fields
+						(
+							Photo
+							Student_Name as "Name"
+							Registration_Number as "Registration Number"
+							Contact_No as "Contact No"
+							Email
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		form Add_Class
+		{
+			displayname = "Add Class"
+			success message = "Class Added Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have unique Class_Title
+			(
+    			type = text
+				displayname = "Class Title"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Starting_Date
+			(
+    			type = date
+				displayname = "Starting Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Ending_Date
+			(
+    			type = date
+				displayname = "Ending Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Date_unbounded
+			(
+    			type = checkbox
+				displayname = "Date unbounded"
+				initial value = false
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Class_Status
+			(
+				type = radiobuttons
+				displayname = "Class Status"
+				values = {"Active","Archive"}
+				initial value = "Active"
+				layout = 2
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Class_In_charge
+			(
+				type = picklist	
+				displayname = "Class In-charge "
+				values  = Add_Staff.ID
+    			displayformat = [" " + Name.first_name1 + " -" + Official__Email_ID]
+				allow new entries = true
+				[
+					displayname = "Add Class Admin"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Students
+			(
+				type = list	
+				values  = Add_Student[Student_Status == "Active"].ID
+    			displayformat = [" " + Registration_Number + " -" + Student_Name.first_name1]
+				allow new entries = true
+				[
+					displayname = "Add New"
+				]
+				sortorder = ascending
+				height = 60px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Days_Meet
+			(
+				type = checkboxes	
+				displayname = "Days Meet"
+				values = {"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"}
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					Add_Class
+					(
+   						type = submit
+   						displayname = "Add Class"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		kanban All_Classes
+		{
+			displayName = "All Classes"
+			show all rows from Add_Class    
+			(
+				Date_unbounded as "Date unbounded"
+				Class_Status as "Class Status"
+				Class_In_charge as "Class In-charge"
+				Ending_Date as "Ending Date"
+				Starting_Date as "Starting Date"
+				Days_Meet as "Days Meet"
+				Class_Title as "Class Title"
+			)
+			options
+			(
+	 			display field = Class_Status
+				record count  = enable
+				icon = "design-2-selection"
+	 		)
+			conditional formatting
+			(
+				"class teacher"
+				{
+				format = "color:#bd588b;"
+				}
+				"class tittle"
+				{
+				fields = [Class_Title]
+				format = "font-weight:bold;color:#57869e;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = 1
+		     			title = "Overview"
+						fields
+						(
+							Class_Title as "Class Title"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Class_Title as "Class Title"
+							Starting_Date as "Starting Date"
+							Ending_Date as "Ending Date"
+							Days_Meet as "Days Meet"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Overview"
+		     			related field = Class_In_charge
+						fields
+						(
+							Photo
+							Name
+							Address
+							Phone_Number as "Phone Number"
+							Official__Email_ID as "Official Email ID"
+						)
+					)
+					datablock3
+					(
+			 			layout type = -2
+		     			title = "Overview"
+		     			related field = Students
+						fields
+						(
+							Registration_Number as "Registration Number"
+							Photo
+							Student_Name as "Name"
+							Address
+							Age
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Staff_Details
+	{
+		displayname= "Staff Details"
+		icon = "users-network"
+		form Add_Staff
+		{
+			displayname = "Add Staff"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Name
+			(
+    			type = name
+     			prefix1
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name1
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name1
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix1
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			must have unique Official__Email_ID
+			(
+    			type = email
+				displayname = "Official Email ID"
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			must have Phone_Number
+			(
+    			type = phonenumber
+				displayname = "Phone Number"
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			must have Gender
+			(
+				type = radiobuttons
+				values = {"Male","Female"}
+				initial value = "Male"
+				layout = 3
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			must have Designation
+			(
+				type = picklist
+				values = {"Class Admin"}
+				others option = true
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			Department
+			(
+				type = picklist
+				values = {"Department 1","Department 2","Department 3"}
+				others option = true
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			Address
+			(
+    			type = address
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_11
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_21
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city1
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province1
+     			(
+	     			  type = state_province
+	     			  displayname = "State Province"
+     			) 
+     			postal_Code1
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country1
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude1
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude1
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Photo
+			(
+    			type = image
+				source  = public_url,file
+				aspect ratio = original
+				camera = primary
+				show gallery = true
+				switch camera = true
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					Add_Staff
+					(
+   						type = submit
+   						displayname = "Add Staff"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	section Student_Details
+	{
+		displayname= "Student Details"
+		icon = "users-multiple-19"
+		form Add_Student
+		{
+			displayname = "Add Student"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Registration_Number
+			(
+				type = number
+				displayname = "Registration Number"
+				maxchar = 9
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			Student_Details
+			(
+    			type = plaintext
+				value = "<span style=\"font-size: 15.6px; font-weight: 600; line-height: 36px\"><a>Student Details</a></span>"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Student_Name
+			(
+    			type = name
+				displayname = "Name"
+     			prefix1
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name1
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name1
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix1
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			must have Date_of_Birth
+			(
+    			type = date
+				displayname = "Date of Birth"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			ErrorText
+			(
+    			type = plaintext
+				value = "<div style=\"text-align: center\"><span style=\"color: red\">Please enter a valid date</span></div>"
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			Age
+			(
+				type = number
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			must have Gender
+			(
+				type = radiobuttons
+				values = {"Male","Female"}
+				initial value = "Male"
+				layout = 3
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			Nationality
+			(
+    			type = text
+				maxchar = 254
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			Contact_No
+			(
+    			type = phonenumber
+				displayname = "Contact No"
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			unique Email
+			(
+    			type = email
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			Student_Status
+			(
+				type = radiobuttons
+				displayname = "Student Status"
+				values = {"Active","Archive"}
+				initial value = "Active"
+				layout = 2
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Photo
+			(
+    			type = image
+				source  = public_url,file
+				aspect ratio = original
+				camera = primary
+				show gallery = true
+				switch camera = true
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			Parent_Guardian_Details
+			(
+    			type = plaintext
+				value = "<span style=\"font-size: 15.6px; font-weight: 600; line-height: 36px\"><a>Parent/Guardian Details</a></span>"
+	 			row = 1
+	 			column = 2   
+				width = 300px
+			)
+			must have Parent_Name1
+			(
+    			type = name
+				displayname = "Parent Name"
+     			prefix2
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name2
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name2
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix2
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 2   
+				width = 300px
+			)
+			must have Parent_Email
+			(
+    			type = email
+	 			row = 1
+	 			column = 2   
+				width = 300px
+			)
+			Mobile1
+			(
+    			type = phonenumber
+				displayname = "Mobile"
+	 			row = 1
+	 			column = 2   
+				width = 300px
+			)
+			Father_s_Occupation
+			(
+    			type = text
+				displayname = "Occupation"
+	 			row = 1
+	 			column = 2   
+				width = 300px
+			)
+			Address
+			(
+    			type = address
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_11
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_21
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city1
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province1
+     			(
+	     			  type = state_province
+	     			  displayname = "State Province"
+     			) 
+     			postal_Code1
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country1
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude1
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude1
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					Add_Student
+					(
+   						type = submit
+   						displayname = "Add Student"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list Active_Students
+		{
+			displayName = "Active Students"
+			show all rows from Add_Student  [Student_Status == "Active"]  
+			(
+				Student_Name  as "Name"
+	 			(
+	      			displayformat = [first_name1+""+prefix1+""+last_name1+""+suffix1]
+	 			)
+				Parent_Name1  as "Parent Name"
+	 			(
+	      			displayformat = [first_name2+""+prefix2+""+last_name2+""+suffix2]
+	 			)
+				Email
+				Contact_No as "Contact No"
+				Parent_Email
+				Mobile1 as "Mobile"
+				Father_s_Occupation as "Occupation"
+				Student_Status as "Student Status"
+				Age
+				Gender
+				Photo
+				Registration_Number as "Registration Number"
+			)
+			group by
+			(
+				Student_Status ascending
+			)
+			sort by
+			(
+				Student_Status ascending
+			)
+			options
+			(
+				icon = "users-2-b-check"
+	 		)
+			custom actions
+			(
+				"Archive Student"
+				(
+	  			workflow = Active_Archive1
+				show action in view header = true
+				show action in edit record menu = true
+				)
+				"Add Into Class"
+				(
+	  			workflow = Add_into_class1
+				show action in view header = true
+				show action in edit record menu = true
+				)
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = 6
+					datablock1
+					(
+			 			layout type = 19
+		     			title = "Overview"
+						fields
+						(
+							Photo
+							Student_Name as "Name"
+							Registration_Number as "Registration Number"
+							Age
+							Gender
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+								"Archive Student"
+								"Add Into Class"
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Student Details"
+						fields
+						(
+							Photo
+							Student_Name as "Name"
+							Registration_Number as "Registration Number"
+							Age
+							Gender
+							Contact_No as "Contact No"
+							Student_Status as "Student Status"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Parent/Guardian Derails"
+						fields
+						(
+							Parent_Name1 as "Parent Name"
+							Parent_Email
+							Mobile1 as "Mobile"
+							Father_s_Occupation as "Occupation"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+			 			"Archive Student"
+			 			"Add Into Class"
+    	 			)
+    			)
+			)
+		}
+		list Archive_Students
+		{
+			displayName = "Archive Students"
+			show all rows from Add_Student  [Student_Status == "Archive"]  
+			(
+				Student_Name  as "Name"
+	 			(
+	      			displayformat = [first_name1+""+prefix1+""+last_name1+""+suffix1]
+	 			)
+				Parent_Name1  as "Parent Name"
+	 			(
+	      			displayformat = [first_name2+""+prefix2+""+last_name2+""+suffix2]
+	 			)
+				Email
+				Address 
+	 			(
+	      			displayformat = [address_line_11+""+address_line_21+""+district_city1+""+state_province1+""+postal_Code1+""+country1]
+	      			enable = Show_As_Text
+	 			)
+				Contact_No as "Contact No"
+				Nationality
+				Parent_Email
+				Mobile1 as "Mobile"
+				Father_s_Occupation as "Occupation"
+				Student_Status as "Student Status"
+				Photo
+				Gender
+				Age
+				Registration_Number as "Registration Number"
+			)
+			options
+			(
+				icon = "arrows-2-block-down"
+	 		)
+			custom actions
+			(
+				"Active Student"
+				(
+	  			workflow = Active_Archive2
+				show action in view header = true
+				show action in edit record menu = true
+				)
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = 6
+					datablock1
+					(
+			 			layout type = 19
+		     			title = "Overview"
+						fields
+						(
+							Photo
+							Student_Name as "Name"
+							Registration_Number as "Registration Number"
+							Age
+							Gender
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+								"Active Student"
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Student Details"
+						fields
+						(
+							Photo
+							Registration_Number as "Registration Number"
+							Student_Name as "Name"
+							Age
+							Gender
+							Contact_No as "Contact No"
+							Nationality
+							Student_Status as "Student Status"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Parent/Guardian Details"
+						fields
+						(
+							Parent_Name1 as "Parent Name"
+							Parent_Email
+							Mobile1 as "Mobile"
+							Father_s_Occupation as "Occupation"
+							Address
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+			 			"Active Student"
+    	 			)
+    			)
+			)
+		}
+	}
+	section New_Section3
+	{
+		displayname= "Admin View"
+		icon = "users-2-home"
+		list Staffs
+		{
+			displayName = "Staffs"
+			show all rows from Add_Staff    
+			(
+				Department
+				Gender
+				Official__Email_ID as "Official Email ID"
+				Designation
+				Phone_Number as "Phone Number"
+				Photo
+			)
+			filters
+			(
+				Department
+			)
+			options
+			(
+				icon = "users-multiple-11"
+	 		)
+			custom actions
+			(
+				"Add Into Class"
+				(
+	  			workflow = Add_staff_into_class
+				show action in view header = true
+				)
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = 6
+					datablock1
+					(
+			 			layout type = 19
+		     			title = "Class Incharge"
+						fields
+						(
+							Photo
+							Designation
+							Official__Email_ID as "Official Email ID"
+							Phone_Number as "Phone Number"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+								"Add Into Class"
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Staff Details"
+						fields
+						(
+							Photo
+							Gender
+							Designation
+							Department
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Contact Details"
+						fields
+						(
+							Official__Email_ID as "Official Email ID"
+							Phone_Number as "Phone Number"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+			 			"Add Into Class"
+    	 			)
+    			)
+			)
+		}
+		calendar Attendance_View
+		{
+			displayName = "Attendance View"
+			show all rows from Fill_Attendance    
+			(
+				Class
+				Number_Of_Present_Students as "Number Of Present Students"
+				Number_Of_Absent_Students as "Number Of Absent Students"
+				Attendance_Type as "Attendance Type"
+				Attendance_Date as "Attendance Date"
+			)
+			options
+			(
+				display type = week
+				week start day = sunday
+				display field = Class
+				start date = Attendance_Date
+				default date 
+				(
+	    			day   = Today
+	    			month = Currentmonth
+	    			year  = Currentyear
+				)
+				icon = "ui-1-calendar-grid-58"
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 4
+		     			title = "Overview"
+						fields
+						(
+							Class
+							Attendance_Date as "Attendance Date"
+							Attendance_Type as "Attendance Type"
+							Number_Of_Present_Students as "Number Of Present Students"
+							Number_Of_Absent_Students as "Number Of Absent Students"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 2
+		     			title = "Overview"
+						fields
+						(
+							Attendance_Date as "Attendance Date"
+							Attendance_Type as "Attendance Type"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Overview"
+		     			related field = Class
+						fields
+						(
+							Class_Title as "Class Title"
+							Class_In_charge as "Class In-charge "
+							Students
+						)
+					)
+					datablock3
+					(
+			 			layout type = -2
+		     			title = "Overview"
+		     			related field = Present_Students
+						fields
+						(
+							Photo
+							Student_Name as "Name"
+							Registration_Number as "Registration Number"
+							Age
+							Gender
+						)
+					)
+					datablock4
+					(
+			 			layout type = -2
+		     			title = "Overview"
+		     			related field = Absent_Students
+						fields
+						(
+							Photo
+							Student_Name as "Name"
+							Registration_Number as "Registration Number"
+							Age
+							Gender
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section New_Section1
+	{
+		displayname= "My Class Reports"
+		icon = "users-2-man-down"
+		list My_Classes
+		{
+			displayName = "My Classes"
+			show all rows from Add_Class  [Class_In_charge.Official__Email_ID == zoho.loginuserid]  
+			(
+				Days_Meet as "Days Meet"
+				Class_Title as "Class Title"
+				Starting_Date as "Starting Date"
+				Ending_Date as "Ending Date"
+				Class_Status as "Class Status"
+			)
+			options
+			(
+				icon = "users-single-position"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 4
+		     			title = "Overview"
+						fields
+						(
+							Class_Title as "Class Title"
+							Class_Status as "Class Status"
+							Starting_Date as "Starting Date"
+							Ending_Date as "Ending Date"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Class_Title as "Class Title"
+							Starting_Date as "Starting Date"
+							Ending_Date as "Ending Date"
+							Class_Status as "Class Status"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Overview"
+		     			related field = Class_In_charge
+						fields
+						(
+							Photo
+							Name
+							Address
+							Official__Email_ID as "Official Email ID"
+							Phone_Number as "Phone Number"
+						)
+					)
+					datablock3
+					(
+			 			layout type = -2
+		     			title = "Overview"
+		     			related field = Students
+						fields
+						(
+							Photo
+							Student_Name as "Name"
+							Registration_Number as "Registration Number"
+							Gender
+							Age
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		calendar My_Class_Attendance_View
+		{
+			displayName = "My Class Attendance View"
+			show all rows from Fill_Attendance  [Added_User == zoho.loginuser]  
+			(
+				Attendance_Date as "Attendance Date"
+				Class
+				Attendance_Type as "Attendance Type"
+				Number_Of_Present_Students as "Number Of Present Students"
+				Number_Of_Absent_Students as "Number Of Absent Students"
+			)
+			options
+			(
+				display type = week
+				week start day = sunday
+				display field = Class
+				start date = Attendance_Date
+				default date 
+				(
+	    			day   = Today
+	    			month = Currentmonth
+	    			year  = Currentyear
+				)
+				icon = "ui-1-calendar-grid-61"
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = 1
+		     			title = "Overview"
+						fields
+						(
+							Class
+							Attendance_Type as "Attendance Type"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Attendance_Date as "Attendance Date"
+							Class
+							Attendance_Type as "Attendance Type"
+							Number_Of_Present_Students as "Number Of Present Students"
+							Number_Of_Absent_Students as "Number Of Absent Students"
+						)
+					)
+					datablock3
+					(
+			 			layout type = -2
+		     			title = "Overview"
+		     			related field = Present_Students[Added_User == zoho.loginuser]
+						fields
+						(
+							Photo
+							Student_Name as "Name"
+							Registration_Number as "Registration Number"
+							Gender
+							Age
+						)
+					)
+					datablock4
+					(
+			 			layout type = -2
+		     			title = "Overview"
+		     			related field = Absent_Students[Added_User == zoho.loginuser]
+						fields
+						(
+							Photo
+							Student_Name as "Name"
+							Registration_Number as "Registration Number"
+							Gender
+							Age
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Send_Mail
+	{
+		displayname= "Mails"
+		icon = "ui-1-email-85"
+		form Mark_Latecomers
+		{
+			displayname = "Mark Latecomers"
+			store data in zc = false
+			success message = ""
+			field alignment = left
+			feature property = 32
+					hide = true
+			must have Select_Late_Comers
+			(
+				type = list	
+				displayname = "Select Late Comers"
+				values  = Add_Student[Student_Status == "Active"].ID
+    			displayformat = [Registration_Number]
+				sortorder = ascending
+				height = 60px
+	 			row = 3
+	 			column = 1   
+				width = medium
+			)
+			Class
+			(
+				type = picklist	
+				values  = Fill_Attendance.ID
+    			displayformat = [Attendance_Date]
+				sortorder = ascending
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				Save
+				(
+   					type = submit
+   					displayname = "Save"
+				)
+				Reset
+				(
+   					type = reset
+   					displayname = "Reset"
+				)
+			}
+		}
+		form Send_Mail
+		{
+			displayname = "Send Mail"
+			success message = "Mail sent successfully"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have To
+			(
+				type = picklist
+				values = {"Class admins","Parents","Students","All"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Students
+			(
+				type = list	
+				values  = Add_Student[Student_Status is null].ID
+    			displayformat = [Registration_Number]
+				sortorder = ascending
+				height = 60px
+    			description
+    			[
+    				type = help_text
+    			 	message = "Select Students to send mail to Students or parents."
+    			]
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Classes
+			(
+				type = list	
+				values  = Add_Class[Class_Status == "Active"].ID
+    			displayformat = [Class_Title]
+				sortorder = ascending
+				height = 60px
+    			description
+    			[
+    				type = help_text
+    			 	message = "Select Class to send mail to class admin"
+    			]
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Subject_field
+			(
+    			type = text
+				displayname = "Subject"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Message
+			(
+    			type = richtext
+				height = 200px
+				toolbar = enable
+				[
+					style, font-color, background-color, alignment, link, table, bullets-and-numbering, 
+					font-size : {1, 2, 3, 4, 5, 6, 7},
+					font-family : {"Serif", "Arimo", "Ptmono", "Heuristica", "OpenSans", "Tinos", "Lato", "DejaVuSans", "ComicNeue"}
+				]
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-3-send"
+			)
+			actions
+			{
+				on add
+				{
+					Send_Mail
+					(
+   						type = submit
+   						displayname = "Send Mail"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list Send_Mail_Report
+		{
+			displayName = "Send Mail Report"
+			show all rows from Send_Mail    
+			(
+				To
+				Subject_field as "Subject"
+				Message
+			)
+			options
+			(
+				icon = "ui-1-email-84"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 4
+		     			title = "Overview"
+						fields
+						(
+							To
+							Message
+							Subject_field as "Subject"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							To
+						)
+					)
+					datablock4
+					(
+			 			layout type = 1
+		     			title = "Message"
+						fields
+						(
+							Subject_field as "Subject"
+							Message
+						)
+					)
+					datablock5
+					(
+			 			layout type = -2
+		     			title = "Overview"
+		     			related field = Classes
+						fields
+						(
+							Class_Title as "Class Title"
+							Class_In_charge as "Class In-charge "
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section page
+	{
+		displayname= "Hidden Section"
+		form Select_class
+		{
+			displayname = "Select class"
+			store data in zc = false
+			success message = ""
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Student_Staff_ID
+			(
+				type = number
+				displayname = "Student/Staff ID"
+				maxchar = 19
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Class
+			(
+				type = picklist	
+				values  = Add_Class[Class_Status == "Active"].ID
+    			displayformat = [Class_Title]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				Add
+				(
+   					type = submit
+   					displayname = "Add"
+				)
+				Reset
+				(
+   					type = reset
+   					displayname = "Reset"
+				)
+			}
+		}
+	}
+		 functions
+		 {
+			 Deluge
+			 {
+				 void Add_into_class.add_into_class(int thisId)
+         {
+         	openUrl(zoho.appuri + "#Form:Select_class?Student_Staff_ID=" + thisId,"popup window");
+         }
+				 map calendar_functions.calendar_view(String calen)
+         {
+         	day_of_week = {"1":"Sun","2":"Mon","3":"Tue","4":"Wed","5":"Thu","6":"Fri","7":"Sat"};
+         	month_of_year = {"1":"January","2":"February","3":"March","4":"April","5":"May","6":"June","7":"July","8":"August","9":"September","10":"October","11":"November","12":"December"};
+         	flag = 0;
+         	if(input.calen == " " || input.calen == null || input.calen == "")
+         	{
+         		Calendar = zoho.currentdate;
+         		todayDate = zoho.currentdate;
+         		flag = 1;
+         	}
+         	else if(calen.toDate().getMonth() == zoho.currentdate.getMonth() && calen.toDate().getYear() == zoho.currentdate.getYear())
+         	{
+         		Calendar = calen.toDate();
+         		todayDate = calen.toDate();
+         		flag = 2;
+         	}
+         	else if(input.calen != " " || input.calen != null || input.calen != "")
+         	{
+         		if(calen.toDate() == zoho.currentdate)
+         		{
+         			Calendar = zoho.currentdate;
+         			todayDate = zoho.currentdate;
+         			flag = 1;
+         		}
+         		else
+         		{
+         			Calendar = calen.toDate();
+         			todayDate = calen.toDate();
+         			flag = 0;
+         		}
+         	}
+         	info Calendar;
+         	year = Calendar.getYear();
+         	month = Calendar.getMonth();
+         	today = Calendar.getDay();
+         	weekday = Calendar.getDayOfWeek();
+         	DAYS_OF_WEEK = 7;
+         	DAYS_OF_MONTH = eomonth(Calendar,0).getDay();
+         	CurrentCalendar = toStartOfMonth(Calendar);
+         	clndr = "<div class='mini-cal'> <div class='clndr-controls zc_tab zc_transition selected zc_expand selected-init'><a href='https://app.zohocreator.in" + zoho.appuri + "#Page:Take_Attendance?calen=" + Calendar.subMonth(1) + "' ><div class='clndr-control-button'><</div></a> <div class='month'>" + month_of_year.get(month.toString()) + "   " + year + "</div> ";
+         	if(Calendar.getMonth() == zoho.currentdate.getMonth() && Calendar.getYear() == zoho.currentdate.getYear())
+         	{
+         		clndr = clndr + "<div class='clndr-control-button rightalign'> > </div></div>";
+         	}
+         	else
+         	{
+         		clndr = clndr + "<a href='https://app.zohocreator.in" + zoho.appuri + "#Page:Take_Attendance?calen=" + Calendar.addMonth(1) + "' ><div class='clndr-control-button rightalign'> > </div></a></div>";
+         	}
+         	clndr = clndr + "<table class='clndr-table' border=0 cellspacing=0 cellpadding=0><thead><tr class='header-days'>";
+         	weekDaysLoop = {1,2,3,4,5,6,7};
+         	for each  ind in weekDaysLoop
+         	{
+         		if(weekday == ind)
+         		{
+         			clndr = clndr + "<td class='header-day bold'>" + day_of_week.get(ind.toString()) + "</td>";
+         		}
+         		else
+         		{
+         			clndr = clndr + "<td class='header-day'>" + day_of_week.get(ind.toString()) + "</td>";
+         		}
+         	}
+         	clndr = clndr + "</tr></thead><tbody>";
+         	monthDaysLoop1 = leftpad("",DAYS_OF_WEEK - 1).replaceAll(" ","1,",true).toList();
+         	monthDaysLoop = List:Int();
+         	i = 1;
+         	for each  ele1 in monthDaysLoop1
+         	{
+         		monthDaysLoop.add(i);
+         		i = i + 1;
+         	}
+         	i = 0;
+         	lastMonthLastDay = eomonth(CurrentCalendar,-1).getDay();
+         	for each  day in monthDaysLoop
+         	{
+         		if(day < CurrentCalendar.getDayOfWeek())
+         		{
+         			lastMonthDay = lastMonthLastDay.toLong() - (CurrentCalendar.getDayOfWeek() - 2);
+         			if(i == 0)
+         			{
+         				i = 1;
+         				clndr = clndr + "<tr><td class='day'><div class='day-contents' style='cursor: default;'>" + lastMonthDay + "</div></td>";
+         			}
+         			else
+         			{
+         				clndr = clndr + "<td class='day'><div class='day-contents' style='cursor: default;'>" + lastMonthDay + "</div></td>";
+         			}
+         			lastMonthLastDay = lastMonthLastDay + 1;
+         		}
+         	}
+         	monthAllDaysLoop1 = leftpad("",DAYS_OF_MONTH - 1).replaceAll(" ","1,",true).toList();
+         	monthAllDaysLoop = List:Int();
+         	i = 1;
+         	for each  ele2 in monthAllDaysLoop1
+         	{
+         		monthAllDaysLoop.add(i);
+         		i = i + 1;
+         	}
+         	info DAYS_OF_MONTH;
+         	for each  allDays in monthAllDaysLoop
+         	{
+         		week_day = CurrentCalendar.getDayOfWeek();
+         		if(week_day == 1)
+         		{
+         			clndr = clndr + "<tr>";
+         		}
+         		if(week_day <= DAYS_OF_WEEK)
+         		{
+         			day = CurrentCalendar.getDay();
+         			if(today == CurrentCalendar.getDay())
+         			{
+         				clndr = clndr + "<td class='day highlight'><a href='https://app.zohocreator.in" + zoho.appuri + "#Page:Take_Attendance?calen=" + CurrentCalendar + "&passdate=true'><div class='day-contents active'>" + day + "</div></a></td>";
+         			}
+         			else if(today >= allDays)
+         			{
+         				clndr = clndr + "<td class='day'><a href='https://app.zohocreator.in" + zoho.appuri + "#Page:Take_Attendance?calen=" + CurrentCalendar + "&passdate=true'><div class='day-contents'>" + day + "</div></a>" + "</td>";
+         			}
+         			else if(today < allDays && flag == 0)
+         			{
+         				clndr = clndr + "<td class='day'><a href='https://app.zohocreator.in" + zoho.appuri + "#Page:Take_Attendance?calen=" + CurrentCalendar + "&passdate=true'><div class='day-contents'>" + day + "</div></a>" + "</td>";
+         			}
+         			else if(today < allDays && flag == 2 && zoho.currentdate.getDay() >= allDays)
+         			{
+         				clndr = clndr + "<td class='day'><a href='https://app.zohocreator.in" + zoho.appuri + "#Page:Take_Attendance?calen=" + CurrentCalendar + "&passdate=true'><div class='day-contents'>" + day + "</div></a>" + "</td>";
+         			}
+         			else
+         			{
+         				clndr = clndr + "<td class='day'><div class='day-contents' style='cursor: default;'>" + day + "</div></td>";
+         			}
+         		}
+         		if(week_day == DAYS_OF_WEEK)
+         		{
+         			clndr = clndr + "</tr>";
+         		}
+         		CurrentCalendar = CurrentCalendar.addDay(1);
+         	}
+         	i = 1;
+         	for each  ind in weekDaysLoop
+         	{
+         		if(week_day != DAYS_OF_WEEK)
+         		{
+         			clndr = clndr + "<td class='day'><div class='day-contents' style='cursor: default;'>" + i + "</div></td>";
+         			i = i + 1;
+         			week_day = week_day + 1;
+         		}
+         	}
+         	clndr = clndr + "</tbody></table></div>";
+         	mapReturn = {"calendar":clndr,"date":todayDate};
+         	info zoho.currentdate;
+         	return mapReturn;
+         }
+				 map calendar_functions.createCalendar(string calen)
+         {
+         	day_of_week = {"1":"Sun","2":"Mon","3":"Tue","4":"Wed","5":"Thu","6":"Fri","7":"Sat"};
+         	month_of_year = {"1":"January","2":"February","3":"March","4":"April","5":"May","6":"June","7":"July","8":"August","9":"September","10":"October","11":"November","12":"December"};
+         	flag = 0;
+         	if(input.calen == " " || input.calen == null || input.calen == "")
+         	{
+         		Calendar = zoho.currentdate;
+         		todayDate = zoho.currentdate;
+         		flag = 1;
+         	}
+         	else if(calen.toDate().getMonth() == zoho.currentdate.getMonth() && calen.toDate().getYear() == zoho.currentdate.getYear())
+         	{
+         		Calendar = calen.toDate();
+         		todayDate = calen.toDate();
+         		flag = 2;
+         	}
+         	else if(input.calen != " " || input.calen != null || input.calen != "")
+         	{
+         		if(calen.toDate() == zoho.currentdate)
+         		{
+         			Calendar = zoho.currentdate;
+         			todayDate = zoho.currentdate;
+         			flag = 1;
+         		}
+         		else
+         		{
+         			Calendar = calen.toDate();
+         			todayDate = calen.toDate();
+         			flag = 0;
+         		}
+         	}
+         	info Calendar;
+         	year = Calendar.getYear();
+         	month = Calendar.getMonth();
+         	today = Calendar.getDay();
+         	weekday = Calendar.getDayOfWeek();
+         	DAYS_OF_WEEK = 7;
+         	DAYS_OF_MONTH = eomonth(Calendar,0).getDay();
+         	CurrentCalendar = toStartOfMonth(Calendar);
+         	clndr = "<div class='mini-cal'> <div class='clndr-controls zc_tab zc_transition selected zc_expand selected-init'> <div class='clndr-control-button'><a href='https://app.zohocreator.in" + zoho.appuri + "#Page:Take_Attendance_2?calen=" + Calendar.subMonth(1) + "' ><p class='clndr-previous-button'>❮</p></a></div> <div class='month'>" + month_of_year.get(month.toString()) + "   " + year + "</div> <div class='clndr-control-button rightalign'>";
+         	if(Calendar.getMonth() == zoho.currentdate.getMonth() && Calendar.getYear() == zoho.currentdate.getYear())
+         	{
+         		clndr = clndr + "<p class='clndr-next-button' style = 'color:#999'>❯</p> </div></div>";
+         	}
+         	else
+         	{
+         		clndr = clndr + "<a href='https://app.zohocreator.in" + zoho.appuri + "#Page:Take_Attendance_2?calen=" + Calendar.addMonth(1) + "' ><p class='clndr-next-button'>❯</p></a> </div></div>";
+         	}
+         	clndr = clndr + "<table class='clndr-table' border=0 cellspacing=0 cellpadding=0><thead><tr class='header-days'>";
+         	weekDaysLoop = {1,2,3,4,5,6,7};
+         	for each  ind in weekDaysLoop
+         	{
+         		if(weekday == ind)
+         		{
+         			clndr = clndr + "<td class='header-day bold'>" + day_of_week.get(ind.toString()) + "</td>";
+         		}
+         		else
+         		{
+         			clndr = clndr + "<td class='header-day'>" + day_of_week.get(ind.toString()) + "</td>";
+         		}
+         	}
+         	clndr = clndr + "</tr></thead><tbody>";
+         	monthDaysLoop1 = leftpad("",DAYS_OF_WEEK - 1).replaceAll(" ","1,",true).toList();
+         	monthDaysLoop = List:Int();
+         	i = 1;
+         	for each  ele1 in monthDaysLoop1
+         	{
+         		monthDaysLoop.add(i);
+         		i = i + 1;
+         	}
+         	i = 0;
+         	lastMonthLastDay = eomonth(CurrentCalendar,-1).getDay();
+         	for each  day in monthDaysLoop
+         	{
+         		if(day < CurrentCalendar.getDayOfWeek())
+         		{
+         			lastMonthDay = lastMonthLastDay.toLong() - (CurrentCalendar.getDayOfWeek() - 2);
+         			if(i == 0)
+         			{
+         				i = 1;
+         				clndr = clndr + "<tr><td class='day'><div class='day-contents' style='cursor: default;'>" + lastMonthDay + "</div></td>";
+         			}
+         			else
+         			{
+         				clndr = clndr + "<td class='day'><div class='day-contents' style='cursor: default;'>" + lastMonthDay + "</div></td>";
+         			}
+         			lastMonthLastDay = lastMonthLastDay + 1;
+         		}
+         	}
+         	monthAllDaysLoop1 = leftpad("",DAYS_OF_MONTH - 1).replaceAll(" ","1,",true).toList();
+         	monthAllDaysLoop = List:Int();
+         	i = 1;
+         	for each  ele2 in monthAllDaysLoop1
+         	{
+         		monthAllDaysLoop.add(i);
+         		i = i + 1;
+         	}
+         	info DAYS_OF_MONTH;
+         	for each  allDays in monthAllDaysLoop
+         	{
+         		week_day = CurrentCalendar.getDayOfWeek();
+         		if(week_day == 1)
+         		{
+         			clndr = clndr + "<tr>";
+         		}
+         		if(week_day <= DAYS_OF_WEEK)
+         		{
+         			day = CurrentCalendar.getDay();
+         			if(today == CurrentCalendar.getDay())
+         			{
+         				clndr = clndr + "<td class='day highlight'><a href='https://app.zohocreator.in" + zoho.appuri + "#Page:Take_Attendance_2?calen=" + CurrentCalendar + "&passdate=true'><div class='day-contents active'>" + day + "</div></a></td>";
+         			}
+         			else if(today >= allDays)
+         			{
+         				clndr = clndr + "<td class='day'><a href='https://app.zohocreator.in" + zoho.appuri + "#Page:Take_Attendance_2?calen=" + CurrentCalendar + "&passdate=true'><div class='day-contents'>" + day + "</div></a>" + "</td>";
+         			}
+         			else if(today < allDays && flag == 0)
+         			{
+         				clndr = clndr + "<td class='day'><a href='https://app.zohocreator.in" + zoho.appuri + "#Page:Take_Attendance_2?calen=" + CurrentCalendar + "&passdate=true'><div class='day-contents'>" + day + "</div></a>" + "</td>";
+         			}
+         			else if(today < allDays && flag == 2 && zoho.currentdate.getDay() >= allDays)
+         			{
+         				clndr = clndr + "<td class='day'><a href='https://app.zohocreator.in" + zoho.appuri + "#Page:Take_Attendance_2?calen=" + CurrentCalendar + "&passdate=true'><div class='day-contents'>" + day + "</div></a>" + "</td>";
+         			}
+         			else
+         			{
+         				clndr = clndr + "<td class='day'><div class='day-contents' style='cursor: default;'>" + day + "</div></td>";
+         			}
+         		}
+         		if(week_day == DAYS_OF_WEEK)
+         		{
+         			clndr = clndr + "</tr>";
+         		}
+         		CurrentCalendar = CurrentCalendar.addDay(1);
+         	}
+         	i = 1;
+         	for each  ind in weekDaysLoop
+         	{
+         		if(week_day != DAYS_OF_WEEK)
+         		{
+         			clndr = clndr + "<td class='day'><div class='day-contents' style='cursor: default;'>" + i + "</div></td>";
+         			i = i + 1;
+         			week_day = week_day + 1;
+         		}
+         	}
+         	clndr = clndr + "</tbody></table></div>";
+         	mapReturn = {"calendar":clndr,"date":todayDate};
+         	info zoho.currentdate;
+         	return mapReturn;
+         }
+				 void classCustomActions.changeClassStatus(int recID)
+         {
+         	a = Add_Class[ID == input.recID];
+         	if(a.Class_Status == "Active")
+         	{
+         		a.Class_Status="Archive";
+         	}
+         	else
+         	{
+         		a.Class_Status="Active";
+         	}
+         }
+				 list Schedule_Functions.mail_mesg_builder()
+         {
+         	active_students = Add_Student[Student_Status == "Active"];
+         	list_of_email_msgs = List();
+         	for each  student in active_students
+         	{
+         		email_msg = Map();
+         		email_msg.put("parent_mail",student.Parent_Email);
+         		msg = (("Hi " + student.Parent_Name1) + "<br><br>Your Son/Daughter " + student.Student_Name) + "'s this week attence report has been sent to you. Plaese check.<br><br>";
+         		classes_of_students = Add_Class[Students.contains(student.ID)];
+         		for each  class_of_student in classes_of_students
+         		{
+         			msg = msg + "<div style = 'text-align:center;'><div>" + class_of_student.Class_Title + "</div><table border = 1>";
+         			this_week_classes = Fill_Attendance[Class == class_of_student.ID && Attendance_Date in last week];
+         			for each  class in this_week_classes
+         			{
+         				msg = msg + "<tr><th>" + class.Attendance_Date + "</th>";
+         				student_status = "Present";
+         				if(class.Absent_Students.contains(student.ID))
+         				{
+         					student_status = "Absent";
+         				}
+         				if(class.Late_Comers.contains(student.ID))
+         				{
+         					student_status = "Late";
+         				}
+         				msg = msg + "<td>" + student_status + "</td></tr>";
+         			}
+         			msg = msg + "</table></div>";
+         			if(this_week_classes.count() != 0)
+         			{
+         				email_msg.put("message",msg);
+         			}
+         		}
+         		if(email_msg.get("message") != null)
+         		{
+         			list_of_email_msgs.add(email_msg);
+         		}
+         	}
+         	return list_of_email_msgs;
+         }
+				 void Schedule_Functions.send_status_to_parent()
+         {
+         	active_students = Add_Student[Student_Status == "Active"];
+         	for each  student in active_students
+         	{
+         		msg = (("Hi " + student.Parent_Name1) + "<br><br>Your Son/Daughter " + student.Student_Name) + "'s this week attence report has been sent to you. Plaese check.<br><br>";
+         		classes_of_students = Add_Class[Students.contains(student.ID)];
+         		for each  class_of_student in classes_of_students
+         		{
+         			msg = msg + "<div style = 'text-align:center;'><div>" + class_of_student.Class_Title + "</div><table border = 1>";
+         			this_week_classes = Fill_Attendance[Class == class_of_student.ID || Attendance_Date in last week];
+         			for each  class in this_week_classes
+         			{
+         				msg = msg + "<tr><th>" + class.Attendance_Date + "</th>";
+         				student_status = "Present";
+         				if(class.Absent_Students.contains(student.ID))
+         				{
+         					student_status = "Absent";
+         				}
+         				if(class.Late_Comers.contains(student.ID))
+         				{
+         					student_status = "Late";
+         				}
+         				msg = msg + "<td>" + student_status + "</td></tr>";
+         			}
+         			msg = msg + "</table></div>";
+         		}
+         		info zoho.currenttime;
+         	}
+         }
+				 void studentsCustomActions.changeStudentStatus(int recID)
+         {
+         	thisStudent = Add_Student[ID == input.recID];
+         	if(thisStudent.Student_Status == "Active")
+         	{
+         		thisStudent.Student_Status="Archive";
+         	}
+         	else
+         	{
+         		thisStudent.Student_Status="Active";
+         	}
+         }
+				 void Update_Attendance.latecomers(int this_class_id)
+         {
+         	this_class = Fill_Attendance[ID == this_class_id].Absent_Students.getAll();
+         	openUrl(zoho.appuri + "#Form:Mark_Latecomers?Class=" + this_class_id,"popup window");
+         }
+			 }
+		 }
+
+
+
+
+		workflow
+		{
+		form
+		{
+			On_click_Button_Scripts as "On-click Button Scripts"
+			{
+				type =  form
+				form = Select_class
+				button = Add
+				on click
+				{
+					actions 
+					{
+					on click
+					(
+						class = Add_Class[ID == input.Class];
+										Students = Add_Student[ID == input.Student_Staff_ID];
+										if(Students.count() > 0)
+										{
+											class_students = class.Students;
+											class_students.add(input.Student_Staff_ID);
+											class.Students=class_students;
+										}
+										else
+										{
+											class.Class_In_charge=input.Student_Staff_ID;
+										}
+					)
+						openURL("http://#Script:page.close","new window");
+					}
+				}
+			}
+			Onsuccess_scripts as "Onsuccess scripts"
+			{
+				type =  form
+				form = Mark_Latecomers
+				button = Save
+				on click
+				{
+					actions 
+					{
+					on click
+					(
+						class_to_update = Fill_Attendance[ID == input.Class];
+										class_to_update.Late_Comers=input.Select_Late_Comers;
+										for each  student in input.Select_Late_Comers
+										{
+											class_to_update.Present_Students.add(student);
+										}
+					)
+					}
+				}
+			}
+			Field_Scripts2 as "Field Scripts"
+			{
+				type =  form
+				form = Add_Class
+				record event = on add or edit
+
+				field rules
+				{
+					actions  (Date_unbounded == true)
+					{
+						hide Ending_Date,Starting_Date;
+					}
+				}
+
+			}
+			Field_Scripts5 as "Field Scripts"
+			{
+				type =  form
+				form = Add_Class
+				record event = on add or edit
+
+				on user input of Ending_Date
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Ending_Date < input.Starting_Date)
+										{
+											alert "End date must be greater than start date";
+											input.Ending_Date = null;
+										}
+						)
+					}
+				}
+
+			}
+			Field_Scripts6 as "Field Scripts"
+			{
+				type =  form
+				form = Add_Class
+				record event = on add or edit
+
+				on user input of Date_unbounded
+				{
+					actions  (Date_unbounded == true)
+					{
+						custom deluge script
+						(
+											if(Date_unbounded)
+										{
+											input.Starting_Date = null;
+											input.Ending_Date = null;
+										}
+						)
+					}
+				}
+
+			}
+			Field_Scripts7 as "Field Scripts"
+			{
+				type =  form
+				form = Add_Student
+				record event = on add or edit
+
+				field rules
+				{
+					actions 
+					{
+						disable Age;
+						hide Registration_Number,ErrorText,Student_Status;
+					}
+				}
+
+			}
+			Field_Scripts8 as "Field Scripts"
+			{
+				type =  form
+				form = Add_Student
+				record event = on add or edit
+
+				on user input of Date_of_Birth
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Date_of_Birth > zoho.currentdate)
+										{
+											alert "Enter Valid date of birth";
+											input.Date_of_Birth = null;
+										}
+										else
+										{
+											input.Age = yearsBetween(input.Date_of_Birth,zoho.currentdate);
+										}
+						)
+					}
+				}
+
+			}
+			Validation1 as "Validation"
+			{
+				type =  form
+				form = Add_Class
+				record event = on add
+
+				on validate
+				{
+					actions  (Date_unbounded == false)
+					{
+						custom deluge script
+						(
+											if(input.Starting_Date == null || input.Ending_Date == null)
+										{
+											alert "Please mention dates";
+											cancel submit;
+										}
+						)
+					}
+				}
+
+			}
+			Registration_Number_Gener as "Registration Number Generation(On Success Scr)"
+			{
+				type =  form
+				form = Add_Student
+				record event = on add
+
+				on success
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											studentDetails = Add_Student[ID != 0];
+										if(studentDetails.count() > 1)
+										{
+											maxRegistrationNumber = studentDetails.maximum(Registration_Number);
+											input.Registration_Number = maxRegistrationNumber + 1;
+										}
+										else if(studentDetails.count() == 1)
+										{
+											input.Registration_Number = 1;
+										}
+										success message "Student Registration Number is " + input.Registration_Number;
+						)
+					}
+				}
+
+			}
+			Field_Scripts9 as "Field Scripts"
+			{
+				type =  form
+				form = Fill_Attendance
+				record event = on add or edit
+
+				field rules
+				{
+					actions 
+					{
+						hide Number_Of_Present_Students,Absent_Students,Late_Comers,Number_Of_Absent_Students;
+						disable Attendance_Date;
+					}
+					actions  (Class is not null)
+					{
+						show Present_Students;
+					}
+				}
+
+			}
+			Field_Scripts10 as "Field Scripts"
+			{
+				type =  form
+				form = Fill_Attendance
+				record event = on add or edit
+
+				on user input of Attendance_Date
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Attendance_Date <= zoho.currentdate)
+										{
+											days = {"1":"Sunday","2":"Monday","3":"Tuesday","4":"Wednesday","5":"Thursday","6":"Friday","7":"Saturday"};
+											weekDay = input.Attendance_Date.getDayOfWeek();
+											classes = List();
+											for each  thisClass in Add_Class[Class_Status == "Active" && Days_Meet in days.get(weekDay.toString())]
+											{
+												classes.add(thisClass);
+											}
+											input.Class:ui.add(classes);
+										}
+										if(input.Attendance_Date > zoho.currentdate)
+										{
+											alert "Future Date is not Allowed";
+											input.Attendance_Date = null;
+											input.Class:ui.add({});
+										}
+						)
+					}
+				}
+
+			}
+			Field_Scripts11 as "Field Scripts"
+			{
+				type =  form
+				form = Fill_Attendance
+				record event = on add or edit
+
+				on user input of Class
+				{
+					actions  (Class is not null)
+					{
+						custom deluge script
+						(
+											class_Details = Add_Class[ID == input.Class];
+										student_list = class_Details.Students;
+										input.Present_Students:ui.add(student_list);
+						)
+					}
+				}
+
+			}
+			On_success_Scripts1 as "On success Scripts"
+			{
+				type =  form
+				form = Fill_Attendance
+				record event = on add or edit
+
+				on success
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											thisClass = Add_Class[ID == input.Class];
+										students = thisClass.Students;
+										ab_students = List();
+										for each  student in students
+										{
+											if(student.ID not in input.Present_Students)
+											{
+												ab_students.add(student);
+											}
+										}
+										input.Absent_Students = ab_students;
+										input.Number_Of_Present_Students = input.Present_Students.size();
+										input.Number_Of_Absent_Students = ab_students.size();
+										success message "Attendance record has been saved";
+						)
+					}
+				}
+
+			}
+			Field_Scripts12 as "Field Scripts"
+			{
+				type =  form
+				form = Select_class
+				record event = on add
+
+				field rules
+				{
+					actions 
+					{
+						hide Student_Staff_ID;
+					}
+				}
+
+			}
+			On_load_scripts2 as "On load scripts"
+			{
+				type =  form
+				form = Select_class
+				record event = on add
+
+				on load
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											if(Student_Staff_ID != null)
+										{
+											this_student = Add_Student[ID == input.Student_Staff_ID];
+											if(this_student.count() > 0)
+											{
+												// 		workaround
+												allClasses = Add_Class[ID != 0].ID.getAll();
+												classes = Add_Class[Students == this_student.ID].ID.getAll();
+												allClasses.removeAll(classes);
+												input.Class:ui.add(allClasses);
+											}
+											else
+											{
+												classes = Add_Class[Class_In_charge == null && Class_Status == "Active"].ID.getAll();
+												input.Class:ui.add(classes);
+											}
+										}
+						)
+					}
+				}
+
+			}
+			field_scripts13 as "field scripts"
+			{
+				type =  form
+				form = Send_Mail
+				record event = on add
+
+				field rules
+				{
+					actions  (To is null)
+					{
+						hide Classes,Students;
+					}
+				}
+
+			}
+			field_scripts14 as "field scripts"
+			{
+				type =  form
+				form = Send_Mail
+				record event = on add
+
+				on success
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											to_mail_IDs = List();
+										if(input.To == "Class admins" || input.To == "All")
+										{
+											for each  class in input.Classes
+											{
+												to_mail_IDs.add(class.Class_In_charge.Official__Email_ID);
+											}
+										}
+										if(input.To == "Students" || input.To == "Parents" || input.To == "All")
+										{
+											for each  student in input.Students
+											{
+												if(input.To == "Students" || input.To == "All")
+												{
+													to_mail_IDs.add(student.Email);
+												}
+												if(input.To == "Parents" || input.To == "All")
+												{
+													to_mail_IDs.add(student.Parent_Email);
+												}
+											}
+										}
+										sendmail
+										[
+											from :zoho.loginuserid
+											to :to_mail_IDs
+											subject :input.Subject_field
+											message :input.Message
+										]
+						)
+					}
+				}
+
+			}
+			field_scripts15 as "field scripts"
+			{
+				type =  form
+				form = Send_Mail
+				record event = on add
+
+				on user input of To
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											input.Classes = null;
+										input.Students = null;
+										if(input.To == "All")
+										{
+											show Classes;
+											show Students;
+										}
+										else if(input.To == "Class admins")
+										{
+											show Classes;
+											hide Students;
+										}
+										else if(input.To == "Students" || input.To == "Parents")
+										{
+											show Students;
+											hide Classes;
+										}
+						)
+					}
+				}
+
+			}
+			Updation_scripts1 as "Updation scripts"
+			{
+				type =  form
+				form = Mark_Latecomers
+				record event = on add
+
+				field rules
+				{
+					actions 
+					{
+						disable Class;
+					}
+				}
+
+			}
+			Onload_Scripts1 as "Onload Scripts"
+			{
+				type =  form
+				form = Mark_Latecomers
+				record event = on add
+
+				on load
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											today_class = Fill_Attendance[ID == input.Class];
+										/* absenties = List();
+																																																																																for each  student in today_class.Absent_Students
+																																																																																{
+																																																																																	absenties.add(student.ID);
+																																																																																} */
+										input.Select_Late_Comers:ui.add(today_class.Absent_Students);
+						)
+					}
+				}
+
+			}
+			Share_scripts1 as "Share scripts"
+			{
+				type =  form
+				form = Add_Staff
+				record event = on add
+
+				on success
+				{
+					actions 
+					{
+						success message "Staff have been added";
+					}
+					actions 
+					{
+						custom deluge script
+						(
+											thisapp.permissions.assignUserInProfile(input.Official__Email_ID,"Class Admin");
+						)
+						sendmail
+						(
+							from : "zoho.adminuserid"
+							to : Official__Email_ID
+							subject : "Conformation Mail"
+							message : "Hii <b>${first_name1},</b><div>&nbsp; &nbsp; &nbsp;&nbsp;</div><div>&nbsp; &nbsp; &nbsp; You have been added to the staff. You may access our application with the link have been shared.</div><div>&nbsp; &nbsp; &nbsp;&nbsp;</div><div>&nbsp; &nbsp; &nbsp;&nbsp;<b><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://app.zohocreator.in+zoho.appuri/\" title=\"Access the Application\">Click here</a>&nbsp;</b>to access our app.</div><div><br /></div><div>Regards,</div><div>${zoho.adminuserid}<br /></div>"
+						)
+					}
+				}
+
+			}
+			delete_user_scripts1 as "delete user scripts"
+			{
+				type =  form
+				form = Add_Staff
+				record event = on delete
+
+				on success
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											thisapp.permissions.deleteuser(input.Official__Email_ID);
+						)
+						success message "Staff have been removed form the user of the application";
+						success message "User Has been removed from the application";
+					}
+				}
+
+			}
+			on_load_scripts3 as "on load scripts"
+			{
+				type =  form
+				form = Fill_Attendance
+				record event = on edit
+
+				on load
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											class_Details = Add_Class[ID == input.Class];
+										students = input.Present_Students;
+										disable Class;
+										student_list = class_Details.Students;
+										input.Present_Students:ui.add(student_list);
+										Present_Students.select(students);
+						)
+					}
+				}
+
+			}
+			On_Load_Scripts4 as "On Load Scripts"
+			{
+				type =  form
+				form = Fill_Attendance
+				record event = on add
+
+				on load
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Attendance_Date <= zoho.currentdate)
+										{
+											days = {"1":"Sunday","2":"Monday","3":"Tuesday","4":"Wednesday","5":"Thursday","6":"Friday","7":"Saturday"};
+											weekDay = input.Attendance_Date.getDayOfWeek();
+											classes = List();
+											for each  thisClass in Add_Class[Class_Status == "Active" && Days_Meet in days.get(weekDay.toString())]
+											{
+												classes.add(thisClass);
+											}
+											input.Class:ui.add(classes);
+										}
+										if(input.Attendance_Date > zoho.currentdate)
+										{
+											alert "Future Date is not Allowed";
+											input.Attendance_Date = null;
+											input.Class:ui.add({});
+										}
+						)
+					}
+				}
+
+			}
+		}
+
+		schedule
+		{
+			Send_weekly_report_to_par as "Send_weekly_report_to_par"
+			{
+				type =  schedule
+				start = "2018-03-11 08:00:00"
+				frequency = weekly
+				time zone = "IST"
+				on start
+				{
+					actions 
+					{
+					on load
+					(
+						list_of_mail_contents = thisapp.Schedule_Functions.mail_mesg_builder();
+										for each  mail_content in list_of_mail_contents
+										{
+											sendmail
+											[
+												from :zoho.adminuserid
+												to :mail_content.get("parent_mail")
+												subject :"Attendance Report"
+												message :mail_content.get('message')
+											]
+										}
+					)
+					}
+				}
+			}
+		}
+
+
+
+		functions
+		{
+			Active_Archive1 as "Active/Archive"
+			{
+				type =  functions
+				form = Add_Student
+				execution type = for each record	
+				on start
+				{
+					actions 
+					{
+						thisapp.classCustomActions.changeClassStatus(ID);
+					}
+				}
+			}
+			Active_Archive2 as "Active/Archive"
+			{
+				type =  functions
+				form = Add_Student
+				execution type = for each record	
+				on start
+				{
+					actions 
+					{
+						thisapp.studentsCustomActions.changeStudentStatus(ID);
+					}
+				}
+			}
+			Active_Class as "Active Class"
+			{
+				type =  functions
+				form = Add_Class
+				execution type = for each record	
+				on start
+				{
+					actions 
+					{
+						thisapp.classCustomActions.changeClassStatus(ID);
+					}
+				}
+			}
+			Archive_Class as "Archive Class"
+			{
+				type =  functions
+				form = Add_Class
+				execution type = for each record	
+				on start
+				{
+					actions 
+					{
+						thisapp.classCustomActions.changeClassStatus(ID);
+					}
+				}
+			}
+			Add_into_class1 as "Add into class"
+			{
+				type =  functions
+				form = Add_Student
+				execution type = for each record	
+				on start
+				{
+					actions 
+					{
+						thisapp.Add_into_class.add_into_class(ID);
+					}
+				}
+			}
+			Add_staff_into_class as "Add staff into class"
+			{
+				type =  functions
+				form = Add_Staff
+				execution type = for each record	
+				on start
+				{
+					actions 
+					{
+						thisapp.Add_into_class.add_into_class(ID);
+					}
+				}
+			}
+			Mark_Late_comers as "Mark Late comers"
+			{
+				type =  functions
+				form = Fill_Attendance
+				execution type = for each record	
+				on start
+				{
+					actions 
+					{
+						thisapp.Update_Attendance.latecomers(ID);
+					}
+				}
+			}
+		}
+	}
+	share_settings
+	{
+			"Read"
+			{
+				name = "Read"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "This profile will have read permission for all components\n"
+			}
+			"Write"
+			{
+				name = "Write"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "This profile will have write permission for all components\n"
+			}
+			"Class Admin"
+			{
+				name = "Class Admin"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "Class Admin Profile\n"
+				ModulePermissions
+				{
+					Fill_Attendance
+					{
+						enabled= Create,Import,Export,Tab 
+						ReportPermissions
+						{
+							My_Class_Attendance_View={"View","Edit","Delete"}
+						}
+						FieldPermissions
+						{
+							Absent_Students{visibility:true,readonly:false}
+							Attendance_Type{visibility:true,readonly:false}
+							Present_Students{visibility:true,readonly:false}
+							Attendance_Date{visibility:true,readonly:false}
+							Number_Of_Present_Students{visibility:true,readonly:false}
+							Class{visibility:true,readonly:false}
+							Late_Comers{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Number_Of_Absent_Students{visibility:true,readonly:false}
+						}
+					}
+					Select_class
+					{
+						FieldPermissions
+						{
+							Class{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Student_Staff_ID{visibility:true,readonly:false}
+						}
+					}
+					Mark_Latecomers
+					{
+						FieldPermissions
+						{
+							Select_Late_Comers{visibility:true,readonly:false}
+							Class{visibility:true,readonly:false}
+						}
+					}
+					Add_Class
+					{
+						ReportPermissions
+						{
+							My_Classes={"View"}
+						}
+						FieldPermissions
+						{
+							Days_Meet{visibility:true,readonly:false}
+							Date_unbounded{visibility:true,readonly:false}
+							Starting_Date{visibility:true,readonly:false}
+							Ending_Date{visibility:true,readonly:false}
+							Class_Title{visibility:true,readonly:false}
+							Students{visibility:true,readonly:false}
+							Class_Status{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Class_In_charge{visibility:true,readonly:false}
+						}
+					}
+					Send_Mail
+					{
+						enabled= Create,Tab 
+						ReportPermissions
+						{
+							Send_Mail_Report={"View"}
+						}
+						FieldPermissions
+						{
+							Students{visibility:false,readonly:false}
+							Message{visibility:true,readonly:false}
+							Subject_field{visibility:true,readonly:false}
+							To{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Classes{visibility:true,readonly:false}
+						}
+					}
+					Add_Staff
+					{
+						FieldPermissions
+						{
+							Designation{visibility:true,readonly:false}
+							Department{visibility:true,readonly:false}
+							Address{visibility:true,readonly:false}
+							Official__Email_ID{visibility:true,readonly:false}
+							Photo{visibility:true,readonly:false}
+							Phone_Number{visibility:true,readonly:false}
+							Gender{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Name{visibility:true,readonly:false}
+						}
+					}
+					Add_Student
+					{
+						FieldPermissions
+						{
+							Parent_Guardian_Details{visibility:true,readonly:false}
+							Email{visibility:true,readonly:false}
+							Date_of_Birth{visibility:true,readonly:false}
+							ErrorText{visibility:true,readonly:false}
+							Address{visibility:true,readonly:false}
+							Father_s_Occupation{visibility:true,readonly:false}
+							Contact_No{visibility:true,readonly:false}
+							Parent_Email{visibility:true,readonly:false}
+							Photo{visibility:true,readonly:false}
+							Student_Details{visibility:true,readonly:false}
+							Gender{visibility:true,readonly:false}
+							Student_Status{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Registration_Number{visibility:true,readonly:false}
+							Nationality{visibility:true,readonly:false}
+							Mobile1{visibility:true,readonly:false}
+							Student_Name{visibility:true,readonly:false}
+							Parent_Name1{visibility:true,readonly:false}
+							Age{visibility:true,readonly:false}
+						}
+					}
+					Attendance_Iframe_Page
+					{
+						enabled = tab
+					}
+				}
+			}
+			"Administrator"
+			{
+				name = "Administrator"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "This profile will have all the permissions.\n"
+			}
+			"Customer"
+			{
+				name = "Customer"
+				type = Customer_Portal
+				permissions = {Chat:false, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "This is the default profile having only add and view permission.\n"
+			}
+			roles
+			{
+				"CEO"
+				{
+					description = "User belonging to this role can access data of all other users.\n\n\n"
+				}
+			}
+	}
+
+	customize
+	{
+		
+		layout = "tab"
+		color = "black"
+		base theme = "professional"
+		new theme = 5
+		icons = true
+		icons style = solid
+		font = "lato"
+		color options
+    	{
+        color = "1"
+    	}
+    	icon
+    	{
+        	type = "1"
+        	name = "zc-ab-education-3"
+        	background color = "green"
+        	foreground color = "#FFFFFF"
+    	}
+    	logo
+    	{
+        	preference = "none"
+        	placement = "left"
+    	}
+	}
+
+
+	phone
+	{
+		section  Student_Attendance
+		{
+			displayname= "Take Attendance"
+			form  Fill_Attendance
+			{
+				layout = auto
+				hide = true
+			}
+		}
+		section  Dashboard
+		{
+			displayname= "Fill Attendance"
+			page Attendance_Iframe_Page
+			{
+				hide = true
+			}
+			page Take_Attendance
+			{
+			}
+			list Today_Attendance
+			{
+			}
+		}
+		section  Add_Class
+		{
+			displayname= "Classes"
+			list Active_Classes
+			{
+				hide = true
+			}
+			list Archive_Classes
+			{
+				hide = true
+			}
+			form  Add_Class
+			{
+				layout = auto
+			}
+			kanban All_Classes
+			{
+			}
+		}
+		section  Staff_Details
+		{
+			displayname= "Staff Details"
+			form  Add_Staff
+			{
+				layout = auto
+				hide = true
+			}
+		}
+		section  Student_Details
+		{
+			displayname= "Student Details"
+			form  Add_Student
+			{
+				layout = auto
+			}
+			list Active_Students
+			{
+			}
+			list Archive_Students
+			{
+			}
+		}
+		section  New_Section3
+		{
+			displayname= "Admin View"
+			list Staffs
+			{
+			}
+			calendar Attendance_View
+			{
+			}
+		}
+		section  New_Section1
+		{
+			displayname= "My Class Reports"
+			list My_Classes
+			{
+			}
+			calendar My_Class_Attendance_View
+			{
+			}
+		}
+		section  Send_Mail
+		{
+			displayname= "Mails"
+			form  Mark_Latecomers
+			{
+				layout = auto
+				hide = true
+			}
+			form  Send_Mail
+			{
+				layout = auto
+			}
+			list Send_Mail_Report
+			{
+			}
+		}
+		section  page
+		{
+			displayname= "Hidden Section"
+			form  Select_class
+			{
+				layout = auto
+				hide = true
+			}
+		}
+		customize
+		{
+        	layout = slidingpane
+		 	icons style = outline
+        	font = "lato"
+            style = "3"
+        	color options
+        	{
+             	color = rose
+         	}
+         	logo
+         	{
+             	preference = "none"
+         	}
+		}
+	}
+	tablet
+	{
+		section  Student_Attendance
+		{
+			displayname= "Take Attendance"
+			form  Fill_Attendance
+			{
+				layout = auto
+				hide = true
+			}
+		}
+		section  Dashboard
+		{
+			displayname= "Fill Attendance"
+			page Attendance_Iframe_Page
+			{
+				hide = true
+			}
+			page Take_Attendance
+			{
+			}
+			list Today_Attendance
+			{
+			}
+		}
+		section  Add_Class
+		{
+			displayname= "Classes"
+			list Active_Classes
+			{
+				hide = true
+			}
+			list Archive_Classes
+			{
+				hide = true
+			}
+			form  Add_Class
+			{
+				layout = auto
+			}
+			kanban All_Classes
+			{
+			}
+		}
+		section  Staff_Details
+		{
+			displayname= "Staff Details"
+			form  Add_Staff
+			{
+				layout = auto
+				hide = true
+			}
+		}
+		section  Student_Details
+		{
+			displayname= "Student Details"
+			form  Add_Student
+			{
+				layout = auto
+			}
+			list Active_Students
+			{
+			}
+			list Archive_Students
+			{
+			}
+		}
+		section  New_Section3
+		{
+			displayname= "Admin View"
+			list Staffs
+			{
+			}
+			calendar Attendance_View
+			{
+			}
+		}
+		section  New_Section1
+		{
+			displayname= "My Class Reports"
+			list My_Classes
+			{
+			}
+			calendar My_Class_Attendance_View
+			{
+			}
+		}
+		section  Send_Mail
+		{
+			displayname= "Mails"
+			form  Mark_Latecomers
+			{
+				layout = auto
+				hide = true
+			}
+			form  Send_Mail
+			{
+				layout = auto
+			}
+			list Send_Mail_Report
+			{
+			}
+		}
+		section  page
+		{
+			displayname= "Hidden Section"
+			form  Select_class
+			{
+				layout = auto
+				hide = true
+			}
+		}
+		customize
+		{
+        	layout = slidingpane
+		 	icons style = outline
+        	font = "lato"
+            style = "3"
+        	color options
+        	{
+             	color = rose
+         	}
+         	logo
+         	{
+             	preference = "none"
+         	}
+		}
+	}
+	
+}

@@ -1,0 +1,6644 @@
+/*
+ * Author       : wapope7431_asuflex
+ * Generated on : 10-May-2023 13:45:34
+ * Version      : 1.0
+ */
+ application "Order Management"
+ {
+ 	date format = "dd-MMM-yyyy"
+ 	time zone = "Asia/Kolkata"
+ 	time format = "24-hr"
+ 	section Dashboard
+	{
+				 page Dashboard 
+	 	 { 
+ 	 	 displayname = "Dashboard"
+
+ 	 	 icon = "" 
+	 	 Content="<zml    \t\t\n\t\t\n\t\t\n\t\t\twebDeviceConfig='{\"layout\":{\"displayType\":\"card\",\"design\":\"fluid\",\"style\":\"padding-right:0px;padding-top:0px;padding-bottom:0px;padding-left:0px;\"}}'\n\t\t\n\t\t\tmobileDeviceConfig='{\"layout\":{\"displayType\":\"card\",\"design\":\"onebyone\",\"forcedOrientation\":false}}'\n\t\t\n>\n\t<layout>\n\t<row>\n\t<column\n   \t\t width=\"36%\"\n   \t>\n\t<row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<panel elementName=\"Panel\"\n \n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpadding = '20px'\n\tbgColor = '#FFFFFF'\n\n\t\twidth = '100%'\n\t\thAlign = 'center'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<pr \n\t>\n\t<pc \n\t\n>\n\t<image  \n\t\n\tcolor = '#2A70E7'\n\tbgColor = '#FFFFFF'\n\twidth = '52px'\n\theight = '52px'\n\ttype = 'icon'\n\tvalue = 'zc-li-solid business-money-coins'\n\tsize = '32px'\n\tcornerRadius = '0px'\n\/>\n<\/pc>\n<\/pr><pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginTop = '3px'\n\tcolor = '#2A70E7'\n\tsize = '36px'\n\tbold = 'true' \n\ttype = 'Form Data'\n\n\tdisplayType = 'actual'\n\tdecimalPlaces = '2'\n\tthousandsSeperator = ','\n\tdecimalSeperator = '.'\n\tnumberScale = 'none'\n\n\n\t  \n\t\tcriteria = 'Order_Date is today &amp;&amp; Status != &quot;Cancelled&quot;'\n\t  value = 'thisapp.New_Order.Net_Total.sum'\n>\n<\/text>\n\n<\/pc>\n<\/pr><pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginTop = '3px'\n\tcolor = '#333333'\n\tsize = '16px'\n\ttype = 'Text'\n\n\n\n\t  \n\t  value = 'Today&apos;s Sales'\n>\n<\/text>\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<panel elementName=\"Panel 1\"\n \n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpadding = '20px'\n\tbgColor = '#FFFFFF'\n\n\t\twidth = '100%'\n\t\thAlign = 'center'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<pr \n\t>\n\t<pc \n\t\n>\n\t<image  \n\t\n\tcolor = '#2A70E7'\n\tbgColor = '#FFFFFF'\n\twidth = '52px'\n\theight = '52px'\n\ttype = 'icon'\n\tvalue = 'zc-li-solid loader-refresh spin'\n\tsize = '32px'\n\tcornerRadius = '0px'\n\/>\n<\/pc>\n<\/pr><pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginTop = '3px'\n\tcolor = '#2A70E7'\n\tsize = '36px'\n\tbold = 'true' \n\ttype = 'Form Data'\n\n\tdisplayType = 'actual'\n\n\n\t  \n\t\tcriteria = 'Status == &quot;Active&quot; &amp;&amp; In_Stock &lt;= Reorder_Level'\n\t  value = 'thisapp.Add_Product.ID.count'\n>\n<\/text>\n\n<\/pc>\n<\/pr><pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginTop = '3px'\n\tcolor = '#333333'\n\tsize = '16px'\n\ttype = 'Text'\n\n\n\n\t  \n\t  value = 'Products To Reorder'\n>\n<\/text>\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column>\n<\/row>\n<\/column><column\n   \t\t width=\"36%\"\n   \t>\n\t<row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<panel elementName=\"Panel 2\"\n \n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpadding = '20px'\n\tbgColor = '#FFFFFF'\n\n\t\twidth = '100%'\n\t\thAlign = 'center'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<pr \n\t>\n\t<pc \n\t\n>\n\t<image  \n\t\n\tcolor = '#2A70E7'\n\tbgColor = '#FFFFFF'\n\twidth = '52px'\n\theight = '52px'\n\ttype = 'icon'\n\tvalue = 'zc-li-solid business-money-time'\n\tsize = '32px'\n\tcornerRadius = '0px'\n\/>\n<\/pc>\n<\/pr><pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginTop = '3px'\n\tcolor = '#2A70E7'\n\tsize = '36px'\n\tbold = 'true' \n\ttype = 'Form Data'\n\n\tdisplayType = 'actual'\n\n\n\t  \n\t\tcriteria = 'Invoice_Date is today'\n\t  value = 'thisapp.Add_Invoice.Net_Total.sum'\n>\n<\/text>\n\n<\/pc>\n<\/pr><pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginTop = '3px'\n\tcolor = '#333333'\n\tsize = '16px'\n\ttype = 'Text'\n\n\n\n\t  \n\t  value = 'Today&apos;s Expenses'\n>\n<\/text>\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<panel elementName=\"Panel 3\"\n \n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpadding = '20px'\n\tbgColor = '#FFFFFF'\n\n\t\twidth = '100%'\n\t\thAlign = 'center'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<pr \n\t>\n\t<pc \n\t\n>\n\t<image  \n\t\n\tcolor = '#2A70E7'\n\tbgColor = '#FFFFFF'\n\twidth = '52px'\n\theight = '52px'\n\ttype = 'icon'\n\tvalue = 'zc-li-solid loader-dots-06 spin'\n\tsize = '32px'\n\tcornerRadius = '0px'\n\/>\n<\/pc>\n<\/pr><pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginTop = '3px'\n\tcolor = '#2A70E7'\n\tsize = '36px'\n\tbold = 'true' \n\ttype = 'Form Data'\n\n\tdisplayType = 'actual'\n\n\n\t  \n\t\tcriteria = 'Status == &quot;Pending&quot;'\n\t  value = 'thisapp.New_Order.ID.count'\n>\n<\/text>\n\n<\/pc>\n<\/pr><pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginTop = '3px'\n\tcolor = '#333333'\n\tsize = '16px'\n\ttype = 'Text'\n\n\n\n\t  \n\t  value = 'Pending Orders'\n>\n<\/text>\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column>\n<\/row>\n<\/column><column\n   \t\t width=\"28%\"\n   \t>\n\t<dsp id='html_snippet' elementName=\"HTML Snippet\"\n bgColor=\"\" \n>\n\t<![CDATA[htmlpage html_snippet()\ncontent\n&lt;%{\n\t\/\/Adding admin as employee if admin is not in employee records\n\tadminCount = Add_Employee[Email == zoho.adminuserid].count();\n\tif(adminCount == 0)\n\t{\n\t\tinsert into Add_Employee\n\t\t[\n\t\t\tEmail=zoho.adminuserid\n\t\t\tName.first_name=zoho.adminuser\n\t\t\tAdded_User=zoho.loginuser\n\t\t]\n\t}\n\tif(Add_Product.count() == 0)\n\t{\n\t\topenUrl(&quot;#Form:Add_Product&quot;,&quot;popup window&quot;);\n\t}\n\t%&gt;\n&lt;style&gt;\n.zc-pb-embed-placeholder\n{\n\tpadding:0;\n}\n.headerDiv \n\t\t\t  {\n\t\t\t    height: 35px;\n\t\t\t\tpadding: 10px 10px 0;\n\t\t\t    border-bottom: 1px solid #eaeaea;\n\t\t\t  }\n\t\t\t  .headerText\n\t\t\t  {\n\t\t\t  float:left;\n\t\t\t  font-size: 18px;\n\t\t\t  color: #454540;\n\t\t\t  }\n.quickLinksUL\n\t\t\t  {\n\t\t\t    padding: 0 10px;\n\t\t\t    margin: 0;\n\t\t\t    list-style: none;\n\t\t\t  }\n\t\t\t  .quickLinksLI\n\t\t\t  {\n\t\t\t\tfont-size: larger;\n\t\t\t    border: 1px solid #f4f4f4;\n\t\t\t    text-align: center;\n\t\t\t    padding: 10px;\n\t\t\t    margin: 5px 0px;\n\t\t\t  }\n\n\t&lt;\/style&gt;\n\t&lt;div class=&quot;headerDiv&quot;&gt;&lt;div class=&quot;headerText&quot;&gt;Quick Links&lt;\/div&gt;&lt;\/div&gt;\n&lt;ul class=&quot;quickLinksUL&quot;&gt;\n\t\t\t  \t\t\t\t&lt;li class=&quot;quickLinksLI&quot;&gt;&lt;a href=&quot;#Form:New_Order&quot; target=&quot;_blank&quot;&gt;New Order&lt;\/a&gt;&lt;\/li&gt;\n\t\t\t  \t\t\t\t&lt;li class=&quot;quickLinksLI&quot;&gt;&lt;a href=&quot;#Form:Add_Invoice&quot; target=&quot;_blank&quot;&gt;Add Invoice&lt;\/a&gt;&lt;\/li&gt;\n\t\t\t  \t\t\t\t&lt;li class=&quot;quickLinksLI&quot;&gt;&lt;a href=&quot;#Report:Inventory&quot; target=&quot;_blank&quot;&gt;Inventory&lt;\/a&gt;&lt;\/li&gt;\n\t\t\t  \t\t\t\t&lt;li class=&quot;quickLinksLI&quot;&gt;&lt;a href=&quot;#Report:Customers&quot; target=&quot;_blank&quot;&gt;Customers&lt;\/a&gt;&lt;\/li&gt;\n\t\t\t  \t\t\t\t&lt;li class=&quot;quickLinksLI&quot;&gt;&lt;a href=&quot;#Report:Suppliers&quot; target=&quot;_blank&quot;&gt;Suppliers&lt;\/a&gt;&lt;\/li&gt;\n\t\t\t\t\t\t\t&lt;li class=&quot;quickLinksLI&quot;&gt;&lt;a href=&quot;#Report:Employees&quot; target=&quot;_blank&quot;&gt;Employees&lt;\/a&gt;&lt;\/li&gt;\n\t\t\t  \t\t\t&lt;\/ul&gt;\n&lt;%\n\n}%&gt;]]>\n<\/dsp>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<report \n\telementName=\"Report\"\n\n\t\n\ttitle = 'Monthly Sales'\n\t\n\t\ttitleSize = '20px'\n\t\tappLinkName = 'thisapp'\n\t\tlinkName = 'Monthly_Sales'\n\t\n\t\tiszreport = 'true'\n\theightType = 'custom'\n\theightValue = '400'\n\n\/>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<report \n\telementName=\"Report 1\"\n\n\t\n\ttitle = 'Monthly Expenses'\n\t\n\t\ttitleSize = '20px'\n\t\tappLinkName = 'thisapp'\n\t\tlinkName = 'Monthly_Expenses'\n\t\n\t\tiszreport = 'true'\n\theightType = 'custom'\n\theightValue = '400'\n\n\/>\n<\/column>\n<\/row>\n<\/layout>\n<\/zml>" 
+ 	 	}
+	}
+	section New_Order
+	{
+		displayname= "Orders"
+		form New_Order
+		{
+			displayname = "New Order"
+			success message = "New order has been placed!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Order_ID
+			(
+    			type = autonumber
+				displayname = "Order ID"
+				start index = 1
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Sales_Owner
+			(
+				type = picklist	
+				displayname = "Sales Owner"
+				values  = Add_Employee.ID
+    			displayformat = [Employee_ID + " - " + Name.first_name + Name.last_name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Customer
+			(
+				type = picklist	
+				values  = Add_Customer.ID
+    			displayformat = [Customer_ID + " - " + Name.first_name + " " + Name.last_name]
+				allow new entries = true
+				[
+					displayname = "Add New Customer"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Order_Date
+			(
+    			type = date
+				displayname = "Order Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Delivery_Agency
+			(
+				type = picklist	
+				displayname = "Delivery Agency"
+				values  = Add_Delivery_Agency.ID
+    			displayformat = [Agency_Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Estimated_Delivery_Date
+			(
+    			type = date
+				displayname = "Estimated Delivery Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Actual_Delivery_Date
+			(
+    			type = date
+				displayname = "Actual Delivery Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Products
+			(
+				type = grid
+				values  = Orders_Details.ID
+    			bidirectional = Order_ID
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+			Section1
+			(
+				type = section
+				displayname = "Section"
+	 			row = 3
+	 			column = 0   
+				width = medium
+			)
+			Sub_Total
+			(
+				displayname = "Sub Total"
+				type = INR
+				initial value = 0.00
+	 			row = 3
+	 			column = 1   
+				width = medium
+			)
+			must have Tax
+			(
+    			type = percentage
+				initial value = 0%
+	 			row = 3
+	 			column = 1   
+				width = medium
+			)
+			Net_Total
+			(
+				displayname = "Net Total"
+				type = INR
+				initial value = 0.00
+	 			row = 3
+	 			column = 1   
+				width = medium
+			)
+			Reason_For_Cancellation
+			(
+    			type = textarea
+				displayname = "Reason For Cancellation"
+				height = 100px
+	 			row = 3
+	 			column = 1   
+				width = medium
+			)
+			Status
+			(
+				type = picklist
+				values = {"Pending","Ready For Delivery","Delivered","Cancelled"}
+				initial value = "Pending"
+	 			row = 3
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list Pending_Orders
+		{
+			displayName = "Pending Orders"
+			show all rows from New_Order  [Status == "Pending"]  
+			(
+				Products
+				(
+					field = Products.Order_ID + " " + Products.Product
+				)
+				Reason_For_Cancellation as "Reason For Cancellation"
+				Status
+				Sub_Total as "Sub Total"
+				custom action "Ready To Delivery"
+				(
+	  			workflow = Ready_For_Delivery
+				show action in view header = true
+				execute action for collection of records
+				column header = "Ready To Delivery"
+				)
+				Tax
+				Net_Total as "Net Total"
+				Order_Date as "Order Date"
+				Delivery_Agency as "Delivery Agency"
+				Customer
+				Order_ID as "Order ID"
+				Estimated_Delivery_Date as "Estimated Delivery Date"
+				Sales_Owner as "Sales Owner"
+			)
+			group by
+			(
+				Order_Date ascending
+			)
+			custom actions
+			(
+				"Cancel"
+				(
+	  			workflow = Cancel
+				show action in view header = true
+				execute action for collection of records
+				)
+			)
+			conditional formatting
+			(
+				"overDueAlert"
+				{
+				condition = (Estimated_Delivery_Date < zoho.currentdate)
+				fields = [Estimated_Delivery_Date]
+				format = "color:#e64d3b;background-color:#ffffff;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Order_ID as "Order ID"
+							Order_Date as "Order Date"
+							Sales_Owner as "Sales Owner"
+							Customer
+							Products.Order_ID as "Products"
+							Estimated_Delivery_Date as "Estimated Delivery Date"
+				"Ready To Delivery"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+								"Ready To Delivery" as "Ready For Delivery"
+								"Cancel"
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Order_ID as "Order ID"
+							Order_Date as "Order Date"
+							Sales_Owner as "Sales Owner"
+							Delivery_Agency as "Delivery Agency"
+							Estimated_Delivery_Date as "Estimated Delivery Date"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Customer"
+		     			related field = Customer
+						fields
+						(
+							Customer_ID as "Customer ID"
+							Name
+							Phone_Number as "Phone Number"
+							Email
+							Address
+						)
+					)
+					datablock3
+					(
+			 			layout type = -1
+		     			title = "Products"
+		     			related field = Products
+						fields
+						(
+							Product
+							Unit_Of_Measure as "Unit Of Measure"
+							Quantity
+							Unit_Price as "Unit Price"
+							Total
+						)
+					)
+					datablock4
+					(
+			 			layout type = -2
+		     			title = "Invoice Details"
+						fields
+						(
+							Sub_Total as "Sub Total"
+							Tax
+							Net_Total as "Net Total"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+			 			"Ready To Delivery" as "Ready For Delivery"
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Ready_For_Delivery
+		{
+			displayName = "Ready For Delivery"
+			show all rows from New_Order  [Status == "Ready For Delivery"]  
+			(
+				Reason_For_Cancellation as "Reason For Cancellation"
+				Status
+				Sub_Total as "Sub Total"
+				Tax
+				custom action "Delivered"
+				(
+	  			workflow = Delivered
+				show action in view header = true
+				execute action for collection of records
+				column header = "Delivered"
+				)
+				Net_Total as "Net Total"
+				Order_Date as "Order Date"
+				Delivery_Agency as "Delivery Agency"
+				Estimated_Delivery_Date as "Estimated Delivery Date"
+				Customer
+				Sales_Owner as "Sales Owner"
+				Products.Order_ID as "Products"
+				Order_ID as "Order ID"
+			)
+			group by
+			(
+				Order_Date ascending
+			)
+			conditional formatting
+			(
+				"overDueAlert"
+				{
+				condition = (Estimated_Delivery_Date < zoho.currentdate)
+				fields = [Estimated_Delivery_Date]
+				format = "color:#e64d3b;background-color:#ffffff;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+				"Delivered"
+							Order_ID as "Order ID"
+							Order_Date as "Order Date"
+							Sales_Owner as "Sales Owner"
+							Customer
+							Products.Order_ID as "Products"
+							Delivery_Agency as "Delivery Agency"
+							Estimated_Delivery_Date as "Estimated Delivery Date"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+								"Delivered"
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Order_ID as "Order ID"
+							Sales_Owner as "Sales Owner"
+							Order_Date as "Order Date"
+							Delivery_Agency as "Delivery Agency"
+							Estimated_Delivery_Date as "Estimated Delivery Date"
+						)
+					)
+					datablock3
+					(
+			 			layout type = -2
+		     			title = "Customer"
+		     			related field = Customer
+						fields
+						(
+							Customer_ID as "Customer ID"
+							Name
+							Phone_Number as "Phone Number"
+							Email
+							Address
+						)
+					)
+					datablock4
+					(
+			 			layout type = -1
+		     			title = "Products"
+		     			related field = Products
+						fields
+						(
+							Product
+							Unit_Of_Measure as "Unit Of Measure"
+							Quantity
+							Unit_Price as "Unit Price"
+							Total
+						)
+					)
+					datablock5
+					(
+			 			layout type = -2
+		     			title = "Invoice Details"
+						fields
+						(
+							Sub_Total as "Sub Total"
+							Tax
+							Net_Total as "Net Total"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+			 			"Delivered"
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list All_Orders
+		{
+			displayName = "All Orders"
+			show all rows from New_Order    
+			(
+				Actual_Delivery_Date as "Actual Delivery Date"
+				Estimated_Delivery_Date as "Estimated Delivery Date"
+				Sub_Total as "Sub Total"
+				Tax
+				Net_Total as "Net Total"
+				Delivery_Agency as "Delivery Agency"
+				Order_Date as "Order Date"
+				Products
+				(
+					field = Products.Order_ID + "-" + Products.Product
+				)
+				Status
+				Reason_For_Cancellation as "Reason For Cancellation"
+				Order_ID as "Order ID"
+				Customer
+				Sales_Owner as "Sales Owner"
+				Products.Quantity as "Products"
+			)
+			group by
+			(
+				Status ascending
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Order_ID as "Order ID"
+							Products.Order_ID as "Products"
+							Order_Date as "Order Date"
+							Sales_Owner as "Sales Owner"
+							Customer
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Order_ID as "Order ID"
+							Order_Date as "Order Date"
+							Sales_Owner as "Sales Owner"
+							Delivery_Agency as "Delivery Agency"
+							Estimated_Delivery_Date as "Estimated Delivery Date"
+							Actual_Delivery_Date as "Actual Delivery Date"
+							Reason_For_Cancellation as "Reason For Cancellation"
+							Status
+						)
+					)
+					datablock3
+					(
+			 			layout type = 4
+		     			title = "Customer"
+		     			related field = Customer
+						fields
+						(
+							Customer_ID as "Customer ID"
+							Address
+							Name
+							Phone_Number as "Phone Number"
+							Email
+						)
+					)
+					datablock4
+					(
+			 			layout type = -1
+		     			title = "Products"
+		     			related field = Products
+						fields
+						(
+							Product
+							Unit_Of_Measure as "Unit Of Measure"
+							Quantity
+							Unit_Price as "Unit Price"
+							Total
+						)
+					)
+					datablock5
+					(
+			 			layout type = -2
+		     			title = "Invoice Details"
+						fields
+						(
+							Sub_Total as "Sub Total"
+							Tax
+							Net_Total as "Net Total"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Add_Product
+	{
+		displayname= "Products"
+		form Add_Product
+		{
+			displayname = "Add Product"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Product_Group
+			(
+				type = picklist	
+				displayname = "Product Group"
+				values  = Add_Product_Group.ID
+    			displayformat = [Product_Group]
+				allow new entries = true
+				[
+					displayname = "Add New Product Group"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Product_Name
+			(
+    			type = text
+				displayname = "Product Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Product_Code
+			(
+    			type = text
+				displayname = "Product Code"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Unit_Of_Measure
+			(
+    			type = text
+				displayname = "Unit Of Measure"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Selling_Price
+			(
+				displayname = "Selling Price"
+				type = INR
+				initial value = 0.00
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have In_Stock
+			(
+				type = number
+				displayname = "In Stock"
+				initial value = 0
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Reorder_Level
+			(
+				type = number
+				displayname = "Reorder Level"
+				initial value = 0
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Status
+			(
+				type = picklist
+				values = {"Active","Inactive"}
+				initial value = "Active"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list Inventory
+		{
+			displayName = "Inventory"
+			show all rows from Add_Product  [Status == "Active"]  
+			(
+				Product_Group as "Product Group"
+				Product_Name as "Product Name"
+				(
+					width = 519px
+				)
+				Product_Code as "Product Code"
+				(
+					width = 0px
+				)
+				Selling_Price as "Selling Price"
+				Unit_Of_Measure as "Unit Of Measure"
+				In_Stock as "In Stock"
+				Reorder_Level as "Reorder Level"
+			)
+			group by
+			(
+				Product_Group ascending
+			)
+			conditional formatting
+			(
+				"LowStockAlert"
+				{
+				condition = (In_Stock <= input.Reorder_Level)
+				fields = [In_Stock]
+				format = "color:#e64d3b;background-color:#ffffff;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Product_Group as "Product Group"
+							Product_Code as "Product Code"
+							Product_Name as "Product Name"
+							Unit_Of_Measure as "Unit Of Measure"
+							In_Stock as "In Stock"
+							Reorder_Level as "Reorder Level"
+							Selling_Price as "Selling Price"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Product_Group as "Product Group"
+							Product_Code as "Product Code"
+							Product_Name as "Product Name"
+							Unit_Of_Measure as "Unit Of Measure"
+							Selling_Price as "Selling Price"
+							In_Stock as "In Stock"
+							Reorder_Level as "Reorder Level"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list All_Products
+		{
+			displayName = "All Products"
+			show all rows from Add_Product    
+			(
+				Reorder_Level as "Reorder Level"
+				Product_Group as "Product Group"
+				Unit_Of_Measure as "Unit Of Measure"
+				Status
+				Product_Name as "Product Name"
+				(
+					width = 455px
+				)
+				Product_Code as "Product Code"
+				(
+					width = 126px
+				)
+				Selling_Price as "Selling Price"
+				In_Stock as "In Stock"
+			)
+			filters
+			(
+				Status
+			)
+			group by
+			(
+				Product_Group ascending
+			)
+			custom actions
+			(
+				"Custom Action"
+				(
+	  			workflow = Mark_Active1
+				show action in view header = true
+				execute action for collection of records
+				condition = (Status == "Inactive")
+				)
+				"Mark Inactive"
+				(
+	  			workflow = Mark_Inactive
+				show action in view header = true
+				execute action for collection of records
+				condition = (Status == "Active")
+				)
+			)
+			conditional formatting
+			(
+				"LowStockAlert"
+				{
+				condition = (In_Stock <= input.Reorder_Level)
+				fields = [In_Stock]
+				format = "color:#e64d3b;background-color:#ffffff;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Product_Group as "Product Group"
+							Product_Code as "Product Code"
+							Product_Name as "Product Name"
+							Unit_Of_Measure as "Unit Of Measure"
+							Selling_Price as "Selling Price"
+							In_Stock as "In Stock"
+							Reorder_Level as "Reorder Level"
+							Status
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+								"Custom Action" as "Mark Active"
+								"Mark Inactive"
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+								"Custom Action" as "Mark Active"
+								"Mark Inactive"
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Product_Group as "Product Group"
+							Product_Code as "Product Code"
+							Product_Name as "Product Name"
+							Unit_Of_Measure as "Unit Of Measure"
+							Selling_Price as "Selling Price"
+							In_Stock as "In Stock"
+							Reorder_Level as "Reorder Level"
+							Status
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+			 			"Custom Action" as "Mark Active"
+			 			"Custom Action" as "Mark Inactive"
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Add_Product_Group
+	{
+		displayname= "Add Product Group"
+		form Add_Product_Group
+		{
+			displayname = "Add Product Group"
+			success message = "Product Group Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have unique Product_Group
+			(
+    			type = text
+				displayname = "Product Group"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list Add_Product_Group_Report
+		{
+			displayName = "Add Product Group Report"
+   			hide = true
+			show all rows from Add_Product_Group    
+			(
+				Product_Group as "Product Group"
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Product_Group as "Product Group"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Product_Group as "Product Group"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Add_Invoice
+	{
+		displayname= "Purchase"
+		form Add_Invoice
+		{
+			displayname = "Add Invoice"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Supplier
+			(
+				type = picklist	
+				values  = Add_Supplier.ID
+    			displayformat = [" " + Supplier_ID + " -" + Name.first_name + " " + Name.last_name]
+				allow new entries = true
+				[
+					displayname = "Add New Supplier"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Invoice_Date
+			(
+    			type = date
+				displayname = "Invoice Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Invoice_Number
+			(
+				type = number
+				displayname = "Invoice Number"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Products
+			(
+				type = grid
+				values  = Purchase_History.ID
+    			bidirectional = Invoice_Number
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+			must have Sub_Total
+			(
+				displayname = "Sub Total"
+				type = INR
+				initial value = 0.00
+	 			row = 3
+	 			column = 1   
+				width = medium
+			)
+			must have Tax
+			(
+    			type = percentage
+				initial value = 0%
+	 			row = 3
+	 			column = 1   
+				width = medium
+			)
+			must have Net_Total
+			(
+				displayname = "Net Total"
+				type = INR
+				initial value = 0.00
+	 			row = 3
+	 			column = 1   
+				width = medium
+			)
+			Invoice_Copy
+			(
+    			type = upload file
+				displayname = "Invoice Copy"
+				browse = local_drive
+	 			row = 3
+	 			column = 1   
+				width = medium
+			)
+			must have Submitted_By
+			(
+				type = picklist	
+				displayname = "Submitted By"
+				values  = Add_Employee.ID
+    			displayformat = [Employee_ID + " - " + Name.first_name + Name.last_name]
+				sortorder = ascending
+	 			row = 3
+	 			column = 1   
+				width = medium
+			)
+			Comments
+			(
+    			type = textarea
+				height = 100px
+	 			row = 3
+	 			column = 1   
+				width = medium
+			)
+			Add_products_to_inventory
+			(
+    			type = checkbox
+				displayname = "Add products to inventory"
+				initial value = false
+	 			row = 3
+	 			column = 1   
+				width = medium
+			)
+			Section1
+			(
+				type = section
+				displayname = "Section"
+	 			row = 3
+	 			column = 0   
+				width = medium
+			)
+	
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list Invoices
+		{
+			displayName = "Invoices"
+			show all rows from Add_Invoice    
+			(
+				Comments
+				Net_Total as "Net Total"
+				Invoice_Copy as "Invoice Copy"
+				Invoice_Date as "Invoice Date"
+				Sub_Total as "Sub Total"
+				custom action "Add To Inventory"
+				(
+	  			workflow = Add_To_Inventory1
+				show action in view header = true
+				execute action for collection of records
+				column header = "Add To Inventory"
+				condition = (Add_products_to_inventory == false)
+				)
+				Tax
+				Submitted_By as "Submitted By"
+				Supplier
+				Invoice_Number as "Invoice Number"
+				Products.Invoice_Number as "Products"
+			)
+			group by
+			(
+				Invoice_Date ascending
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+				"Add To Inventory"
+							Invoice_Date as "Invoice Date"
+							Invoice_Number as "Invoice Number"
+							Supplier
+							Products.Invoice_Number as "Products"
+							Submitted_By as "Submitted By"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+								"Add To Inventory"
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+								"Add To Inventory"
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Supplier
+							Submitted_By as "Submitted By"
+							Comments
+						)
+					)
+					datablock3
+					(
+			 			layout type = -1
+		     			title = "Products"
+		     			related field = Products
+						fields
+						(
+							Product
+							Unit_Of_Measure as "Unit Of Measure"
+							Quantity
+							Cost_Price as "Cost Price"
+							Selling_Price as "Selling Price"
+							Total
+						)
+					)
+					datablock4
+					(
+			 			layout type = -2
+		     			title = "Invoice Details"
+						fields
+						(
+							Invoice_Date as "Invoice Date"
+							Invoice_Number as "Invoice Number"
+							Invoice_Copy as "Invoice Copy"
+							Sub_Total as "Sub Total"
+							Tax
+							Net_Total as "Net Total"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+			 			"Add To Inventory"
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Purchase_History_Report
+		{
+			displayName = "Purchase History"
+			show all rows from Purchase_History    
+			(
+				Selling_Price as "Selling Price"
+				Invoice_Number as "Invoice Number"
+				Invoice_Number.Invoice_Date as "Invoice Date"
+				Cost_Price as "Cost Price"
+				Product
+				Unit_Of_Measure as "Unit Of Measure"
+				Quantity
+				Total
+			)
+			group by
+			(
+				Invoice_Number.Invoice_Date ascending
+				Invoice_Number ascending
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Product
+							Unit_Of_Measure as "Unit Of Measure"
+							Quantity
+							Cost_Price as "Cost Price"
+							Selling_Price as "Selling Price"
+							Total
+							Invoice_Number as "Invoice Number"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Invoice_Number as "Invoice Number"
+							Product
+							Unit_Of_Measure as "Unit Of Measure"
+							Quantity
+							Cost_Price as "Cost Price"
+							Selling_Price as "Selling Price"
+							Total
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Purchase_History
+	{
+		displayname= "Purchase History"
+		form Purchase_History
+		{
+			displayname = "Purchase History"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Invoice_Number
+			(
+				type = picklist	
+				displayname = "Invoice Number"
+				values  = Add_Invoice.ID
+    			bidirectional = Products
+    			displayformat = [Invoice_Number]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Product
+			(
+				type = picklist	
+				values  = Add_Product.ID
+    			displayformat = [Product_Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Unit_Of_Measure
+			(
+    			type = text
+				displayname = "Unit Of Measure"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Quantity
+			(
+				type = number
+				initial value = 0
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Cost_Price
+			(
+				displayname = "Cost Price"
+				type = INR
+				initial value = 0.00
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Selling_Price
+			(
+				displayname = "Selling Price"
+				type = INR
+				initial value = 0.00
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Total
+			(
+				type = INR
+				initial value = 0.00
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	section Add_Supplier
+	{
+		displayname= "Add Supplier"
+		form Add_Supplier
+		{
+			displayname = "Add Supplier"
+			success message = "Supplier Details Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Supplier_ID
+			(
+    			type = autonumber
+				displayname = "Supplier ID"
+				start index = 1
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have unique Supplier_Name
+			(
+    			type = text
+				displayname = "Supplier Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Website
+			(
+    			type = url
+				enable  linkname
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			plain
+			(
+    			type = plaintext
+				value = "<span style=\"font-size: 15.6px; font-weight: 600; line-height: 36px\"><a>Contact Details</a></span>"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Name
+			(
+    			type = name
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Phone_Number
+			(
+    			type = phonenumber
+				displayname = "Phone Number"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Email
+			(
+    			type = email
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Address
+			(
+    			type = address
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_12
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_22
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city2
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province2
+     			(
+	     			  type = state_province
+	     			  displayname = "State / Province"
+     			) 
+     			postal_Code2
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country2
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude2
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude2
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	section Orders_Details
+	{
+		displayname= "Orders Details"
+		form Orders_Details
+		{
+			displayname = "Orders Details"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Order_ID
+			(
+				type = picklist	
+				displayname = "Order ID"
+				values  = New_Order.ID
+    			bidirectional = Products
+    			displayformat = [Order_ID]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Product
+			(
+				type = picklist	
+				values  = Add_Product[In_Stock >= 1 && Status == "Active"].ID
+    			displayformat = [Product_Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Unit_Of_Measure
+			(
+    			type = text
+				displayname = "Unit Of Measure"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Quantity
+			(
+				type = number
+				initial value = 0
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Unit_Price
+			(
+				displayname = "Unit Price"
+				type = INR
+				initial value = 0.00
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Total
+			(
+				type = INR
+				initial value = 0.00
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list Orders_Details_Report
+		{
+			displayName = "Orders Details Report"
+   			hide = true
+			show all rows from Orders_Details    
+			(
+				Product
+				Unit_Of_Measure as "Unit Of Measure"
+				Quantity
+				Unit_Price as "Unit Price"
+				Total
+				Order_ID as "Order ID"
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Product
+							Unit_Of_Measure as "Unit Of Measure"
+							Quantity
+							Unit_Price as "Unit Price"
+							Total
+							Order_ID as "Order ID"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Product
+							Unit_Of_Measure as "Unit Of Measure"
+							Quantity
+							Unit_Price as "Unit Price"
+							Total
+							Order_ID as "Order ID"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section New_Section1
+	{
+		displayname= "Reports"
+		map Customers_Location
+		{
+			displayName = "Locate Customers"
+			show all rows from Add_Customer    
+			(
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Address 
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	      			enable = Show_As_Text
+	 			)
+				Customer_ID as "Customer ID"
+				Email
+				Phone_Number as "Phone Number"
+				Gender
+			)
+			options
+			(
+	 			display field = Address
+         		location
+         		(
+	 		 		latitude  = 40.76657525
+	 		 		longitude = -73.93837365
+         		)
+	 	 		radius = 100 Miles
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 4
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Address
+							Phone_Number as "Phone Number"
+							Email
+							Gender
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Customer_ID as "Customer ID"
+							Name
+							Gender
+							Phone_Number as "Phone Number"
+							Email
+							Address
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		pivotchart By_Products
+		{ 
+			displayname = "By Products"
+			legend = RIGHT
+			report properties
+			(
+				records displayed = all_records
+				allow export = false
+				allow drilldown and view underlying data = false
+		
+			)
+
+			based on Autoview_1536056250278_Orders_Details
+				show all rows from Orders_Details
+				(
+			Product 
+			Order_ID  as "Order ID"
+			Quantity 
+			Unit_Of_Measure  as "Unit Of Measure"
+			Total 
+			Unit_Price  as "Unit Price"
+				)
+		}
+		pivotchart By_Sales_Person
+		{ 
+			displayname = "By Sales Person"
+			legend = RIGHT
+			report properties
+			(
+				records displayed = all_records
+				allow export = false
+				allow drilldown and view underlying data = false
+		
+			)
+
+			based on Autoview_1536056424752_New_Order
+				show all rows from New_Order
+				(
+			Delivery_Agency  as "Delivery Agency"
+			Order_Date  as "Order Date"
+			Status 
+			Actual_Delivery_Date  as "Actual Delivery Date"
+			Estimated_Delivery_Date  as "Estimated Delivery Date"
+			Order_ID  as "Order ID"
+			Tax 
+			Sub_Total  as "Sub Total"
+			Customer 
+			Reason_For_Cancellation  as "Reason For Cancellation"
+			Sales_Owner  as "Sales Owner"
+			Net_Total  as "Net Total"
+				)
+		}
+		pivotchart Monthly_Sales
+		{ 
+			displayname = "Monthly Sales"
+			legend = RIGHT
+			report properties
+			(
+				records displayed = all_records
+				allow export = false
+				allow drilldown and view underlying data = false
+		
+			)
+
+			based on Autoview_1536056424752_New_Order
+				show all rows from New_Order
+				(
+			Delivery_Agency  as "Delivery Agency"
+			Order_Date  as "Order Date"
+			Status 
+			Actual_Delivery_Date  as "Actual Delivery Date"
+			Estimated_Delivery_Date  as "Estimated Delivery Date"
+			Order_ID  as "Order ID"
+			Tax 
+			Sub_Total  as "Sub Total"
+			Customer 
+			Reason_For_Cancellation  as "Reason For Cancellation"
+			Sales_Owner  as "Sales Owner"
+			Net_Total  as "Net Total"
+				)
+		}
+		pivotchart Monthly_Expenses
+		{ 
+			displayname = "Monthly Expenses"
+			legend = RIGHT
+			report properties
+			(
+				records displayed = all_records
+				allow export = false
+				allow drilldown and view underlying data = false
+		
+			)
+
+			based on Autoview_1536060719846_Add_Invoice
+				show all rows from Add_Invoice
+				(
+			Invoice_Number  as "Invoice Number"
+			Invoice_Date  as "Invoice Date"
+			Add_products_to_inventory  as "Add products to inventory"
+			Tax 
+			Sub_Total  as "Sub Total"
+			Invoice_Copy  as "Invoice Copy"
+			Net_Total  as "Net Total"
+			Supplier 
+			Comments 
+			Submitted_By  as "Submitted By"
+				)
+		}
+	}
+	section New_Section
+	{
+		displayname= "Contacts"
+		custom Customers
+		{
+			displayName = "Customers"
+			show all rows from Add_Customer    
+			(
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Address 
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	      			enable = Show_As_Text
+	 			)
+				Email
+				Gender
+				Phone_Number as "Phone Number"
+				Customer_ID as "Customer ID"
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 4
+		     			title = "Overview"
+						fields
+						(
+							Customer_ID as "Customer ID"
+							Name
+							Gender
+							Phone_Number as "Phone Number"
+							Email
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Customer_ID as "Customer ID"
+							Name
+							Gender
+							Phone_Number as "Phone Number"
+							Email
+							Address
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		custom Suppliers
+		{
+			displayName = "Suppliers"
+			show all rows from Add_Supplier    
+			(
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Supplier_Name as "Supplier Name"
+				Phone_Number as "Phone Number"
+				Email
+				Website
+				Address 
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	      			enable = Show_As_Text
+	 			)
+				Supplier_ID as "Supplier ID"
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 4
+		     			title = "Overview"
+						fields
+						(
+							Supplier_ID as "Supplier ID"
+							Supplier_Name as "Supplier Name"
+							Name
+							Email
+							Phone_Number as "Phone Number"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Supplier_ID as "Supplier ID"
+							Supplier_Name as "Supplier Name"
+							Website
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Contact Details"
+						fields
+						(
+							Name
+							Phone_Number as "Phone Number"
+							Email
+							Address
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		summary Delivery_Agencies
+		{
+			displayName = "Delivery Agencies"
+			show all rows from Add_Delivery_Agency    
+			(
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Address 
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	      			enable = Show_As_Text
+	 			)
+				Phone_Number as "Phone Number"
+				Email
+				Agency_Name as "Agency Name"
+			)
+			options
+			(
+				display rows = 10
+				display records per row = 2
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -2
+	     			recordsperrow = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Agency_Name as "Agency Name"
+							Address
+							Name
+							Email
+							Phone_Number as "Phone Number"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Agency_Name as "Agency Name"
+							Name
+							Email
+							Phone_Number as "Phone Number"
+							Address
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Add_Customer
+	{
+		displayname= "Customers"
+		form Add_Customer
+		{
+			displayname = "Add Customer"
+			success message = "Customer Details Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Customer_ID
+			(
+    			type = autonumber
+				displayname = "Customer ID"
+				start index = 1
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Name
+			(
+    			type = name
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Gender
+			(
+				type = radiobuttons
+				values = {"Male","Female"}
+				layout = 2
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Phone_Number
+			(
+    			type = phonenumber
+				displayname = "Phone Number"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have unique Email
+			(
+    			type = email
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Address
+			(
+    			type = address
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_12
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_22
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city2
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province2
+     			(
+	     			  type = state_province
+	     			  displayname = "State / Province"
+     			) 
+     			postal_Code2
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country2
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude2
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude2
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	section Add_Employee
+	{
+		displayname= "Employees"
+		form Add_Employee
+		{
+			displayname = "Add Employee"
+			success message = "Employee Details Added Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Employee_ID
+			(
+    			type = autonumber
+				displayname = "Employee ID"
+				start index = 1
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Name
+			(
+    			type = name
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Gender
+			(
+				type = radiobuttons
+				values = {"Male","Female"}
+				initial value = "Male"
+				layout = 2
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Date_Of_Birth
+			(
+    			type = date
+				displayname = "Date Of Birth"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have unique Email
+			(
+    			type = email
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Phone_Number
+			(
+    			type = phonenumber
+				displayname = "Phone Number"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Address
+			(
+    			type = address
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_12
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_22
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city2
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province2
+     			(
+	     			  type = state_province
+	     			  displayname = "State / Province"
+     			) 
+     			postal_Code2
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country2
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude2
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude2
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list Employees
+		{
+			displayName = "Employees"
+			show all rows from Add_Employee    
+			(
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Address 
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	      			enable = Show_As_Text
+	 			)
+				Phone_Number as "Phone Number"
+				Gender
+				Employee_ID as "Employee ID"
+				(
+					width = 118px
+				)
+				Email
+				Date_Of_Birth as "Date Of Birth"
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Employee_ID as "Employee ID"
+							Name
+							Gender
+							Date_Of_Birth as "Date Of Birth"
+							Phone_Number as "Phone Number"
+							Email
+							Address
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Employee_ID as "Employee ID"
+							Name
+							Gender
+							Date_Of_Birth as "Date Of Birth"
+							Phone_Number as "Phone Number"
+							Email
+							Address
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Add_Delivery_Agent
+	{
+		displayname= "Add Delivery Agent"
+		form Add_Delivery_Agency
+		{
+			displayname = "Add Delivery Agency"
+			success message = "New Agency Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have unique Agency_Name
+			(
+    			type = text
+				displayname = "Agency Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			plain
+			(
+    			type = plaintext
+				value = "<span style=\"font-size: 15.6px; font-weight: 600; line-height: 36px\"><a>Contact Details</a></span>"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Name
+			(
+    			type = name
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Email
+			(
+    			type = email
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Phone_Number
+			(
+    			type = phonenumber
+				displayname = "Phone Number"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Address
+			(
+    			type = address
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_12
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_22
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city2
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province2
+     			(
+	     			  type = state_province
+	     			  displayname = "State / Province"
+     			) 
+     			postal_Code2
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country2
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude2
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude2
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	section page
+	{
+		displayname= "Duplicated Add Reason"
+		form Add_Reason
+		{
+			displayname = "Add Reason"
+			store data in zc = false
+			success message = ""
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Reason_For_Cancellation
+			(
+    			type = textarea
+				displayname = "Reason For Cancellation"
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Order_ID
+			(
+				type = picklist	
+				displayname = "Order ID"
+				values  = New_Order.ID
+    			displayformat = [Order_ID]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				Submit
+				(
+   					type = submit
+   					displayname = "Submit"
+				)
+			}
+		}
+	}
+	section page1
+	{
+		displayname= "Duplicated Alert Message"
+		form Alert_Message
+		{
+			displayname = "Alert Message"
+			store data in zc = false
+			success message = ""
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			OrderID
+			(
+				type = picklist	
+				displayname = "Order ID"
+				values  = New_Order.ID
+    			displayformat = [Order_ID]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			plain
+			(
+    			type = plaintext
+				value = "<font color=\"#ff3333\">Requested quantity currently not available in inventory!</font>"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				Notify_Customer
+				(
+   					type = button
+   					displayname = "Notify Customer"
+				)
+				Cancel
+				(
+   					type = button
+   					displayname = "Cancel"
+				)
+			}
+		}
+	}
+		 functions
+		 {
+			 Deluge
+			 {
+				 void CustomAction.addStock(Add_Invoice invoiceDetails)
+         {
+         	//Updating each inventory item stock level
+         	for each  eachRow in invoiceDetails.Products
+         	{
+         		inventoryProducts = Add_Product[ID == eachRow.Product];
+         		inventoryProducts.In_Stock=inventoryProducts.In_Stock + eachRow.Quantity;
+         		inventoryProducts.Selling_Price=eachRow.Selling_Price;
+         	}
+         	invoiceDetails.Add_products_to_inventory=true;
+         }
+				 void CustomAction.cancelOrder(int recID)
+         {
+         	openUrl("#Form:Add_Reason?Order_ID=" + recID,"popup window");
+         }
+				 void CustomAction.delivered(New_Order orderDetails)
+         {
+         	orderDetails.Status="Delivered";
+         	orderDetails.Actual_Delivery_Date=zoho.currentdate;
+         	sendmail
+         	[
+         		from :zoho.loginuserid
+         		to :orderDetails.Customer.Email
+         		subject :"[Order ID-" + orderDetails.Order_ID + "]Order Delivered"
+         		message :"Hi,<div><br></div><div>Your order[" + orderDetails.Order_ID + "] is out for delivery.</div><div><br></div><div>Thank you for your order.</div><div><br></div><div>Regards,</div><div>" + zoho.loginuser + "</div><div><br></div><div><br></div>"
+         	]
+         }
+				 void CustomAction.readyForDelivery(New_Order orderDetails)
+         {
+         	//Validating each product availability here
+         	productsAvailable = true;
+         	for each  eachRow in orderDetails.Products
+         	{
+         		productDetails = Add_Product[ID == eachRow.Product];
+         		if(eachRow.Quantity > productDetails.In_Stock)
+         		{
+         			productsAvailable = false;
+         		}
+         	}
+         	if(productsAvailable)
+         	{
+         		for each  eachRow in orderDetails.Products
+         		{
+         			productDetails = Add_Product[ID == eachRow.Product];
+         			productDetails.In_Stock=productDetails.In_Stock - eachRow.Quantity;
+         			if(productDetails.In_Stock <= productDetails.Reorder_Level)
+         			{
+         				//Send notification mail to admin regarding stock level
+         				sendmail
+         				[
+         					from :zoho.loginuserid
+         					to :zoho.adminuserid
+         					subject :"Stock Level Alert"
+         					message :"Hi,<div><br></div><div>The stock level for the item '" + productDetails.Product_Code + "'" + " have reached the reorder level.</div><div><br></div><div>Please replenish the item as soon as possible.</div><div><br></div><div><a href=\"" + "https://app.zohocreator.in" + zoho.appuri + "#Report:Inventory?Product_Code=" + productDetails.Product_Code + "\"" + " target=\"_blank\">Click here</a> to view the more details.</div><div><br></div><div>Regards,</div><div>" + zoho.loginuser + "<br></div>"
+         				]
+         			}
+         		}
+         		orderDetails.Status="Ready For Delivery";
+         	}
+         	else
+         	{
+         		openUrl("#Form:Alert_Message?Order_ID=" + orderDetails.ID + "&zc_Header=false","Popup Window");
+         	}
+         }
+			 }
+		 }
+
+
+
+
+		workflow
+		{
+		form
+		{
+			Run_Scripts_On_Click_of_C as "Run Scripts - On Click of 'Cancel' Button"
+			{
+				type =  form
+				form = Alert_Message
+				button = Cancel
+				on click
+				{
+					actions 
+					{
+						openURL("#Report:Pending_Orders","new window");
+					}
+				}
+			}
+			Run_Scripts_On_Click_of_S as "Run Scripts - On Click of 'Submit' Button"
+			{
+				type =  form
+				form = Add_Reason
+				button = Submit
+				on click
+				{
+					actions 
+					{
+					on click
+					(
+						orderDetails = New_Order[ID == input.Order_ID];
+										orderDetails.Reason_For_Cancellation=input.Reason_For_Cancellation;
+										orderDetails.Status="Cancelled";
+										sendmail
+										[
+											from :zoho.loginuserid
+											to :orderDetails.Customer.Email
+											subject :"[Order ID-" + orderDetails.Order_ID + "]Order Cancellation"
+											message :"Hi,<div><br></div><div>We are writing to let you know that this order has been cancelled.</div><div><br></div><div>Order Number is " + orderDetails.Order_ID + "</div><div><br></div><div>We regret any inconvenience this may cause, and we hope you will provide us the opportunity to serve you as a customer again.</div><div><br></div><div>Regards,</div><div>" + zoho.loginuser + "</div>"
+										]
+					)
+						openURL("#Report:Pending_Orders","new window");
+					}
+				}
+			}
+			Run_Scripts_On_Click_of_N as "Run Scripts - On Click of 'Notify Customer' Button"
+			{
+				type =  form
+				form = Alert_Message
+				button = Notify_Customer
+				on click
+				{
+					actions 
+					{
+					on click
+					(
+						sendmail
+										[
+											from :zoho.loginuserid
+											to :input.OrderID.Customer.Email
+											subject :"[Order ID-" + input.OrderID.Order_ID + "]Out Of Stock"
+											message :"Hi,<div><br></div><div>We are sorry to inform you that the product(s) you have ordered are temporarily out of stock.</div><div><br></div><div>We have given your order highest priority and as soon as the stock is replenished your order will be on its way.</div><div><br></div><div>Thank you for waiting.</div><div><br></div><div>Regards,</div><div>" + zoho.loginuser + "</div>"
+										]
+										openUrl("#Report:Pending_Orders","same window");
+					)
+					}
+				}
+			}
+			Run_Scripts_While_Adding_7 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Product
+				record event = on add
+
+				field rules
+				{
+					actions 
+					{
+						hide Status;
+					}
+				}
+
+			}
+			Run_Scripts_While_Adding_8 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Product
+				record event = on add
+
+				on success
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											if(New_Order.count() == 0)
+										{
+											openUrl("#Form:New_Order","same window");
+										}
+						)
+					}
+				}
+
+			}
+			Run_Scripts_While_Editing5 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = Add_Product
+				record event = on edit
+
+				field rules
+				{
+					actions 
+					{
+						hide Status;
+					}
+				}
+
+			}
+			Run_Scripts_While_Adding_9 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Purchase_History
+				record event = on add
+
+				on load
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											//Redirecting to 'Add Invoice' form
+										openUrl("#Form:Add_Invoice","same window");
+						)
+					}
+				}
+
+			}
+			Run_Scripts_While_Editing6 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = Purchase_History
+				record event = on edit
+
+				on load
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											//Redirecting to update the invoice
+										openUrl("https://app.zohocreator.in" + zoho.appuri + "Add_Invoice/record-edit/Add_Invoice_Report/" + input.Invoice_Number,"same window");
+						)
+					}
+				}
+
+			}
+			Run_Scripts_While_Deletin3 as "Run Scripts - While Deleting a Record"
+			{
+				type =  form
+				form = Purchase_History
+				record event = on delete
+
+				on validate
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											//Recalculating the invoice net amount while deleting the record
+										invoiceDetails = Add_Invoice[ID == Invoice_Number];
+										invoiceDetails.Sub_Total=invoiceDetails.Sub_Total + input.Total;
+										taxAmount = invoiceDetails.Sub_Total * invoiceDetails.Tax / 100;
+										invoiceDetails.Net_Total=invoiceDetails.Sub_Total + taxAmount;
+						)
+					}
+				}
+
+			}
+			Run_Scripts_While_Adding_10 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Invoice
+				record event = on add
+
+				field rules
+				{
+					actions 
+					{
+						disable Submitted_By,Sub_Total,Net_Total;
+					}
+				}
+
+			}
+			Run_Scripts_While_Adding_11 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Invoice
+				record event = on add
+
+				on load
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											disable Products.Total;
+										disable Products.Unit_Of_Measure;
+										//Assigning loggedin user details in 'Submitted By' field
+										input.Submitted_By = Add_Employee[Email == zoho.loginuserid].ID;
+										//Autofilling the invoice date with current date
+										input.Invoice_Date = zoho.currentdate;
+						)
+					}
+				}
+
+			}
+			Run_Scripts_While_Adding_12 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Invoice
+				record event = on add
+
+				on validate
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											//Date Validation
+										if(input.Invoice_Date > zoho.currentdate)
+										{
+											alert "Invoice date can't be in future, please select the proper date!";
+											cancel submit;
+										}
+										//Updating each inventory product stock level
+										if(Add_products_to_inventory == true)
+										{
+											for each  eachRow in Products
+											{
+												inventoryProducts = Add_Product[ID == eachRow.Product];
+												inventoryProducts.In_Stock=inventoryProducts.In_Stock + eachRow.Quantity;
+											}
+										}
+						)
+					}
+				}
+
+			}
+			Run_Scripts_While_Editing7 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = Add_Invoice
+				record event = on edit
+
+				field rules
+				{
+					actions 
+					{
+						disable Submitted_By,Add_products_to_inventory,Sub_Total,Net_Total;
+					}
+				}
+
+			}
+			Run_Scripts_While_Editing8 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = Add_Invoice
+				record event = on edit
+
+				on load
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											disable Products.Total;
+										disable Products.Unit_Of_Measure;
+										//Restricting the employee to modify the record once product is added to inventory
+										if(Add_products_to_inventory == true)
+										{
+											alert "Sorry! This stock already added to inventory.";
+										}
+						)
+					}
+				}
+
+			}
+			Run_Scripts_While_Editing9 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = Add_Invoice
+				record event = on edit
+
+				on validate
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											//Date Validation
+										if(input.Invoice_Date > zoho.currentdate)
+										{
+											alert "Invoice date can't be in future, please select the proper date!";
+											cancel submit;
+										}
+										//Restricting the employee to modify the record once product is added to inventory
+										if(Add_products_to_inventory == true)
+										{
+											alert "Sorry! This stock already added to inventory.";
+											cancel submit;
+										}
+						)
+					}
+				}
+
+			}
+			Run_Scripts_On_Always2 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Invoice
+				record event = on add or edit
+
+				on user input of Sub_Total
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											//Calculating the net amount here
+										if(input.Tax != null && input.Sub_Total != null)
+										{
+											taxAmount = input.Sub_Total * input.Tax / 100;
+											input.Net_Total = input.Sub_Total + taxAmount;
+										}
+						)
+					}
+				}
+
+			}
+			Run_Scripts_On_Always3 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Invoice
+				record event = on add or edit
+
+				on user input of Products.Cost_Price
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											//Invoice Total and Sub Total calculations here.
+										if(row.Quantity != null && row.Cost_Price != null)
+										{
+											row.Total=row.Quantity * row.Cost_Price;
+										}
+										else
+										{
+											row.Total=0;
+										}
+										input.Sub_Total = 0;
+										for each  eachRow in Products
+										{
+											input.Sub_Total = input.Sub_Total + eachRow.Total;
+										}
+						)
+					}
+				}
+
+			}
+			Run_Scripts_On_Always4 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Invoice
+				record event = on add or edit
+
+				on user input of Products.Quantity
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											//Product Total and Sub Total calculations here.
+										if(row.Quantity != null && row.Cost_Price != null)
+										{
+											row.Total=row.Quantity * row.Cost_Price;
+										}
+										else
+										{
+											row.Total=0;
+										}
+										input.Sub_Total = 0;
+										for each  eachRow in Products
+										{
+											input.Sub_Total = input.Sub_Total + eachRow.Total;
+										}
+						)
+					}
+				}
+
+			}
+			Run_Scripts_On_Always5 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Invoice
+				record event = on add or edit
+
+				on user input of Tax
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											//Calculating the net amount here
+										if(input.Tax != null && input.Sub_Total != null)
+										{
+											taxAmount = input.Sub_Total * input.Tax / 100;
+											input.Net_Total = input.Sub_Total + taxAmount;
+										}
+						)
+					}
+				}
+
+			}
+			Run_Scripts_On_Always6 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Invoice
+				record event = on add or edit
+
+				on user input of Products.Product
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											if(row.Product != null)
+										{
+											//Autofilling the fields with product data
+											inventoryProducts = Add_Product[ID = row.Product];
+											row.Unit_Of_Measure=inventoryProducts.Unit_Of_Measure;
+											row.Selling_Price=inventoryProducts.Selling_Price;
+										}
+										else
+										{
+											row.Unit_Of_Measure="";
+											row.Selling_Price=0.00;
+										}
+						)
+					}
+				}
+
+			}
+			Run_Scripts_On_Always7 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Invoice
+				record event = on add or edit
+
+				on add row of Products
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											//Here dynamically adding inventory items in 'Items' field except the selected items.
+										inventoryItems = Add_Product[Status == "Active"].ID.getAll();
+										for each  eachRow in Products
+										{
+											inventoryItems.removeelement(eachRow.Product);
+										}
+										row.Product:ui.add(inventoryItems);
+						)
+					}
+				}
+
+			}
+			Run_Scripts_On_Always8 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Invoice
+				record event = on add or edit
+
+				on delete row of Products
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											//Recalculating the sub total here
+										input.Sub_Total = input.Sub_Total - row.Total;
+						)
+					}
+				}
+
+			}
+			Run_Scripts_While_Adding_13 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Employee
+				record event = on add
+
+				on validate
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											//Validating "Date of Birth" field value
+										if(input.Date_Of_Birth >= zoho.currentdate)
+										{
+											alert "Please check the Date of birth!";
+											cancel submit;
+										}
+						)
+					}
+				}
+
+			}
+			Run_Scripts_While_Adding_14 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Employee
+				record event = on add
+
+				on success
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											//share the application with employee
+										thisapp.permissions.assignUserInProfile(input.Email,"Employee");
+										//Send notification mail with link to access the application
+										sendmail
+										[
+											from :zoho.adminuserid
+											to :input.Email
+											subject :"Invitation to access Order Management"
+											message :"Hi,<div><br></div><div>You have been successfully added as Employee.</div><div><br></div><div>Click&nbsp;<a href=\"" + "https://app.zohocreator.in" + zoho.appuri + "\"" + " target=\"_blank\">here</a>&nbsp;to access \"Order Management\"</div><div><br></div><div>Regards,</div><div>" + zoho.adminuser + "</div>"
+										]
+						)
+					}
+				}
+
+			}
+			Run_Scripts_While_Editing10 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = Add_Employee
+				record event = on edit
+
+				on validate
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											//Validating "Date of Birth" field valuea
+										if(input.Date_Of_Birth >= zoho.currentdate)
+										{
+											alert "Please check the Date of birth!";
+											cancel submit;
+										}
+										if(input.Email != old.Email)
+										{
+											//Share the application with employee and unshare the old privileges if the employee email id or Job Title change
+											thisapp.permissions.deleteuser(old.Email);
+											thisapp.permissions.assignUserInProfile(input.Email,"Employee");
+											//Send notification mail with link to access the application
+											sendmail
+											[
+												from :zoho.adminuserid
+												to :input.Email
+												subject :"Invitation to access Order Management"
+												message :"Hi,<div><br></div><div>You have been successfully added as Employee.</div><div><br></div><div>Click&nbsp;<a href=\"" + "https://app.zohocreator.in" + zoho.appuri + "\"" + " target=\"_blank\">here</a>&nbsp;to access \"Order Management\"</div><div><br></div><div>Regards,</div><div>" + zoho.adminuser + "</div>"
+											]
+										}
+						)
+					}
+				}
+
+			}
+			Run_Scripts_While_Adding_15 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = New_Order
+				record event = on add
+
+				field rules
+				{
+					actions 
+					{
+						disable Sales_Owner,Net_Total,Order_Date,Sub_Total;
+						hide Status,Reason_For_Cancellation,Actual_Delivery_Date;
+					}
+				}
+
+			}
+			Run_Scripts_While_Adding_16 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = New_Order
+				record event = on add
+
+				on load
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											disable Products.Unit_Of_Measure;
+										disable Products.Unit_Price;
+										disable Products.Total;
+										//Assigning loggedin user details in 'Sales Owner' field
+										input.Sales_Owner = Add_Employee[Email == zoho.loginuserid].ID;
+										//Autofilling the order date with current date
+										input.Order_Date = zoho.currentdate;
+										productCount = Add_Product[ID != 0].count();
+										if(productCount == 0)
+										{
+											openUrl("#Form:Add_Product","same window");
+										}
+						)
+					}
+				}
+
+			}
+			Run_Scripts_While_Adding_17 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = New_Order
+				record event = on add
+
+				on validate
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											//Validating date field
+										if(Estimated_Delivery_Date < Order_Date)
+										{
+											alert "Please check the delivery date!";
+											cancel submit;
+										}
+										//Validating each product quantity here
+										quantityExist = true;
+										for each  eachRow in Products
+										{
+											if(eachRow.Quantity == 0)
+											{
+												quantityExist = false;
+											}
+										}
+										if(quantityExist == false)
+										{
+											alert "Please check the product quantity to place order!";
+											cancel submit;
+										}
+						)
+					}
+				}
+
+			}
+			Run_Scripts_While_Adding_18 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = New_Order
+				record event = on add
+
+				on success
+				{
+					actions 
+					{
+						openURL("#Report:Pending_Orders","new window");
+						custom deluge script
+						(
+											sendmail
+										[
+											from :zoho.loginuserid
+											to :input.Customer.Email
+											subject :"[Order ID-" + input.ID + "]Order Confirmation"
+											message :"Hi,<div><br></div><div>Thank you for your order.</div><div><br></div><div>Your order has been placed successfully with us.</div><div><br></div><div>Your Order Number is <b>" + input.Order_ID + "</b></div><div><b><br></b></div><div>Your order is expected to be delivered on " + input.Estimated_Delivery_Date + ".</div><div><br></div><div><br></div>"
+										]
+						)
+					}
+				}
+
+			}
+			Run_Scripts_While_Editing11 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = New_Order
+				record event = on edit
+
+				field rules
+				{
+					actions 
+					{
+						disable Sales_Owner,Net_Total,Order_Date,Sub_Total;
+						hide Status,Reason_For_Cancellation,Actual_Delivery_Date;
+					}
+				}
+
+			}
+			Run_Scripts_While_Editing12 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = New_Order
+				record event = on edit
+
+				on load
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											disable Products.Unit_Of_Measure;
+										disable Products.Unit_Price;
+										disable Products.Total;
+						)
+					}
+				}
+
+			}
+			Run_Scripts_While_Editing13 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = New_Order
+				record event = on edit
+
+				on validate
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											//Validating date field
+										if(Estimated_Delivery_Date < Order_Date)
+										{
+											alert "Please check the delivery date!";
+											cancel submit;
+										}
+										//Validating each product quantity here
+										quantityExist = true;
+										for each  eachRow in Products
+										{
+											if(eachRow.Quantity == 0)
+											{
+												quantityExist = false;
+											}
+										}
+										if(quantityExist == false)
+										{
+											alert "Please check the product quantity to place order!";
+											cancel submit;
+										}
+						)
+					}
+				}
+
+			}
+			Run_Scripts_On_Always9 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = New_Order
+				record event = on add or edit
+
+				on user input of Products.Product
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											if(row.Product != null)
+										{
+											inventoryProducts = Add_Product[ID = row.Product];
+											//Autofilling the "Unit Of Measure" and "Unit Price" fields with product data
+											row.Unit_Of_Measure=inventoryProducts.Unit_Of_Measure;
+											row.Unit_Price=inventoryProducts.Selling_Price;
+										}
+										else
+										{
+											row.Unit_Of_Measure="";
+											row.Unit_Price=0.00;
+										}
+						)
+					}
+				}
+
+			}
+			Run_Scripts_On_Always10 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = New_Order
+				record event = on add or edit
+
+				on user input of Tax
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											//Calculating the net amount here
+										if(input.Tax != null && input.Sub_Total != null)
+										{
+											taxAmount = input.Sub_Total * input.Tax / 100;
+											input.Net_Total = input.Sub_Total + taxAmount;
+										}
+						)
+					}
+				}
+
+			}
+			Run_Scripts_On_Always11 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = New_Order
+				record event = on add or edit
+
+				on user input of Sub_Total
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											//Calculating the net amount here
+										if(input.Tax != null && input.Sub_Total != null)
+										{
+											taxAmount = input.Sub_Total * input.Tax / 100;
+											input.Net_Total = input.Sub_Total + taxAmount;
+										}
+						)
+					}
+				}
+
+			}
+			Run_Scripts_On_Always12 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = New_Order
+				record event = on add or edit
+
+				on user input of Products.Quantity
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											//Product Total and Sub Total calculations here
+										if(row.Quantity != null && row.Unit_Price != null)
+										{
+											row.Total=row.Quantity * row.Unit_Price;
+										}
+										else
+										{
+											row.Total=0;
+										}
+										input.Sub_Total = 0;
+										for each  eachRow in Products
+										{
+											input.Sub_Total = input.Sub_Total + eachRow.Total;
+										}
+						)
+					}
+				}
+
+			}
+			Run_Scripts_On_Always13 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = New_Order
+				record event = on add or edit
+
+				on user input of Products.Unit_Price
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											//Product Total and Sub Total calculations here
+										if(row.Quantity != null && row.Unit_Price != null)
+										{
+											row.Total=row.Quantity * row.Unit_Price;
+										}
+										else
+										{
+											row.Total=0;
+										}
+										input.Sub_Total = 0;
+										for each  eachRow in Products
+										{
+											input.Sub_Total = input.Sub_Total + eachRow.Total;
+										}
+						)
+					}
+				}
+
+			}
+			Run_Scripts_On_Always14 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = New_Order
+				record event = on add or edit
+
+				on add row of Products
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											//Here dynamically adding inventory items in 'Items' field except the selected items.
+										inventoryItems = Add_Product[Status == "Active" && In_Stock >= 1].ID.getAll();
+										for each  eachRow in Products
+										{
+											inventoryItems.removeelement(eachRow.Product);
+										}
+										row.Product:ui.add(inventoryItems);
+						)
+					}
+				}
+
+			}
+			Run_Scripts_On_Always15 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = New_Order
+				record event = on add or edit
+
+				on delete row of Products
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											//Recalculating the sub total here
+										input.Sub_Total = input.Sub_Total - row.Total;
+						)
+					}
+				}
+
+			}
+			Run_Scripts_While_Adding_19 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Reason
+				record event = on add
+
+				field rules
+				{
+					actions 
+					{
+						disable Order_ID;
+					}
+				}
+
+			}
+			Run_Scripts_While_Deletin4 as "Run Scripts - While Deleting a Record"
+			{
+				type =  form
+				form = New_Order
+				record event = on delete
+
+				on success
+				{
+					actions 
+					{
+					delete from Orders_Details[Order_ID == input.ID];
+					}
+				}
+
+			}
+			Run_Scripts_While_Deletin5 as "Run Scripts - While Deleting a Record"
+			{
+				type =  form
+				form = Add_Employee
+				record event = on delete
+
+				on validate
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											//Here we are restricting to delete administrator's record.
+										if(input.Email == zoho.adminuserid)
+										{
+											alert "Sorry deletion is not possible for admin record!";
+											cancel delete;
+										}
+										else
+										{
+											//Unshare the privileges.
+											thisapp.permissions.deleteuser(input.Email);
+										}
+						)
+					}
+				}
+
+			}
+			Run_Scripts_While_Adding_20 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Alert_Message
+				record event = on add
+
+				field rules
+				{
+					actions 
+					{
+						hide OrderID;
+					}
+				}
+
+			}
+		}
+
+		schedule
+		{
+			Delivery_Reminder as "Delivery_Reminder"
+			{
+				type =  schedule
+				form = New_Order
+				start = before 1 days from Estimated_Delivery_Date at "09:00:00"
+				time zone = "Asia/Kolkata"
+				on start
+				{
+					actions 
+					{
+					on load
+					(
+						sendmail
+										[
+											from :zoho.adminuserid
+											to :input.Sales_Owner.Email
+											subject :"[Order ID-" + input.Order_ID + "]Delivery Reminder"
+											message :"Hi,<div><br></div><div>This is a gentle reminder to deliver this [" + input.Order_ID + "]order by tomorrow.</div><div><br></div><div>Kindly process this as soon as possible.</div><div><br></div><div>Regards,</div><div>" + zoho.adminuser + "</div><div><br></div>"
+										]
+					)
+					}
+				}
+			}
+		}
+
+
+
+		functions
+		{
+			Mark_Active1 as "Mark Active"
+			{
+				type =  functions
+				form = Add_Product
+				execution type = collection of records	
+				on start
+				{
+					actions 
+					{
+					on click
+					(
+						input.Status = "Active";
+					)
+					}
+				}
+			}
+			Mark_Inactive as "Mark Inactive"
+			{
+				type =  functions
+				form = Add_Product
+				execution type = collection of records	
+				on start
+				{
+					actions 
+					{
+					on click
+					(
+						input.Status = "Inactive";
+					)
+					}
+				}
+			}
+			Add_To_Inventory1 as "Add To Inventory"
+			{
+				type =  functions
+				form = Add_Invoice
+				execution type = collection of records	
+				on start
+				{
+					actions 
+					{
+						thisapp.CustomAction.addStock(Add_Invoice);
+					}
+				}
+			}
+			Ready_For_Delivery as "Ready For Delivery"
+			{
+				type =  functions
+				form = New_Order
+				execution type = collection of records	
+				on start
+				{
+					actions 
+					{
+						thisapp.CustomAction.readyForDelivery(New_Order);
+					}
+				}
+			}
+			Delivered as "Delivered"
+			{
+				type =  functions
+				form = New_Order
+				execution type = collection of records	
+				on start
+				{
+					actions 
+					{
+						thisapp.CustomAction.delivered(New_Order);
+					}
+				}
+			}
+			Cancel as "Cancel"
+			{
+				type =  functions
+				form = New_Order
+				execution type = collection of records	
+				on start
+				{
+					actions 
+					{
+						thisapp.CustomAction.cancelOrder(ID);
+					}
+				}
+			}
+		}
+	}
+	share_settings
+	{
+			"AppShare"
+			{
+				name = "AppShare"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "AppShare Profile\n"
+				ModulePermissions
+				{
+					Add_Product
+					{
+						enabled= Create,Viewall,Modifyall,Import,Export,Tab 
+						ReportPermissions
+						{
+							Inventory={"View","Edit","Delete"}
+							All_Products={"View","Edit","Delete"}
+						}
+						FieldPermissions
+						{
+							Product_Group{visibility:true,readonly:false}
+							Status{visibility:true,readonly:false}
+							Product_Code{visibility:true,readonly:false}
+							Unit_Of_Measure{visibility:true,readonly:false}
+							Product_Name{visibility:true,readonly:false}
+							In_Stock{visibility:true,readonly:false}
+							Selling_Price{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Reorder_Level{visibility:true,readonly:false}
+						}
+					}
+					New_Order
+					{
+						enabled= Create,Viewall,Modifyall,Import,Export,Tab 
+						ReportPermissions
+						{
+							Pending_Orders={"View","Edit","Delete"}
+							All_Orders={"View","Edit","Delete"}
+							Ready_For_Delivery={"View","Edit","Delete"}
+						}
+						FieldPermissions
+						{
+							Status{visibility:true,readonly:false}
+							Order_ID{visibility:true,readonly:false}
+							Products{visibility:true,readonly:false}
+							Customer{visibility:true,readonly:false}
+							Sub_Total{visibility:true,readonly:false}
+							Sales_Owner{visibility:true,readonly:false}
+							Tax{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Estimated_Delivery_Date{visibility:true,readonly:false}
+							Order_Date{visibility:true,readonly:false}
+							Actual_Delivery_Date{visibility:true,readonly:false}
+							Net_Total{visibility:true,readonly:false}
+							Section1{visibility:true,readonly:false}
+							Delivery_Agency{visibility:true,readonly:false}
+							Reason_For_Cancellation{visibility:true,readonly:false}
+						}
+					}
+					Add_Employee
+					{
+						enabled= Create,Viewall,Modifyall,Import,Export,Tab 
+						ReportPermissions
+						{
+							Employees={"View","Edit","Delete"}
+						}
+						FieldPermissions
+						{
+							Email{visibility:true,readonly:false}
+							Address{visibility:true,readonly:false}
+							Employee_ID{visibility:true,readonly:false}
+							Phone_Number{visibility:true,readonly:false}
+							Gender{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Date_Of_Birth{visibility:true,readonly:false}
+							Name{visibility:true,readonly:false}
+						}
+					}
+					Purchase_History
+					{
+						enabled= Create,Viewall,Modifyall,Import,Export,Tab 
+						ReportPermissions
+						{
+							Purchase_History_Report={"View","Edit","Delete"}
+						}
+						FieldPermissions
+						{
+							Cost_Price{visibility:true,readonly:false}
+							Unit_Of_Measure{visibility:true,readonly:false}
+							Total{visibility:true,readonly:false}
+							Quantity{visibility:true,readonly:false}
+							Product{visibility:true,readonly:false}
+							Invoice_Number{visibility:true,readonly:false}
+							Selling_Price{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+						}
+					}
+					Add_Reason
+					{
+						enabled= Create,Tab 
+						FieldPermissions
+						{
+							Order_ID{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Reason_For_Cancellation{visibility:true,readonly:false}
+						}
+					}
+					Add_Invoice
+					{
+						enabled= Create,Viewall,Modifyall,Import,Export,Tab 
+						ReportPermissions
+						{
+							Invoices={"View","Edit","Delete"}
+						}
+						FieldPermissions
+						{
+							Products{visibility:true,readonly:false}
+							Submitted_By{visibility:true,readonly:false}
+							Comments{visibility:true,readonly:false}
+							Sub_Total{visibility:true,readonly:false}
+							Tax{visibility:true,readonly:false}
+							Invoice_Number{visibility:true,readonly:false}
+							Invoice_Copy{visibility:true,readonly:false}
+							Invoice_Date{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Net_Total{visibility:true,readonly:false}
+							Section1{visibility:true,readonly:false}
+							Supplier{visibility:true,readonly:false}
+							Add_products_to_inventory{visibility:true,readonly:false}
+						}
+					}
+					Orders_Details
+					{
+						enabled= Create,Viewall,Modifyall,Import,Export,Tab 
+						ReportPermissions
+						{
+							Orders_Details_Report={"View","Edit","Delete"}
+						}
+						FieldPermissions
+						{
+							Order_ID{visibility:true,readonly:false}
+							Unit_Of_Measure{visibility:true,readonly:false}
+							Total{visibility:true,readonly:false}
+							Product{visibility:true,readonly:false}
+							Quantity{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Unit_Price{visibility:true,readonly:false}
+						}
+					}
+					Add_Supplier
+					{
+						enabled= Create,Viewall,Modifyall,Import,Export,Tab 
+						ReportPermissions
+						{
+							Suppliers={"View","Edit","Delete"}
+						}
+						FieldPermissions
+						{
+							Supplier_ID{visibility:true,readonly:false}
+							Email{visibility:true,readonly:false}
+							Address{visibility:true,readonly:false}
+							plain{visibility:true,readonly:false}
+							Website{visibility:true,readonly:false}
+							Phone_Number{visibility:true,readonly:false}
+							Supplier_Name{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Name{visibility:true,readonly:false}
+						}
+					}
+					Add_Delivery_Agency
+					{
+						enabled= Create,Viewall,Modifyall,Import,Export,Tab 
+						ReportPermissions
+						{
+							Delivery_Agencies={"View","Edit","Delete"}
+						}
+						FieldPermissions
+						{
+							Email{visibility:true,readonly:false}
+							Agency_Name{visibility:true,readonly:false}
+							Address{visibility:true,readonly:false}
+							plain{visibility:true,readonly:false}
+							Phone_Number{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Name{visibility:true,readonly:false}
+						}
+					}
+					Add_Product_Group
+					{
+						enabled= Create,Viewall,Modifyall,Import,Export,Tab 
+						ReportPermissions
+						{
+							Add_Product_Group_Report={"View","Edit","Delete"}
+						}
+						FieldPermissions
+						{
+							Product_Group{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+						}
+					}
+					Add_Customer
+					{
+						enabled= Create,Viewall,Modifyall,Import,Export,Tab 
+						ReportPermissions
+						{
+							Customers={"View","Edit","Delete"}
+							Customers_Location={"View","Edit","Delete"}
+						}
+						FieldPermissions
+						{
+							Email{visibility:true,readonly:false}
+							Address{visibility:true,readonly:false}
+							Customer_ID{visibility:true,readonly:false}
+							Phone_Number{visibility:true,readonly:false}
+							Gender{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Name{visibility:true,readonly:false}
+						}
+					}
+					Alert_Message
+					{
+						enabled= Create,Tab 
+						FieldPermissions
+						{
+							OrderID{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							plain{visibility:true,readonly:false}
+						}
+					}
+					Dashboard
+					{
+						enabled = tab
+					}
+				}
+			}
+			"Administrator"
+			{
+				name = "Administrator"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "This profile will have all the permissions.\n"
+			}
+			"Employee"
+			{
+				name = "Employee"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "Employee Profile\n"
+				ModulePermissions
+				{
+					Add_Product
+					{
+						enabled= Viewall,Export 
+						ReportPermissions
+						{
+							Inventory={"View"}
+						}
+						FieldPermissions
+						{
+							Product_Group{visibility:true,readonly:false}
+							Status{visibility:true,readonly:false}
+							Product_Code{visibility:true,readonly:false}
+							Unit_Of_Measure{visibility:true,readonly:false}
+							Product_Name{visibility:true,readonly:false}
+							In_Stock{visibility:true,readonly:false}
+							Selling_Price{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Reorder_Level{visibility:true,readonly:false}
+						}
+					}
+					New_Order
+					{
+						enabled= Create,Viewall,Export,Tab 
+						ReportPermissions
+						{
+							Pending_Orders={"View","Edit","Delete"}
+							All_Orders={"View"}
+							Ready_For_Delivery={"View"}
+						}
+						FieldPermissions
+						{
+							Status{visibility:true,readonly:false}
+							Order_ID{visibility:true,readonly:false}
+							Products{visibility:true,readonly:false}
+							Customer{visibility:true,readonly:false}
+							Sub_Total{visibility:true,readonly:false}
+							Sales_Owner{visibility:true,readonly:false}
+							Tax{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Estimated_Delivery_Date{visibility:true,readonly:false}
+							Order_Date{visibility:true,readonly:false}
+							Actual_Delivery_Date{visibility:true,readonly:false}
+							Net_Total{visibility:true,readonly:false}
+							Section1{visibility:true,readonly:false}
+							Delivery_Agency{visibility:true,readonly:false}
+							Reason_For_Cancellation{visibility:true,readonly:false}
+						}
+					}
+					Add_Employee
+					{
+						FieldPermissions
+						{
+							Email{visibility:true,readonly:false}
+							Address{visibility:true,readonly:false}
+							Employee_ID{visibility:true,readonly:false}
+							Phone_Number{visibility:true,readonly:false}
+							Gender{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Date_Of_Birth{visibility:true,readonly:false}
+							Name{visibility:true,readonly:false}
+						}
+					}
+					Purchase_History
+					{
+						FieldPermissions
+						{
+							Cost_Price{visibility:true,readonly:false}
+							Unit_Of_Measure{visibility:true,readonly:false}
+							Total{visibility:true,readonly:false}
+							Quantity{visibility:true,readonly:false}
+							Product{visibility:true,readonly:false}
+							Invoice_Number{visibility:true,readonly:false}
+							Selling_Price{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+						}
+					}
+					Add_Reason
+					{
+						enabled= Create,Tab 
+						FieldPermissions
+						{
+							Order_ID{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Reason_For_Cancellation{visibility:true,readonly:false}
+						}
+					}
+					Add_Invoice
+					{
+						enabled= Create,Viewall,Export,Tab 
+						ReportPermissions
+						{
+							Invoices={"View","Edit","Delete"}
+						}
+						FieldPermissions
+						{
+							Products{visibility:true,readonly:false}
+							Submitted_By{visibility:true,readonly:false}
+							Comments{visibility:true,readonly:false}
+							Sub_Total{visibility:true,readonly:false}
+							Tax{visibility:true,readonly:false}
+							Invoice_Number{visibility:true,readonly:false}
+							Invoice_Copy{visibility:true,readonly:false}
+							Invoice_Date{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Net_Total{visibility:true,readonly:false}
+							Section1{visibility:true,readonly:false}
+							Supplier{visibility:true,readonly:false}
+							Add_products_to_inventory{visibility:true,readonly:false}
+						}
+					}
+					Orders_Details
+					{
+						FieldPermissions
+						{
+							Order_ID{visibility:true,readonly:false}
+							Unit_Of_Measure{visibility:true,readonly:false}
+							Total{visibility:true,readonly:false}
+							Product{visibility:true,readonly:false}
+							Quantity{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Unit_Price{visibility:true,readonly:false}
+						}
+					}
+					Add_Supplier
+					{
+						enabled= Create,Viewall,Import,Export,Tab 
+						ReportPermissions
+						{
+							Suppliers={"View","Edit"}
+						}
+						FieldPermissions
+						{
+							Supplier_ID{visibility:true,readonly:false}
+							Email{visibility:true,readonly:false}
+							Address{visibility:true,readonly:false}
+							plain{visibility:true,readonly:false}
+							Website{visibility:true,readonly:false}
+							Phone_Number{visibility:true,readonly:false}
+							Supplier_Name{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Name{visibility:true,readonly:false}
+						}
+					}
+					Add_Delivery_Agency
+					{
+						enabled= Create,Viewall,Import,Export,Tab 
+						ReportPermissions
+						{
+							Delivery_Agencies={"View","Edit"}
+						}
+						FieldPermissions
+						{
+							Email{visibility:true,readonly:false}
+							Agency_Name{visibility:true,readonly:false}
+							Address{visibility:true,readonly:false}
+							plain{visibility:true,readonly:false}
+							Phone_Number{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Name{visibility:true,readonly:false}
+						}
+					}
+					Add_Product_Group
+					{
+						FieldPermissions
+						{
+							Product_Group{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+						}
+					}
+					Add_Customer
+					{
+						enabled= Create,Viewall,Import,Export,Tab 
+						ReportPermissions
+						{
+							Customers={"View","Edit"}
+						}
+						FieldPermissions
+						{
+							Email{visibility:true,readonly:false}
+							Address{visibility:true,readonly:false}
+							Customer_ID{visibility:true,readonly:false}
+							Phone_Number{visibility:true,readonly:false}
+							Gender{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Name{visibility:true,readonly:false}
+						}
+					}
+					Alert_Message
+					{
+						enabled= Create,Tab 
+						FieldPermissions
+						{
+							OrderID{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							plain{visibility:true,readonly:false}
+						}
+					}
+				}
+			}
+			roles
+			{
+				"CEO"
+				{
+					description = "User belonging to this role can access data of all other users.\n\n"
+				}
+			}
+	}
+
+	customize
+	{
+		
+		layout = "tab"
+		color = "black"
+		base theme = "professional"
+		new theme = 3
+		icons = true
+		icons style = outline
+		font = "lato"
+		color options
+    	{
+        color = "2"
+    	}
+    	icon
+    	{
+        	type = "1"
+        	name = "zc-ab-sales-and-supp5"
+        	background color = "yellow"
+        	foreground color = "#FFFFFF"
+    	}
+    	logo
+    	{
+        	preference = "none"
+        	placement = "left"
+    	}
+	}
+
+
+	phone
+	{
+		section  Dashboard1
+		{
+			displayname= "Dashboard"
+			page Dashboard
+			{
+			}
+		}
+		section  New_Order
+		{
+			displayname= "Orders"
+			form  New_Order
+			{
+				layout = left
+			}
+			list Pending_Orders
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				display type = auto
+			 				layout type = 4
+		     				title = "Overview"
+							fields
+							(
+								Order_ID as "Order ID"
+								Products.Order_ID as "Products"
+								Customer
+								Estimated_Delivery_Date as "Estimated Delivery Date"
+								Sales_Owner as "Sales Owner"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Delete   	   
+										Duplicate   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										"Ready To Delivery"
+										"Ready To Delivery" as "Cancel"
+										Duplicate   	   
+										View Record   	   
+    								)
+									on left swipe
+									(
+										"Ready To Delivery"
+										"Cancel"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Order_ID as "Order ID"
+								Order_Date as "Order Date"
+								Sales_Owner as "Sales Owner"
+								Delivery_Agency as "Delivery Agency"
+								Estimated_Delivery_Date as "Estimated Delivery Date"
+							)
+						)
+						datablock4
+						(
+			 				layout type = -2
+		     				title = "Invoice Details"
+							fields
+							(
+								Sub_Total as "Sub Total"
+								Tax
+								Net_Total as "Net Total"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+			 				"Ready To Delivery" as "Ready For Delivery"
+    		 				Edit 
+    		 				Delete 
+			 				"Ready To Delivery" as "Cancel"
+    		 				Duplicate 
+    	 				)
+    				)
+				)
+			}
+			list Ready_For_Delivery
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				display type = auto
+			 				layout type = 4
+		     				title = "Overview"
+							fields
+							(
+								Order_ID as "Order ID"
+								Products.Order_ID as "Products"
+								Customer
+								Estimated_Delivery_Date as "Estimated Delivery Date"
+								Sales_Owner as "Sales Owner"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Delete   	   
+										Duplicate   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										"Delivered"
+										Duplicate   	   
+										View Record   	   
+    								)
+									on left swipe
+									(
+										"Delivered"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Order_ID as "Order ID"
+								Sales_Owner as "Sales Owner"
+								Order_Date as "Order Date"
+								Delivery_Agency as "Delivery Agency"
+								Estimated_Delivery_Date as "Estimated Delivery Date"
+							)
+						)
+						datablock5
+						(
+			 				layout type = -2
+		     				title = "Invoice Details"
+							fields
+							(
+								Sub_Total as "Sub Total"
+								Tax
+								Net_Total as "Net Total"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+			 				"Delivered"
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list All_Orders
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				display type = auto
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Order_ID as "Order ID"
+								Products.Quantity as "Products"
+								Sales_Owner as "Sales Owner"
+								Customer
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Delete   	   
+										Duplicate   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Order_ID as "Order ID"
+								Order_Date as "Order Date"
+								Sales_Owner as "Sales Owner"
+								Delivery_Agency as "Delivery Agency"
+								Estimated_Delivery_Date as "Estimated Delivery Date"
+								Actual_Delivery_Date as "Actual Delivery Date"
+							)
+						)
+						datablock5
+						(
+			 				layout type = -2
+		     				title = "Invoice Details"
+							fields
+							(
+								Sub_Total as "Sub Total"
+								Tax
+								Net_Total as "Net Total"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Add_Product
+		{
+			displayname= "Products"
+			form  Add_Product
+			{
+				layout = left
+			}
+			list Inventory
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				display type = auto
+			 				layout type = 4
+		     				title = "Overview"
+							fields
+							(
+								Product_Code as "Product Code"
+								Product_Name as "Product Name"
+								In_Stock as "In Stock"
+								Unit_Of_Measure as "Unit Of Measure"
+								Selling_Price as "Selling Price"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Product_Group as "Product Group"
+								Product_Code as "Product Code"
+								Product_Name as "Product Name"
+								Unit_Of_Measure as "Unit Of Measure"
+								Selling_Price as "Selling Price"
+								In_Stock as "In Stock"
+								Reorder_Level as "Reorder Level"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Delete 
+    		 				Duplicate 
+    	 				)
+    				)
+				)
+			}
+			list All_Products
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				display type = auto
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Product_Code as "Product Code"
+								Product_Name as "Product Name"
+								In_Stock as "In Stock"
+								Selling_Price as "Selling Price"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Delete   	   
+										Duplicate   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										"Custom Action" as "Mark Active"
+										"Custom Action" as "Mark Inactive"
+										Duplicate   	   
+										View Record   	   
+    								)
+									on left swipe
+									(
+										"Custom Action" as "Mark Active"
+										"Custom Action" as "Mark Inactive"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Product_Group as "Product Group"
+								Product_Code as "Product Code"
+								Product_Name as "Product Name"
+								Unit_Of_Measure as "Unit Of Measure"
+								Selling_Price as "Selling Price"
+								In_Stock as "In Stock"
+								Reorder_Level as "Reorder Level"
+								Status
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+			 				"Custom Action" as "Mark Active"
+			 				"Custom Action" as "Mark Inactive"
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Add_Product_Group
+		{
+			displayname= "Add Product Group"
+			form  Add_Product_Group
+			{
+				layout = left
+				hide = true
+			}
+			list Add_Product_Group_Report
+			{
+				hide = true
+			}
+		}
+		section  Add_Invoice
+		{
+			displayname= "Purchase"
+			form  Add_Invoice
+			{
+				layout = left
+			}
+			list Invoices
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				display type = auto
+			 				layout type = 4
+		     				title = "Overview"
+							fields
+							(
+								Supplier
+								Products.Invoice_Number as "Products"
+								Invoice_Number as "Invoice Number"
+								Submitted_By as "Submitted By"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										"Add To Inventory"
+										Duplicate   	   
+										View Record   	   
+    								)
+									on left swipe
+									(
+										"Add To Inventory"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Supplier
+								Submitted_By as "Submitted By"
+								Comments
+							)
+						)
+						datablock4
+						(
+			 				layout type = -2
+		     				title = "Invoice Details"
+							fields
+							(
+								Invoice_Date as "Invoice Date"
+								Invoice_Number as "Invoice Number"
+								Invoice_Copy as "Invoice Copy"
+								Sub_Total as "Sub Total"
+								Tax
+								Net_Total as "Net Total"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+			 				"Add To Inventory"
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list Purchase_History_Report
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				display type = auto
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Product
+								Quantity
+								Unit_Of_Measure as "Unit Of Measure"
+								Total
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Invoice_Number as "Invoice Number"
+								Product
+								Unit_Of_Measure as "Unit Of Measure"
+								Quantity
+								Cost_Price as "Cost Price"
+								Selling_Price as "Selling Price"
+								Total
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Purchase_History
+		{
+			displayname= "Purchase History"
+			form  Purchase_History
+			{
+				layout = left
+				hide = true
+			}
+		}
+		section  Add_Supplier
+		{
+			displayname= "Add Supplier"
+			form  Add_Supplier
+			{
+				layout = left
+				hide = true
+			}
+		}
+		section  Orders_Details
+		{
+			displayname= "Orders Details"
+			form  Orders_Details
+			{
+				layout = left
+				hide = true
+			}
+			list Orders_Details_Report
+			{
+				hide = true
+			}
+		}
+		section  New_Section1
+		{
+			displayname= "Reports"
+			map Customers_Location
+			{
+			}
+						pivotchart By_Products
+			{
+			}
+			 
+			pivotchart By_Sales_Person
+			{
+			}
+			 
+			pivotchart Monthly_Sales
+			{
+			}
+			 
+			pivotchart Monthly_Expenses
+			{
+			}
+		}
+		section  New_Section
+		{
+			displayname= "Contacts"
+			custom Customers
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				display type = auto
+			 				layout type = 4
+		     				title = "Overview"
+							fields
+							(
+								Customer_ID as "Customer ID"
+								Name
+								Gender
+								Phone_Number as "Phone Number"
+								Email
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Customer_ID as "Customer ID"
+								Name
+								Gender
+								Phone_Number as "Phone Number"
+								Email
+								Address
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			custom Suppliers
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				display type = auto
+			 				layout type = 4
+		     				title = "Overview"
+							fields
+							(
+								Supplier_ID as "Supplier ID"
+								Supplier_Name as "Supplier Name"
+								Name
+								Email
+								Phone_Number as "Phone Number"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Supplier_ID as "Supplier ID"
+								Supplier_Name as "Supplier Name"
+								Website
+							)
+						)
+						datablock2
+						(
+			 				layout type = -2
+		     				title = "Contact Details"
+							fields
+							(
+								Name
+								Phone_Number as "Phone Number"
+								Email
+								Address
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			summary Delivery_Agencies
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				display type = auto
+			 				layout type = 1
+		     				title = "Overview"
+							fields
+							(
+								Agency_Name as "Agency Name"
+								Address
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Agency_Name as "Agency Name"
+								Name
+								Email
+								Phone_Number as "Phone Number"
+								Address
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Add_Customer
+		{
+			displayname= "Customers"
+			form  Add_Customer
+			{
+				layout = left
+				hide = true
+			}
+		}
+		section  Add_Employee
+		{
+			displayname= "Employees"
+			form  Add_Employee
+			{
+				layout = left
+			}
+			list Employees
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				display type = auto
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Employee_ID as "Employee ID"
+								Name
+								Date_Of_Birth as "Date Of Birth"
+								Email
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Employee_ID as "Employee ID"
+								Name
+								Gender
+								Date_Of_Birth as "Date Of Birth"
+								Phone_Number as "Phone Number"
+								Email
+								Address
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Add_Delivery_Agent
+		{
+			displayname= "Add Delivery Agent"
+			form  Add_Delivery_Agency
+			{
+				layout = left
+				hide = true
+			}
+		}
+		section  page
+		{
+			displayname= "Duplicated Add Reason"
+			form  Add_Reason
+			{
+				layout = left
+				hide = true
+			}
+		}
+		section  page1
+		{
+			displayname= "Duplicated Alert Message"
+			form  Alert_Message
+			{
+				layout = left
+				hide = true
+			}
+		}
+		customize
+		{
+        	layout = onecolumncard
+		 	icons style = outline
+        	font = "lato"
+            style = "3"
+        	color options
+        	{
+             	color = yellow
+         	}
+         	logo
+         	{
+             	preference = "none"
+         	}
+		}
+	}
+	tablet
+	{
+		section  Dashboard12
+		{
+			displayname= "Dashboard"
+			page Dashboard
+			{
+			}
+		}
+		section  New_Order
+		{
+			displayname= "Orders"
+			form  New_Order
+			{
+				layout = left
+			}
+			list Pending_Orders
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = -1
+						datablock1
+						(
+			 				layout type = -1
+		     				title = "Overview"
+							fields
+							(
+								Order_ID as "Order ID"
+								Products.Order_ID as "Products"
+								Customer
+								Estimated_Delivery_Date as "Estimated Delivery Date"
+								Sales_Owner as "Sales Owner"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Delete   	   
+										Duplicate   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										"Ready To Delivery"
+										"Ready To Delivery" as "Cancel"
+										Duplicate   	   
+										View Record   	   
+    								)
+									on left swipe
+									(
+										"Ready To Delivery"
+										"Cancel"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Order_ID as "Order ID"
+								Order_Date as "Order Date"
+								Sales_Owner as "Sales Owner"
+								Delivery_Agency as "Delivery Agency"
+								Estimated_Delivery_Date as "Estimated Delivery Date"
+							)
+						)
+						datablock4
+						(
+			 				layout type = -2
+		     				title = "Invoice Details"
+							fields
+							(
+								Sub_Total as "Sub Total"
+								Tax
+								Net_Total as "Net Total"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+			 				"Ready To Delivery" as "Ready For Delivery"
+    		 				Edit 
+    		 				Delete 
+			 				"Ready To Delivery" as "Cancel"
+    		 				Duplicate 
+    	 				)
+    				)
+				)
+			}
+			list Ready_For_Delivery
+			{
+			}
+			list All_Orders
+			{
+			}
+		}
+		section  Add_Product
+		{
+			displayname= "Products"
+			form  Add_Product
+			{
+				layout = left
+			}
+			list Inventory
+			{
+			}
+			list All_Products
+			{
+			}
+		}
+		section  Add_Product_Group
+		{
+			displayname= "Add Product Group"
+			form  Add_Product_Group
+			{
+				layout = left
+				hide = true
+			}
+			list Add_Product_Group_Report
+			{
+				hide = true
+			}
+		}
+		section  Add_Invoice
+		{
+			displayname= "Purchase"
+			form  Add_Invoice
+			{
+				layout = left
+			}
+			list Invoices
+			{
+			}
+			list Purchase_History_Report
+			{
+			}
+		}
+		section  Purchase_History
+		{
+			displayname= "Purchase History"
+			form  Purchase_History
+			{
+				layout = left
+				hide = true
+			}
+		}
+		section  Add_Supplier
+		{
+			displayname= "Add Supplier"
+			form  Add_Supplier
+			{
+				layout = left
+				hide = true
+			}
+		}
+		section  Orders_Details
+		{
+			displayname= "Orders Details"
+			form  Orders_Details
+			{
+				layout = left
+				hide = true
+			}
+			list Orders_Details_Report
+			{
+				hide = true
+			}
+		}
+		section  Add_Customer
+		{
+			displayname= "Customers"
+			form  Add_Customer
+			{
+				layout = left
+				hide = true
+			}
+		}
+		section  New_Section1
+		{
+			displayname= "Reports"
+			map Customers_Location
+			{
+			}
+			 
+			pivotchart By_Products
+			{
+			}
+			 
+			pivotchart By_Sales_Person
+			{
+			}
+			 
+			pivotchart Monthly_Sales
+			{
+			}
+			 
+			pivotchart Monthly_Expenses
+			{
+			}
+		}
+		section  New_Section
+		{
+			displayname= "Contacts"
+			custom Customers
+			{
+			}
+			custom Suppliers
+			{
+			}
+			summary Delivery_Agencies
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				display type = auto
+			 				layout type = 4
+		     				title = "Overview"
+							fields
+							(
+								Agency_Name as "Agency Name"
+								Name
+								Phone_Number as "Phone Number"
+								Email
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Agency_Name as "Agency Name"
+								Name
+								Email
+								Phone_Number as "Phone Number"
+								Address
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Add_Employee
+		{
+			displayname= "Employees"
+			form  Add_Employee
+			{
+				layout = left
+			}
+			list Employees
+			{
+			}
+		}
+		section  Add_Delivery_Agent
+		{
+			displayname= "Add Delivery Agent"
+			form  Add_Delivery_Agency
+			{
+				layout = left
+				hide = true
+			}
+		}
+		section  page
+		{
+			displayname= "Duplicated Add Reason"
+			form  Add_Reason
+			{
+				layout = left
+				hide = true
+			}
+		}
+		section  page1
+		{
+			displayname= "Duplicated Alert Message"
+			form  Alert_Message
+			{
+				layout = left
+				hide = true
+			}
+		}
+		customize
+		{
+        	layout = onecolumncard
+		 	icons style = outline
+        	font = "lato"
+            style = "3"
+        	color options
+        	{
+             	color = yellow
+         	}
+         	logo
+         	{
+             	preference = "none"
+         	}
+		}
+	}
+	
+	reports configuration
+	{
+	
+		Version = 2000024261693
+		Key     = "Y5EwZ56BsTvMuajdhUjPC9uaZdG4nPhdWSkB8gKa2ejMhVZfnJdN7ZE4KJTZSeyHBhA3R67MRPBjvh3YaxdHUSuOy0O0whVCGKYG"
+	}
+}

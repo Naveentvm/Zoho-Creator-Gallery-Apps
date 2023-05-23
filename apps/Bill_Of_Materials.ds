@@ -1,0 +1,2784 @@
+/*
+ * Author       : wapope7431_asuflex
+ * Generated on : 10-May-2023 16:00:59
+ * Version      : 1.0
+ */
+ application "Bill Of Materials"
+ {
+ 	date format = "dd-MMM-yyyy"
+ 	time zone = "Asia/Calcutta"
+ 	time format = "24-hr"
+ 	section Products
+	{
+		icon = "design-shape-circle"
+		form Add_Product
+		{
+			displayname = "Add Product"
+			success message = "Product Added Successfully"
+			field alignment = labelinplace
+			Section1
+			(
+				type = section
+				displayname = "Section"
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			plain
+			(
+    			type = plaintext
+				value = "<div><span class=\"size\" style=\"font-size: 18.6667px\"><b><span class=\"colour\" style=\"color: rgb(102, 102, 102)\">This form is to track finished goods. BOM should be based on this good.​</span></b></span><br /></div>"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Section
+			(
+				type = section
+	 			row = 2
+	 			column = 0   
+				width = medium
+			)
+			must have Product_Name
+			(
+    			type = text
+				displayname = "Product  Name"
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+			Model
+			(
+    			type = text
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+			Color
+			(
+    			type = text
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+			Measurement_Unit
+			(
+				type = picklist
+				displayname = "Measurement Unit"
+				values = {"Pieces","dozen","Kgs","Grams","Pounds","Tonnes","Litre","mL"}
+				initial value = "Pieces"
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+			must have Unit_Price
+			(
+				displayname = "Unit Price"
+				type = USD
+				format = commadotwestern
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+			Image
+			(
+    			type = image
+				source  = file
+				aspect ratio = original
+				camera = primary
+				show gallery = true
+				switch camera = true
+	 			row = 2
+	 			column = 2   
+				width = medium
+			)
+			Description
+			(
+    			type = textarea
+				height = 100px
+	 			row = 2
+	 			column = 2   
+				width = medium
+			)
+			This_is_also_the_subassembly
+			(
+    			type = checkbox
+				displayname = "This is also the subassembly"
+				initial value = false
+    			description
+    			[
+    				type = help_text
+    			 	message = "Click here If this good is required to manufacture another products."
+    			]
+	 			row = 2
+	 			column = 2   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "files-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Add"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		default list Final_Products
+		{
+			displayName = "Final Products"
+			show all rows from Add_Product  [This_is_also_the_subassembly == false]  
+			(
+				Product_Name as "Product  Name"
+				Model
+				Description
+				Image
+				Color
+				Measurement_Unit as "Measurement Unit"
+				This_is_also_the_subassembly as "Type"
+				(
+						displaytrue = "Subassembly"
+						displayfalse = "Final Product"
+				)
+				Unit_Price as "Unit Price"
+			)
+			options
+			(
+				icon = "ui-1-check-circle-08"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Image
+							Product_Name as "Product  Name"
+							Model
+							Color
+							Description
+							Measurement_Unit as "Measurement Unit"
+							Unit_Price as "Unit Price"
+							This_is_also_the_subassembly as "Type"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Product_Name as "Product  Name"
+							Model
+							Description
+							Image
+							Color
+							Measurement_Unit as "Measurement Unit"
+							This_is_also_the_subassembly as "Type"
+							Unit_Price as "Unit Price"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Subassemblies
+		{
+			displayName = "Subassemblies"
+			show all rows from Add_Product  [This_is_also_the_subassembly == true]  
+			(
+				Product_Name as "Product  Name"
+				Model
+				Description
+				Image
+				Color
+				Measurement_Unit as "Measurement Unit"
+				This_is_also_the_subassembly as "Type"
+				(
+						displaytrue = "Subassembly"
+						displayfalse = "Final Product"
+				)
+				Unit_Price as "Unit Price"
+			)
+			options
+			(
+				icon = "health-molecule-40"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Image
+							Product_Name as "Product  Name"
+							Model
+							Color
+							Description
+							Measurement_Unit as "Measurement Unit"
+							This_is_also_the_subassembly as "Type"
+							Unit_Price as "Unit Price"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Product_Name as "Product  Name"
+							Model
+							Description
+							Image
+							Color
+							Measurement_Unit as "Measurement Unit"
+							This_is_also_the_subassembly as "Type"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Materials
+	{
+		icon = "health-molecule-40"
+		form Add_Material
+		{
+			displayname = "Add Material"
+			success message = "Material Added Successfully"
+			field alignment = labelinplace
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have unique Material_Name
+			(
+    			type = text
+				displayname = "Material Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Model
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Color
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Measurement_Unit
+			(
+				type = picklist
+				displayname = "Measurement Unit"
+				values = {"Pieces","dozen ","Kgs","Grams","Pounds","Tonnes","Litre","mL"}
+				initial value = "Pieces"
+				sortorder = ascending
+				others option = true
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Unit_Price
+			(
+				type = USD
+				format = commadotwestern
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Material_Image
+			(
+    			type = image
+				displayname = "Material Image"
+				annotation = true
+				source  = public_url,file,camera
+				aspect ratio = original
+				camera = primary
+				preview duration = 0
+				show gallery = true
+				switch camera = true
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+			Description
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "files-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Add"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		default list All_Materials
+		{
+			displayName = "All Materials"
+			show all rows from Add_Material    
+			(
+				Material_Name as "Material Name"
+				Description
+				Model
+				Color
+				Measurement_Unit as "Measurement Unit"
+				Material_Image as "Material Image"
+				Unit_Price
+			)
+			options
+			(
+				icon = "design-2-selection"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Material_Image as "Material Image"
+							Material_Name as "Material Name"
+							Description
+							Model
+							Color
+							Measurement_Unit as "Measurement Unit"
+							Unit_Price
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Material_Name as "Material Name"
+							Description
+							Model
+							Color
+							Measurement_Unit as "Measurement Unit"
+							Material_Image as "Material Image"
+							Unit_Price
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Production_Batches
+	{
+		displayname= "Production Batches"
+		icon = "business-factory"
+		form Add_Production_Batch
+		{
+			displayname = "Add Production Batch"
+			success message = "Production Batch Added Successfully"
+			field alignment = labelinplace
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have unique Batch_No
+			(
+    			type = text
+				displayname = "Batch No"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Start_Date
+			(
+    			type = date
+				displayname = "Start Date"
+				initial value = "${zoho.currentdate}"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Expiry_Date
+			(
+    			type = date
+				displayname = "Expiry Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Production_Batch_Status
+			(
+				type = radiobuttons
+				values = {"Active","Archive"}
+				initial value = "Active"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Batch_Details
+			(
+    			type = textarea
+				displayname = "Batch Details"
+				height = 100px
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+			BOM
+			(
+				type = list	
+				values  = Create_BOM.ID
+    			bidirectional = Production_Batch
+    			displayformat = [ID]
+				sortorder = ascending
+				height = 60px
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "location-pin-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Add"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		default list All_Production_Batches
+		{
+			displayName = "Active Batches"
+			show all rows from Add_Production_Batch  [Production_Batch_Status == "Active"]  
+			(
+				Batch_No as "Batch No"
+				Batch_Details as "Batch Details"
+				Start_Date as "Start Date"
+				Expiry_Date as "Expiry Date"
+				BOM
+				(
+					view = All_BOM
+					delimiter = newline
+				)
+				Production_Batch_Status
+				custom action "Archive"
+				(
+	  			workflow = Archive_Production_Batch
+				show action in edit record menu = true
+				column header = "Archive"
+				condition = (Expiry_Date < zoho.currentdate)
+				confirmation before execution
+				(
+					message for individual record = "Do you archive the production batch."
+					confirm button text = "Yes"		
+					cancel button text = "No"
+				)
+				)
+			)
+			group by
+			(
+				Production_Batch_Status ascending
+			)
+			options
+			(
+				icon = "shopping-tag-sale"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Batch_No as "Batch No"
+							Start_Date as "Start Date"
+							Expiry_Date as "Expiry Date"
+							Batch_Details as "Batch Details"
+				"Archive"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 4
+		     			title = "Overview"
+						fields
+						(
+							Batch_No as "Batch No"
+							Batch_Details as "Batch Details"
+							Start_Date as "Start Date"
+							Expiry_Date as "Expiry Date"
+							Production_Batch_Status
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "BOMs"
+						fields
+						(
+							BOM
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Archive_Batches
+		{
+			displayName = "Archive Batches"
+			show all rows from Add_Production_Batch  [Production_Batch_Status == "Archive"]  
+			(
+				Batch_No as "Batch No"
+				Batch_Details as "Batch Details"
+				Start_Date as "Start Date"
+				Expiry_Date as "Expiry Date"
+				BOM
+				Production_Batch_Status
+			)
+			group by
+			(
+				Production_Batch_Status ascending
+			)
+			options
+			(
+				icon = "files-archive-3d-content"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Batch_No as "Batch No"
+							Start_Date as "Start Date"
+							Expiry_Date as "Expiry Date"
+							Batch_Details as "Batch Details"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 4
+		     			title = "Overview"
+						fields
+						(
+							Batch_No as "Batch No"
+							Batch_Details as "Batch Details"
+							Start_Date as "Start Date"
+							Expiry_Date as "Expiry Date"
+							Production_Batch_Status
+						)
+					)
+					datablock2
+					(
+			 			layout type = -1
+		     			title = "Products In Production"
+		     			related field = BOM
+						fields
+						(
+							Image
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Create_BOM
+	{
+		displayname= "Create BOM"
+		icon = "business-hierarchy-55"
+		form Create_BOM
+		{
+			displayname = "Create BOM"
+			success message = ""
+			field alignment = top
+			Section1
+			(
+				type = section
+				displayname = "Section"
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Product
+			(
+				type = picklist	
+				values  = Add_Product.ID
+    			displayformat = [Product_Name]
+				allow new entries = true
+				[
+					displayname = "New Product"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Serial_Number
+			(
+    			type = text
+				displayname = "Serial Number"
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+			Created_By
+			(
+				type = picklist	
+				displayname = "Created By"
+				values  = Add_User.ID
+    			displayformat = [" " + Name.prefix + " " + Name.first_name + " " + Name.last_name + " " + Name.suffix]
+				sortorder = ascending
+	 			row = 1
+	 			column = 3   
+				width = medium
+			)
+			Section
+			(
+				type = section
+	 			row = 2
+	 			column = 0   
+				width = medium
+			)
+			must have Created_Date
+			(
+    			type = date
+				displayname = "Created Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+			BOM_Status
+			(
+				type = radiobuttons
+				displayname = "BOM Status"
+				maxchar = 100
+				values = {"Active","Archive"}
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+			must have Production_Batch
+			(
+				type = picklist	
+				displayname = "Production Batch"
+				values  = Add_Production_Batch.ID
+    			bidirectional = BOM
+    			displayformat = [Batch_No]
+    			description
+    			[
+    				type = help_text
+    			 	message = "Batch Number"
+    			]
+	 			row = 2
+	 			column = 2   
+				width = medium
+			)
+			Image
+			(
+    			type = image
+				source  = file
+				aspect ratio = original
+				camera = primary
+				show gallery = true
+				switch camera = true
+    			description
+    			[
+    				type = help_text
+    			 	message = "Model Image."
+    			]
+	 			row = 2
+	 			column = 3   
+				width = medium
+			)
+			must have List_Of_Materials
+			(
+				type = grid
+				displayname = "List Of Raw Materials"
+				must have Material
+				(
+					type = picklist	
+					values  = Add_Material.ID
+    				displayformat = [Material_Name]
+					allow new entries = true
+					[
+						displayname = "Add New Material"
+					]
+					sortorder = ascending
+					width = medium
+				)
+				Measurement_Unit
+				(
+					type = picklist
+					displayname = "Measurement Unit"
+					values = {"Choice 1"}
+					sortorder = ascending
+					width = medium
+				)
+				Unit_Price
+				(
+					displayname = "Unit Price"
+					type = USD
+					format = commadotwestern
+					initial value = 0.00
+					width = medium
+				)
+				must have Quantity
+				(
+					type = number
+					initial value = 0
+					width = medium
+				)
+				Total_Price
+				(
+					displayname = "Total Price"
+					type = USD
+					format = commadotwestern
+					initial value = 0.00
+					width = medium
+				)
+	 			row = 3
+	 			column = 1   
+				width = medium
+			)
+			List_Of_Subassemblies
+			(
+				type = grid
+				displayname = "List Of Subassemblies"
+				must have Product
+				(
+					type = picklist	
+					values  = Add_Product[This_is_also_the_subassembly == true].ID
+    				displayformat = [Product_Name]
+					sortorder = ascending
+					width = medium
+				)
+				Measurement_Unit
+				(
+					type = picklist
+					displayname = "Measurement Unit"
+					values = {"Choice 1"}
+					width = medium
+				)
+				must have Unit_Price
+				(
+					displayname = "Unit Price"
+					type = USD
+					format = commadotwestern
+					initial value = 0.00
+					width = medium
+				)
+				must have Quantity
+				(
+					type = number
+					width = medium
+				)
+				Total_Price
+				(
+					displayname = "Total Price"
+					type = USD
+					format = commadotwestern
+					initial value = 0.00
+					width = medium
+				)
+	 			row = 4
+	 			column = 1   
+				width = medium
+			)
+			Other_details
+			(
+				type = section
+				displayname = "Other details"
+				visibility = true
+	 			row = 5
+	 			column = 0   
+				width = medium
+			)
+			must have Subtotal_Price_Raw_Materials_Subassemblies
+			(
+				displayname = "Subtotal Price ( Raw Materials & Subassemblies )"
+				type = USD
+				format = commadotwestern
+				initial value = 0.00
+    			description
+    			[
+    				type = help_text
+    			 	message = "Sum of each Material and Subassembly Products total price."
+    			]
+	 			row = 5
+	 			column = 1   
+				width = medium
+			)
+			Other_Cost
+			(
+				displayname = "Other Cost"
+				type = USD
+				format = commadotwestern
+				initial value = 0.00
+    			description
+    			[
+    				type = help_text
+    			 	message = "Petty cost and"
+    			]
+	 			row = 5
+	 			column = 1   
+				width = medium
+			)
+			Final_Price
+			(
+    			type = formula
+				displayname = "Grand total (Final Price)"
+				value =  input.Subtotal_Price_Raw_Materials_Subassemblies + input.Other_Cost
+				visibility = true
+	 			row = 5
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "design-2-cursor-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list Active_BOM
+		{
+			displayName = "Active BOM"
+			show all rows from Create_BOM  [Production_Batch.Production_Batch_Status == "Active"]  
+			(
+				Image
+				Production_Batch as "Production Batch"
+				(
+					view = All_Production_Batches
+				)
+				Other_Cost as "Other Cost"
+				Product
+				custom action "Archive"
+				(
+	  			workflow = Archive_BOM
+				show action in edit record menu = true
+				column header = "Archive"
+				confirmation before execution
+				(
+					message for individual record = "Do you archive this BOM?"
+					confirm button text = "Yes"		
+					cancel button text = "No"
+				)
+				)
+				Final_Price as "Grand total (Final Price)"
+				Serial_Number as "Serial Number"
+				Subtotal_Price_Raw_Materials_Subassemblies as "Subtotal"
+				List_Of_Subassemblies as "Subassemblies"
+				(
+					field = List_Of_Subassemblies.Product + " - " + List_Of_Subassemblies.Quantity
+				)
+				List_Of_Materials as "List Of Raw Materials"
+				(
+					field = List_Of_Materials.Material + " - " + List_Of_Materials.Quantity
+				)
+			)
+			group by
+			(
+				Production_Batch ascending
+			)
+			options
+			(
+				icon = "gestures-active-38"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Production_Batch as "Production Batch"
+							Image
+							Serial_Number as "Serial Number"
+							Product
+							List_Of_Materials.Material as "List Of Raw Materials"
+							List_Of_Subassemblies.Product as "Subassemblies"
+							Subtotal_Price_Raw_Materials_Subassemblies as "Subtotal"
+							Other_Cost as "Other Cost"
+							Final_Price as "Grand total (Final Price)"
+				"Archive"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 9
+		     			title = "Overview"
+						fields
+						(
+							Image
+							Product
+							Production_Batch as "Production Batch"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -1
+		     			title = "List Of Raw Materials"
+		     			related field = List_Of_Materials
+						fields
+						(
+							Material
+							Measurement_Unit as "Measurement Unit"
+							Quantity
+							Unit_Price as "Unit Price"
+							Total_Price as "Total Price"
+						)
+					)
+					datablock3
+					(
+			 			layout type = -1
+		     			title = "List Of Subassemblies"
+		     			related field = List_Of_Subassemblies
+						fields
+						(
+							Product
+							Measurement_Unit as "Measurement Unit"
+							Quantity
+							Unit_Price as "Unit Price"
+							Total_Price as "Total Price"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		default list Create_BOM_Report
+		{
+			displayName = "Archived BOM"
+			show all rows from Create_BOM  [Production_Batch.Production_Batch_Status == "Archive"]  
+			(
+				List_Of_Materials.Material as "List Of Raw Materials"
+				List_Of_Subassemblies.Product as "List Of Subassemblies"
+				Image
+				Production_Batch as "Production Batch"
+				(
+					view = All_Production_Batches
+				)
+				Subtotal_Price_Raw_Materials_Subassemblies as "Subtotal Price ( Raw Materials & Subassemblies )"
+				Other_Cost as "Other Cost"
+				Product
+			)
+			group by
+			(
+				Production_Batch ascending
+			)
+			options
+			(
+				icon = "ui-2-archive"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Image
+							List_Of_Materials.Material as "List Of Raw Materials"
+							List_Of_Subassemblies.Product as "List Of Subassemblies"
+							Production_Batch as "Production Batch"
+							Subtotal_Price_Raw_Materials_Subassemblies as "Subtotal Price ( Raw Materials & Subassemblies )"
+							Other_Cost as "Other Cost"
+							Product
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 9
+		     			title = "Overview"
+						fields
+						(
+							Image
+							Product
+							Production_Batch as "Production Batch"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -1
+		     			title = "List Of Raw Materials"
+		     			related field = List_Of_Materials
+						fields
+						(
+							Material
+							Measurement_Unit as "Measurement Unit"
+							Quantity
+							Unit_Price as "Unit Price"
+							Total_Price as "Total Price"
+						)
+					)
+					datablock3
+					(
+			 			layout type = -1
+		     			title = "List Of Subassemblies"
+		     			related field = List_Of_Subassemblies
+						fields
+						(
+							Product
+							Measurement_Unit as "Measurement Unit"
+							Quantity
+							Unit_Price as "Unit Price"
+							Total_Price as "Total Price"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list All_BOM
+		{
+			displayName = "All BOM"
+			show all rows from Create_BOM  [Production_Batch.Production_Batch_Status == "Active"]  
+			(
+				List_Of_Materials.Material as "List Of Raw Materials"
+				List_Of_Subassemblies.Product as "List Of Subassemblies"
+				Image
+				Production_Batch as "Production Batch"
+				(
+					view = All_Production_Batches
+				)
+				Subtotal_Price_Raw_Materials_Subassemblies as "Subtotal Price ( Raw Materials & Subassemblies )"
+				Other_Cost as "Other Cost"
+				Product
+				Serial_Number as "Serial Number"
+			)
+			group by
+			(
+				Production_Batch ascending
+			)
+			options
+			(
+				icon = "files-folder-gallery"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Serial_Number as "Serial Number"
+							Image
+							List_Of_Materials.Material as "List Of Raw Materials"
+							List_Of_Subassemblies.Product as "List Of Subassemblies"
+							Production_Batch as "Production Batch"
+							Subtotal_Price_Raw_Materials_Subassemblies as "Subtotal Price ( Raw Materials & Subassemblies )"
+							Other_Cost as "Other Cost"
+							Product
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 9
+		     			title = "Overview"
+						fields
+						(
+							Image
+							Product
+							Production_Batch as "Production Batch"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -1
+		     			title = "List Of Raw Materials"
+		     			related field = List_Of_Materials
+						fields
+						(
+							Material
+							Measurement_Unit as "Measurement Unit"
+							Quantity
+							Unit_Price as "Unit Price"
+							Total_Price as "Total Price"
+						)
+					)
+					datablock3
+					(
+			 			layout type = -1
+		     			title = "List Of Subassemblies"
+		     			related field = List_Of_Subassemblies
+						fields
+						(
+							Product
+							Measurement_Unit as "Measurement Unit"
+							Quantity
+							Unit_Price as "Unit Price"
+							Total_Price as "Total Price"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section BOM_Calculator
+	{
+		displayname= "BOM Calculator"
+		icon = "business-math"
+		form BOM_Calculator
+		{
+			displayname = "BOM Calculator"
+			store data in zc = false
+			success message = ""
+			field alignment = left
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Product_to_Production
+			(
+				type = picklist	
+				displayname = "Product to Production (BOM)"
+				values  = Create_BOM.ID
+    			displayformat = [Serial_Number]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Count_To_Be_Produced
+			(
+				type = number
+				displayname = "Count To Be Produced"
+				initial value = 1
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+			Section1
+			(
+				type = section
+				displayname = "Section"
+	 			row = 2
+	 			column = 0   
+				width = medium
+			)
+			plain
+			(
+    			type = plaintext
+				value = "<div>BOM Details Here<br /></div>"
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				Submit
+				(
+   					type = submit
+   					displayname = "Submit"
+				)
+				Reset
+				(
+   					type = reset
+   					displayname = "Reset"
+				)
+			}
+		}
+	}
+	section Company_Setup
+	{
+		displayname= "Company Setup"
+		icon = "files-settings-46"
+		form Company_Setup
+		{
+			displayname = "Company Setup"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			plain
+			(
+    			type = plaintext
+				value = "<div><b style=\"color: rgb(12, 107, 191)\"><span class=\"size\" style=\"font-size: 18.6667px\"><span class=\"colour\" style=\"color: rgb(153, 0, 152)\">Company</span></span></b><br /></div>"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Company_Name
+			(
+    			type = text
+				displayname = "Company Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have No_of_Employee_No_of_App_Users
+			(
+				type = picklist
+				displayname = "No of Employee/ No of App Users"
+				maxchar = 100
+				values = {"1 - 10","11 - 25","26 - 50","Above 50"}
+				initial value = "1 - 10"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Admin_User_Details
+			(
+				type = section
+				displayname = "Admin User Details"
+				visibility = true
+	 			row = 2
+	 			column = 0   
+				width = medium
+			)
+			must have Name
+			(
+    			type = name
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 2
+	 			column = 1   
+				width = medium
+				personal data = true
+			)
+			must have unique Admin_Email
+			(
+    			type = email
+				displayname = "Admin Email"
+				initial value = "${zoho.loginuserid}"
+				maxchar = 80
+	 			row = 2
+	 			column = 1   
+				width = medium
+				personal data = true
+			)
+			must have Phone
+			(
+    			type = phonenumber
+	 			row = 2
+	 			column = 1   
+				width = medium
+				personal data = true
+			)
+	
+			customize
+			(
+				icon = "files-folder-settings-81"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		properties
+		{
+			total entries
+			{
+				allowed count = 1
+			}
+		}
+		}
+		default summary Company_Setup1
+		{
+			displayName = "Company Setup Form Report"
+			show all rows from Company_Setup    
+			(
+				Company_Name as "Company Name"
+				No_of_Employee_No_of_App_Users as "No of Employee/ No of App Users"
+				Admin_Email as "Admin Email"
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Phone
+			)
+			options
+			(
+				display rows = 10
+				display records per row = 1
+				icon = "business-laptop-71"
+			)
+			quickview
+			(
+				layout
+				(
+		 			customlayouts
+	     			(
+		 				template
+		 				(
+		 	  				displayname="Custom Layout 1"
+		 	  				content="<panel  \n >\n	<pr \n			width='fill'\n		height='fill'\n>\n	<pc \n		padding = '0px'\n	bgColor = 'transparent'\n\n		width = '100%'\n		hAlign = 'center'\n		vAlign = 'middle'\n>\n	<pr \n			width='fill'\n		height='fill'\n>\n	<pc \n		padding = '20px'\n	bgColor = '#4E96F4'\n\n		width = '40%'\n		hAlign = 'center'\n		vAlign = 'middle'\n>\n	<pr \n			width='auto'\n		height='auto'\n>\n	<pc \n		padding = '5px'\n\n		hAlign = 'center'\n		vAlign = 'middle'\n>\n	<pr \n	>\n	<pc \n	\n>\n	<image  \n	\n	color = '#FFFFFF'\n	type = 'icon'\n	value = 'ui-1-calendar-grid-58'\n	size = '22px'\n	iconType = 'solid'\n/>\n</pc>\n</pr><pr \n	>\n	<pc \n	\n>\n	<text \n\n	marginLeft = '0px'\n	marginRight = '0px' \n	marginBottom = '0px'\n	marginTop = '0px'\n	color = '#FFFFFF'\n	size = '16px'\n	uppercase = 'false' \n	underline = 'false' \n	bold = 'true' \n	italic = 'false' \n	type = 'field'\n\n\n\n	  \n      	lineHeight = '21'\n      	  numOfLines = '1'\n	  value = 'Company_Name'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc><pc \n		padding = '20px'\n	bgColor = 'transparent'\n\n		width = '60%'\n		hAlign = 'left'\n>\n	<pr \n			width='auto'\n		height='auto'\n>\n	<pc \n		padding = '0px'\n\n		hAlign = 'left'\n		vAlign = 'middle'\n>\n	<pr \n	>\n	<pc \n	\n>\n	<text \n\n	color = '#4E96F4'\n	size = '15px'\n	uppercase = 'false' \n	underline = 'false' \n	bold = 'false' \n	italic = 'false' \n	type = 'field'\n\n\n\n	  \n      	lineHeight = '20'\n      	  numOfLines = '1'\n	  value = 'None'\n>\n</text>\n\n</pc>\n</pr><pr \n	>\n	<pc \n	\n>\n	<text \n\n	marginLeft = '0px'\n	marginRight = '0px' \n	marginBottom = '8px'\n	marginTop = '15px'\n	color = '#132437'\n	size = '20px'\n	uppercase = 'false' \n	underline = 'false' \n	bold = 'true' \n	italic = 'false' \n	type = 'field'\n\n\n\n	  \n      	lineHeight = '27'\n      	  numOfLines = '1'\n	  value = 'None'\n>\n</text>\n\n</pc>\n</pr><pr \n	>\n	<pc \n	\n>\n	<text \n\n	marginLeft = '0px'\n	marginRight = '0px' \n	marginBottom = '0px'\n	marginTop = '0px'\n	color = '#2D3C4D'\n	size = '15px'\n	uppercase = 'false' \n	underline = 'false' \n	bold = 'false' \n	italic = 'false' \n	type = 'field'\n\n\n\n	  \n      	lineHeight = '21'\n      	  numOfLines = '1'\n	  value = 'None'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</panel>"
+		    			)
+	     			)
+		 			type = -2
+	     			recordsperrow = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Company_Name as "Company Name"
+							No_of_Employee_No_of_App_Users as "No of Employee/ No of App Users"
+							Admin_Email as "Admin Email"
+							Name
+							Phone
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Company_Name as "Company Name"
+							No_of_Employee_No_of_App_Users as "No of Employee/ No of App Users"
+							Admin_Email as "Admin Email"
+							Name
+							Phone
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		form Add_User
+		{
+			displayname = "Add User"
+			success message = "User Added Successfully"
+			field alignment = left
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Name
+			(
+    			type = name
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+				personal data = true
+			)
+			must have unique Mail_ID
+			(
+    			type = email
+				displayname = "Mail ID"
+				maxchar = 80
+	 			row = 1
+	 			column = 1   
+				width = medium
+				personal data = true
+			)
+			must have unique Phone
+			(
+    			type = phonenumber
+	 			row = 1
+	 			column = 1   
+				width = medium
+				personal data = true
+			)
+			must have Role
+			(
+				type = picklist
+				maxchar = 100
+				values = {"Technician/Designer","Admin"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "users-2-woman-up"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Add"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		default list All_Users
+		{
+			displayName = "All Users"
+			show all rows from Add_User    
+			(
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Mail_ID as "Mail ID"
+				Phone
+				Role
+			)
+			options
+			(
+				icon = "users-multiple-11"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Mail_ID as "Mail ID"
+							Phone
+							Role
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Mail_ID as "Mail ID"
+							Phone
+							Role
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+
+
+
+
+		workflow
+		{
+		form
+		{
+			run_scripts_On_Always1 as "run scripts- On Always"
+			{
+				type =  form
+				form = Add_Production_Batch
+				record event = on add or edit
+
+				field rules
+				{
+					actions 
+					{
+						hide Production_Batch_Status;
+					}
+				}
+
+			}
+			Run_Scripts_On_Always1 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Create_BOM
+				record event = on add or edit
+
+				on load
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											disable List_Of_Materials.Measurement_Unit;
+										disable List_Of_Materials.Total_Price;
+										disable List_Of_Materials.Unit_Price;
+										disable List_Of_Subassemblies.Measurement_Unit;
+										disable List_Of_Subassemblies.Total_Price;
+										disable List_Of_Subassemblies.Unit_Price;
+										hide BOM_Status;
+						)
+					}
+				}
+
+			}
+			Run_Scripts_On_Always3 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Create_BOM
+				record event = on add or edit
+
+				on user input of List_Of_Materials.Material
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											row.Measurement_Unit=row.Material.Measurement_Unit;
+										row.Unit_Price=row.Material.Unit_Price;
+						)
+					}
+				}
+
+			}
+			Run_Scripts_On_Always4 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Create_BOM
+				record event = on add or edit
+
+				on user input of List_Of_Subassemblies.Product
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											row.Measurement_Unit=row.Product.Measurement_Unit;
+										row.Unit_Price=row.Product.Unit_Price;
+						)
+					}
+				}
+
+			}
+			Run_Scripts_On_Always5 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Create_BOM
+				record event = on add or edit
+
+				on add row of List_Of_Materials
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											materials = Add_Material[ID != 0];
+										materials_IDs = materials.ID.getall();
+										measurment_Units = materials.Measurement_Unit.getall();
+										selected = List();
+										for each  row_ in input.List_Of_Materials
+										{
+											if(row_.Material != null)
+											{
+												selected.add(row_.Material);
+											}
+										}
+										materials_IDs.removeAll(selected);
+										row.Material:ui.add(materials_IDs);
+										row.Measurement_Unit:ui.add(measurment_Units);
+						)
+					}
+				}
+
+			}
+			Run_Scripts_On_Always6 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Create_BOM
+				record event = on add or edit
+
+				on add row of List_Of_Subassemblies
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											sub_Assemblies = Add_Product[This_is_also_the_subassembly == true && ID != input.Product];
+										sub_AssembliesID = sub_Assemblies.ID.getall();
+										measurment_Units = sub_Assemblies.Measurement_Unit.getall();
+										selected = List();
+										for each  row_ in input.List_Of_Subassemblies
+										{
+											if(row_.Product != null)
+											{
+												selected.add(row_.Product);
+											}
+										}
+										sub_AssembliesID.removeAll(selected);
+										row.Product:ui.add(sub_AssembliesID);
+										row.Measurement_Unit:ui.add(measurment_Units);
+						)
+					}
+				}
+
+			}
+			Run_Scripts_On_submission as "Run Scripts - On submission"
+			{
+				type =  form
+				form = Add_User
+				record event = on add
+
+				on success
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											if(Role == "Technician/Designer")
+										{
+											thisapp.permissions.assignUserInProfile(input.Mail_ID,"Technician/ Designer");
+										}
+										else if(Mail_ID != zoho.adminuserid && thisapp.permissions.profileForUser(input.Mail_ID) == "")
+										{
+											thisapp.permissions.assignUserInProfile(input.Mail_ID,"Admin");
+										}
+						)
+					}
+				}
+
+			}
+			Run_Scripts_On_delete_a_r as "Run Scripts - On delete a record"
+			{
+				type =  form
+				form = Add_User
+				record event = on delete
+
+				on success
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											thisapp.permissions.deleteUser(input.Mail_ID);
+						)
+					}
+				}
+
+			}
+			Run_Scripts_While_Form_Lo as "Run Scripts - While Form Loading"
+			{
+				type =  form
+				form = Add_User
+				record event = on add
+
+				on load
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											user = Add_User[Mail_ID == zoho.adminuserid];
+										if(user.count() == 0)
+										{
+											input.Mail_ID = zoho.adminuserid;
+										}
+						)
+					}
+				}
+
+			}
+			Run_Scripts_While_Adding_ as "Run Scripts - While Adding a record"
+			{
+				type =  form
+				form = Create_BOM
+				record event = on add
+
+				on load
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											user = Add_User[Mail_ID == zoho.loginuserid];
+										if(user.count() != 0)
+										{
+											input.Created_By = user.ID;
+										}
+						)
+					}
+				}
+
+			}
+			Run_Scripts_On_Always as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Create_BOM
+				record event = on add or edit
+
+				on user input of List_Of_Materials.Quantity
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											if(row.Quantity != null)
+										{
+											row.Total_Price=row.Unit_Price * row.Quantity;
+											subtotal = 0;
+											for each  row_ in List_Of_Materials
+											{
+												subtotal = subtotal + row_.Total_Price;
+											}
+											for each  row_ in List_Of_Subassemblies
+											{
+												subtotal = subtotal + row_.Total_Price;
+											}
+											input.Subtotal_Price_Raw_Materials_Subassemblies = subtotal;
+										}
+						)
+					}
+				}
+
+			}
+			Run_Scripts_On_Always7 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Create_BOM
+				record event = on add or edit
+
+				on user input of List_Of_Subassemblies.Quantity
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											if(row.Quantity != null)
+										{
+											row.Total_Price=row.Unit_Price * row.Quantity + 100;
+											subtotal = 0;
+											for each  mat in List_Of_Materials
+											{
+												subtotal = subtotal + mat.Total_Price;
+											}
+											for each  subass in List_Of_Subassemblies
+											{
+												subtotal = subtotal + subass.Total_Price;
+											}
+											input.Subtotal_Price_Raw_Materials_Subassemblies = subtotal;
+										}
+						)
+					}
+				}
+
+			}
+			Run_Scripts___while_Delet as "Run Scripts _ while Deleting Row"
+			{
+				type =  form
+				form = Create_BOM
+				record event = on add or edit
+
+				on delete row of List_Of_Materials
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											input.Subtotal_Price_Raw_Materials_Subassemblies = input.Subtotal_Price_Raw_Materials_Subassemblies - row.Total_Price;
+						)
+					}
+				}
+
+			}
+			Run_Scripts_While_deletin as "Run Scripts - While deleting a row"
+			{
+				type =  form
+				form = Create_BOM
+				record event = on add or edit
+
+				on delete row of List_Of_Subassemblies
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											input.Subtotal_Price_Raw_Materials_Subassemblies = input.Subtotal_Price_Raw_Materials_Subassemblies - row.Total_Price;
+						)
+					}
+				}
+
+			}
+			Run_Scripts_While_Adding_1 as "Run Scripts - While Adding a record"
+			{
+				type =  form
+				form = Company_Setup
+				record event = on add
+
+				on load
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											input.Admin_Email = zoho.adminuserid;
+										disable Admin_Email;
+						)
+					}
+				}
+
+			}
+		}
+
+
+
+
+
+		functions
+		{
+			Archive_Production_Batch as "Archive Production Batch"
+			{
+				type =  functions
+				form = Add_Production_Batch
+				execution type = for each record	
+				on start
+				{
+					actions 
+					{
+					on click
+					(
+						input.Production_Batch_Status = "Archive";
+					)
+					}
+				}
+			}
+			Archive_BOM as "Archive BOM"
+			{
+				type =  functions
+				form = Create_BOM
+				execution type = for each record	
+				on start
+				{
+					actions 
+					{
+					on click
+					(
+						bom_det = Create_BOM[ID == input.ID];
+										bom_det.BOM_Status="Archive";
+					)
+					}
+				}
+			}
+		}
+	}
+	share_settings
+	{
+			"Read"
+			{
+				name = "Read"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "This profile will have read permission for all components\n"
+			}
+			"Write"
+			{
+				name = "Write"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "This profile will have write permission for all components\n"
+			}
+			"Administrator"
+			{
+				name = "Administrator"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "This profile will have all the permissions.\n"
+			}
+			"Admin"
+			{
+				name = "Admin"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "Admin Role\n"
+				ModulePermissions
+				{
+					Add_Product
+					{
+						enabled= Create,Viewall,Modifyall,Import,Export,Tab 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							Subassemblies={"View","Edit","Delete"}
+							Final_Products={"View","Edit","Delete"}
+						}
+					}
+					Add_Material
+					{
+						enabled= Create,Viewall,Modifyall,Import,Export,Tab 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							All_Materials={"View","Edit","Delete"}
+						}
+					}
+					Add_Production_Batch
+					{
+						enabled= Create,Viewall,Modifyall,Import,Export,Tab 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							Archive_Batches={"View","Edit","Delete"}
+							All_Production_Batches={"View","Edit","Delete"}
+						}
+					}
+					Company_Setup
+					{
+						enabled= Create,Viewall,Modifyall,Import,Export,Tab 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							Company_Setup1={"View","Edit","Delete"}
+						}
+					}
+					Add_User
+					{
+						enabled= Create,Viewall,Modifyall,Import,Export,Tab 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							All_Users={"View","Edit","Delete"}
+						}
+					}
+					BOM_Calculator
+					{
+						enabled= Create,Viewall,Tab 
+						allFieldsVisible= true 
+					}
+					Create_BOM
+					{
+						enabled= Create,Viewall,Modifyall,Import,Export,Tab 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							All_BOM={"View","Edit","Delete"}
+							Active_BOM={"View","Edit","Delete"}
+							Create_BOM_Report={"View","Edit","Delete"}
+						}
+					}
+				}
+			}
+			"Technician/ Designer"
+			{
+				name = "Technician/ Designer"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "Technician/ Designer Profile\n"
+				ModulePermissions
+				{
+					Add_Product
+					{
+						enabled= Create,Viewall,Tab 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							Subassemblies={"View"}
+							Final_Products={"View"}
+						}
+					}
+					Add_Material
+					{
+						enabled= Create,Viewall,Tab 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							All_Materials={"View"}
+						}
+					}
+					Create_BOM
+					{
+						enabled= Create,Viewall,Tab 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							Active_BOM={"View"}
+							Create_BOM_Report={"View"}
+						}
+					}
+				}
+			}
+			"Customer"
+			{
+				name = "Customer"
+				type = Customer_Portal
+				permissions = {Chat:false, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "This is the default profile having only add and view permission.\n"
+			}
+			roles
+			{
+				"CEO"
+				{
+					description = "User belonging to this role can access data of all other users."
+				}
+			}
+			role Hierarchy = {Add_Material,Add_Product,Add_Production_Batch,Add_User,Company_Setup,Create_BOM}
+	}
+
+	customize
+	{
+		
+		layout = "tab"
+		color = "black"
+		base theme = "professional"
+		new theme = 9
+		icons = true
+		icons style = outline
+		font = "lato"
+		color options
+    	{
+        color = "7"
+    	}
+    	icon
+    	{
+        	type = "1"
+        	name = "zc-ab-finance11"
+        	background color = "amethyst"
+        	foreground color = "#FFFFFF"
+    	}
+    	logo
+    	{
+        	preference = "none"
+        	placement = "left"
+    	}
+	}
+
+
+	phone
+	{
+		customize
+		{
+        	layout = slidingpane
+		 	icons style = outline
+        	font = "default"
+            style = "3"
+        	color options
+        	{
+             	color = amethyst
+         	}
+         	logo
+         	{
+             	preference = "none"
+         	}
+		}
+	}
+	tablet
+	{
+		customize
+		{
+        	layout = slidingpane
+		 	icons style = outline
+        	font = "default"
+            style = "3"
+        	color options
+        	{
+             	color = amethyst
+         	}
+         	logo
+         	{
+             	preference = "none"
+         	}
+		}
+	}
+	
+}

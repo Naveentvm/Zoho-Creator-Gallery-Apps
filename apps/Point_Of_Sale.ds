@@ -1,0 +1,4867 @@
+/*
+ * Author       : wapope7431_asuflex
+ * Generated on : 10-May-2023 15:58:36
+ * Version      : 1.0
+ */
+ application "Point Of Sale"
+ {
+ 	date format = "dd-MMM-yyyy"
+ 	time zone = "IST"
+ 	time format = "24-hr"
+ 	section Admin_Dashboard
+	{
+		displayname= "Admin Dashboard"
+		icon = "ui-1-dashboard-half"
+				 page Invoice(bill_details) 
+	 	 { 
+ 	 	 displayname = "Invoice"
+
+ 	 	 icon = "" 
+
+ 	 	 hide =  true
+	 	 Content="<zml    \t\t\n\t\t\n\t\t\n\t\t\n\t\t\n>\n\t<layout>\n\t<row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<dsp id='html_snippet1' elementName=\"HTML Snippet\"\n bgColor=\"\" \n>\n\t<![CDATA[htmlpage html_snippet1(bill_details)\ndisplayname = &quot;html_snippet&quot;\ncontent\n&lt;%{\n\tbill = Add_Invoice[Bill_number == bill_details.toLong()];\n\t%&gt;\n&lt;style&gt;\n\t\t\t\t#main_container {\n\t\t\t\t\tposition: relative;\n\t\t\t\t\tmargin: 3% auto;\n\t\t\t\t\tfont-size: 16px;\n\t\t\t\t\tbackground: white;\n\t\t\t\t\tborder:4px double rgba(91, 64, 81, 0.32);\n\t\t\t\t\tpadding:2% 6%;\n\t\t\t\t}\n\t\t\t\t#Customer_details {\n\t\t\t\t\theight: 40%;\n\t\t\t\t\tpadding-bottom: 5px;\n\t\t\t\t\tclear: both;\n\t\t\t\t\tfont-size: 20px;\n\t\t\t\t\tmargin: 1%;\n\t\t\t\t\tcolor: #535353;\n\t\t\t\t}\n\t\t\t\t#Store_details {\n\t\t\t\t\twidth: 40%;\n\t\t\t\t\tbox-sizing: border-box;\n\t\t\t\t\tdisplay: inline-block;\n\t\t\t\t\tmargin: 1% 1%;\n\t\t\t\t\tfont-size: 20px;\n\t\t\t\t\tfloat: left;\n\t\t\t\t}\n\t\t\t\t#bill_details {\n\t\t\t\t\theight: 5%;\n\t\t\t\t\tfloat: right;\n\t\t\t\t\tpadding-bottom: 5px;\n\t\t\t\t\tmargin-top: 1%;\n\t\t\t\t}\n\t\t\t\t#product_list {\n\t\t\t\t\tfont-family: arial, sans-serif;\n\t\t\t\t\tborder-collapse: collapse;\n\t\t\t\t\twidth: 100%;\n\t\t\t\t\t\n\t\t\t\t}\n\t\t\t\tth{\n\t\t\t\t\tbackground-color:  #dddddd;\n\t\t\t\t\t\n\t\t\t\t\tpadding: 8px;\n\t\t\t\t}\n\t\t\t\t#product_list td {\n\t\t\t\t\ttext-align:center;\n\t\t\t\t\theight: 50px;\n\t\t\t\t}\n\t\t\t\t#Payment_process {\n\t\t\t\t\twidth: 30%;\n\t\t\t\t\tfloat: left;\n\t\t\t\t}\n\t\t\t\t#total_no_of_pro{\n\t\t\t\t    padding:3%;\n\t\t\t\t\tfloat:left;\n\t\t\t\t\twidth:30%;\n\t\t\t\t\ttext-align:center;\n\t\t\t\t}\n\t\t\t\t#payment_div{\n\t\t\t\t\tpadding:2%;\n\t\t\t\t\ttext-align:right;\n\t\t\t\t\tfloat:right;\n\t\t\t\t\twidth: 30%;\n\t\t\t\t}\n\t\t\t&lt;\/style&gt;\n\t\t\t\t&lt;div id=&quot;main_container&quot;&gt;\n&lt;%\n\tStore = Store_Details[ID != 0];\n\t%&gt;\n&lt;div id=&quot;Store_details&quot;&gt; &lt;b style=&quot;font-size: 25px;&quot;&gt;&lt;%=Store.Store_name%&gt;&lt;\/b&gt;&lt;br&gt;\n\t\t\t&lt;div style=&quot;font-size: 15px;color: #515151;word-break: initial;display:inline&quot;&gt;\n\t\t\t\t\t\t\t&lt;%=Store.Address%&gt;&lt;\/div&gt;\n\t\t\t\t\t&lt;\/div&gt;\t\n\t\t\t\t\n\t\t\t\t\t&lt;div id=&quot;bill_details&quot;&gt;  &lt;b&gt;Bill No: &lt;\/b&gt;&lt;%=bill.Bill_number%&gt; &lt;div&gt; &lt;%=zoho.currenttime%&gt; &lt;\/div&gt;&lt;\/div&gt;\n\t\t\t\t\n\t\t\t\t\t&lt;div id=&quot;Customer_details&quot;&gt;\n&lt;%\n\tcustomer = Add_Customers[ID == bill.Customer];\n\tif(customer.count() &gt; 0)\n\t{\n\t\t%&gt;\n&lt;%=customer.Name%&gt; -# &lt;%=customer.Customer_ID%&gt;\n&lt;%\n\t}\n\t%&gt;\n&lt;\/div&gt;\n\t\t\t\n\t\t\t\t\t&lt;table id=&quot;product_list&quot;&gt;\n\t\t\t\t\t\t&lt;tr&gt;\n\t\t\t\t\t\t\t&lt;th&gt;&lt;b&gt;S.No&lt;\/b&gt;&lt;\/td&gt;\n\t\t\t\t\t\t\t&lt;th&gt;&lt;b&gt;Product&lt;\/b&gt;&lt;\/th&gt;\n\t\t\t\t\t\t\t&lt;th&gt;&lt;b&gt;Price ( $ )&lt;\/b&gt;&lt;\/th&gt;\n\t\t\t\t\t\t\t&lt;th&gt;&lt;b&gt;Quantity&lt;\/b&gt;&lt;\/th&gt;\n\t\t\t\t\t\t\t&lt;th&gt;&lt;b&gt;Discount ( % )&lt;\/b&gt;&lt;\/th&gt;\n\t\t\t\t\t\t\t&lt;th&gt;&lt;b&gt;Subtotal ( $ )&lt;\/b&gt;&lt;\/th&gt;\n\t\t\t\t\t\t&lt;\/tr&gt;\n&lt;%\n\tproduct_quantity = 0;\n\titems_quantity = 0;\n\tslno = 0;\n\tfor each  Buying_product in bill.Buying_products\n\t{\n\t\tproduct_quantity = product_quantity + 1;\n\t\titems_quantity = items_quantity + Buying_product.Quantity;\n\t\t%&gt;\n&lt;tr&gt;\n&lt;%\n\t\tslno = slno + 1;\n\t\t%&gt;\n&lt;td style = &quot;width=3%&quot;&gt;&lt;%=slno%&gt;&lt;\/td&gt;\n\t\t\t\t\t\t&lt;td&gt;&lt;%=Buying_product.Product.Product_name%&gt;&lt;\/td&gt;\n\t\t\t\t\t\t&lt;td&gt;&lt;%=Buying_product.Price%&gt;&lt;\/td&gt;\n\t\t\t\t\t\t&lt;td&gt;&lt;%=Buying_product.Quantity%&gt;&lt;\/td&gt;\n\t\t\t\t\t\t&lt;td&gt;&lt;%=Buying_product.discount_percent%&gt;&lt;\/td&gt;\n\t\t\t\t\t\t&lt;td&gt;&lt;%=Buying_product.Subtotal%&gt;&lt;\/td&gt;\n\t\t\t\t\t&lt;\/tr&gt;\n&lt;%\n\t}\n\t%&gt;\n&lt;tr&gt;\n\t\t\t\t\t\t&lt;th &gt;&lt;\/th&gt;\n\t\t\t\t\t\t&lt;th &gt;&lt;\/th&gt;\n\t\t\t\t\t\t&lt;th &gt;&lt;\/th&gt;\n\t\t\t\t\t\t&lt;th style = &quot;font-size:90%&quot;&gt;&lt;%=items_quantity%&gt;&lt;\/th&gt;\n\t\t\t\t\t\t&lt;th&gt;&lt;b&gt;Total Amount&lt;\/b&gt;&lt;\/th&gt;\n\t\t\t\t\t\t&lt;th&gt;&lt;b&gt;$&lt;%=bill.Total%&gt; &lt;\/b&gt;&lt;\/th&gt;\n\t\t\t\t\t&lt;\/tr&gt;\n\t\t\t\t\t&lt;tr&gt;\n\t\t\t\t\t\t&lt;td&gt;&lt;\/td&gt;\n\t\t\t\t\t\t&lt;td&gt;&lt;\/td&gt;\n\t\t\t\t\t\t&lt;td&gt;&lt;\/td&gt;\n\t\t\t\t\t\t&lt;td&gt;&lt;\/td&gt;\n\t\t\t\t\t\t&lt;td&gt;&lt;b&gt;Discount &lt;\/b&gt;( &lt;%=bill.Discount_Percentage%&gt;%)&lt;\/td&gt;\n\t\t\t\t\t\t&lt;td&gt; $&lt;%=bill.Discount_Percentage \/ 100 * bill.Total%&gt;&lt;\/td&gt;\n\t\t\t\t\t&lt;\/tr&gt;\n\t\t\t\t\t&lt;tr&gt;\n\t\t\t\t\t\t&lt;td&gt;&lt;\/td&gt;\n\t\t\t\t\t\t&lt;td&gt;&lt;\/td&gt;\n\t\t\t\t\t\t&lt;td&gt;&lt;\/td&gt;\n\t\t\t\t\t\t&lt;td&gt;&lt;\/td&gt;\n\t\t\t\t\t\t&lt;td&gt;&lt;b&gt;Tax&lt;\/b&gt; (&lt;%=bill.Tax%&gt;%)&lt;\/td&gt;\n\t\t\t\t\t\t&lt;td&gt; $&lt;%=bill.Tax \/ 100 * bill.Total%&gt;&lt;\/td&gt;\n\t\t\t\t\t&lt;\/tr&gt;\n\t\t\t\t\t&lt;tr&gt;\n\t\t\t\t\t\t&lt;td&gt;&lt;\/td&gt;\n\t\t\t\t\t\t&lt;td&gt;&lt;\/td&gt;\n\t\t\t\t\t\t&lt;td&gt;&lt;\/td&gt;\n\t\t\t\t\t\t&lt;td&gt;&lt;\/td&gt;\n\t\t\t\t\t\t&lt;th style = &quot;font-size:150%&quot;&gt;&lt;b&gt;Payment&lt;\/b&gt;&lt;\/th&gt;\n\t\t\t\t\t\t&lt;th style = &quot;font-size:150%&quot;&gt;&lt;b&gt;$&lt;%=bill.Payment%&gt;&lt;\/b&gt;&lt;\/th&gt;\t\n\t\t\t\t\t&lt;\/tr&gt;\n\t\t\t\t&lt;table&gt;\n\t\t\t\t\n\t\t\t\t\n\t\t\t&lt;\/div&gt;\n&lt;%\n\n}%&gt;]]>\n<\/dsp>\n<\/column>\n<\/row>\n<\/layout>\n<\/zml>" 
+ 	 	}
+				 page Admin_Dashboard 
+	 	 { 
+ 	 	 displayname = "Admin Dashboard"
+
+ 	 	 icon = "" 
+	 	 Content="<zml    \t\t\n\t\t\n\t\t\n\t\t\n\t\t\n>\n\t<layout>\n\t<row>\n\t<column\n   \t\t width=\"70%\"\n   \t>\n\t<dsp id='ZMLScript1' elementName=\"HTML Snippet\"\n bgColor=\"#FFFFFF\" \n>\n\t<![CDATA[htmlpage ZMLScript1()\ndisplayname = &quot;ZMLScript&quot;\ncontent\n&lt;%{\n\tif(Store_Details[ID != 0].count() == 0)\n\t{\n\t\topenUrl(&quot;#Form:Store_Details?zc_NextUrl=#Form:Add_stock&quot;,&quot;popup window&quot;);\n\t}\n\t%&gt;\n&lt;style&gt;  &lt;\/style&gt;  &lt;div style = &quot;padding:15px;font-size:18px;padding:2%;&quot;&gt;&lt;b&gt;Monthly Sales&lt;\/b&gt;&lt;\/div&gt; &lt;iframe class=&quot;back&quot; name=&apos;chartFrame&apos; allowTransparency=&apos;true&apos; zc_mobileView=&apos;inline&apos; zc_Header=&apos;false&apos; style=&quot;border:none; margin:0px auto; width:100%;box-sizing:border-box; height:400px;&quot; src=&apos;&lt;%=zoho.appuri%&gt;report-embed\/Monthly_Sales?zc_Header=false&apos;&gt;&lt;\/iframe&gt;\n&lt;%\n\n}%&gt;]]>\n<\/dsp>\n<\/column><column\n   \t\t width=\"30%\"\n   \t>\n\t<row>\n\t<column\n   \t\t width=\"50%\"\n   \t>\n\t<panel elementName=\"Panel\"\n \n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpadding = '20px'\n\tbgColor = '#8A3DFB'\n\n\t\twidth = '100%'\n\t\thAlign = 'center'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tcolor = '#FFFFFF'\n\tsize = '33px'\n\tbold = 'true' \n\ttype = 'Form Data'\n\n\tdisplayType = 'actual'\n\n\n\t  \n\t\tcriteria = 'Quantity == 0'\n\t  value = 'thisapp.Selling_Products_Form.ID.count'\n>\n<\/text>\n\n<\/pc>\n<\/pr><pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tcolor = '#FFFFFF'\n\tsize = '15px'\n\tfontFamily = 'Roboto-regular' \n\ttype = 'Text'\n\n\n\n\t  \n\t  value = 'Out Of Stock Products'\n>\n<\/text>\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column><column\n   \t\t width=\"50%\"\n   \t>\n\t<panel elementName=\"Panel 1\"\n \n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpadding = '20px'\n\tbgColor = '#8A3DFB'\n\n\t\twidth = '100%'\n\t\thAlign = 'center'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tcolor = 'white'\n\tsize = '33px'\n\tbold = 'true' \n\ttype = 'Form Data'\n\n\tdisplayType = 'actual'\n\n\n\t  \n\t  value = 'thisapp.Add_Customers.ID.count'\n>\n<\/text>\n\n<\/pc>\n<\/pr><pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tcolor = '#FFFFFF'\n\tsize = '15px'\n\tfontFamily = 'Roboto-regular' \n\ttype = 'Text'\n\n\n\n\t  \n\t  value = 'No Of customers'\n>\n<\/text>\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<panel elementName=\"Panel 2\"\n \n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpadding = '20px'\n\tbgColor = '#FFFFFF'\n\n\t\twidth = '100%'\n\t\thAlign = 'center'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<pr \n\t>\n\t<pc \n\t\n>\n\t<text \n    action = 'OpenReport'\n\t\tparameters = 'Bill_Number=${tes}' \n\t\tcomponentLinkName = 'Invoices'\n\t\ttarget = 'new-window'\n\n\tcolor = '#089E3C'\n\tsize = '33px'\n\tbold = 'true' \n\ttype = 'Form Data'\n\n\tdisplayType = 'actual'\n\n\n\t  \n\t\tcriteria = 'Invoice_Date in this month'\n\t  value = 'thisapp.Add_Invoice.Payment.sum'\n>\n<\/text>\n\n<\/pc>\n<\/pr><pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tcolor = '#333333'\n\tsize = '15px'\n\tfontFamily = 'Roboto-regular' \n\ttype = 'Text'\n\n\n\n\t  \n\t  value = 'This Month Sales'\n>\n<\/text>\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<panel elementName=\"Panel 3\"\n \n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpadding = '20px'\n\tbgColor = '#FFFFFF'\n\n\t\twidth = '100%'\n\t\thAlign = 'center'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tcolor = '#FF8318'\n\tsize = '33px'\n\tbold = 'true' \n\ttype = 'Form Data'\n\n\tdisplayType = 'actual'\n\n\n\t  \n\t\tcriteria = 'Invoice_Date in this week'\n\t  value = 'thisapp.Add_Invoice.Payment.sum'\n>\n<\/text>\n\n<\/pc>\n<\/pr><pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tcolor = '#333333'\n\tsize = '15px'\n\ttype = 'Text'\n\n\n\n\t  \n\t  value = 'This Week Sales'\n>\n<\/text>\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<panel elementName=\"Panel 4\"\n \n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpadding = '20px'\n\tbgColor = '#FFFFFF'\n\n\t\twidth = '100%'\n\t\thAlign = 'center'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tcolor = '#8A3DFB'\n\tsize = '33px'\n\tbold = 'true' \n\ttype = 'Form Data'\n\n\tdisplayType = 'actual'\n\n\n\t  \n\t\tcriteria = 'Invoice_Date is today'\n\t  value = 'thisapp.Add_Invoice.Payment.sum'\n>\n<\/text>\n\n<\/pc>\n<\/pr><pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tcolor = '#333333'\n\tsize = '15px'\n\tfontFamily = 'Roboto-regular' \n\ttype = 'Text'\n\n\n\n\t  \n\t  value = 'Today Sales'\n>\n<\/text>\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column>\n<\/row>\n<\/column>\n<\/row>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"70%\"\n   \t>\n\t<dsp id='ZMLScript2' elementName=\"HTML Snippet 1\"\n bgColor=\"#FFFFFF\" \n>\n\t<![CDATA[htmlpage ZMLScript2()\ndisplayname = &quot;ZMLScript&quot;\ncontent\n&lt;%{\n\t%&gt;\n&lt;div style = &quot;padding:15px;font-size:18px;padding:2%;&quot;&gt;&lt;b&gt;Monthly Profit&lt;\/b&gt;&lt;\/div&gt;  &lt;iframe class=&quot;back&quot; name=&apos;chartFrame&apos; allowTransparency=&apos;true&apos; zc_mobileView=&apos;inline&apos; zc_Header=&apos;false&apos; style=&quot;border:none; margin:0px auto; width:100%;box-sizing:border-box; height:400px&quot; src=&apos;&lt;%=zoho.appuri%&gt;report-embed\/Monthly_Profit?zc_Header=false&apos;&gt;&lt;\/iframe&gt;\n&lt;%\n\n}%&gt;]]>\n<\/dsp>\n<\/column><column\n   \t\t width=\"30%\"\n   \t>\n\t<dsp id='ZMLScript3' elementName=\"HTML Snippet 2\"\n bgColor=\"#FFFFFF\" \n>\n\t<![CDATA[htmlpage ZMLScript3()\ndisplayname = &quot;ZMLScript&quot;\ncontent\n&lt;%{\n\t%&gt;\n&lt;div style = &quot;padding:15px;font-size:18px;padding:2%;&quot;&gt;&lt;b&gt;Most Sold Products&lt;\/b&gt;&lt;\/div&gt; &lt;iframe class=&quot;back&quot; name=&apos;chartFrame&apos; allowTransparency=&apos;true&apos; zc_mobileView=&apos;inline&apos; zc_Header=&apos;false&apos; style=&quot;border:none; margin:0px auto; width:100%;box-sizing:border-box; height:400px&quot; src=&apos;&lt;%=zoho.appuri%&gt;report-embed\/Most_Sold_Products?zc_Header=false&apos;&gt;&lt;\/iframe&gt;\n&lt;%\n\n}%&gt;]]>\n<\/dsp>\n<\/column>\n<\/row>\n<\/layout>\n<\/zml>" 
+ 	 	}
+	}
+	section Stock
+	{
+		icon = "shopping-stock"
+		form Add_stock
+		{
+			displayname = "Add Stock"
+			store data in zc = false
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Barcode_Number
+			(
+    			type = text
+				displayname = "Barcode Number"
+				qrcode = true
+				barcode = true
+				camera = primary
+				preview duration = 0
+				show gallery = true
+				switch camera = true
+    			description
+    			[
+    				type = help_text
+    			 	message = "You can scan QR/Bar code here."
+    			]
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Product
+			(
+				type = picklist	
+				values  = add_product.ID
+    			displayformat = [Product_name + " - " + Weight_Volume_Size]
+				allow new entries = true
+				[
+					displayname = "Add New product"
+					alignment = bottom
+				]
+				searchable = true
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Cost_Price
+			(
+				displayname = "Cost Price"
+				type = INR
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Selling_Price
+			(
+				displayname = "Selling Price"
+				type = INR
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Quantity
+			(
+				type = number
+				maxchar = 12
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+	
+			customize
+			(
+				icon = "files-add"
+			)
+			actions
+			{
+				Submit
+				(
+   					type = submit
+   					displayname = "Submit"
+				)
+				Reset
+				(
+   					type = reset
+   					displayname = "Reset"
+				)
+			}
+		}
+		list Current_Stock_Products
+		{
+			displayName = "Current Stock Products"
+			show all rows from Selling_Products_Form  [Quantity != 0]  
+			(
+				Product.Weight_Volume_Size as "Weight/Volume/Size"
+				Product
+				Product_bar_code
+				Cost_price as "Cost Price"
+				Selling_price as "Selling price"
+				Quantity
+			)
+			options
+			(
+				icon = "location-route-open"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 4
+		     			title = "Overview"
+						fields
+						(
+							Product
+							Cost_price as "Cost Price"
+							Selling_price as "Selling price"
+							Quantity
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 4
+		     			title = "Overview"
+						fields
+						(
+							Product
+							Product_bar_code
+							Product.Weight_Volume_Size as "Weight/Volume/Size"
+							Selling_price as "Selling price"
+							Quantity
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Overview"
+		     			related field = Product
+						fields
+						(
+							Product_ID as "Product ID"
+							Product_name as "Product Name"
+							Weight_Volume_Size as "Weight/Volume/Size"
+							Sold_quantity_this_month as "Sold quantity this month"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Out_of_stock_Products
+		{
+			displayName = "Out Of Stock Products"
+			show all rows from Selling_Products_Form  [Quantity < 1]  
+			(
+				Product.Category
+				Product.Product_vendor as "Vendor"
+				Product.Weight_Volume_Size as "Weight/Volume/Size"
+				Product
+				Product_bar_code
+				Cost_price as "Cost Price"
+				Selling_price as "Selling price"
+				Quantity
+			)
+			options
+			(
+				icon = "location-route-alert"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 4
+		     			title = "Overview"
+						fields
+						(
+							Product
+							Cost_price as "Cost Price"
+							Selling_price as "Selling price"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Product
+							Product_bar_code
+							Product.Weight_Volume_Size as "Weight/Volume/Size"
+							Product.Category as "Category"
+							Product.Product_vendor as "Vendor"
+							Quantity
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Overview"
+		     			related field = Product
+						fields
+						(
+							Product_ID as "Product ID"
+							Product_name as "Product Name"
+							Weight_Volume_Size as "Weight/Volume/Size"
+							Category
+							Product_vendor as "Vendor"
+							Sold_quantity_this_month as "Sold quantity this month"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list All_Product
+		{
+			displayName = "All Products"
+			show all rows from add_product    
+			(
+				Product_vendor as "Vendor"
+				Category.Category
+				Product_ID as "Product ID"
+				Product_name as "Product Name"
+				Weight_Volume_Size as "Weight/Volume/Size"
+				Sold_quantity_this_month as "Sold quantity this month"
+				Category
+			)
+			options
+			(
+				icon = "design-2-group"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Product_name as "Product Name"
+							Weight_Volume_Size as "Weight/Volume/Size"
+							Category
+							Product_vendor as "Vendor"
+							Sold_quantity_this_month as "Sold quantity this month"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Product_name as "Product Name"
+							Weight_Volume_Size as "Weight/Volume/Size"
+							Category
+							Sold_quantity_this_month as "Sold quantity this month"
+						)
+					)
+					datablock3
+					(
+			 			layout type = -2
+		     			title = "Overview"
+		     			related field = Product_vendor
+						fields
+						(
+							Vendor_Name as "Name"
+							Address
+							Email
+							Phone_Number as "Phone Number"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		pivotchart Most_Sold_Products
+		{ 
+			displayname = "Most Sold Products"
+			legend = RIGHT
+			report properties
+			(
+				records displayed = all_records
+				allow export = false
+				allow drilldown and view underlying data = false
+		
+			)
+
+			based on Autoview_1535367150958_add_product
+							icon = "business-chart-bar-32"				show all rows from add_product
+				(
+			Product_ID  as "Product ID"
+			Product_name  as "Product Name"
+			Product_vendor  as "Vendor"
+			Sold_quantity_this_month  as "Sold quantity this month"
+			Weight_Volume_Size  as "Weight/Volume/Size"
+			Category 
+				)
+		}
+	}
+	section Bill_form
+	{
+		displayname= "Billing"
+		icon = "business-calculator"
+		form Add_Invoice
+		{
+			displayname = "Add Invoice"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Invoice_Date
+			(
+    			type = date
+				displayname = "Invoice Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			Bill_number
+			(
+    			type = autonumber
+				displayname = "Bill No"
+				start index = 1
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			Customer
+			(
+				type = picklist	
+				values  = Add_Customers.ID
+    			displayformat = [" " + Phone_number + " - " + Name.first_name]
+				allow new entries = true
+				[
+					displayname = "Add New Customer"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Buying_products
+			(
+				type = grid
+				displayname = "Bill Items"
+				defaultrow = 1
+				must have Bar_code
+				(
+    				type = text
+					displayname = "Barcode"
+					maxchar = 254
+					qrcode = true
+					barcode = true
+					camera = primary
+					preview duration = 0
+    				description
+    				[
+    					type = tooltip
+    				 	message = "You can scan QR/Bar code here."
+    				]
+					width = 150px
+				)
+				must have Product
+				(
+					type = picklist	
+					values  = add_product.ID
+    				displayformat = [Product_name + " - " + Weight_Volume_Size]
+					searchable = true
+					sortorder = ascending
+					width = 230px
+				)
+				Price
+				(
+					type = INR
+					initial value = 00
+					maxchar = 5
+					width = 150px
+				)
+				must have Quantity
+				(
+					type = number
+					initial value = 0
+					width = 100px
+				)
+				discount_percent
+				(
+    				type = percentage
+					displayname = "Discount"
+					initial value = 0%
+					width = 100px
+				)
+				Subtotal
+				(
+					type = INR
+					initial value = 00
+					width = 150px
+				)
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+			Amounts
+			(
+				type = section
+	 			row = 3
+	 			column = 0   
+				width = medium
+			)
+			must have Total
+			(
+				type = INR
+				initial value = 00
+				maxchar = 5
+	 			row = 3
+	 			column = 1   
+				width = 200px
+			)
+			Discount_Percentage
+			(
+    			type = percentage
+				displayname = "Discount Percentage"
+				initial value = 0%
+	 			row = 3
+	 			column = 1   
+				width = 200px
+			)
+			Tax
+			(
+    			type = percentage
+				initial value = 0%
+	 			row = 3
+	 			column = 1   
+				width = 200px
+			)
+			must have Payment
+			(
+				type = INR
+				initial value = 00
+				maxchar = 5
+	 			row = 3
+	 			column = 1   
+				width = 200px
+			)
+			Profit
+			(
+				type = INR
+				initial value = 00
+	 			row = 3
+	 			column = 1   
+				width = 200px
+			)
+	
+			customize
+			(
+				icon = "shopping-bag-add-18"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list Invoices
+		{
+			displayName = "Invoices"
+			show all rows from Add_Invoice    
+			(
+				Buying_products.Product as "Bill Items"
+				(
+					isLinkEnabled = true
+				)
+				Added_Time as "Added Time"
+				Customer
+				Invoice_Date as "Invoice Date"
+				custom action "View Inoice"
+				(
+	  			workflow = View_Inoice
+				show action in view header = true
+				show action in edit record menu = true
+				execute action for collection of records
+				column header = "View Inoice"
+				success message = ""
+				)
+				Profit
+				Buying_products.Bar_code as "Bill Items"
+				Tax
+				Payment
+				Discount_Percentage as "Discount Percentage"
+				Total
+				Bill_number as "Bill No"
+			)
+			group by
+			(
+				Invoice_Date ascending
+			)
+			options
+			(
+				icon = "social-1-logo-shopify"
+	 		)
+			conditional formatting
+			(
+				"current user added bills"
+				{
+				fields = [Buying_products.Product, Added_Time, Customer, Profit, Tax, Payment, Discount_Percentage, Total, Bill_number]
+				format = "font-weight:bold;color:#000000;background-color:#ffffff;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Bill_number as "Bill No"
+							Customer
+							Total
+							Discount_Percentage as "Discount Percentage"
+							Payment
+							Tax
+							Profit
+							Invoice_Date as "Invoice Date"
+							Added_Time as "Added Time"
+				"View Inoice" as "View Invoice"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+								"View Inoice"
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Bill_number as "Bill No"
+							Customer
+							Total
+							Discount_Percentage as "Discount Percentage"
+							Payment
+							Tax
+							Profit
+							Invoice_Date as "Invoice Date"
+							Added_Time as "Added Time"
+				"View Inoice" as "View Invoice"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		pivotchart Monthly_Profit
+		{ 
+			displayname = "Monthly Profit"
+			legend = RIGHT
+			report properties
+			(
+				records displayed = all_records
+				allow export = false
+				allow drilldown and view underlying data = false
+		
+			)
+
+			based on Autoview_1535366868226_Add_Invoice
+							icon = "business-chart-bar-32"				show all rows from Add_Invoice
+				(
+			Bill_number  as "Bill No"
+			Customer 
+			Profit 
+			Invoice_Date  as "Invoice Date"
+			Tax 
+			Payment 
+			Total 
+			Discount_Percentage  as "Discount Percentage"
+				)
+		}
+		pivotchart Monthly_Sales
+		{ 
+			displayname = "Monthly Sales"
+			legend = RIGHT
+			report properties
+			(
+				records displayed = all_records
+				allow export = false
+				allow drilldown and view underlying data = false
+		
+			)
+
+			based on Autoview_1535366868226_Add_Invoice
+							icon = "business-chart-bar-32"				show all rows from Add_Invoice
+				(
+			Bill_number  as "Bill No"
+			Customer 
+			Profit 
+			Invoice_Date  as "Invoice Date"
+			Tax 
+			Payment 
+			Total 
+			Discount_Percentage  as "Discount Percentage"
+				)
+		}
+	}
+	section Members
+	{
+		displayname= "Customers"
+		icon = "users-multiple-11"
+		form Add_Customers
+		{
+			displayname = "Add Customers"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Customer_ID
+			(
+    			type = autonumber
+				displayname = "Customer ID"
+				start index = 1
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			must have Name
+			(
+    			type = name
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			unique Email
+			(
+    			type = email
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Phone_number
+			(
+    			type = phonenumber
+				displayname = "Phone Number"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Address
+			(
+    			type = address
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_12
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_22
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city2
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province2
+     			(
+	     			  type = state_province
+	     			  displayname = "State / Province"
+     			) 
+     			postal_Code2
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country2
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude2
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude2
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Purchased_amount_till_now
+			(
+				displayname = "Purchased amount"
+				type = INR
+				initial value = 00
+				maxchar = 6
+				private = true
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+	
+			customize
+			(
+				icon = "users-2-a-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list Customers
+		{
+			displayName = "Customers"
+			show all rows from Add_Customers    
+			(
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				custom action "View History"
+				(
+	  			workflow = View_invoice_history_scri
+				show action in view header = true
+				show action in edit record menu = true
+				execute action for collection of records
+				column header = "View History"
+				)
+				Address 
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	      			enable = Show_As_Text
+	 			)
+				Purchased_amount_till_now as "Purchased amount"
+				Phone_number as "Phone Number"
+				Email
+				Customer_ID as "Customer ID"
+			)
+			options
+			(
+				icon = "users-multiple-19"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Customer_ID as "Customer ID"
+							Name
+							Phone_number as "Phone Number"
+							Email
+							Address
+							Purchased_amount_till_now as "Purchased amount"
+				"View History"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+								"View History"
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 4
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Address
+							Customer_ID as "Customer ID"
+							Email
+							Phone_number as "Phone Number"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+			 			"View History"
+    	 			)
+    			)
+			)
+		}
+	}
+	section Discount
+	{
+		icon = "shopping-discount"
+		list Price_Dise_Discount
+		{
+			displayName = "Price Wise Discount"
+   			hide = true
+			show all rows from Add_Discount  [Discount_Type == "Price wise discount"]  
+			(
+				Discount_Type as "Discount Type"
+				From
+				To
+				Total_price as "Total Price"
+				Discount_percent as "Discount Percent"
+			)
+			group by
+			(
+				Discount_Type ascending
+			)
+			options
+			(
+				icon = "business-currency-dollar"
+	 		)
+			conditional formatting
+			(
+				"curent discount"
+				{
+				fields = [From, To, Total_price, Discount_percent]
+				format = "font-weight:bold;color:#000000;background-color:#f2f2f2;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Discount_Type as "Discount Type"
+							From
+							To
+							Total_price as "Total Price"
+							Discount_percent as "Discount Percent"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Discount_Type as "Discount Type"
+							Total_price as "Total Price"
+							From
+							To
+							Discount_percent as "Discount Percent"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		form Add_Discount
+		{
+			displayname = "Add Discount"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have From
+			(
+    			type = date
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have To
+			(
+    			type = date
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Discount_Type
+			(
+				type = radiobuttons
+				displayname = "Discount Type"
+				values = {"Product wise discount","Total price discount"}
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			Products
+			(
+				type = list	
+				values  = add_product.ID
+    			displayformat = [Product_name + " -" + Weight_Volume_Size]
+				sortorder = ascending
+				height = 60px
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			Click_here_to_give_discount_all_products
+			(
+    			type = checkbox
+				displayname = "Discount for all products"
+				initial value = false
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			Click_here_to_quantity_based_discount
+			(
+    			type = checkbox
+				displayname = "Quantity based discount"
+				initial value = false
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			Quantity
+			(
+				type = number
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			Total_price
+			(
+				displayname = "Total Price"
+				type = INR
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Discount_percent
+			(
+    			type = percentage
+				displayname = "Discount Percent"
+				initial value = 0%
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+	
+			customize
+			(
+				icon = "files-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list Product_Wise_Discount
+		{
+			displayName = "Product Wise Discount"
+			show all rows from Add_Discount  [Discount_Type == "Product wise discount"]  
+			(
+				Discount_Type as "Discount Type"
+				Click_here_to_give_discount_all_products as "Discount for all products"
+				From
+				To
+				Quantity
+				Discount_percent as "Discount Percent"
+				Products
+			)
+			group by
+			(
+				Discount_Type ascending
+			)
+			options
+			(
+				icon = "shopping-stock"
+	 		)
+			conditional formatting
+			(
+				"current discouont"
+				{
+				fields = [Click_here_to_give_discount_all_products, From, To, Quantity, Discount_percent, Products]
+				format = "font-weight:bold;color:#000000;background-color:#e8e6e1;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Discount_Type as "Discount Type"
+							Products
+							Click_here_to_give_discount_all_products as "Discount for all products"
+							From
+							To
+							Quantity
+							Discount_percent as "Discount Percent"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Discount Details"
+						fields
+						(
+							Discount_Type as "Discount Type"
+							From
+							To
+							Quantity
+							Discount_percent as "Discount Percent"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Overview"
+		     			related field = Products
+						fields
+						(
+							Product_ID as "Product ID"
+							Product_name as "Product Name"
+							Weight_Volume_Size as "Weight/Volume/Size"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Item_categories
+	{
+		displayname= "Settings"
+		icon = "ui-1-settings-gear-64"
+		list Categories11
+		{
+			displayName = "Categories"
+			show all rows from categories    
+			(
+				Category
+			)
+			options
+			(
+				icon = "files-gallery"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Category
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Category
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Vendors
+		{
+			displayName = "Vendors"
+			show all rows from Add_Vendor    
+			(
+				Vendor_Name  as "Name"
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Address 
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	      			enable = Show_As_Text
+	 			)
+				Email
+				Phone_Number as "Phone Number"
+			)
+			options
+			(
+				icon = "users-network"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Vendor_Name as "Name"
+							Phone_Number as "Phone Number"
+							Email
+							Address
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Vendor_Name as "Name"
+							Email
+							Phone_Number as "Phone Number"
+							Address
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Store_Details1
+		{
+			displayName = "Store Details"
+			show all rows from Store_Details    
+			(
+				Address 
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	      			enable = Show_As_Text
+	 			)
+				Email
+				Store_name as "Store Name"
+				Phone_Number as "Phone Number"
+			)
+			options
+			(
+				icon = "food-store"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Store_name as "Store Name"
+							Email
+							Phone_Number as "Phone Number"
+							Address
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Store_name as "Store Name"
+							Email
+							Phone_Number as "Phone Number"
+							Address
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Cashiers
+		{
+			displayName = "Cashiers"
+			show all rows from Add_Cashier    
+			(
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Address 
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	      			enable = Show_As_Text
+	 			)
+				Email
+				Mobile_Number as "Mobile Number"
+			)
+			options
+			(
+				icon = "business-money-coins"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 4
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Address
+							Mobile_Number as "Mobile Number"
+							Email
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Mobile_Number as "Mobile Number"
+							Email
+							Address
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Charts
+	{
+		hide = true
+	}
+	section hidden_contents
+	{
+		displayname= "hidden contents"
+		hide = true
+		form add_product
+		{
+			displayname = "Add Product"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Product_ID
+			(
+    			type = autonumber
+				displayname = "Product ID"
+				start index = 1
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			must have Product_name
+			(
+    			type = text
+				displayname = "Product Name"
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Weight_Volume_Size
+			(
+    			type = text
+				displayname = "Weight/Volume/Size"
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Category
+			(
+				type = picklist	
+				values  = categories.ID
+    			displayformat = [Category]
+				allow new entries = true
+				[
+					displayname = "Add New Category"
+					alignment = bottom
+				]
+				searchable = true
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Product_vendor
+			(
+				type = picklist	
+				displayname = "Vendor"
+				values  = Add_Vendor.ID
+    			displayformat = [Email + " - " + Vendor_Name.first_name]
+				allow new entries = true
+				[
+					displayname = "Add New Vendor"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			Sold_quantity_this_month
+			(
+				type = number
+				displayname = "Sold quantity this month"
+				initial value = 0
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form categories
+		{
+			displayname = "Categories"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have unique Category
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form Add_Vendor
+		{
+			displayname = "Add Vendor"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Vendor_Name
+			(
+    			type = name
+				displayname = "Name"
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			unique Email
+			(
+    			type = email
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Phone_Number
+			(
+    			type = phonenumber
+				displayname = "Phone Number"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Address
+			(
+    			type = address
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_12
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_22
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city2
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province2
+     			(
+	     			  type = state_province
+	     			  displayname = "State / Province"
+     			) 
+     			postal_Code2
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country2
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude2
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude2
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form Selling_Products_Form
+		{
+			displayname = "Selling Products Form"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Product
+			(
+				type = picklist	
+				values  = add_product.ID
+    			displayformat = [Product_name + " - " + Weight_Volume_Size]
+				searchable = true
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have unique Product_bar_code
+			(
+    			type = text
+				qrcode = true
+				barcode = true
+				camera = primary
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Cost_price
+			(
+				displayname = "Cost Price"
+				type = INR
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Selling_price
+			(
+				displayname = "Selling price"
+				type = INR
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Quantity
+			(
+				type = number
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form Store_Details
+		{
+			displayname = "Store  Details"
+			success message = "Store Details Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Store_name
+			(
+    			type = text
+				displayname = "Store Name"
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Phone_Number
+			(
+    			type = phonenumber
+				displayname = "Phone Number"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have unique Email
+			(
+    			type = email
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Address
+			(
+    			type = address
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_12
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_22
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city2
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province2
+     			(
+	     			  type = state_province
+	     			  displayname = "State / Province"
+     			) 
+     			postal_Code2
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country2
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude2
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude2
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		properties
+		{
+			total entries
+			{
+				allowed count = 1
+			}
+		}
+		}
+		form Add_Cashier
+		{
+			displayname = "Add Cashier"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Name
+			(
+    			type = name
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have unique Email
+			(
+    			type = email
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Mobile_Number
+			(
+    			type = phonenumber
+				displayname = "Mobile Number"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Address
+			(
+    			type = address
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_12
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_22
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city2
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province2
+     			(
+	     			  type = state_province
+	     			  displayname = "State / Province"
+     			) 
+     			postal_Code2
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country2
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude2
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude2
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	section Sales___Profit
+	{
+		displayname= "Sales & Profit"
+		hide = true
+		list This_Month_sale
+		{
+			displayName = "This Month sale"
+   			hide = true
+			show all rows from Add_Invoice  [Added_Time in this month]  
+			(
+				Invoice_Date as "Invoice Date"
+				Discount_Percentage as "Discount Percentage"
+				Total
+				Tax
+				Payment
+				Profit
+			)
+			options
+			(
+				icon = "design-bullet-list-67"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Invoice_Date as "Invoice Date"
+							Discount_Percentage as "Discount Percentage"
+							Total
+							Tax
+							Payment
+							Profit
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Invoice_Date as "Invoice Date"
+							Discount_Percentage as "Discount Percentage"
+							Total
+							Tax
+							Payment
+							Profit
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list This_Month_Sales
+		{
+			displayName = "This Month Sales"
+   			hide = true
+			show all rows from Add_Invoice  [Added_Time in this month]  
+			(
+				Invoice_Date as "Invoice Date"
+				Total
+				(
+					display = total	
+				)
+				Discount_Percentage as "Discount Percentage"
+				(
+					display = average	
+				)
+				Tax
+				(
+					display = average	
+				)
+				Payment
+				(
+					display = total	
+				)
+			)
+			group by
+			(
+				Invoice_Date ascending
+			)
+			options
+			(
+				icon = "design-bullet-list-67"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Invoice_Date as "Invoice Date"
+							Total
+							Discount_Percentage as "Discount Percentage"
+							Tax
+							Payment
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Invoice_Date as "Invoice Date"
+							Total
+							Discount_Percentage as "Discount Percentage"
+							Tax
+							Payment
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list This_Week_Sales
+		{
+			displayName = "This Week Sales"
+   			hide = true
+			show all rows from Add_Invoice  [Added_Time in this week]  
+			(
+				Invoice_Date as "Invoice Date"
+				Total
+				(
+					display = total	
+				)
+				Discount_Percentage as "Discount Percentage"
+				(
+					display = average	
+				)
+				Tax
+				(
+					display = average	
+				)
+				Payment
+				(
+					display = total	
+				)
+			)
+			group by
+			(
+				Invoice_Date ascending
+			)
+			options
+			(
+				icon = "design-bullet-list-67"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Invoice_Date as "Invoice Date"
+							Total
+							Discount_Percentage as "Discount Percentage"
+							Tax
+							Payment
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Invoice_Date as "Invoice Date"
+							Total
+							Discount_Percentage as "Discount Percentage"
+							Tax
+							Payment
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Today_Sales
+		{
+			displayName = "Today Sales"
+   			hide = true
+			show all rows from Add_Invoice  [Added_Time == today]  
+			(
+				Invoice_Date as "Invoice Date"
+				Total
+				(
+					display = total	
+				)
+				Discount_Percentage as "Discount Percentage"
+				(
+					display = average	
+				)
+				Tax
+				(
+					display = average	
+				)
+				Payment
+				(
+					display = total	
+				)
+				Profit
+				(
+					display = total	
+				)
+			)
+			group by
+			(
+				Invoice_Date ascending
+			)
+			options
+			(
+				icon = "design-bullet-list-67"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Invoice_Date as "Invoice Date"
+							Total
+							Discount_Percentage as "Discount Percentage"
+							Tax
+							Payment
+							Profit
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Invoice_Date as "Invoice Date"
+							Total
+							Discount_Percentage as "Discount Percentage"
+							Tax
+							Payment
+							Profit
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+		 functions
+		 {
+			 Deluge
+			 {
+				 void CustomAction.getCustomerBills(int currentCustomerID)
+         {
+         	cust = Add_Customers[ID == currentCustomerID];
+         	openUrl(zoho.appuri + "#Report:Invoices?Customer=" + encodeUrl(cust.Phone_number) + "&Customer_op=26","popup window");
+         }
+				 void CustomAction.viewAction(int thisInvoiceId)
+         {
+         	billNo = Add_Invoice[ID = thisInvoiceId].Bill_number;
+         	openUrl(zoho.appuri + "#Page:Invoice?bill_details=" + billNo,"popup window","width=900px");
+         }
+			 }
+		 }
+
+
+
+
+		workflow
+		{
+		form
+		{
+			Submit_Actions as "Submit"
+			{
+				type =  form
+				form = Add_stock
+				button = Submit
+				on click
+				{
+					actions 
+					{
+					on click
+					(
+						current_pro = Selling_Products_Form[Product_bar_code == input.Barcode_Number];
+										if(current_pro.count() == 0)
+										{
+											//Here we are adding the product in 'Selling Products Form' if the selected product is not available
+											insert into Selling_Products_Form
+											[
+												Product_bar_code=input.Barcode_Number
+												Product=input.Product
+												Cost_price=input.Cost_Price
+												Selling_price=input.Selling_Price
+												Quantity=input.Quantity
+												Added_User=zoho.loginuser
+											]
+										}
+										else
+										{
+											//Here we are updating the product details in 'Selling Products Form' if selected product is already available
+											current_pro.Cost_price=input.Cost_Price;
+											current_pro.Selling_price=input.Selling_Price;
+											current_pro.Quantity=input.Quantity + current_pro.Quantity;
+										}
+					)
+					}
+				}
+			}
+			Product_wise_discount1 as "Product wise discount"
+			{
+				type =  form
+				form = Add_Discount
+				record event = on add or edit
+
+				field rules
+				{
+					actions  (Discount_Type == "Product wise discount")
+					{
+						show Products,Click_here_to_give_discount_all_products,Click_here_to_quantity_based_discount;
+					}
+				}
+
+			}
+			quantity_based_discount1 as "quantity based discount"
+			{
+				type =  form
+				form = Add_Discount
+				record event = on add or edit
+
+				field rules
+				{
+					actions  (Click_here_to_quantity_based_discount == true)
+					{
+						show Quantity;
+					}
+				}
+
+			}
+			Show_total_price_discount1 as "Show total price discount fields"
+			{
+				type =  form
+				form = Add_Discount
+				record event = on add or edit
+
+				field rules
+				{
+					actions  (Discount_Type == "Total price discount")
+					{
+						show Total_price;
+					}
+				}
+
+			}
+			Unassociated_Task as "Unassociated Task"
+			{
+				type =  form
+				form = Add_Discount
+				record event = on add
+
+				field rules
+				{
+					actions 
+					{
+						hide Products;
+					}
+				}
+
+			}
+			Field_scripts3 as "Field scripts"
+			{
+				type =  form
+				form = Add_stock
+				record event = on add or edit
+
+				on user input of Barcode_Number
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											bar_code = Selling_Products_Form[Product_bar_code == input.Barcode_Number];
+										if(bar_code.count() != 0)
+										{
+											//Here we are prefilling the fields if the given barcode is already exist
+											input.Product = bar_code.Product;
+											disable Product;
+											input.Cost_Price = bar_code.Cost_price;
+											input.Selling_Price = bar_code.Selling_price;
+										}
+										else
+										{
+											input.Product = null;
+											enable Product;
+											input.Cost_Price = null;
+											input.Selling_Price = null;
+										}
+						)
+					}
+				}
+
+			}
+			Create_record_scripts as "Create record scripts"
+			{
+				type =  form
+				form = Add_Invoice
+				record event = on add
+
+				on load
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											disable Total;
+										disable Discount_Percentage;
+										disable Payment;
+										disable Buying_products.Subtotal;
+										disable Buying_products.Price;
+										disable Buying_products.discount_percent;
+										input.Invoice_Date = zoho.currentdate;
+										disable Invoice_Date;
+										hide Profit;
+						)
+					}
+				}
+
+			}
+			Create_record_scripts7 as "Create record scripts"
+			{
+				type =  form
+				form = Add_Invoice
+				record event = on add
+
+				on success
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											//Updating no of products sold in this month to Product form
+										for each  Buying_product in input.Buying_products
+										{
+											stock_product = Selling_Products_Form[Product_bar_code == Buying_product.Bar_code];
+											stock_product.Quantity=stock_product.Quantity - Buying_product.Quantity;
+											add_product = add_product[ID == stock_product.Product];
+											add_product.Sold_quantity_this_month=add_product.Sold_quantity_this_month + Buying_product.Quantity;
+										}
+										//The customers total purchased amount will be updated
+										if(input.Customer != null)
+										{
+											customer = Add_Customers[ID == input.Customer];
+											customer.Purchased_amount_till_now=customer.Purchased_amount_till_now + input.Payment;
+										}
+										openUrl(zoho.appuri + "print/Invoice/?bill_details=" + input.Bill_number,"same window");
+						)
+					}
+				}
+
+			}
+			Edit_record_scripts5 as "Edit record scripts"
+			{
+				type =  form
+				form = Add_Invoice
+				record event = on edit
+
+				on load
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											disable Total;
+										disable Discount_Percentage;
+										disable Payment;
+										disable Buying_products.Subtotal;
+										disable Buying_products.Price;
+										disable Buying_products.discount_percent;
+										input.Invoice_Date = zoho.currentdate;
+										disable Invoice_Date;
+										hide Profit;
+						)
+					}
+				}
+
+			}
+			Edit_record_scripts6 as "Edit record scripts"
+			{
+				type =  form
+				form = Add_Invoice
+				record event = on edit
+
+				on update of Tax
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											//Tax calculations
+										if(input.Tax != null)
+										{
+											input.Payment = input.Total + input.Tax / 100 * input.Total - input.Discount_Percentage / 100 * input.Total;
+										}
+										else
+										{
+											input.Tax = 0;
+										}
+						)
+					}
+				}
+
+			}
+			Edit_record_scripts7 as "Edit record scripts"
+			{
+				type =  form
+				form = Add_Invoice
+				record event = on edit
+
+				on update of Discount_Percentage
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											//discount calculations here
+										if(input.Discount_Percentage != null)
+										{
+											input.Payment = input.Total + input.Tax / 100 * input.Total - input.Discount_Percentage / 100 * input.Total;
+										}
+										else
+										{
+											input.Discount_Percentage = 0;
+										}
+						)
+					}
+				}
+
+			}
+			Edit_record_scripts8 as "Edit record scripts"
+			{
+				type =  form
+				form = Add_Invoice
+				record event = on edit
+
+				on update of Total
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											//enable Discount_Percentage;
+										discount_offer = Add_Discount[Total_price <= input.Total && To >= zoho.currentdate && From <= zoho.currentdate] sort by Total_price desc range from 0 to 0;
+										//gives discouont by amount based
+										if(discount_offer.count() > 0)
+										{
+											input.Discount_Percentage = discount_offer.Discount_percent;
+										}
+										//tax calculation
+										else
+										{
+											input.Payment = input.Total + input.Tax / 100 * input.Total;
+										}
+						)
+					}
+				}
+
+			}
+			Delete_record_scripts2 as "Delete record scripts"
+			{
+				type =  form
+				form = Add_Invoice
+				record event = on delete
+
+				on success
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											for each  Buying_product in Buying_products
+										{
+											stock_product = Selling_Products_Form[Product_bar_code == Buying_product.Bar_code];
+											stock_product.Quantity=stock_product.Quantity + Buying_product.Quantity;
+											//The product count will be updated based on monthly selling.
+											add_product = add_product[ID == stock_product.Product];
+											add_product.Sold_quantity_this_month=add_product.Sold_quantity_this_month - Buying_product.Quantity;
+										}
+										//Deducting the deleted invoice amount from customer purchased amount.
+										if(input.Customer != null)
+										{
+											/* 	customer = Add_Customers[ID == Customer.ID];
+																																																																													customer.Purchased_amount_till_now=customer.Purchased_amount_till_now - input.Payment; */
+										}
+						)
+					}
+				}
+
+			}
+			Field_scripts4 as "Field scripts"
+			{
+				type =  form
+				form = Add_Invoice
+				record event = on add or edit
+
+				on user input of Buying_products.Quantity
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											/*Amount calculations*/
+										if(row.Product != null)
+										{
+											stock_product = Selling_Products_Form[Product == row.Product];
+											//This condition Checks the selected product is available or not in the stock.
+											if(row.Quantity != null && stock_product.Quantity >= row.Quantity)
+											{
+												selling_price = row.Price;
+												quantity = row.Quantity;
+												//gives the discount to the selected product by the quantity based
+												discount_all = Add_Discount[From <= zoho.currentdate && To >= zoho.currentdate && Discount_Type == "Product wise discount" && Click_here_to_give_discount_all_products];
+												if(discount_all.count() > 0)
+												{
+													if(!discount_all.Click_here_to_quantity_based_discount)
+													{
+														row.discount_percent=discount_all.Discount_percent;
+													}
+													if(discount_all.Click_here_to_quantity_based_discount && quantity >= discount_all.Quantity)
+													{
+														row.discount_percent=discount_all.Discount_percent;
+													}
+												}
+												//Gives the special discount to product by the quantity based
+												discount_product = Add_Discount[From <= zoho.currentdate && To >= zoho.currentdate && Discount_Type == "Product wise discount" && Products == row.Product];
+												if(discount_product.count() > 0)
+												{
+													if(!discount_product.Click_here_to_quantity_based_discount)
+													{
+														row.discount_percent=discount_product.Discount_percent;
+													}
+													if(discount_product.Click_here_to_quantity_based_discount && quantity >= discount_product.Quantity)
+													{
+														row.discount_percent=discount_product.Discount_percent;
+													}
+												}
+												row.Subtotal=selling_price * quantity - row.discount_percent / 100 * selling_price * quantity;
+											}
+											//If given product quantity is not available in stock gives the message as alert
+											else
+											{
+												alert "Sorry! Only" + stock_product.Quantity + " quantities available in stock";
+												row.Quantity=null;
+												row.Subtotal=0;
+											}
+											/*The subtotal calculations are here*/
+											//for each product subtotal amount is adding then that amount is filling in total amount field in invoice form. And also calculate the profit and 		fills the profit field
+											var_total = 0.0;
+											var_product_profit = 0.0;
+											for each  Buying_product in Buying_products
+											{
+												if(Buying_product.Product != null && Buying_product.Quantity != null)
+												{
+													var_total = var_total + Buying_product.Subtotal;
+													product_cost = Selling_Products_Form[Product == Buying_product.Product].Cost_price;
+													var_product_profit = var_product_profit + Buying_product.Subtotal - product_cost * Buying_product.Quantity;
+												}
+											}
+											input.Total = var_total;
+											input.Profit = var_product_profit;
+										}
+										//it checks the product field is empty or not. If that is empty gives the alert message
+										else
+										{
+											alert "invalid Entry <br><b> Enter the product with Quantites </b>";
+											row.Quantity=0;
+											row.Price=0;
+										}
+						)
+					}
+				}
+
+			}
+			Field_scripts5 as "Field scripts"
+			{
+				type =  form
+				form = Add_Invoice
+				record event = on add or edit
+
+				on user input of Payment
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											//Profit calculations 
+										input.Profit = input.Profit - (input.Total - input.Payment);
+						)
+					}
+				}
+
+			}
+			Field_scripts6 as "Field scripts"
+			{
+				type =  form
+				form = Add_Invoice
+				record event = on add or edit
+
+				on user input of Tax
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											//Tax calculations are here
+										if(input.Tax != null)
+										{
+											input.Payment = input.Total + input.Tax / 100 * input.Total - input.Discount_Percentage / 100 * input.Total;
+										}
+										else
+										{
+											input.Tax = 0;
+										}
+						)
+					}
+				}
+
+			}
+			Field_scripts7 as "Field scripts"
+			{
+				type =  form
+				form = Add_Invoice
+				record event = on add or edit
+
+				on user input of Buying_products.Bar_code
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											if(row.Bar_code != null)
+										{
+											//here we are validating the 'Bar_code' existence in subform for no duplication 
+											product_added_times = 0;
+											for each  buying_product in Buying_products
+											{
+												if(buying_product.Bar_code == row.Bar_code)
+												{
+													product_added_times = product_added_times + 1;
+												}
+											}
+											if(product_added_times <= 1)
+											{
+												product = Selling_Products_Form[Product_bar_code == row.Bar_code];
+												if(product.count() != 0)
+												{
+													row.Product=product.Product;
+													row.Price=product.Selling_price;
+												}
+												else
+												{
+													row.Product=null;
+													row.Price=0;
+													row.Quantity=0;
+													row.discount_percent=0;
+													row.Subtotal=0;
+												}
+											}
+											else
+											{
+												alert "This product is already Exist";
+												row.Product=null;
+												row.Bar_code=null;
+												row.Price=0;
+												row.Quantity=0;
+												row.discount_percent=0;
+												row.Subtotal=0;
+											}
+										}
+										else
+										{
+											row.Product=null;
+											row.Quantity=0;
+											row.Price=0;
+											row.discount_percent=0;
+											row.Subtotal=0;
+										}
+										input.Total = input.Total - row.Subtotal;
+										row.Quantity=0;
+										row.Subtotal=0;
+										row.discount_percent=0;
+						)
+					}
+				}
+
+			}
+			Field_scripts8 as "Field scripts"
+			{
+				type =  form
+				form = Add_Invoice
+				record event = on add or edit
+
+				on user input of Discount_Percentage
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											//discount calculations here
+										if(input.Discount_Percentage != null)
+										{
+											input.Payment = input.Total + input.Tax / 100 * input.Total - input.Discount_Percentage / 100 * input.Total;
+										}
+										else
+										{
+											input.Discount_Percentage = 0;
+										}
+						)
+					}
+				}
+
+			}
+			Field_scripts9 as "Field scripts"
+			{
+				type =  form
+				form = Add_Invoice
+				record event = on add or edit
+
+				on user input of Buying_products.Product
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											if(row.Product != null)
+										{
+											//here we are validating the 'Product' existence in subform for no duplication 
+											product_added_times = 0;
+											for each  Buying_product in Buying_products
+											{
+												if(Buying_product.Product == row.Product)
+												{
+													product_added_times = product_added_times + 1;
+												}
+											}
+											if(product_added_times <= 1)
+											{
+												product = Selling_Products_Form[Product == row.Product];
+												row.Bar_code=product.Product_bar_code;
+												row.Price=product.Selling_price;
+											}
+											else
+											{
+												alert "This product is already added";
+												row.Product=null;
+												row.Bar_code=null;
+												row.Price=null;
+											}
+										}
+										else
+										{
+											row.Product=null;
+											row.Bar_code=null;
+											row.Price=null;
+										}
+										input.Total = input.Total - row.Subtotal;
+										row.Quantity=0;
+										row.Subtotal=0;
+										row.discount_percent=0;
+						)
+					}
+				}
+
+			}
+			Field_scripts10 as "Field scripts"
+			{
+				type =  form
+				form = Add_Invoice
+				record event = on add or edit
+
+				on user input of Total
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											//After filling the total field the follwing calculations are going
+										enable Discount_Percentage;
+										discount_offer = Add_Discount[Total_price <= input.Total && To >= zoho.currentdate && From <= zoho.currentdate] sort by Total_price desc range from 0 to 0;
+										//It gives the discount by the amount based.
+										if(discount_offer.count() > 0)
+										{
+											input.Discount_Percentage = discount_offer.Discount_percent;
+										}
+										//tax calculations here
+										else
+										{
+											input.Discount_Percentage = 0;
+										}
+						)
+					}
+				}
+
+			}
+			Field_scripts11 as "Field scripts"
+			{
+				type =  form
+				form = Add_Invoice
+				record event = on add or edit
+
+				on delete row of Buying_products
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											if(row.Product != null)
+										{
+											input.Total = input.Total - row.Subtotal;
+											product_cost = Selling_Products_Form[Product == row.Product].Cost_price;
+											product_profit = row.Subtotal - product_cost * row.Quantity;
+											input.Profit = input.Profit - product_profit;
+										}
+						)
+					}
+				}
+
+			}
+			Create_record_scripts8 as "Create record scripts"
+			{
+				type =  form
+				form = Add_Customers
+				record event = on add
+
+				on load
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											hide Purchased_amount_till_now;
+						)
+					}
+				}
+
+			}
+			Edit_record_scripts9 as "Edit record scripts"
+			{
+				type =  form
+				form = Add_Customers
+				record event = on edit
+
+				on load
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											hide Purchased_amount_till_now;
+						)
+					}
+				}
+
+			}
+			Create_record_scripts9 as "Create record scripts"
+			{
+				type =  form
+				form = Add_Discount
+				record event = on add
+
+				on validate
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											//Product wise discount needs some field data. If that filds are empty we are not allowing the user to add data.
+										if(input.Discount_Type == "Product wise discount")
+										{
+											if(!input.Click_here_to_give_discount_all_products && Products.size() == 0)
+											{
+												alert "Please select Products to add discount";
+												cancel submit;
+											}
+											if(input.Click_here_to_quantity_based_discount && input.Quantity == null)
+											{
+												alert "Give Quantity to add discount";
+												cancel submit;
+											}
+											discounts = Add_Discount[Discount_Type == "Product wise discount" && To >= input.From];
+											if(discounts.count() > 0)
+											{
+												isthere = false;
+												for each  rec in discounts
+												{
+													commonPro = input.Products.intersect(rec.Products);
+													if(commonPro.size() != 0)
+													{
+														isthere = true;
+													}
+												}
+												if(isthere)
+												{
+													alert isthere;
+													alert "The discount for selected product already exists in this time period!";
+													cancel submit;
+												}
+											}
+										}
+										//Total price discount needs some field data. If that filds are empty we are not allowing the user to add data.
+										if(input.Discount_Type == "Total price discount")
+										{
+											if(input.Total_price == null)
+											{
+												alert "Give Total price to add discount";
+												cancel submit;
+											}
+											discoounts = Add_Discount[Discount_Type == "Total price discount" && To >= input.From && Total_price == input.Total_price];
+											if(discoounts.count() > 0)
+											{
+												alert "This discount already exists in this time period!";
+												cancel submit;
+											}
+										}
+						)
+					}
+				}
+
+			}
+			Edit_record_scripts10 as "Edit record scripts"
+			{
+				type =  form
+				form = Add_Discount
+				record event = on edit
+
+				on update of From
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											//alerts user if from date is less than current date
+										if(input.From > zoho.currentdate)
+										{
+											input.From = null;
+										}
+						)
+					}
+				}
+
+			}
+			Edit_record_scripts11 as "Edit record scripts"
+			{
+				type =  form
+				form = Add_Discount
+				record event = on edit
+
+				on update of To
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											//To date must be after the From date
+										if(input.To < input.From)
+										{
+											input.To = null;
+										}
+						)
+					}
+				}
+
+			}
+			Edit_record_scripts12 as "Edit record scripts"
+			{
+				type =  form
+				form = Add_Discount
+				record event = on edit
+
+				on update of Discount_Type
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											//Clearing the fields that are not related to Total price discount type.
+										if(input.Discount_Type == "Total price discount")
+										{
+											input.Click_here_to_give_discount_all_products = false;
+											input.Click_here_to_quantity_based_discount = false;
+											input.Quantity = null;
+										}
+										//Clearing the fields that are not related to Product wise discount type.
+										if(input.Discount_Type == "Product wise discount")
+										{
+											input.Total_price = null;
+										}
+						)
+					}
+				}
+
+			}
+			Field_scripts12 as "Field scripts"
+			{
+				type =  form
+				form = Add_Discount
+				record event = on add or edit
+
+				on user input of Click_here_to_quantity_based_discount
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											//Clearing the fields that are not related to quantity based discount type.
+										if(!input.Click_here_to_quantity_based_discount)
+										{
+											input.Quantity = null;
+										}
+						)
+					}
+				}
+
+			}
+			Field_scripts13 as "Field scripts"
+			{
+				type =  form
+				form = Add_Discount
+				record event = on add or edit
+
+				on user input of From
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											//alerts user if from date is less than current date
+										if(input.From < zoho.currentdate)
+										{
+											alert "Give a valid future date!";
+											input.From = null;
+										}
+						)
+					}
+				}
+
+			}
+			Field_scripts14 as "Field scripts"
+			{
+				type =  form
+				form = Add_Discount
+				record event = on add or edit
+
+				on user input of To
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											//check the to date is empty or not.If that is empty not gives the alert meassage
+										if(input.To != null && input.From == null)
+										{
+											alert "Please enter a 'From' date first!";
+											input.To = null;
+										}
+										else
+										{
+											//Alerts user if to date is less than from date
+											if(input.To < input.From)
+											{
+												alert "Give a valid 'To' date according to 'From' date!";
+												input.To = null;
+											}
+										}
+						)
+					}
+				}
+
+			}
+			Field_scripts15 as "Field scripts"
+			{
+				type =  form
+				form = Add_Discount
+				record event = on add or edit
+
+				on user input of Discount_Type
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											//Clearing the fields that are not related to Total price discount type.
+										if(input.Discount_Type == "Total price discount")
+										{
+											input.Click_here_to_give_discount_all_products = false;
+											input.Click_here_to_quantity_based_discount = false;
+											input.Quantity = null;
+										}
+										//Clearing the fields that are not related to Product wise discount type.
+										if(input.Discount_Type == "Product wise discount")
+										{
+											input.Total_price = null;
+										}
+						)
+					}
+				}
+
+			}
+			Field_scripts16 as "Field scripts"
+			{
+				type =  form
+				form = Add_Discount
+				record event = on add or edit
+
+				on user input of Click_here_to_give_discount_all_products
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Discount_Type == "Product wise discount" && !input.Click_here_to_give_discount_all_products)
+										{
+											show Products;
+										}
+										else
+										{
+											input.Products = null;
+											hide Products;
+										}
+						)
+					}
+				}
+
+			}
+			Create_record_scripts10 as "Create record scripts"
+			{
+				type =  form
+				form = add_product
+				record event = on add
+
+				on load
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											hide Sold_quantity_this_month;
+						)
+					}
+				}
+
+			}
+			Edit_record_scripts13 as "Edit record scripts"
+			{
+				type =  form
+				form = add_product
+				record event = on edit
+
+				on load
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											hide Sold_quantity_this_month;
+						)
+					}
+				}
+
+			}
+			Create_record_scripts11 as "Create record scripts"
+			{
+				type =  form
+				form = Store_Details
+				record event = on add
+
+				on load
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											input.Email = zoho.loginuserid;
+										disable Email;
+						)
+					}
+				}
+
+			}
+			Create_record_scripts12 as "Create record scripts"
+			{
+				type =  form
+				form = Store_Details
+				record event = on add
+
+				on success
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											openUrl("#Script:dialog.close","same window");
+						)
+					}
+				}
+
+			}
+			Create_record_scripts13 as "Create record scripts"
+			{
+				type =  form
+				form = Add_Cashier
+				record event = on add
+
+				on success
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											//Providing invoice related access to cashier
+										thisapp.permissions.assignUserInProfile(input.Email,"Cashier");
+										storeName = Store_Details[ID != 0].Store_name;
+										//Notification mail to the Cashier
+										sendmail
+										[
+											from :zoho.adminuserid
+											to :input.Email
+											subject :"Invitation to access POS applicacation"
+											message :("Hii " + input.Name) + ",<div><br><div>You have been added as a Cashier in " + storeName + ".</div><div><br></div><div>Click <a href=\"" + "https://app.zohocreator.in" + zoho.appuri + "\"" + " target=\"_blank\">here</a> to access the application.</div><div><br></div><div>Regards,</div><div>" + zoho.adminuser + "</div><div>&nbsp; &nbsp; &nbsp;&nbsp;</div><div>&nbsp; &nbsp; &nbsp;</div></div>"
+										]
+						)
+					}
+				}
+
+			}
+			Edit_record_scripts14 as "Edit record scripts"
+			{
+				type =  form
+				form = Add_Cashier
+				record event = on edit
+
+				on success
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											//Providing invoice related access to cashier
+										thisapp.permissions.assignUserInProfile(input.Email,"Cashier");
+										storeName = Store_Details[ID != 0].Store_name;
+										//Notification mail to the Cashier
+										sendmail
+										[
+											from :zoho.adminuserid
+											to :input.Email
+											subject :"Invitation to access POS applicacation"
+											message :("Hii " + input.Name) + ",<div><br><div>You have been added as a Cashier in " + storeName + ".</div><div><br></div><div>Click <a href=\"" + "https://app.zohocreator.in" + zoho.appuri + "\"" + " target=\"_blank\">here</a> to access the application.</div><div><br></div><div>Regards,</div><div>" + zoho.adminuser + "</div><div>&nbsp; &nbsp; &nbsp;&nbsp;</div><div>&nbsp; &nbsp; &nbsp;</div></div>"
+										]
+						)
+					}
+				}
+
+			}
+			Delete_record_scripts3 as "Delete record scripts"
+			{
+				type =  form
+				form = Add_Cashier
+				record event = on delete
+
+				on success
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											//If Admin delete the cashier form the Chashier report, the application access will be removed
+										thisapp.permissions.deleteuser(input.Email);
+										openUrl("","same window");
+						)
+					}
+				}
+
+			}
+		}
+
+		schedule
+		{
+			Update_Quantity as "Update_Quantity"
+			{
+				type =  schedule
+				start = "2017-08-01 04:30:00"
+				frequency = monthly
+				time zone = "IST"
+				on start
+				{
+					actions 
+					{
+					on load
+					(
+						//Every month this scheduler will update the 'Sold_quantity_this_month' as 0 for generating the monthly chart
+										for each  product in add_product[ID != 0]
+										{
+											product.Sold_quantity_this_month=0;
+										}
+					)
+					}
+				}
+			}
+		}
+
+
+
+		functions
+		{
+			View_Inoice as "View Inoice"
+			{
+				type =  functions
+				form = Add_Invoice
+				execution type = collection of records	
+				on start
+				{
+					actions 
+					{
+						thisapp.CustomAction.viewAction(ID);
+					}
+				}
+			}
+			View_invoice_history_scri as "View invoice history scripts"
+			{
+				type =  functions
+				form = Add_Customers
+				execution type = collection of records	
+				on start
+				{
+					actions 
+					{
+						thisapp.CustomAction.getCustomerBills(ID);
+					}
+				}
+			}
+		}
+	}
+	share_settings
+	{
+			"Administrator"
+			{
+				name = "Administrator"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "This profile will have all the permissions.\n"
+			}
+			"User"
+			{
+				name = "User"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "This profile only have add and view permission.\n"
+				ModulePermissions
+				{
+					add_product
+					{
+						enabled= Create,Viewall,Tab,View,Search 
+						FieldPermissions
+						{
+							Category{visibility:true,readonly:false}
+							Sold_quantity_this_month{visibility:true,readonly:false}
+							Product_ID{visibility:false,readonly:false}
+							Product_name{visibility:true,readonly:false}
+							Product_vendor{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Weight_Volume_Size{visibility:true,readonly:false}
+						}
+					}
+					Add_stock
+					{
+						enabled= Create,Viewall,Tab,View,Search 
+						FieldPermissions
+						{
+							Barcode_Number{visibility:true,readonly:false}
+							Cost_Price{visibility:true,readonly:false}
+							Product{visibility:true,readonly:false}
+							Quantity{visibility:true,readonly:false}
+							Selling_Price{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+						}
+					}
+					Add_Invoice
+					{
+						enabled= Create,Viewall,Tab,View,Search 
+						FieldPermissions
+						{
+							Discount_Percentage{visibility:true,readonly:false}
+							Payment{visibility:true,readonly:false}
+							Amounts{visibility:false,readonly:false}
+							Customer{visibility:true,readonly:false}
+							Total{visibility:true,readonly:false}
+							Tax{visibility:true,readonly:false}
+							Profit{visibility:true,readonly:false}
+							Invoice_Date{visibility:true,readonly:false}
+							Buying_products{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Bill_number{visibility:true,readonly:false}
+						}
+					}
+					Add_Discount
+					{
+						enabled= Create,Viewall,Tab,View,Search 
+						FieldPermissions
+						{
+							Products{visibility:true,readonly:false}
+							Click_here_to_quantity_based_discount{visibility:true,readonly:false}
+							Click_here_to_give_discount_all_products{visibility:true,readonly:false}
+							Discount_percent{visibility:true,readonly:false}
+							Quantity{visibility:true,readonly:false}
+							Total_price{visibility:true,readonly:false}
+							From{visibility:true,readonly:false}
+							To{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Discount_Type{visibility:true,readonly:false}
+						}
+					}
+					Add_Customers
+					{
+						enabled= Create,Viewall,Tab,View,Search 
+						FieldPermissions
+						{
+							Phone_number{visibility:false,readonly:false}
+							Email{visibility:true,readonly:false}
+							Address{visibility:false,readonly:false}
+							Customer_ID{visibility:false,readonly:false}
+							Section{visibility:false,readonly:false}
+							Purchased_amount_till_now{visibility:true,readonly:false}
+							Name{visibility:false,readonly:false}
+						}
+					}
+					categories
+					{
+						enabled= Create,Viewall,Tab,View,Search 
+						FieldPermissions
+						{
+							Section{visibility:false,readonly:false}
+							Category{visibility:true,readonly:false}
+						}
+					}
+					Selling_Products_Form
+					{
+						enabled= Create,Viewall,Tab,View,Search 
+						FieldPermissions
+						{
+							Selling_price{visibility:true,readonly:false}
+							Product{visibility:true,readonly:false}
+							Quantity{visibility:true,readonly:false}
+							Product_bar_code{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Cost_price{visibility:true,readonly:false}
+						}
+					}
+					Add_Vendor
+					{
+						enabled= Create,Viewall,Tab,View,Search 
+						FieldPermissions
+						{
+							Phone_Number{visibility:false,readonly:false}
+							Email{visibility:true,readonly:false}
+							Vendor_Name{visibility:false,readonly:false}
+							Address{visibility:false,readonly:false}
+							Section{visibility:false,readonly:false}
+						}
+					}
+					Store_Details
+					{
+						enabled= Create,Viewall,Tab,View,Search 
+						FieldPermissions
+						{
+							Phone_Number{visibility:false,readonly:false}
+							Email{visibility:true,readonly:false}
+							Store_name{visibility:true,readonly:false}
+							Address{visibility:false,readonly:false}
+							Section{visibility:false,readonly:false}
+						}
+					}
+					Add_Cashier
+					{
+						enabled= Create,Viewall,Tab,View,Search 
+						FieldPermissions
+						{
+							Mobile_Number{visibility:false,readonly:false}
+							Email{visibility:false,readonly:false}
+							Address{visibility:false,readonly:false}
+							Section{visibility:false,readonly:false}
+							Name{visibility:false,readonly:false}
+						}
+					}
+				}
+			}
+			"Cashier"
+			{
+				name = "Cashier"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "Cashier Permissions\n"
+				ModulePermissions
+				{
+					add_product
+					{
+						FieldPermissions
+						{
+							Category{visibility:true,readonly:false}
+							Sold_quantity_this_month{visibility:true,readonly:false}
+							Product_ID{visibility:true,readonly:false}
+							Product_name{visibility:true,readonly:false}
+							Product_vendor{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Weight_Volume_Size{visibility:true,readonly:false}
+						}
+					}
+					Add_stock
+					{
+						FieldPermissions
+						{
+							Barcode_Number{visibility:true,readonly:false}
+							Cost_Price{visibility:true,readonly:false}
+							Product{visibility:true,readonly:false}
+							Quantity{visibility:true,readonly:false}
+							Selling_Price{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+						}
+					}
+					Add_Invoice
+					{
+						enabled= Create,Tab 
+						FieldPermissions
+						{
+							Discount_Percentage{visibility:true,readonly:false}
+							Payment{visibility:true,readonly:false}
+							Amounts{visibility:false,readonly:false}
+							Customer{visibility:true,readonly:false}
+							Total{visibility:true,readonly:false}
+							Tax{visibility:true,readonly:false}
+							Profit{visibility:true,readonly:false}
+							Invoice_Date{visibility:true,readonly:false}
+							Buying_products{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Bill_number{visibility:true,readonly:false}
+						}
+					}
+					Add_Discount
+					{
+						FieldPermissions
+						{
+							Products{visibility:true,readonly:false}
+							Click_here_to_quantity_based_discount{visibility:true,readonly:false}
+							Click_here_to_give_discount_all_products{visibility:true,readonly:false}
+							Discount_percent{visibility:true,readonly:false}
+							Quantity{visibility:true,readonly:false}
+							Total_price{visibility:true,readonly:false}
+							From{visibility:true,readonly:false}
+							To{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Discount_Type{visibility:true,readonly:false}
+						}
+					}
+					Add_Customers
+					{
+						enabled= Create,Viewall,Modifyall,Tab 
+						ReportPermissions
+						{
+							Customers={"View","Edit"}
+						}
+						FieldPermissions
+						{
+							Phone_number{visibility:false,readonly:false}
+							Email{visibility:true,readonly:false}
+							Address{visibility:false,readonly:false}
+							Customer_ID{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Purchased_amount_till_now{visibility:true,readonly:false}
+							Name{visibility:false,readonly:false}
+						}
+					}
+					categories
+					{
+						FieldPermissions
+						{
+							Section{visibility:false,readonly:false}
+							Category{visibility:true,readonly:false}
+						}
+					}
+					Selling_Products_Form
+					{
+						FieldPermissions
+						{
+							Selling_price{visibility:true,readonly:false}
+							Product{visibility:true,readonly:false}
+							Quantity{visibility:true,readonly:false}
+							Product_bar_code{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Cost_price{visibility:true,readonly:false}
+						}
+					}
+					Add_Vendor
+					{
+						FieldPermissions
+						{
+							Phone_Number{visibility:false,readonly:false}
+							Email{visibility:true,readonly:false}
+							Vendor_Name{visibility:false,readonly:false}
+							Address{visibility:false,readonly:false}
+							Section{visibility:false,readonly:false}
+						}
+					}
+					Store_Details
+					{
+						FieldPermissions
+						{
+							Phone_Number{visibility:false,readonly:false}
+							Email{visibility:true,readonly:false}
+							Store_name{visibility:true,readonly:false}
+							Address{visibility:false,readonly:false}
+							Section{visibility:false,readonly:false}
+						}
+					}
+					Add_Cashier
+					{
+						FieldPermissions
+						{
+							Mobile_Number{visibility:false,readonly:false}
+							Email{visibility:false,readonly:false}
+							Address{visibility:false,readonly:false}
+							Section{visibility:false,readonly:false}
+							Name{visibility:false,readonly:false}
+						}
+					}
+				}
+			}
+			"Customer"
+			{
+				name = "Customer"
+				type = Customer_Portal
+				permissions = {Chat:false, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "This is the default profile having only add and view permission.\n"
+			}
+			roles
+			{
+				"CEO"
+				{
+					description = "User belonging to this role can access data of all other users.\n\n"
+				}
+			}
+			role Hierarchy = {Add_Cashier,Add_Customers,Add_Discount,Add_Invoice,add_product,Add_Vendor,categories,Selling_Products_Form,Store_Details}
+	}
+
+	customize
+	{
+		
+		layout = "tab"
+		color = "black"
+		base theme = "professional"
+		new theme = 1
+		icons = true
+		icons style = solid
+		font = "lato"
+		color options
+    	{
+        color = "7"
+    	}
+    	icon
+    	{
+        	type = "1"
+        	name = "zc-ab-finance1"
+        	background color = "lightred"
+        	foreground color = "#FFFFFF"
+    	}
+    	logo
+    	{
+        	preference = "none"
+        	placement = "left"
+    	}
+	}
+
+
+	phone
+	{
+		section  Admin_Dashboard
+		{
+			displayname= "Admin Dashboard"
+			page Invoice
+			{
+				hide = true
+			}
+			page Admin_Dashboard
+			{
+			}
+		}
+		section  Stock
+		{
+			form  Add_stock
+			{
+				layout = auto
+			}
+			list Current_Stock_Products
+			{
+			}
+			list Out_of_stock_Products
+			{
+			}
+			list All_Product
+			{
+			}
+						pivotchart Most_Sold_Products
+			{
+				icon = "business-chart-bar-32"
+			}
+		}
+		section  Bill_form
+		{
+			displayname= "Billing"
+			form  Add_Invoice
+			{
+				layout = auto
+			}
+			list Invoices
+			{
+			}
+			 
+			pivotchart Monthly_Profit
+			{
+				icon = "business-chart-bar-32"
+			}
+			 
+			pivotchart Monthly_Sales
+			{
+				icon = "business-chart-bar-32"
+			}
+		}
+		section  Members
+		{
+			displayname= "Customers"
+			form  Add_Customers
+			{
+				layout = auto
+			}
+			list Customers
+			{
+			}
+		}
+		section  Discount
+		{
+			list Price_Dise_Discount
+			{
+				hide = true
+			}
+			form  Add_Discount
+			{
+				layout = auto
+			}
+			list Product_Wise_Discount
+			{
+			}
+		}
+		section  Item_categories
+		{
+			displayname= "Settings"
+			list Categories11
+			{
+			}
+			list Vendors
+			{
+			}
+			list Store_Details1
+			{
+			}
+			list Cashiers
+			{
+			}
+		}
+		section  Charts
+		{
+			hide = true
+		}
+		section  hidden_contents
+		{
+			displayname= "hidden contents"
+			hide = true
+			form  add_product
+			{
+				layout = auto
+				hide = true
+			}
+			form  categories
+			{
+				layout = auto
+				hide = true
+			}
+			form  Add_Vendor
+			{
+				layout = auto
+				hide = true
+			}
+			form  Selling_Products_Form
+			{
+				layout = auto
+				hide = true
+			}
+			form  Store_Details
+			{
+				layout = auto
+				hide = true
+			}
+			form  Add_Cashier
+			{
+				layout = auto
+				hide = true
+			}
+		}
+		section  Sales___Profit
+		{
+			displayname= "Sales & Profit"
+			hide = true
+			list This_Month_sale
+			{
+				hide = true
+			}
+			list This_Month_Sales
+			{
+				hide = true
+			}
+			list This_Week_Sales
+			{
+				hide = true
+			}
+			list Today_Sales
+			{
+				hide = true
+			}
+		}
+		customize
+		{
+        	layout = slidingpane
+		 	icons style = outline
+        	font = "lato"
+            style = "3"
+        	color options
+        	{
+             	color = lightred
+         	}
+         	logo
+         	{
+             	preference = "none"
+         	}
+		}
+	}
+	tablet
+	{
+		customize
+		{
+        	layout = slidingpane
+		 	icons style = outline
+        	font = "default"
+            style = "3"
+        	color options
+        	{
+             	color = lightred
+         	}
+         	logo
+         	{
+             	preference = "none"
+         	}
+		}
+	}
+	
+	reports configuration
+	{
+	
+		Version = 2000024271023
+		Key     = "3S1AAa0sM2Mn6EwTB0uv4SY9HzgQBtW7KbQrk9wYadDMeFGVrTnDUWNdD5k0eACUsqAe65bMbYu12ZpKj7kUOmWeFajQYGp71dCg"
+	}
+}
